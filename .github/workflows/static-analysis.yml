@@ -1,0 +1,61 @@
+name: Static analysis
+
+on:
+  push:
+    branches: [ main ]
+  pull_request:
+    branches: [ main ]
+
+jobs:
+  phpstan:
+
+    runs-on: ubuntu-latest
+
+    steps:
+    - uses: actions/checkout@v2
+
+    - name: Cache Composer packages
+      id: composer-cache
+      uses: actions/cache@v2
+      with:
+        path: vendor
+        key: ${{ runner.os }}-php-${{ hashFiles('**/composer.lock') }}
+        restore-keys: |
+          ${{ runner.os }}-php-
+
+    - name: Install dependencies
+      run: |
+        composer install --prefer-dist --no-progress
+        composer bin all install
+        bin/phpunit install
+
+    - name: Run phpstan
+      run: vendor/bin/phpstan --configuration=phpstan.neon --memory-limit=-1
+
+    - name: Run psalm
+      run: vendor/bin/psalm --config=psalm.xml --diff --show-info=false --stats --threads=4
+
+  psalm:
+
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v2
+
+      - name: Cache Composer packages
+        id: composer-cache
+        uses: actions/cache@v2
+        with:
+          path: vendor
+          key: ${{ runner.os }}-php-${{ hashFiles('**/composer.lock') }}
+          restore-keys: |
+            ${{ runner.os }}-php-
+
+      - name: Install dependencies
+        run: |
+          composer install --prefer-dist --no-progress
+          composer bin all install
+          bin/phpunit install
+
+      - name: Run psalm
+        run: vendor/bin/psalm --config=psalm.xml --diff --show-info=false --stats --threads=4

@@ -1,0 +1,27 @@
+#baseline: depfile-core.baseline.yml
+#imports:
+  #- ./depfile-publicjob.yaml
+paths:
+  - ./ingesting/src
+exclude_files:
+  - '#.*test.*#'
+layers:
+  - name: IngestingShared
+    collectors:
+      - type: directory
+        regex: sharedKernel/.*
+  - name: PublicJob
+    collectors:
+      - type: directory
+        regex: PublicJob/.*
+  - name: Errata
+    collectors:
+      - type: directory
+        regex: Errata/.*
+
+ruleset:
+  PublicJob:
+    - IngestingShared
+  Errata:
+    - IngestingShared
+  IngestingShared:

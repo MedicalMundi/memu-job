@@ -1,0 +1,23 @@
+includes:
+	- phpstan-baseline.neon
+
+parameters:
+    level: max
+
+    paths:
+        - src/
+        - tests/
+        - core/ingesting/src/
+        - core/ingesting/tests/
+
+    checkMissingIterableValueType: false
+
+    inferPrivatePropertyTypeFromConstructor: true
+
+    #bootstrapFiles:
+        #- bin/.phpunit/phpunit/vendor/autoload.php
+
+    excludes_analyse:
+        - tests/bootstrap.php
+
+    tmpDir: .build/phpstan/
