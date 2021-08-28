@@ -1,38 +1,27 @@
-<?php
-
-declare(strict_types=1);
+<?php declare(strict_types=1);
 
 namespace Ingesting\Errata\Application\Domain\Model;
 
 use Ramsey\Uuid\Uuid;
 use Ramsey\Uuid\UuidInterface;
 
-/**
- * null
- * @codeCoverageIgnore
- */
-final class ErrataId
+class ErrataId
 {
     private UuidInterface $uuid;
 
-    private function __construct(UuidInterface $uuid)
-    {
-        $this->uuid = $uuid;
-    }
-
-    public static function generate(): self
+    public static function generate(): ErrataId
     {
         return new self(Uuid::uuid4());
     }
 
-    public static function fromString(string $uuid): self
+    public static function fromString(string $id): ErrataId
     {
-        return new self(Uuid::fromString($uuid));
+        return new self(Uuid::fromString($id));
     }
 
-    public static function fromBinary(string $bytes): self
+    private function __construct(UuidInterface $id)
     {
-        return new self(Uuid::fromBytes($bytes));
+        $this->uuid = $id;
     }
 
     public function toString(): string
@@ -45,13 +34,8 @@ final class ErrataId
         return $this->uuid->toString();
     }
 
-    public function toBinary(): string
+    public function equals(ErrataId $other): bool
     {
-        return $this->uuid->getBytes();
-    }
-
-    public function equals(?self $other): bool
-    {
-        return null !== $other && $this->uuid->equals($other->uuid);
+        return $this->uuid->equals($other->uuid);
     }
 }
