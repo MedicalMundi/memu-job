@@ -9,6 +9,9 @@ use Ingesting\Errata\Application\Domain\Model\Service\ErrataUniqueService;
 use PHPUnit\Framework\MockObject\MockObject;
 use PHPUnit\Framework\TestCase;
 
+/**
+ * @covers \Ingesting\Errata\Application\Domain\Model\Service\ErrataUniqueService
+ */
 class ErrataUniqueServiceTest extends TestCase
 {
     /**

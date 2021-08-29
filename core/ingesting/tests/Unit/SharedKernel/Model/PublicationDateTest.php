@@ -5,6 +5,9 @@ namespace Ingesting\Tests\Unit\SharedKernel\Model;
 use Ingesting\SharedKernel\Model\PublicationDate;
 use PHPUnit\Framework\TestCase;
 
+/**
+ * @covers \Ingesting\SharedKernel\Model\PublicationDate
+ */
 class PublicationDateTest extends TestCase
 {
     /**

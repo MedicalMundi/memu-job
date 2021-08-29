@@ -11,6 +11,9 @@ use Ingesting\SharedKernel\Model\PublicationDate;
 use PHPUnit\Framework\MockObject\MockObject;
 use PHPUnit\Framework\TestCase;
 
+/**
+ * @covers \Ingesting\Errata\Application\Usecase\CreateErrataFeedItemUsecase
+ */
 class CreateErrataFeedItemUsecaseTest extends TestCase
 {
     private const ITEM_UUID = 'cc97e157-a0fa-478a-8ade-5692bbaa08e0';

@@ -7,7 +7,10 @@ use Ingesting\Errata\Application\Domain\Model\ErrataId;
 use Ingesting\SharedKernel\Model\PublicationDate;
 use PHPUnit\Framework\TestCase;
 
-class ErrataTest extends TestCase
+/**
+ * @covers \Ingesting\Errata\Application\Domain\Model\ErrataFeed
+ */
+class ErrataFeedTest extends TestCase
 {
     private const UUID = 'dc97e157-a0fa-478a-8ade-5692bbaa08e0';
 

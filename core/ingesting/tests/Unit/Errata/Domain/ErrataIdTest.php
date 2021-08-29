@@ -6,6 +6,9 @@ use Ingesting\Errata\Application\Domain\Model\ErrataId;
 use PHPUnit\Framework\TestCase;
 use Ramsey\Uuid\Exception\InvalidUuidStringException;
 
+/**
+ * @covers \Ingesting\Errata\Application\Domain\Model\ErrataId
+ */
 class ErrataIdTest extends TestCase
 {
     private const FIRST_ID = 'dc97e157-a0fa-478a-8ade-5692bbaa08e0';

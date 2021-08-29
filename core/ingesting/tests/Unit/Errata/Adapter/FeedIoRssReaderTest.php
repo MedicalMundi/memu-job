@@ -11,7 +11,10 @@ use PHPUnit\Framework\TestCase;
  */
 class FeedIoRssReaderTest extends TestCase
 {
-    public function shouldReadRssFeedFromDataSource()
+    /**
+     * @test
+     */
+    public function shouldReadRssFeedFromDataSource(): void
     {
         $feedIoMock = $this->getMockBuilder(FeedIo::class)
             ->disableOriginalConstructor()

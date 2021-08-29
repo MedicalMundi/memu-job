@@ -6,6 +6,7 @@ use Ingesting\Errata\Adapter\Rss\FeedIoRssReader;
 use PHPUnit\Framework\TestCase;
 
 /**
+ * @covers \Ingesting\Errata\Adapter\Rss\FeedIoRssReader
  * @group io-network
  */
 class FeedIoRssReaderTest extends TestCase
