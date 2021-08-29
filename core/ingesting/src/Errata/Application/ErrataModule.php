@@ -2,20 +2,19 @@
 
 namespace Ingesting\Errata\Application;
 
-use Ingesting\Errata\Application\Domain\Model\ErrataId;
-use Ingesting\Errata\Application\Usecase\CreateErrataFeedItem;
+use Ingesting\Errata\Application\Usecase\ErrataRssDataSoureChecker;
 
 final class ErrataModule implements ErrataContextInterface
 {
-    private CreateErrataFeedItem $createErrataFeedItemUsecase;
+    private ErrataRssDataSoureChecker $readErrataRssUsecase;
 
-    public function __construct(CreateErrataFeedItem $createErrataFeedItemUsecase)
+    public function __construct(ErrataRssDataSoureChecker $readErrataRssUsecase)
     {
-        $this->createErrataFeedItemUsecase = $createErrataFeedItemUsecase;
+        $this->readErrataRssUsecase = $readErrataRssUsecase;
     }
 
-    public function createErrataFeed(string $title, string $description, string $link, string $pubDate, ?ErrataId $uuidIdentifier): void
+    public function readErrataRssDataSource(): void
     {
-        $this->createErrataFeed($title, $description, $link, $pubDate, $uuidIdentifier);
+        $this->readErrataRssDataSource();
     }
 }

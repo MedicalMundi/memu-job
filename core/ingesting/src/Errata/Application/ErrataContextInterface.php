@@ -2,8 +2,8 @@
 
 namespace Ingesting\Errata\Application;
 
-use Ingesting\Errata\Application\Usecase\CreateErrataFeedItem;
+use Ingesting\Errata\Application\Usecase\ErrataRssDataSoureChecker;
 
-interface ErrataContextInterface extends CreateErrataFeedItem
+interface ErrataContextInterface extends ErrataRssDataSoureChecker
 {
 }

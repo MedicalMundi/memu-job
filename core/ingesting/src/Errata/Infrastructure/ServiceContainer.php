@@ -9,14 +9,14 @@ use Ingesting\Errata\Application\Domain\Model\Service\ErrataUniqueService;
 use Ingesting\Errata\Application\ErrataContextInterface;
 use Ingesting\Errata\Application\ErrataModule;
 use Ingesting\Errata\Application\Iso\RssReader;
-use Ingesting\Errata\Application\Usecase\CreateErrataFeedItem;
-use Ingesting\Errata\Application\Usecase\CreateErrataFeedItemUsecase;
+use Ingesting\Errata\Application\Usecase\ErrataRssDataSoureChecker;
+use Ingesting\Errata\Application\Usecase\ReadErrataRssUsecase;
 
 abstract class ServiceContainer
 {
     protected ?ErrataContextInterface $module = null;
 
-    protected ?CreateErrataFeedItem $createErrataFeedItem = null;
+    protected ?ErrataRssDataSoureChecker $readErrataRssUsecase = null;
 
     protected ?ErrataFeedRepository $errataFeedRepository = null;
 
@@ -28,7 +28,7 @@ abstract class ServiceContainer
     {
         if ($this->module === null) {
             $this->module = new ErrataModule(
-                $this->createErrataFeedItem()
+                $this->readErrataRssUsecase()
             );
         }
 
@@ -56,16 +56,17 @@ abstract class ServiceContainer
         return $this->uniqueErrataIdentity;
     }
 
-    protected function createErrataFeedItem(): CreateErrataFeedItem
+    protected function readErrataRssUsecase(): ErrataRssDataSoureChecker
     {
-        if ($this->createErrataFeedItem === null) {
-            $this->createErrataFeedItem = new CreateErrataFeedItemUsecase(
+        if ($this->readErrataRssUsecase === null) {
+            $this->readErrataRssUsecase = new ReadErrataRssUsecase(
                 $this->errataFeedRepository(),
-                $this->uniqueErrataIdentity()
+                $this->uniqueErrataIdentity(),
+                $this->rssReader()
             );
         }
 
-        return $this->createErrataFeedItem;
+        return $this->readErrataRssUsecase;
     }
 
     protected function rssReader(): RssReader
