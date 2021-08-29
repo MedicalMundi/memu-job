@@ -2,7 +2,6 @@
 
 namespace Ingesting\Errata\Infrastructure;
 
-use Ingesting\Errata\Adapter\Persistence\InMemoryErrataFeedRepository;
 use Ingesting\Errata\Application\Domain\Model\ErrataFeedRepository;
 use Ingesting\Errata\Application\Domain\Model\Service\ErrataUniqueService;
 use Ingesting\Errata\Application\ErrataContextInterface;
