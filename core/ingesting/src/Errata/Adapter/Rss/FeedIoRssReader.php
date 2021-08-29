@@ -33,14 +33,14 @@ class FeedIoRssReader implements RssReader
         $feedItems = [];
         foreach ($result->getFeed() as $item) {
             $feed = null;
-            $feed = new RssDataItem();
-            $feed->setTitle($item->getTitle());
-            $feed->setDescription($item->getDescription());
-            $feed->setLink($item->getLink());
-            $feed->setPubDate($item->getLastModified()->format('Y-m-d H:i:s'));
+            $feed = RssDataItem::create(
+                $item->getTitle(),
+                $item->getDescription(),
+                $item->getLink(),
+                $item->getLastModified()->format('Y-m-d H:i:s')
+            );
             $feedItems[] = $feed;
         }
-
         return $feedItems;
     }
 }

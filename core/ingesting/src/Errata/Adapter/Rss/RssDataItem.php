@@ -12,45 +12,36 @@ class RssDataItem implements RssData
 
     private string $link;
 
-    private string $pubDate;
+    private string $publicationDate;
 
-    public function getTitle(): string
+    public static function create(string $title, string $description, string $link, string $publicationDate): self
+    {
+        $self = new self();
+        $self->title = $title;
+        $self->description = $description;
+        $self->link = $link;
+        $self->publicationDate = $publicationDate;
+
+        return $self;
+    }
+
+    public function title(): string
     {
         return $this->title;
     }
 
-    public function setTitle(string $title): void
-    {
-        $this->title = $title;
-    }
-
-    public function getDescription(): string
+    public function description(): string
     {
         return $this->description;
     }
 
-    public function setDescription(string $description): void
-    {
-        $this->description = $description;
-    }
-
-    public function getLink(): string
+    public function link(): string
     {
         return $this->link;
     }
 
-    public function setLink(string $link): void
+    public function publicationDate(): string
     {
-        $this->link = $link;
-    }
-
-    public function getPubDate(): string
-    {
-        return $this->pubDate;
-    }
-
-    public function setPubDate(string $pubDate): void
-    {
-        $this->pubDate = $pubDate;
+        return $this->publicationDate;
     }
 }
