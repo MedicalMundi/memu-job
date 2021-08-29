@@ -24,9 +24,10 @@ jobs:
           ${{ runner.os }}-php-
 
     - name: Install dependencies
-      run: |
-        composer install --prefer-dist --no-progress
-        bin/phpunit install
+      run: composer install --prefer-dist --no-progress
 
     - name: Run unit test suite
-      run: bin/phpunit --configuration core/ingesting/tests/Unit/phpunit.xml
+      run: ./vendor/bin/phpunit --configuration phpunit.core.xml --testsuite unit
+
+    - name: Run unit test suite
+      run: ./vendor/bin/phpunit --configuration phpunit.core.xml --testsuite integration

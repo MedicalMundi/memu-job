@@ -27,7 +27,6 @@ jobs:
       run: |
         composer install --prefer-dist --no-progress
         composer bin all install
-        bin/phpunit install
 
     - name: Run phpstan
       run: vendor/bin/phpstan --configuration=phpstan.neon --memory-limit=-1
@@ -55,7 +54,6 @@ jobs:
         run: |
           composer install --prefer-dist --no-progress
           composer bin all install
-          bin/phpunit install
 
       - name: Run psalm
         run: vendor/bin/psalm --config=psalm.xml --diff --show-info=false --stats --threads=4

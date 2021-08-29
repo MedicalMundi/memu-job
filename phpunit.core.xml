@@ -6,7 +6,13 @@
          backupGlobals="false"
          colors="true"
          bootstrap="tests/bootstrap.php"
+         executionOrder="random"
+         forceCoversAnnotation="true"
          convertDeprecationsToExceptions="false"
+         beStrictAboutCoversAnnotation="false"
+         beStrictAboutOutputDuringTests="true"
+         beStrictAboutTodoAnnotatedTests="true"
+         cacheResultFile="var/tools/phpunit/core/.phpunit.cache"
 >
     <php>
         <ini name="display_errors" value="1" />
@@ -18,14 +24,25 @@
     </php>
 
     <testsuites>
-        <testsuite name="ingesting">
-            <directory>core/ingesting/tests</directory>
+        <testsuite name="unit">
+            <directory>core/ingesting/tests/Unit</directory>
+        </testsuite>
+        <testsuite name="integration">
+            <directory>core/ingesting/tests/Integration</directory>
         </testsuite>
     </testsuites>
 
-    <coverage processUncoveredFiles="true">
+    <groups>
+        <exclude>
+            <group>slow</group>
+            <group>io-network</group>
+        </exclude>
+    </groups>
+
+    <coverage cacheDirectory="var/tools/phpunit/core/.phpunit.cache"
+              processUncoveredFiles="true">
         <include>
-            <directory suffix=".php">core/ingesting/tests</directory>
+            <directory suffix=".php">core/ingesting/src</directory>
         </include>
     </coverage>
 
