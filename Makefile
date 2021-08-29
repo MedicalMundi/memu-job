@@ -8,7 +8,7 @@ dependency-install:  ## Install all dependency with composer
 dependency-purge:  ## Remove all dependency
 	rm -fR vendor
 	rm -fR tools/*/vendor
-	rm -fR bin/.phpunit
+#	rm -fR bin/.phpunit
 
 
 .PHONY: coding-standards
@@ -34,13 +34,13 @@ static-code-analysis-baseline: vendor ## Generates a baseline for static code an
 .PHONY: core-tests
 core-tests: ## Runs unit tests For Core code with phpunit/phpunit
 	mkdir -p var/tools/phpunit/core
-	bin/phpunit --configuration core/ingesting/tests/Unit/phpunit.xml --coverage-text
+	vendor/bin/phpunit --configuration phpunit.core.xml --coverage-text
 
 
 .PHONY: core-coverage
 core-coverage: ## Collects Core code coverage from running unit tests with phpunit/phpunit
 	mkdir -p var/tools/phpunit/core
-	bin/phpunit --configuration core/ingesting/tests/Unit/phpunit.xml --coverage-html var/coverage/core
+	vendor/bin/phpunit --configuration phpunit.core.xml --coverage-html var/coverage/core
 
 .PHONY: core-architecture-check
 core-architecture-check:  ## Check Core code architecture roules with deptrac
