@@ -13,33 +13,33 @@ dependency-purge:  ## Remove all dependency
 
 .PHONY: coding-standards
 coding-standards: ## Fixes code style issues with easy-coding-standard
-	mkdir -p .build/ecs
+	mkdir -p var/tools/ecs
 	vendor/bin/ecs check --fix --verbose
 
 .PHONY: static-code-analysis
 static-code-analysis: ## Runs a static code analysis with phpstan/phpstan and vimeo/psalm
-	mkdir -p .build/phpstan
+	mkdir -p var/tools/phpstan
 	vendor/bin/phpstan --configuration=phpstan.neon --memory-limit=-1
-	mkdir -p .build/psalm
+	mkdir -p var/tools/psalm
 	vendor/bin/psalm --config psalm.xml --diff --show-info=false --stats --threads=4
 
 
 .PHONY: static-code-analysis-baseline
 static-code-analysis-baseline: vendor ## Generates a baseline for static code analysis with phpstan/phpstan and vimeo/psalm
-	mkdir -p .build/phpstan
+	mkdir -p var/tools/phpstan
 	vendor/bin/phpstan --configuration=phpstan.neon --generate-baseline --memory-limit=-1  || true
-	mkdir -p .build/psalm
+	mkdir -p var/tools/psalm
 	vendor/bin/psalm --config=psalm.xml --set-baseline=psalm-baseline.xml
 
 .PHONY: core-tests
 core-tests: ## Runs unit tests For Core code with phpunit/phpunit
-	mkdir -p .build/phpunit/core
+	mkdir -p var/tools/phpunit/core
 	bin/phpunit --configuration core/ingesting/tests/Unit/phpunit.xml --coverage-text
 
 
 .PHONY: core-coverage
 core-coverage: ## Collects Core code coverage from running unit tests with phpunit/phpunit
-	mkdir -p .build/phpunit/core
+	mkdir -p var/tools/phpunit/core
 	bin/phpunit --configuration core/ingesting/tests/Unit/phpunit.xml --coverage-html var/coverage/core
 
 .PHONY: core-architecture-check

@@ -16,7 +16,7 @@ use Symplify\EasyCodingStandard\ValueObject\Set\SetList;
 return static function (ContainerConfigurator $containerConfigurator): void {
     $parameters = $containerConfigurator->parameters();
 
-    $parameters->set(Option::CACHE_DIRECTORY, __DIR__ . '/.build/ecs/.ecs_cache');
+    $parameters->set(Option::CACHE_DIRECTORY, __DIR__ . '/var/tools/ecs/.ecs_cache');
 
     $parameters->set(Option::PATHS, [
         __DIR__ . '/src',
