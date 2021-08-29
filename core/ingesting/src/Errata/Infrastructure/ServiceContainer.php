@@ -2,10 +2,13 @@
 
 namespace Ingesting\Errata\Infrastructure;
 
+use FeedIo\Factory;
+use Ingesting\Errata\Adapter\Rss\FeedIoRssReader;
 use Ingesting\Errata\Application\Domain\Model\ErrataFeedRepository;
 use Ingesting\Errata\Application\Domain\Model\Service\ErrataUniqueService;
 use Ingesting\Errata\Application\ErrataContextInterface;
 use Ingesting\Errata\Application\ErrataModule;
+use Ingesting\Errata\Application\Iso\RssReader;
 use Ingesting\Errata\Application\Usecase\CreateErrataFeedItem;
 use Ingesting\Errata\Application\Usecase\CreateErrataFeedItemUsecase;
 
@@ -18,6 +21,8 @@ abstract class ServiceContainer
     protected ?ErrataFeedRepository $errataFeedRepository = null;
 
     protected ?ErrataUniqueService $uniqueErrataIdentity = null;
+
+    protected ?RssReader $rssReader = null;
 
     public function module(): ErrataContextInterface
     {
@@ -61,5 +66,14 @@ abstract class ServiceContainer
         }
 
         return $this->createErrataFeedItem;
+    }
+
+    protected function rssReader(): RssReader
+    {
+        if ($this->rssReader === null) {
+            $this->rssReader = new FeedIoRssReader(Factory::create()->getFeedIo());
+        }
+
+        return $this->rssReader;
     }
 }
