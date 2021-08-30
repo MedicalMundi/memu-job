@@ -25,10 +25,13 @@
 
     <testsuites>
         <testsuite name="unit">
-            <directory>core/ingesting/tests/Unit</directory>
+            <directory>core/ingesting/tests/SharedKernel/Model</directory>
+            <directory>core/ingesting/tests/Errata/Unit</directory>
+            <directory>core/ingesting/tests/Analyzer/Unit</directory>
         </testsuite>
         <testsuite name="integration">
-            <directory>core/ingesting/tests/Integration</directory>
+            <directory>core/ingesting/tests/Errata/Integration</directory>
+            <directory>core/ingesting/tests/Analyzer/Integration</directory>
         </testsuite>
     </testsuites>
 

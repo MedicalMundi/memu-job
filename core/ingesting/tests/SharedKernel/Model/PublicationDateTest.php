@@ -1,6 +1,6 @@
 <?php declare(strict_types=1);
 
-namespace Ingesting\Tests\Unit\SharedKernel\Model;
+namespace Ingesting\Tests\SharedKernel\Model;
 
 use Ingesting\SharedKernel\Model\PublicationDate;
 use PHPUnit\Framework\TestCase;

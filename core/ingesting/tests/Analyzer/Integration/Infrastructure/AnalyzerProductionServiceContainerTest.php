@@ -1,6 +1,6 @@
 <?php declare(strict_types=1);
 
-namespace Ingesting\Tests\Integration\Analyzer\Infrastructure;
+namespace Ingesting\Tests\Analyzer\Integration\Infrastructure;
 
 use Ingesting\Analyzer\Infrastructure\ProductionServiceContainer;
 use PHPUnit\Framework\TestCase;
