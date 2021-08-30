@@ -1,6 +1,6 @@
 <?php declare(strict_types=1);
 
-namespace Ingesting\Tests\Unit\Errata\Adapter;
+namespace Ingesting\Tests\Errata\Unit\Adapter;
 
 use FeedIo\FeedIo;
 use Ingesting\Errata\Adapter\Rss\FeedIoRssReader;

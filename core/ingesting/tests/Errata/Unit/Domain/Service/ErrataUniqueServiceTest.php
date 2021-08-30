@@ -1,6 +1,6 @@
 <?php declare(strict_types=1);
 
-namespace Ingesting\Tests\Unit\Errata\Domain\Service;
+namespace Ingesting\Tests\Errata\Unit\Domain\Service;
 
 use Ingesting\Errata\Application\Domain\Model\ErrataFeed;
 use Ingesting\Errata\Application\Domain\Model\ErrataFeedRepository;
@@ -15,7 +15,7 @@ use PHPUnit\Framework\TestCase;
 class ErrataUniqueServiceTest extends TestCase
 {
     /**
-     * @var ErrataFeedRepository & MockObject
+     * @var ErrataFeedRepository&MockObject
      */
     private $repository;
 

@@ -1,6 +1,6 @@
 <?php declare(strict_types=1);
 
-namespace Ingesting\Tests\Unit\Errata\Usecase;
+namespace Ingesting\Tests\Errata\Unit\Usecase;
 
 use Ingesting\Errata\Adapter\Rss\RssDataItem;
 use Ingesting\Errata\Application\Domain\Model\ErrataFeed;
@@ -28,17 +28,17 @@ class ReadErrataRssUsecaseTest extends TestCase
     private const ITEM_PUB_DATE = '2047-02-01 10:00:00';
 
     /**
-     * @var ErrataFeedRepository & MockObject
+     * @var ErrataFeedRepository&MockObject
      */
     private $repository;
 
     /**
-     * @var ErrataUniqueService & MockObject
+     * @var ErrataUniqueService&MockObject
      */
     private $errataUniqueService;
 
     /**
-     * @var RssReader & MockObject
+     * @var RssReader&MockObject
      */
     private $rssReader;
 

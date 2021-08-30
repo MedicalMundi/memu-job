@@ -1,6 +1,6 @@
 <?php declare(strict_types=1);
 
-namespace Ingesting\Tests\Integration;
+namespace Ingesting\Tests\Errata\Integration;
 
 use Ingesting\Errata\Adapter\Rss\FeedIoRssReader;
 use PHPUnit\Framework\TestCase;
