@@ -46,3 +46,4 @@ core-coverage: ## Collects Core code coverage from running unit tests with phpun
 core-architecture-check:  ## Check Core code architecture roules with deptrac
 	vendor/bin/deptrac analyse core/depfile-core.yaml --report-uncovered
 	vendor/bin/deptrac analyse core/depfile-publicjob.yaml
+	vendor/bin/deptrac analyse core/depfile-errata.yaml

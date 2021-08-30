@@ -29,4 +29,6 @@ jobs:
         composer bin deptrac install
 
     - name: Run core code analysis
-      run: vendor/bin/deptrac analyse core/depfile-publicjob.yaml
+      run: |
+        vendor/bin/deptrac analyse core/depfile-publicjob.yaml
+        vendor/bin/deptrac analyse core/depfile-errata.yaml

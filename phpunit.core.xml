@@ -36,6 +36,7 @@
         <exclude>
             <group>slow</group>
             <group>io-network</group>
+            <group>quarantine</group>
         </exclude>
     </groups>
 

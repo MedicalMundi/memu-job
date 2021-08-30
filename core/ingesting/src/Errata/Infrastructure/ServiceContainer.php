@@ -11,6 +11,7 @@ use Ingesting\Errata\Application\ErrataModule;
 use Ingesting\Errata\Application\Iso\RssReader;
 use Ingesting\Errata\Application\Usecase\ErrataRssDataSoureChecker;
 use Ingesting\Errata\Application\Usecase\ReadErrataRssUsecase;
+use Psr\Log\LoggerInterface;
 
 abstract class ServiceContainer
 {
@@ -77,4 +78,6 @@ abstract class ServiceContainer
 
         return $this->rssReader;
     }
+
+    abstract protected function logger(): LoggerInterface;
 }

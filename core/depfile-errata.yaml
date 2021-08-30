@@ -1,0 +1,41 @@
+paths:
+  - ./ingesting/src/Errata
+
+exclude_files:
+  - '#.*test.*#'
+
+layers:
+  - name: Adapter
+    collectors:
+      - type: bool
+        must:
+          - type: directory
+            regex: Adapter/.*
+          - type: directory
+            regex: AclAdapter/.*
+
+  - name: ApplicationPort
+    collectors:
+      - type: bool
+        must:
+          - type: implements
+            implements: 'Ingesting\Errata\Application\ApplicationPort'
+          - type: directory
+            regex: Application/.*
+
+  - name: Application
+    collectors:
+      - type: bool
+        must:
+          - type: directory
+            regex: Application/.*
+        must_not:
+          - type: className
+            regex: .*ApplicationPort.*
+          - type: implements
+            implements: 'Ingesting\Errata\Application\ApplicationPort'
+
+ruleset:
+  Adapter:
+    - ApplicationPort
+  Application:

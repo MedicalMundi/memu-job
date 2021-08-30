@@ -31,3 +31,7 @@ jobs:
 
     - name: Run unit test suite
       run: ./vendor/bin/phpunit --configuration phpunit.core.xml --testsuite integration
+
+    - name: Run Quarantine tests
+      run: ./vendor/bin/phpunit --configuration phpunit.core.xml --testsuite unit,integration --group quarantine
+      continue-on-error: true

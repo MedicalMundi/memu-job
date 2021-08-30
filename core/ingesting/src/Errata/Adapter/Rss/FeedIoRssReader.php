@@ -3,6 +3,7 @@
 namespace Ingesting\Errata\Adapter\Rss;
 
 use FeedIo\Factory;
+use FeedIo\Feed;
 use FeedIo\FeedIo;
 use FeedIo\Reader\Result;
 use Ingesting\Errata\Application\Iso\RssReader;
@@ -31,8 +32,8 @@ class FeedIoRssReader implements RssReader
     private function formatOutput(Result $result): array
     {
         $feedItems = [];
+        /** @var Feed $item */
         foreach ($result->getFeed() as $item) {
-            $feed = null;
             $feed = RssDataItem::create(
                 $item->getTitle(),
                 $item->getDescription(),

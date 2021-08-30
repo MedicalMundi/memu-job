@@ -21,6 +21,9 @@ class PublicationDateTest extends TestCase
         self::assertNotEmpty($publicationDate->toString());
     }
 
+    /**
+     * @return array<array-key, array<string>>
+     */
     public function getPublicationDates(): array
     {
         return [
@@ -31,16 +34,16 @@ class PublicationDateTest extends TestCase
                 '1947-01-01 10:00:00',
             ],
             [
-                ($date = new \DateTimeImmutable('2047-01-01'))->format('Y-m-d'),
+                (new \DateTimeImmutable('2047-01-01'))->format('Y-m-d'),
             ],
             [
-                ($date = new \DateTimeImmutable('1947-01-01'))->format('Y-m-d'),
+                (new \DateTimeImmutable('1947-01-01'))->format('Y-m-d'),
             ],
             [
-                ($date = new \DateTimeImmutable('Thu, 25 Apr 2019 22:00:00 GMT'))->format('Y-m-d'),
+                (new \DateTimeImmutable('Thu, 25 Apr 2019 22:00:00 GMT'))->format('Y-m-d'),
             ],
             [
-                ($date = new \DateTimeImmutable('now'))->format('Y-m-d'),
+                (new \DateTimeImmutable('now'))->format('Y-m-d'),
             ],
         ];
     }
