@@ -58,6 +58,7 @@ class ErrataIdTest extends TestCase
     public function empty_uuid_string_should_fail(): void
     {
         self::expectException(InvalidUuidStringException::class);
-        $sut = ErrataId::fromString('');
+
+        ErrataId::fromString('');
     }
 }

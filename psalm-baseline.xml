@@ -1,2 +1,37 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<files psalm-version="4.7.2@83a0325c0a95c0ab531d6b90c877068b464377b5"/>
+<files psalm-version="4.7.2@83a0325c0a95c0ab531d6b90c877068b464377b5">
+  <file src="core/ingesting/src/Errata/Adapter/Persistence/InMemoryErrataFeedRepository.php">
+    <MixedInferredReturnType occurrences="1">
+      <code>ErrataFeed</code>
+    </MixedInferredReturnType>
+    <MixedReturnStatement occurrences="1">
+      <code>$this-&gt;items[$errataId-&gt;toString()]</code>
+    </MixedReturnStatement>
+  </file>
+  <file src="core/ingesting/src/Errata/Adapter/Rss/FeedIoRssReader.php">
+    <PossiblyNullArgument occurrences="3">
+      <code>$item-&gt;getDescription()</code>
+      <code>$item-&gt;getLink()</code>
+      <code>$item-&gt;getTitle()</code>
+    </PossiblyNullArgument>
+    <PossiblyNullReference occurrences="1">
+      <code>format</code>
+    </PossiblyNullReference>
+  </file>
+  <file src="core/ingesting/src/Errata/Adapter/Rss/RssDataItem.php">
+    <MissingConstructor occurrences="4">
+      <code>$description</code>
+      <code>$link</code>
+      <code>$publicationDate</code>
+      <code>$title</code>
+    </MissingConstructor>
+  </file>
+  <file src="core/ingesting/src/Errata/Application/Domain/Model/ErrataFeed.php">
+    <PropertyNotSetInConstructor occurrences="4">
+      <code>$description</code>
+      <code>$link</code>
+      <code>$publicationDate</code>
+      <code>$title</code>
+    </PropertyNotSetInConstructor>
+  </file>
+</files>

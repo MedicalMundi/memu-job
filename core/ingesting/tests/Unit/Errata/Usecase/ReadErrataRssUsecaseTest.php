@@ -76,9 +76,9 @@ class ReadErrataRssUsecaseTest extends TestCase
             ->method('save')
             ->with(
                 self::callback(
-                    function ($param): bool {
-                        if ($param instanceof ErrataFeed
-                            && $param->title() === self::ITEM_TITLE
+                    function (ErrataFeed $param): bool {
+                        if (
+                            $param->title() === self::ITEM_TITLE
                             && $param->description() === self::ITEM_DESCRIPTION
                             && $param->publicationDate()->sameValueAs(PublicationDate::fromString(self::ITEM_PUB_DATE))
                             && $param->link() === self::ITEM_LINK
@@ -112,9 +112,9 @@ class ReadErrataRssUsecaseTest extends TestCase
             ->method('save')
             ->with(
                 self::callback(
-                    function ($param): bool {
-                        if ($param instanceof ErrataFeed
-                            && $param->title() === self::ITEM_TITLE
+                    function (ErrataFeed $param): bool {
+                        if (
+                            $param->title() === self::ITEM_TITLE
                             && $param->description() === self::ITEM_DESCRIPTION
                             && $param->publicationDate()->sameValueAs(PublicationDate::fromString(self::ITEM_PUB_DATE))
                             && $param->link() === self::ITEM_LINK
