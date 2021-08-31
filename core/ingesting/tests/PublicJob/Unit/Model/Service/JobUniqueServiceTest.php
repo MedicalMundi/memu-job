@@ -37,7 +37,7 @@ class JobUniqueServiceTest extends TestCase
 
         $this->repository->expects(self::once())
             ->method('withId')
-            ->willReturn($this->createErrataFeedItem($jobId))
+            ->willReturn($this->createJobFeedItem($jobId))
         ;
 
         $result = $this->jobUniqueService->isUnique($jobId);
@@ -61,7 +61,7 @@ class JobUniqueServiceTest extends TestCase
         self::assertFalse($result);
     }
 
-    private function createErrataFeedItem(?JobId $id): JobFeed
+    private function createJobFeedItem(?JobId $id): JobFeed
     {
         return JobFeed::create('a title', 'a description', 'https://www.google.com', '2047-02-01 10:00:00', $id);
     }
