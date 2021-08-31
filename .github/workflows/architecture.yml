@@ -32,3 +32,4 @@ jobs:
       run: |
         vendor/bin/deptrac analyse core/depfile-publicjob.yaml
         vendor/bin/deptrac analyse core/depfile-errata.yaml
+        vendor/bin/deptrac analyse core/depfile-analyzer.yaml
