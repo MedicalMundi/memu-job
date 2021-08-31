@@ -1,6 +1,6 @@
 <?php declare(strict_types=1);
 
-namespace Ingesting\PublicJob\Adapter;
+namespace Ingesting\PublicJob\Adapter\Persistence;
 
 use Ingesting\PublicJob\Application\Model\CouldNotFindJobFeed;
 use Ingesting\PublicJob\Application\Model\CouldNotPersistJobFeed;
