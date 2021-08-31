@@ -13,7 +13,7 @@ use PHPUnit\Framework\MockObject\MockObject;
 use PHPUnit\Framework\TestCase;
 
 /**
- * @covers \Ingesting\PublicJob\Application\Usecase\ReadErrataRssUsecase
+ * @covers \Ingesting\PublicJob\Application\Usecase\ReadJobRssUsecase
  */
 class ReadJobRssUsecaseTest extends TestCase
 {
