@@ -2,7 +2,7 @@
 
 namespace Ingesting\PublicJob\Adapter\Rss;
 
-use Ingesting\Errata\Application\Iso\RssData;
+use Ingesting\PublicJob\Application\Model\Iso\RssData;
 
 class RssDataItem implements RssData
 {

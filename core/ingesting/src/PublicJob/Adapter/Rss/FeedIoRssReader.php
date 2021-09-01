@@ -6,7 +6,7 @@ use FeedIo\Factory;
 use FeedIo\Feed;
 use FeedIo\FeedIo;
 use FeedIo\Reader\Result;
-use Ingesting\Errata\Application\Iso\RssReader;
+use Ingesting\PublicJob\Application\Model\Iso\RssReader;
 
 class FeedIoRssReader implements RssReader
 {
