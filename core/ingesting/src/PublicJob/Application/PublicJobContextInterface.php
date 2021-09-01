@@ -3,6 +3,8 @@
 
 namespace Ingesting\PublicJob\Application;
 
-interface PublicJobContextInterface
+use Ingesting\PublicJob\Application\Usecase\JobRssDataSourceChecker;
+
+interface PublicJobContextInterface extends JobRssDataSourceChecker
 {
 }
