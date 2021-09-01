@@ -6,22 +6,34 @@ paths:
 exclude_files:
   - '#.*test.*#'
 layers:
-  - name: IngestingShared
-    collectors:
-      - type: directory
-        regex: sharedKernel/.*
   - name: PublicJob
     collectors:
       - type: directory
         regex: PublicJob/.*
+
   - name: Errata
     collectors:
       - type: directory
         regex: Errata/.*
 
+  - name: Analyzer
+    collectors:
+      - type: directory
+        regex: Analyzer/.*
+
+  - name: IngestingShared
+    collectors:
+      - type: directory
+        regex: sharedKernel/.*
+
 ruleset:
   PublicJob:
     - IngestingShared
+
   Errata:
     - IngestingShared
+
+  Analyzer:
+    - IngestingShared
+
   IngestingShared:
