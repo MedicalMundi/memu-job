@@ -8,7 +8,6 @@ class PublicJobModule implements PublicJobContextInterface
 {
     private JobRssDataSourceChecker $readRssJobUsecase;
 
-
     public function __construct(JobRssDataSourceChecker $readRssJobUsecase)
     {
         $this->readRssJobUsecase = $readRssJobUsecase;

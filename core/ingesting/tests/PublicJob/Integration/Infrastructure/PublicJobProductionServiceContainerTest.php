@@ -7,13 +7,14 @@ use PHPUnit\Framework\TestCase;
 
 /**
  * @covers \Ingesting\PublicJob\Infrastructure\ProductionServiceContainer
+ * @group quarantine
  */
 class PublicJobProductionServiceContainerTest extends TestCase
 {
     /**
      * @test
      */
-    public function shouldBuildAnalyzerModule(): void
+    public function shouldBuildPublicJobModule(): void
     {
         self::expectNotToPerformAssertions();
 
