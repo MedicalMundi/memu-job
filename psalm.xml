@@ -26,4 +26,23 @@
             <directory name="vendor" />
         </ignoreFiles>
     </projectFiles>
+
+    <issueHandlers>
+        <PossiblyNullArgument>
+            <errorLevel type="suppress">
+                <file name="core/ingesting/src/PublicJob/Adapter/Rss/FeedIoRssReader.php" />
+            </errorLevel>
+        </PossiblyNullArgument>
+        <PossiblyNullReference>
+            <errorLevel type="suppress">
+                <file name="core/ingesting/src/PublicJob/Adapter/Rss/FeedIoRssReader.php" />
+            </errorLevel>
+        </PossiblyNullReference>
+        <MissingConstructor>
+            <errorLevel type="suppress">
+                <file name="core/ingesting/src/PublicJob/Adapter/Rss/FeedIoRssReader.php" />
+                <file name="core/ingesting/src/PublicJob/Adapter/Rss/RssDataItem.php" />
+            </errorLevel>
+        </MissingConstructor>
+    </issueHandlers>
 </psalm>

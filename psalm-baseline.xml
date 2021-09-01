@@ -34,4 +34,20 @@
       <code>$title</code>
     </PropertyNotSetInConstructor>
   </file>
+  <file src="core/ingesting/src/PublicJob/Adapter/Persistence/InMemoryJobFeedRepository.php">
+    <MixedInferredReturnType occurrences="1">
+      <code>JobFeed</code>
+    </MixedInferredReturnType>
+    <MixedReturnStatement occurrences="1">
+      <code>$this-&gt;items[$jobId-&gt;toString()]</code>
+    </MixedReturnStatement>
+  </file>
+  <file src="core/ingesting/src/PublicJob/Application/Model/JobFeed.php">
+    <PropertyNotSetInConstructor occurrences="4">
+      <code>$description</code>
+      <code>$link</code>
+      <code>$publicationDate</code>
+      <code>$title</code>
+    </PropertyNotSetInConstructor>
+  </file>
 </files>
