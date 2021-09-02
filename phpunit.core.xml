@@ -25,7 +25,7 @@
 
     <testsuites>
         <testsuite name="unit">
-            <directory>core/ingesting/tests/SharedKernel/Model</directory>
+            <directory>core/ingesting/tests/SharedKernel/Unit</directory>
             <directory>core/ingesting/tests/Errata/Unit</directory>
             <directory>core/ingesting/tests/Analyzer/Unit</directory>
             <directory>core/ingesting/tests/PublicJob/Unit</directory>
