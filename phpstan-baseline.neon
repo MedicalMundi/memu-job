@@ -40,3 +40,38 @@ parameters:
 			count: 1
 			path: core/ingesting/src/PublicJob/Adapter/Rss/FeedIoRssReader.php
 
+		-
+			message: "#^Call to an undefined method object\\:\\:request\\(\\)\\.$#"
+			count: 1
+			path: core/ingesting/src/SharedKernel/Infrastructure/FeedIoAdapter/GazzettaClient.php
+
+		-
+			message: "#^Only booleans are allowed in an if condition, DateTime\\|null given\\.$#"
+			count: 1
+			path: core/ingesting/src/SharedKernel/Infrastructure/FeedIoAdapter/GazzettaClient.php
+
+		-
+			message: "#^PHPDoc tag @param for parameter \\$modifiedSince with type DateTime\\|null is not subtype of native type DateTime\\.$#"
+			count: 1
+			path: core/ingesting/src/SharedKernel/Infrastructure/FeedIoAdapter/GazzettaClient.php
+
+		-
+			message: "#^Call to an undefined method Symfony\\\\Contracts\\\\HttpClient\\\\ResponseInterface\\:\\:getHeader\\(\\)\\.$#"
+			count: 1
+			path: core/ingesting/src/SharedKernel/Infrastructure/FeedIoAdapter/Response.php
+
+		-
+			message: "#^Call to an undefined method Symfony\\\\Contracts\\\\HttpClient\\\\ResponseInterface\\:\\:hasHeader\\(\\)\\.$#"
+			count: 1
+			path: core/ingesting/src/SharedKernel/Infrastructure/FeedIoAdapter/Response.php
+
+		-
+			message: "#^Cannot access offset 0 on iterable\\.$#"
+			count: 1
+			path: core/ingesting/src/SharedKernel/Infrastructure/FeedIoAdapter/Response.php
+
+		-
+			message: "#^Parameter \\#1 \\$string of function strlen expects string, string\\|null given\\.$#"
+			count: 1
+			path: core/ingesting/src/SharedKernel/Infrastructure/FeedIoAdapter/Response.php
+

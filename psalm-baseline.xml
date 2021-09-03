@@ -50,4 +50,56 @@
       <code>$title</code>
     </PropertyNotSetInConstructor>
   </file>
+  <file src="core/ingesting/src/SharedKernel/Infrastructure/FeedIoAdapter/GazzettaClient.php">
+    <MismatchingDocblockParamType occurrences="1">
+      <code>DateTime|null</code>
+    </MismatchingDocblockParamType>
+    <MixedArgument occurrences="2">
+      <code>$psrResponse</code>
+      <code>$psrResponse</code>
+    </MixedArgument>
+    <MixedAssignment occurrences="1">
+      <code>$psrResponse</code>
+    </MixedAssignment>
+    <MixedMethodCall occurrences="2">
+      <code>getStatusCode</code>
+      <code>request</code>
+    </MixedMethodCall>
+    <UnusedVariable occurrences="1">
+      <code>$options</code>
+    </UnusedVariable>
+  </file>
+  <file src="core/ingesting/src/SharedKernel/Infrastructure/FeedIoAdapter/Response.php">
+    <InvalidArrayAccess occurrences="1">
+      <code>$this-&gt;getHeader(static::HTTP_LAST_MODIFIED)[0]</code>
+    </InvalidArrayAccess>
+    <MixedArgument occurrences="2">
+      <code>$this-&gt;getHeader(static::HTTP_LAST_MODIFIED)[0]</code>
+      <code>static::HTTP_LAST_MODIFIED</code>
+    </MixedArgument>
+    <MixedInferredReturnType occurrences="1">
+      <code>iterable</code>
+    </MixedInferredReturnType>
+    <MixedReturnStatement occurrences="1">
+      <code>$this-&gt;psrResponse-&gt;getHeader($name)</code>
+    </MixedReturnStatement>
+    <PossiblyNullArgument occurrences="1">
+      <code>$this-&gt;getBody()</code>
+    </PossiblyNullArgument>
+    <UndefinedInterfaceMethod occurrences="2">
+      <code>getHeader</code>
+      <code>hasHeader</code>
+    </UndefinedInterfaceMethod>
+  </file>
+  <file src="core/ingesting/tests/SharedKernel/Integration/FeedIoGazzettaAdapterTest.php">
+    <InternalMethod occurrences="1">
+      <code>doesNotPerformAssertions</code>
+    </InternalMethod>
+    <UnusedMethodCall occurrences="1">
+      <code>doesNotPerformAssertions</code>
+    </UnusedMethodCall>
+    <UnusedVariable occurrences="1">
+      <code>$x</code>
+    </UnusedVariable>
+  </file>
 </files>
