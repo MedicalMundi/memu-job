@@ -31,6 +31,7 @@
             <directory>core/ingesting/tests/PublicJob/Unit</directory>
         </testsuite>
         <testsuite name="integration">
+            <directory>core/ingesting/tests/SharedKernel/Integration</directory>
             <directory>core/ingesting/tests/Errata/Integration</directory>
             <directory>core/ingesting/tests/Analyzer/Integration</directory>
             <directory>core/ingesting/tests/PublicJob/Integration</directory>
