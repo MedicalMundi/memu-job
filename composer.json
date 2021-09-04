@@ -31,13 +31,15 @@
     "autoload": {
         "psr-4": {
             "App\\": "src/",
-            "Ingesting\\": "core/ingesting/src/"
+            "Ingesting\\": "core/ingesting/src/",
+            "Publishing\\": "core/publishing/src/"
         }
     },
     "autoload-dev": {
         "psr-4": {
             "App\\Tests\\": "tests/",
-            "Ingesting\\Tests\\": "core/ingesting/tests/"
+            "Ingesting\\Tests\\": "core/ingesting/tests/",
+            "Publishing\\Tests\\": "core/publishing/tests/"
         }
     },
     "replace": {
