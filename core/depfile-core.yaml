@@ -3,6 +3,7 @@
   #- ./depfile-publicjob.yaml
 paths:
   - ./ingesting/src
+  - ./publishing/src
 exclude_files:
   - '#.*test.*#'
 layers:
@@ -26,6 +27,11 @@ layers:
       - type: directory
         regex: sharedKernel/.*
 
+  - name: Cms
+    collectors:
+      - type: directory
+        regex: Cms/.*
+
 ruleset:
   PublicJob:
     - IngestingShared
@@ -37,3 +43,5 @@ ruleset:
     - IngestingShared
 
   IngestingShared:
+
+  Cms:

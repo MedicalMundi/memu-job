@@ -23,6 +23,8 @@ return static function (ContainerConfigurator $containerConfigurator): void {
         __DIR__ . '/tests',
         __DIR__ . '/core/ingesting/src',
         __DIR__ . '/core/ingesting/tests',
+        __DIR__ . '/core/publishing/src',
+        __DIR__ . '/core/publishing/tests',
         __DIR__ . '/ecs.php',
     ]);
 

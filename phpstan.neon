@@ -9,6 +9,9 @@ parameters:
         - tests/
         - core/ingesting/src/
         - core/ingesting/tests/
+        - core/publishing/src/
+        - core/publishing/tests/
+
 
     checkMissingIterableValueType: false
 
