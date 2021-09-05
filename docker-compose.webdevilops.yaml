@@ -1,0 +1,35 @@
+version: '3.4'
+
+services:
+  php:
+    build:
+      context: .
+      dockerfile: docker/webdevilops/php-dev/Dockerfile
+    ports:
+      - "9021:9021"
+    volumes:
+      - "./:/app"
+    environment:
+      WEB_DOCUMENT_ROOT: /app/public
+      WEB_DOCUMENT_INDEX: index.php
+      PHP_DEBUGGER: xdebug
+      XDEBUG_MODE: coverage
+      XDEBUG_REMOTE_AUTOSTART: 1
+      XDEBUG_REMOTE_CONNECT_BACK: 1
+      # IMPORTANT: please change this ip address to your docker host ip. Get your docker host ip:
+      # docker inspect -f '{{range .NetworkSettings.Networks}}{{.IPAddress}}{{end}}' docker_php_1
+      #- XDEBUG_REMOTE_HOST=172.19.0.1
+      XDEBUG_REMOTE_PORT: 9021
+
+
+  php-nginx:
+    build:
+      context: .
+      dockerfile: docker/webdevilops/php-nginx/Dockerfile
+    ports:
+      - "8088:80"
+    volumes:
+      - "./:/app"
+    environment:
+      WEB_DOCUMENT_ROOT: /app/public
+      WEB_DOCUMENT_INDEX: index.php
