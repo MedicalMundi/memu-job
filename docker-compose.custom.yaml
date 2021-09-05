@@ -1,0 +1,25 @@
+version: '3.8'
+
+services:
+  php:
+    image: memu/memu-job/local:php-fpm-7.4
+    working_dir: /app
+    container_name: php-memujob
+    ports:
+      - "9000:9000"
+
+    volumes:
+      -   ./:/app
+
+  nginx:
+    image: nginx
+    links:
+      - php
+    working_dir: /app
+    container_name: nginx-memujob
+    ports:
+      - "80:80"
+
+    volumes:
+      - ./:/app
+      - ./sys/nginx/default.conf:/etc/nginx/conf.d/default.conf:ro
