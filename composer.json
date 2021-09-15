@@ -4,6 +4,7 @@
     "type": "project",
     "license": "proprietary",
     "require": {
+        "php": ">=7.4 || ^8.0",
         "ext-ctype": "*",
         "ext-iconv": "*",
         "debril/feed-io": "^4.9",
