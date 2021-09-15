@@ -14,9 +14,7 @@ env:
 
 jobs:
   ecs:
-    #if: "!contains(github.event.head_commit.message, 'skip ci') || !contains(github.event.head_commit.message, 'composer(deps')"
-    if: "!contains(github.event.head_commit.message, 'skip ci')"
-    if: "!contains(github.event.head_commit.message, 'composer(deps')"
+    if: "!contains(github.event.head_commit.message, 'skip ci') or !contains(github.event.head_commit.message, 'composer(deps')"
     runs-on: ubuntu-latest
 
     strategy:
