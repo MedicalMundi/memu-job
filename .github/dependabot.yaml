@@ -26,3 +26,15 @@ updates:
     schedule:
       interval: "daily"
     versioning-strategy: "increase-if-necessary"
+
+  - commit-message:
+      include: "scope"
+      prefix: "composer"
+    directory: "/tools/psalm"
+    labels:
+      - "tool dependency"
+    open-pull-requests-limit: 10
+    package-ecosystem: "composer"
+    schedule:
+      interval: "daily"
+    versioning-strategy: "increase-if-necessary"
