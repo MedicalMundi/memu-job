@@ -1,0 +1,27 @@
+name: Commit stage
+
+on: [ push ]
+
+
+env:
+  GITHUB_PAT: ${{ secrets.MEMUJOB_CI_GHA_PAT }}
+  COVERAGE: '0'
+  PHP_EXTENSIONS: ctype, curl, gd, iconv, intl, opcache, openssl, mbstring, mysql, pdo_sqlite
+  PHP_EXTENSIONS_CACHE_KEY: cache-php-extensions-v1
+
+
+jobs:
+  lint-composer:
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v2
+      - name: QA - Run composer validate
+        uses: docker://jakzal/phpqa:php7.4-alpine
+        with:
+          args: composer validate --strict --ansi
+      - name: QA - Run composer normalize
+        uses: docker://jakzal/phpqa:php7.4-alpine
+        with:
+          args: composer normalize --dry-run
