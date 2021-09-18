@@ -48,7 +48,6 @@ jobs:
           extensions: ${{ env.PHP_EXTENSIONS }}
           ini-values: memory_limit=-1
           coverage: none
-          tools: symfony
 
       - name: Get Composer Cache Directory
         id: composer-cache
