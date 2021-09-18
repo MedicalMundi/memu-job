@@ -1,4 +1,4 @@
-name: Core test
+name: PHP edge
 
 on:
   push:
@@ -14,8 +14,9 @@ env:
 
 jobs:
   core-test:
-    if: "!contains(github.event.head_commit.message, 'skip ci')"
+    name: Coore tests (PHP ${{ matrix.php }})
     runs-on: ubuntu-latest
+    if: "!contains(github.event.head_commit.message, 'skip ci')"
 
     strategy:
       matrix:
@@ -64,12 +65,19 @@ jobs:
       - name: Install Composer dependencies
         run: composer install --prefer-dist --no-progress --no-suggest --ansi --no-scripts
 
-      - name: Run Unit test suite
+      - name: Run Core Unit test suite
         run: ./vendor/bin/phpunit --configuration phpunit.core.xml --testsuite unit
 
-      - name: Run Integration test suite
+      - name: Run Core Integration test suite
         run: ./vendor/bin/phpunit --configuration phpunit.core.xml --testsuite integration
 
-      - name: Run Quarantine tests
+      - name: Run Core Quarantine tests
         run: ./vendor/bin/phpunit --configuration phpunit.core.xml --testsuite unit,integration --group quarantine
         continue-on-error: true
+
+      - name: Run webserver
+        id: run_symfony_webserver
+        run: symfony server:start --port=8080 --dir=public --daemon --no-tls
+
+      - name: Run Symfony test
+        run: ./vendor/bin/phpunit
