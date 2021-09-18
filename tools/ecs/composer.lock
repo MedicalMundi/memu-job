@@ -9,16 +9,16 @@
     "packages-dev": [
         {
             "name": "symplify/easy-coding-standard",
-            "version": "v9.3.12",
+            "version": "9.4.60",
             "source": {
                 "type": "git",
                 "url": "https://github.com/symplify/easy-coding-standard.git",
-                "reference": "5fa2935c28e572e6a0f8f448dd9ca4f17f5324ad"
+                "reference": "323e57e0a667d2795c9fac591caf955469f2ed75"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/symplify/easy-coding-standard/zipball/5fa2935c28e572e6a0f8f448dd9ca4f17f5324ad",
-                "reference": "5fa2935c28e572e6a0f8f448dd9ca4f17f5324ad",
+                "url": "https://api.github.com/repos/symplify/easy-coding-standard/zipball/323e57e0a667d2795c9fac591caf955469f2ed75",
+                "reference": "323e57e0a667d2795c9fac591caf955469f2ed75",
                 "shasum": ""
             },
             "require": {
@@ -27,10 +27,6 @@
             "conflict": {
                 "friendsofphp/php-cs-fixer": "<3.0",
                 "squizlabs/php_codesniffer": "<3.6"
-            },
-            "replace": {
-                "friendsofphp/php-cs-fixer": "^3.0",
-                "squizlabs/php_codesniffer": "^3.6"
             },
             "bin": [
                 "bin/ecs"
@@ -47,7 +43,7 @@
             ],
             "description": "Prefixed scoped version of ECS package",
             "support": {
-                "source": "https://github.com/symplify/easy-coding-standard/tree/v9.3.12"
+                "source": "https://github.com/symplify/easy-coding-standard/tree/9.4.60"
             },
             "funding": [
                 {
@@ -59,7 +55,7 @@
                     "type": "github"
                 }
             ],
-            "time": "2021-05-17T20:57:41+00:00"
+            "time": "2021-09-13T14:42:11+00:00"
         }
     ],
     "aliases": [],
@@ -69,5 +65,5 @@
     "prefer-lowest": false,
     "platform": [],
     "platform-dev": [],
-    "plugin-api-version": "2.0.0"
+    "plugin-api-version": "2.1.0"
 }
