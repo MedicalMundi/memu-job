@@ -26,9 +26,9 @@
         "paragonie/random_compat": "2.*",
         "symfony/polyfill-ctype": "*",
         "symfony/polyfill-iconv": "*",
+        "symfony/polyfill-php56": "*",
         "symfony/polyfill-php71": "*",
-        "symfony/polyfill-php70": "*",
-        "symfony/polyfill-php56": "*"
+        "symfony/polyfill-php70": "*"
     },
     "conflict": {
         "symfony/symfony": "*"
@@ -47,12 +47,12 @@
         "sort-packages": true
     },
     "extra": {
+        "bamarni-bin": {
+            "target-directory": "tools"
+        },
         "symfony": {
             "allow-contrib": false,
             "require": "4.4.*"
-        },
-        "bamarni-bin": {
-            "target-directory": "tools"
         }
     },
     "autoload": {
