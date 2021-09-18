@@ -66,4 +66,4 @@ jobs:
           composer bin ecs install
 
       - name: Run easy-coding-standard
-        run: vendor/bin/ecs check
+        run: vendor/bin/ecs check --ansi
