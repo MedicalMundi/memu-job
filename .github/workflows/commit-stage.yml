@@ -12,7 +12,7 @@ env:
 
 jobs:
   lint-composer:
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-18.04
     if: "(!contains(github.event.head_commit.message, 'skip ci')) || (!contains(github.event.head_commit.message, 'composer(deps'))"
     timeout-minutes: 5
     steps:
@@ -29,7 +29,7 @@ jobs:
 
   coding-standard:
     if: "(!contains(github.event.head_commit.message, 'skip ci')) || (!contains(github.event.head_commit.message, 'composer(deps'))"
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-18.04
 
     strategy:
       matrix:
@@ -84,7 +84,7 @@ jobs:
 
   architecture-check:
     if: "!contains(github.event.head_commit.message, 'skip ci') || !contains(github.event.head_commit.message, 'composer(deps')"
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-18.04
 
     strategy:
       matrix:
@@ -148,7 +148,7 @@ jobs:
 
 
   phpstan:
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-18.04
     if: "!contains(github.event.head_commit.message, 'skip ci') || !contains(github.event.head_commit.message, 'composer(deps')"
 
     strategy:
@@ -204,7 +204,7 @@ jobs:
 
 
   psalm:
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-18.04
     if: "!contains(github.event.head_commit.message, 'skip ci') || !contains(github.event.head_commit.message, 'composer(deps')"
 
     strategy:
@@ -260,7 +260,7 @@ jobs:
 
 
   core-test:
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-18.04
     if: "!contains(github.event.head_commit.message, 'skip ci')"
 
     strategy:
@@ -322,7 +322,7 @@ jobs:
 
 
   symfony-test:
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-18.04
     if: "!contains(github.event.head_commit.message, 'skip ci')"
 
     strategy:
