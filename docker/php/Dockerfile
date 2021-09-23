@@ -49,9 +49,6 @@ RUN install-php-extensions pcov
 
 
 
-RUN docker-php-ext-enable xdebug
-
-
 # Install composer
 COPY --from=composer:2 /usr/bin/composer /usr/local/bin/composer
 
