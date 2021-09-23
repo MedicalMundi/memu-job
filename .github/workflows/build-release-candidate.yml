@@ -54,17 +54,18 @@ jobs:
           push: true
           load: false
           no-cache: false
-          images: |
-            ghcr.io/medicalmundi/memu-job-rc
-            ghcr.io/medicalmundi/internal-php-rc
           tags: |
-            type=schedule
-            type=ref,event=branch
-            type=ref,event=pr
-            type=semver,pattern={{version}}
-            type=semver,pattern={{major}}.{{minor}}
-            type=semver,pattern={{major}}
-            type=sha
+            ghcr.io/medicalmundi/memu-job-rc:type=sha
+            ghcr.io/medicalmundi/memu-job-rc:type=ref,event=branch
+
+#          tags: |
+#            type=schedule
+#            type=ref,event=branch
+#            type=ref,event=pr
+#            type=semver,pattern={{version}}
+#            type=semver,pattern={{major}}.{{minor}}
+#            type=semver,pattern={{major}}
+#            type=sha
 
 
 #      - name: Log in to registry
