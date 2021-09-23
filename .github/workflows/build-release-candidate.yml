@@ -58,7 +58,6 @@ jobs:
             ghcr.io/medicalmundi/memu-job-rc
             ghcr.io/medicalmundi/internal-php-rc
           tags: |
-            type=schedule
             type=ref,event=branch
             type=ref,event=pr
             type=semver,pattern={{version}}
