@@ -10,7 +10,7 @@ on:
       imageName:
         description: 'Artifact image name'
         required: true
-        default: 'internal-php-rc'
+        default: 'internal-php-base'
       imageTag:
         description: 'Artifact image tag'
         required: true
@@ -44,7 +44,6 @@ jobs:
           # list of Docker images to use as base name for tags
           images: |
             ghcr.io/medicalmundi/${{ github.event.inputs.imageName }}
-            ghcr.io/medicalmundi/memu-job-rc
           # generate Docker tags based on the following events/attributes
           tags: |
             ${{ github.event.inputs.imageTag }}
