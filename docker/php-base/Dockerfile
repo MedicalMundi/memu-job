@@ -1,4 +1,6 @@
-FROM php:7.4-fpm-alpine3.14 AS builder_tools
+ARG PHP_VERSION=7.4-fpm-alpine3.14
+
+FROM php:$PHP_VERSION AS builder_tools
 # install dependencies
 ADD https://github.com/mlocati/docker-php-extension-installer/releases/latest/download/install-php-extensions /usr/local/bin/
 
