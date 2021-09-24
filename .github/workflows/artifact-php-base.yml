@@ -80,6 +80,8 @@ jobs:
         id: test-builded-image
         run: |
           docker run --rm ${{ env.TEST_TAG }} php -v
+          docker run --rm ${{ env.TEST_TAG }} php -m
+          docker run --rm ${{ env.TEST_TAG }} php -i
 
       - name: Build image
         id: docker_build
