@@ -79,7 +79,7 @@ jobs:
       - name: Test
         id: test-builded-image
         run: |
-          docker run --rm ${{ env.TEST_TAG }}
+          docker run --rm ${{ env.TEST_TAG }} php -v
 
       - name: Build image
         id: docker_build
