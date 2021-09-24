@@ -1,4 +1,4 @@
-name: Manual trigger
+name: Build PHP base image
 
 on:
   workflow_dispatch:
@@ -13,13 +13,14 @@ on:
         default: 'internal-php-rc'
       imageTag:
         description: 'Artifact image tag'
-        required: false
+        required: true
+        default: 'base-v0.1.0'
       imageLabel:
         description: 'Artifact image label'
         required: false
 
 jobs:
-  printInputs:
+  build-php-base-artifact:
     runs-on: ubuntu-latest
     steps:
       - run: |
@@ -44,7 +45,6 @@ jobs:
           tags: |
             ${{ github.event.inputs.imageTag }}
           labels: ${{ steps.meta.outputs.imageLabel }}
-
 
       - name: Login to GHCR
         id: docker_ghrc_login
@@ -72,4 +72,4 @@ jobs:
           load: false
           no-cache: false
           tags: ${{ steps.meta.outputs.tags }}
-          #labels: ${{ steps.meta.outputs.labels }}
+          labels: ${{ steps.meta.outputs.labels }}
