@@ -27,6 +27,7 @@ jobs:
         with:
           args: composer normalize --dry-run --ansi
 
+
   coding-standard:
     if: "!contains(github.event.*.message, 'composer(deps')"
     runs-on: ubuntu-18.04
@@ -81,6 +82,7 @@ jobs:
 
       - name: Run easy-coding-standard
         run: vendor/bin/ecs check --ansi
+
 
   architecture-check:
     if: "!contains(github.event.*.message, 'composer(deps')"
@@ -373,3 +375,24 @@ jobs:
 
       - name: Run test suite
         run: ./vendor/bin/phpunit
+
+
+  notifiy-commit-stage-was-completed-successfully:
+    name: notifiy-commit-stage-was-completed-successfully
+    needs:
+      - lint-composer
+      - coding-standard
+      - architecture-check
+      - phpstan
+      - psalm
+      - core-test
+      - symfony-test
+    runs-on: ubuntu-18.04
+    steps:
+      - name: emit pipeline event
+        uses: peter-evans/repository-dispatch@v1
+        with:
+          token: ${{ secrets.MEMUJOB_CI_GHA_PAT }}
+          repository: ${{ github.repository }}
+          event-type: commit-stage-was-completed-successfully
+          client-payload: '{"ref": "${{ github.ref }}", "sha": "${{ github.sha }}"}'
