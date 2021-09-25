@@ -25,9 +25,10 @@ RUN rm -fr docker \
     core/ingesting/tests  \
     core/publishing/tests
 
-RUN rm -f dockerignore \
+RUN rm -f .dockerignore \
     .env.test \
-    gitignore \
+    .gitignore \
+    README.md \
     Makefile \
     docker-compose.custom.yaml  \
     docker-compose.webdevilops.yaml \
