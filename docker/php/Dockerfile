@@ -11,7 +11,36 @@ RUN composer install --optimize-autoloader --ansi --no-interaction --no-progress
 
 COPY . .
 
-RUN rm -fr docker sys tools tests core/ingesting/tests core/publishing/tests
+RUN rm -fr docker \
+    sys \
+    tools \
+    tests \
+    core/ingesting/tests  \
+    core/publishing/tests
+
+RUN rm -fr docker \
+    sys \
+    tools \
+    tests \
+    core/ingesting/tests  \
+    core/publishing/tests
+
+RUN rm -f dockerignore \
+    .env.test \
+    gitignore \
+    Makefile \
+    docker-compose.custom.yaml  \
+    docker-compose.webdevilops.yaml \
+    dockerhub.makefile \
+    ecs.php \
+    phpstan-baseline.neon \
+    phpstan.neon \
+    phpunit.core.xml \
+    phpunit.xml.dist \
+    psalm-baseline.xml \
+    psalm.xml
+
+
 
 FROM builder_vendor
 
