@@ -14,6 +14,10 @@ COPY . .
 
 FROM builder_vendor
 
+WORKDIR '/app'
+
+COPY --from=builder_vendor --chown=application:application /app /app
+
 EXPOSE 9000
 
 # SETUP healtcheck method
