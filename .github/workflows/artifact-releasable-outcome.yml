@@ -74,7 +74,6 @@ jobs:
           docker run --rm ${{ env.TEST_TAG_PHP_RELEASE_CANDIDATE }} php -v
           docker run --rm ${{ env.TEST_TAG_PHP_RELEASE_CANDIDATE }} php -m
           docker run --rm ${{ env.TEST_TAG_PHP_RELEASE_CANDIDATE }} php -i
-          docker run --rm ${{ env.TEST_TAG_PHP_RELEASE_CANDIDATE }} ls -al /app
 
       - name: Test image as not root user
         id: test-builded-image-as-not-root-user
