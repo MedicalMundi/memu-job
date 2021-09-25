@@ -74,7 +74,7 @@ jobs:
           docker run --rm ${{ env.TEST_TAG_PHP_RELEASE_CANDIDATE }} php -v
           docker run --rm ${{ env.TEST_TAG_PHP_RELEASE_CANDIDATE }} php -m
           docker run --rm ${{ env.TEST_TAG_PHP_RELEASE_CANDIDATE }} php -i
-          docker run --rm ${{ env.TEST_TAG_PHP_RELEASE_CANDIDATE }} la -al /app
+          docker run --rm ${{ env.TEST_TAG_PHP_RELEASE_CANDIDATE }} ls -al /app
 
       - name: Build image
         id: docker_build
