@@ -9,6 +9,7 @@ on:
 env:
   GITHUB_PAT: ${{ secrets.MEMUJOB_CI_GHA_PAT }}
   PHP_RELEASE_CANDIDATE_IMAGE_NAME: internal-php-rc
+  TEST_TAG_PHP_RELEASE_CANDIDATE: medicalmundi/temp-test-rc-img:test
 
 jobs:
 
@@ -31,7 +32,6 @@ jobs:
           # list of Docker images to use as base name for tags
           images: |
             ghcr.io/medicalmundi/${{ env.PHP_RELEASE_CANDIDATE_IMAGE_NAME }}
-            ghcr.io/medicalmundi/memu-job-rc
           # generate Docker tags based on the following events/attributes
           tags: |
             type=schedule
@@ -56,6 +56,26 @@ jobs:
       - name: Set up Docker Buildx
         uses: docker/setup-buildx-action@v1
 
+      - name: Pre build image
+        id: docker_pre_build
+        uses: docker/build-push-action@v2
+        with:
+          context: .
+          file: docker/php/Dockerfile
+          #platforms: linux/amd64,linux/arm64
+          platforms: linux/amd64
+          load: true
+          no-cache: false
+          tags: ${{ env.TEST_TAG_PHP_RELEASE_CANDIDATE }}
+
+      - name: Test image
+        id: test-builded-image
+        run: |
+          docker run --rm ${{ env.TEST_TAG_PHP_RELEASE_CANDIDATE }} php -v
+          docker run --rm ${{ env.TEST_TAG_PHP_RELEASE_CANDIDATE }} php -m
+          docker run --rm ${{ env.TEST_TAG_PHP_RELEASE_CANDIDATE }} php -i
+          docker run --rm ${{ env.TEST_TAG_PHP_RELEASE_CANDIDATE }} la -al /app
+
       - name: Build image
         id: docker_build
         uses: docker/build-push-action@v2
@@ -69,31 +89,3 @@ jobs:
           no-cache: false
           tags: ${{ steps.meta.outputs.tags }}
           #labels: ${{ steps.meta.outputs.labels }}
-
-
-#      - name: Build image
-#        #run: docker build . --file Dockerfile --tag $IMAGE_NAME --label "runnumber=${GITHUB_RUN_ID}"
-#        run: docker build . --file docker/php/Dockerfile --tag $IMAGE_NAME --label "runnumber=${GITHUB_RUN_ID}"
-#      - name: Log in to registry
-#        # This is where you will update the PAT to GITHUB_TOKEN
-#        run: echo "${{ secrets.GITHUB_TOKEN }}" | docker login ghcr.io -u ${{ github.actor }} --password-stdin
-#
-#      - name: Push image
-#        run: |
-#          IMAGE_ID=ghcr.io/${{ github.repository_owner }}/$IMAGE_NAME
-#
-#          # Change all uppercase to lowercase
-#          IMAGE_ID=$(echo $IMAGE_ID | tr '[A-Z]' '[a-z]')
-#
-#          # Strip git ref prefix from version
-#          VERSION=$(echo "${{ github.ref }}" | sed -e 's,.*/\(.*\),\1,')
-#
-#          # Strip "v" prefix from tag name
-#          [[ "${{ github.ref }}" == "refs/tags/"* ]] && VERSION=$(echo $VERSION | sed -e 's/^v//')
-#
-#          # Use Docker `latest` tag convention
-#          [ "$VERSION" == "master" ] && VERSION=latest
-#          echo IMAGE_ID=$IMAGE_ID
-#          echo VERSION=$VERSION
-#          docker tag $IMAGE_NAME $IMAGE_ID:$VERSION
-#          docker push $IMAGE_ID:$VERSION
