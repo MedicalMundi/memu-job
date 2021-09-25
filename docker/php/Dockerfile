@@ -11,6 +11,7 @@ RUN composer install --optimize-autoloader --ansi --no-interaction --no-progress
 
 COPY . .
 
+RUN rm -fr docker sys tools tests core/ingesting/tests core/publishing/tests
 
 FROM builder_vendor
 
