@@ -1,6 +1,6 @@
 ARG PHP_BASE_VERSION=base-v0.1.0
 
-FROM medicalmundi/internal-php-base:$PHP_BASE_VERSION AS builder_vendor
+FROM ghcr.io/medicalmundi/internal-php-base:$PHP_BASE_VERSION AS builder_vendor
 
 WORKDIR '/app'
 
