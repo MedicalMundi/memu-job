@@ -76,6 +76,11 @@ jobs:
           docker run --rm ${{ env.TEST_TAG_PHP_RELEASE_CANDIDATE }} php -i
           docker run --rm ${{ env.TEST_TAG_PHP_RELEASE_CANDIDATE }} ls -al /app
 
+      - name: Test image as not root user
+        id: test-builded-image-as-not-root-user
+        run: |
+          docker run -u medicalmundi --rm ${{ env.TEST_TAG_PHP_RELEASE_CANDIDATE }} ls -al /app
+
       - name: Build image
         id: docker_build
         uses: docker/build-push-action@v2
