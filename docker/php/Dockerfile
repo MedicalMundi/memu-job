@@ -43,11 +43,26 @@ RUN rm -f .dockerignore \
 
 
 
-FROM builder_vendor
+ARG MEDICALMUNDI_UID=medicalmundi
+ARG MEDICALMUNDI_GID=medicalmundi
+FROM builder_vendor AS builder_medicalmundi
+
+#SHELL ["/bin/bash", "--login", "-c"]
 
 WORKDIR '/app'
 
-COPY --from=builder_vendor --chown=application:application /app /app
+# Create a group and user
+RUN addgroup -S ${MEDICALMUNDI_GID} && adduser -S ${MEDICALMUNDI_UID} -G ${MEDICALMUNDI_GID}
+
+
+ARG MEDICALMUNDI_UID=medicalmundi
+ARG MEDICALMUNDI_GID=medicalmundi
+
+FROM builder_medicalmundi
+
+WORKDIR '/app'
+
+COPY --from=builder_vendor --chown=${MEDICALMUNDI_UID}:${MEDICALMUNDI_GID} /app /app
 
 EXPOSE 9000
 
