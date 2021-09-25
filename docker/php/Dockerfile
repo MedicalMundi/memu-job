@@ -1,52 +1,22 @@
-FROM php:7.4-fpm-alpine3.14 AS builder_tools
-# install dependencies
-ADD https://github.com/mlocati/docker-php-extension-installer/releases/latest/download/install-php-extensions /usr/local/bin/
+ARG PHP_BASE_VERSION=base-v0.1.0
 
-RUN chmod +x /usr/local/bin/install-php-extensions && sync
+FROM medicalmundi/internal-php-base:$PHP_BASE_VERSION AS builder_vendor
 
-RUN apk add --no-cache --virtual .builddeps \
-        autoconf \
-        g++ \
-        gcc \
-        make \
-        unzip \
-        wget
+WORKDIR '/app'
 
+COPY composer.json .
+COPY composer.lock .
 
-FROM builder_tools AS builder_php_extensions
+RUN composer install --optimize-autoloader --ansi --no-interaction --no-progress --no-scripts --no-suggest
 
-RUN install-php-extensions  \
-    opcache \
-    apcu \
-    redis \
-    xsl \
-    zip \
-    yaml \
-    xlswriter \
-    pcntl \
-    amqp \
-    gd \
-    mysqli \
-    pdo_mysql \
-    pgsql \
-    pdo_pgsql \
-    xdebug \
-    pcov
+COPY . .
 
 
-FROM builder_php_extensions
+FROM builder_vendor
 
-RUN mkdir /app
+EXPOSE 9000
 
-WORKDIR /app
-
-
-# Install composer
-COPY --from=composer:2 /usr/bin/composer /usr/local/bin/composer
-
-
-# Base images don't need healthcheck since they are not running applications
-# this can be overriden in the child images
-HEALTHCHECK NONE
+# SETUP healtcheck method
+#HEALTHCHECK NONE
 
 CMD [ "php-fpm" ]
