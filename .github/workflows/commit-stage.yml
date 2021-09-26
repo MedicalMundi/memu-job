@@ -312,11 +312,11 @@ jobs:
 
       - name: Run Core Unit test suite
         id: phpunit-unit-test-suite
-        run: ./vendor/bin/phpunit --configuration phpunit.core.xml --testsuite unit --coverage-clover ${{ env.REPORT_FOLDER_PHPUNIT }}/unit-test-clover.xml
+        run: ./vendor/bin/phpunit --configuration phpunit.core.xml --testsuite unit --coverage-clover ${{ REPORT_FOLDER_PHPUNIT }}/unit-test-clover.xml
 
       - name: Run Core Integration test suite
         id: phpunit-integration-test-suite
-        run: ./vendor/bin/phpunit --configuration phpunit.core.xml --testsuite integration --coverage-clover ${{ env.REPORT_FOLDER_PHPUNIT }}/integration-test-clover.xml
+        run: ./vendor/bin/phpunit --configuration phpunit.core.xml --testsuite integration --coverage-clover ${{ REPORT_FOLDER_PHPUNIT }}/integration-test-clover.xml
 
       - name: Run Core Quarantine tests
         run: ./vendor/bin/phpunit --configuration phpunit.core.xml --testsuite unit,integration --group quarantine
