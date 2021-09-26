@@ -5,6 +5,7 @@ on: [ push ]
 
 env:
   GITHUB_PAT: ${{ secrets.MEMUJOB_CI_GHA_PAT }}
+  REPORT_FOLDER_PHPUNIT: ${{ secrets.REPORT_FOLDER_PHPUNIT }}
   COVERAGE: '0'
   PHP_EXTENSIONS: ctype, curl, gd, iconv, intl, opcache, openssl, mbstring, mysql, pdo_sqlite
   PHP_EXTENSIONS_CACHE_KEY: cache-php-extensions-v1
@@ -310,14 +311,22 @@ jobs:
         run: composer install --prefer-dist --no-progress --no-suggest --ansi --no-scripts
 
       - name: Run Core Unit test suite
-        run: ./vendor/bin/phpunit --configuration phpunit.core.xml --testsuite unit
+        id: phpunit-unit-test-suite
+        run: ./vendor/bin/phpunit --configuration phpunit.core.xml --testsuite unit --coverage-clover ${{ env.REPORT_FOLDER_PHPUNIT }}/unit-test-clover.xml
 
       - name: Run Core Integration test suite
-        run: ./vendor/bin/phpunit --configuration phpunit.core.xml --testsuite integration
+        id: phpunit-integration-test-suite
+        run: ./vendor/bin/phpunit --configuration phpunit.core.xml --testsuite integration --coverage-clover ${{ env.REPORT_FOLDER_PHPUNIT }}/integration-test-clover.xml
 
       - name: Run Core Quarantine tests
         run: ./vendor/bin/phpunit --configuration phpunit.core.xml --testsuite unit,integration --group quarantine
         continue-on-error: true
+
+      - name: Save coverage reports
+        uses: actions/upload-artifact@v2
+        with:
+          name: phpunit-report-coverage
+          path: ${{ env.REPORT_FOLDER_PHPUNIT }}
 
 
   symfony-test:
