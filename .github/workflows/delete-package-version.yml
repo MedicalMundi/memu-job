@@ -25,6 +25,29 @@ jobs:
           echo "Image Name: ${{ github.event.inputs.packageName }}"
           echo "Image Tag: ${{ github.event.inputs.numberOfOldRelease }}"
 
+      - name: Reveal env vars
+        run: |
+          echo GITHUB_WORKFLOW   = $GITHUB_WORKFLOW
+          echo HOME              = $HOME
+          echo GITHUB_ACTION     = $GITHUB_ACTION
+          echo GITHUB_ACTIONS    = $GITHUB_ACTIONS
+          echo GITHUB_ACTOR      = $GITHUB_ACTOR
+          echo GITHUB_REPOSITORY = $GITHUB_REPOSITORY
+          echo GITHUB_EVENT_NAME = $GITHUB_EVENT_NAME
+          echo GITHUB_EVENT_PATH = $GITHUB_EVENT_PATH
+          echo GITHUB_WORKSPACE  = $GITHUB_WORKSPACE
+          echo GITHUB_SHA        = $GITHUB_SHA
+          echo GITHUB_REF        = $GITHUB_REF
+
+
+      - name: Delete package (curl version)
+      - run: |
+          curl \
+            -X DELETE \
+            -H "Accept: application/vnd.github.v3+json" \
+            -v -H "Authorization: token ${{ secrets.MEMUJOB_CI_GHA_PAT }}" https://api.github.com/repos/medicalmundi/memu-job \
+            https://api.github.com/orgs/medicalmundi/packages/container/${{ github.event.inputs.packageName }}
+
 #      - uses: actions/delete-package-versions@v1
 #        with:
 #          owner: medicalmundi
@@ -33,13 +56,13 @@ jobs:
 #          num-old-versions-to-delete: ${{ github.event.inputs.numberOfOldRelease }}
 #          token: ${{ env.GITHUB_PAT }}
 
-      - name: Remove previous version
-        uses:  smartsquaregmbh/delete-old-packages@v0.3.2
-        with:
-          organization: medicalmundi
-          keep: 1
-          names: |
-            ghcr.io/medicalmundi/memu-job-rc
-            ghcr.io/medicalmundi/app
-          token: ${{ env.GITHUB_PAT }}
-          dry-run: false
+#      - name: Remove previous version
+#        uses:  smartsquaregmbh/delete-old-packages@v0.3.2
+#        with:
+#          organization: medicalmundi
+#          keep: 1
+#          names: |
+#            ghcr.io/medicalmundi/memu-job-rc
+#            ghcr.io/medicalmundi/app
+#          token: ${{ env.GITHUB_PAT }}
+#          dry-run: false
