@@ -1,0 +1,28 @@
+# see https://docs.github.com/en/packages/managing-github-packages-using-github-actions-workflows/publishing-and-installing-a-package-with-github-actions
+
+name: Publish coverage report to codecov
+
+on:
+  repository_dispatch:
+    types: [code-coverage-report-was-completed-successfully]
+
+env:
+  GITHUB_PAT: ${{ secrets.MEMUJOB_CI_GHA_PAT }}
+  REPORT_FOLDER_PHPUNIT: ${{ secrets.REPORT_FOLDER_PHPUNIT }}
+
+jobs:
+
+  publish-coverage-report:
+    runs-on: ubuntu-18.04
+
+    steps:
+      - uses: actions/checkout@master
+
+      - uses: actions/download-artifact@v2
+        with:
+          name: phpunit-report-coverage
+          path: $REPORT_FOLDER_PHPUNIT
+
+      - run: ls -al  ${{ env.REPORT_FOLDER_PHPUNIT }}
+
+
