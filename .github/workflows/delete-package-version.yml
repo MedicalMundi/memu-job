@@ -36,10 +36,10 @@ jobs:
       - name: Remove previous version
         uses:  smartsquaregmbh/delete-old-packages@v0.3.2
         with:
-          organization: ${{ github.repository_owner }}
+          organization: medicalmundi
           keep: 1
           names: |
-            memu-job-rc
-            medicalmundi/app
+            ghcr.io/medicalmundi/memu-job-rc
+            ghcr.io/medicalmundi/app
           token: ${{ env.GITHUB_PAT }}
-          dry-run: true
+          dry-run: false
