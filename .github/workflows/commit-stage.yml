@@ -312,7 +312,9 @@ jobs:
 
       - name: Run Core Unit test suite
         id: phpunit-unit-test-suite
-        run: ./vendor/bin/phpunit --configuration phpunit.core.xml --testsuite unit --coverage-clover $REPORT_FOLDER_PHPUNIT/unit-test-clover.xml
+        run: |
+          mkdir -p var/tools/phpunit/core
+          ./vendor/bin/phpunit --configuration phpunit.core.xml --testsuite unit --coverage-clover $REPORT_FOLDER_PHPUNIT/unit-test-clover.xml
 
       - name: Run Core Integration test suite
         id: phpunit-integration-test-suite
