@@ -321,6 +321,9 @@ jobs:
 
 
   symfony-test:
+    needs:
+      - lint-symfony-container
+      - lint-symfony-contfiguration
     runs-on: ubuntu-18.04
 
     strategy:
