@@ -40,4 +40,4 @@ jobs:
             -X DELETE \
             -H "Accept: application/vnd.github.v3+json" \
             -v -H "Authorization: token ${{ secrets.MEMUJOB_CI_GHA_PAT }}" https://api.github.com/repos/${{ env.GITHUB_REPOSITORY }} \
-            https://api.github.com/orgs/${{ GITHUB_REPOSITORY_OWNER }}/packages/container/${{ github.event.inputs.packageName }}
+            https://api.github.com/orgs/medicalmundi/packages/container/${{ github.event.inputs.packageName }}
