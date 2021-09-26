@@ -499,6 +499,7 @@ jobs:
       - core-test
       - symfony-test
       - lint-symfony-container
+      - lint-symfony-contfiguratin
     runs-on: ubuntu-18.04
     steps:
       - name: emit pipeline event
