@@ -1,0 +1,45 @@
+# see https://github.com/actions/delete-package-versions
+
+name: Delete oldest package version
+
+on:
+  workflow_dispatch:
+    inputs:
+      packageName:
+        description: 'Name of the package.'
+        required: true
+        default: 'memu-job-rc'
+      numberOfOldRelease:
+        description: 'The number of old versions to delete starting from the oldest version.'
+        required: true
+        default: 1
+
+env:
+  GITHUB_PAT: ${{ secrets.MEMUJOB_CI_GHA_PAT }}
+
+jobs:
+  delete-oldest-package-version:
+    runs-on: ubuntu-18.04
+    steps:
+      - run: |
+          echo "Image Name: ${{ github.event.inputs.packageName }}"
+          echo "Image Tag: ${{ github.event.inputs.numberOfOldRelease }}"
+
+#      - uses: actions/delete-package-versions@v1
+#        with:
+#          owner: medicalmundi
+#          repo: memu-job
+#          package-name: ${{ github.event.inputs.packageName }}
+#          num-old-versions-to-delete: ${{ github.event.inputs.numberOfOldRelease }}
+#          token: ${{ env.GITHUB_PAT }}
+
+      - name: Remove previous version
+        uses:  smartsquaregmbh/delete-old-packages@v0.3.2
+        with:
+          organization: ${{ github.repository_owner }}
+          keep: 1
+          names: |
+            memu-job-rc
+            medicalmundi/app
+          token: ${{ env.GITHUB_PAT }}
+          dry-run: true
