@@ -39,5 +39,5 @@ jobs:
           curl \
             -X DELETE \
             -H "Accept: application/vnd.github.v3+json" \
-            -v -H "Authorization: token ${{ secrets.MEMUJOB_CI_GHA_PAT }}" https://api.github.com/repos/${{ GITHUB_REPOSITORY }} \
-            https://api.github.com/orgs/${{ GITHUB_REPOSITORY_OWNER }}/packages/container/${{ github.event.inputs.packageName }}
+            -v -H "Authorization: token ${{ secrets.MEMUJOB_CI_GHA_PAT }}" https://api.github.com/repos/${{ env.GITHUB_REPOSITORY }} \
+            https://api.github.com/orgs/${{ env.GITHUB_REPOSITORY_OWNER }}/packages/container/${{ github.event.inputs.packageName }}
