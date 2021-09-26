@@ -6,6 +6,7 @@ on: [ push ]
 env:
   GITHUB_PAT: ${{ secrets.MEMUJOB_CI_GHA_PAT }}
   REPORT_FOLDER_PHPUNIT: ${{ secrets.REPORT_FOLDER_PHPUNIT }}
+  PHPUNIT_ARTIFACT_NAME: ${{ secrets.CI_ENV_PHPUNIT_ARTIFACT_NAME }}
   COVERAGE: '0'
   PHP_EXTENSIONS: ctype, curl, gd, iconv, intl, opcache, openssl, mbstring, mysql, pdo_sqlite
   PHP_EXTENSIONS_CACHE_KEY: cache-php-extensions-v1
@@ -314,11 +315,13 @@ jobs:
         id: phpunit-unit-test-suite
         run: |
           mkdir -p var/tools/phpunit/core
-          ./vendor/bin/phpunit --configuration phpunit.core.xml --testsuite unit --coverage-clover $REPORT_FOLDER_PHPUNIT/unit-test-clover.xml
+          ./vendor/bin/phpunit --configuration phpunit.core.xml --testsuite unit --coverage-clover $REPORT_FOLDER_PHPUNIT/artifact-data/unit-test-clover.xml
 
       - name: Run Core Integration test suite
         id: phpunit-integration-test-suite
-        run: ./vendor/bin/phpunit --configuration phpunit.core.xml --testsuite integration --coverage-clover $REPORT_FOLDER_PHPUNIT/integration-test-clover.xml
+        run:  |
+          mkdir -p var/tools/phpunit/core
+          ./vendor/bin/phpunit --configuration phpunit.core.xml --testsuite integration --coverage-clover $REPORT_FOLDER_PHPUNIT/artifact-data/integration-test-clover.xml
 
       - name: Run Core Quarantine tests
         run: ./vendor/bin/phpunit --configuration phpunit.core.xml --testsuite unit,integration --group quarantine
@@ -327,7 +330,7 @@ jobs:
       - name: Save coverage reports
         uses: actions/upload-artifact@v2
         with:
-          name: phpunit-report-coverage
+          name: ${{ env.PHPUNIT_ARTIFACT_NAME }}-${{ env.GITHUB_SHA }}
           path: ${{ env.REPORT_FOLDER_PHPUNIT }}
 
 

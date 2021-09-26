@@ -9,6 +9,7 @@ on:
 env:
   GITHUB_PAT: ${{ secrets.MEMUJOB_CI_GHA_PAT }}
   REPORT_FOLDER_PHPUNIT: ${{ secrets.REPORT_FOLDER_PHPUNIT }}
+  PHPUNIT_ARTIFACT_NAME: ${{ secrets.CI_ENV_PHPUNIT_ARTIFACT_NAME }}
 
 jobs:
 
@@ -16,13 +17,23 @@ jobs:
     runs-on: ubuntu-18.04
 
     steps:
-      - uses: actions/checkout@master
+      - uses: actions/checkout@v2
 
-      - uses: actions/download-artifact@v2
-        with:
-          name: phpunit-report-coverage
-          path: $REPORT_FOLDER_PHPUNIT
+      - name: Reveal GitHub context
+        env:
+          GITHUB_CONTEXT: ${{ toJson(github) }}
+        run: |
+          echo "$GITHUB_CONTEXT"
 
-      - run: ls -al  ${{ env.REPORT_FOLDER_PHPUNIT }}
+      - run: ls -al
+
+      - name: Login to gh
+        run: |
+          gh run download -n ${{ env.PHPUNIT_ARTIFACT_NAME }}-${{ env.GITHUB_SHA }}
+        env:
+          GITHUB_TOKEN: ${{secrets.GITHUB_TOKEN}}
+
+      - run: ls -al artifact-data/
+
 
 
