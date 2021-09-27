@@ -14,6 +14,8 @@ use PHPUnit\Framework\TestCase;
  */
 class ErrataUniqueServiceTest extends TestCase
 {
+    private const UUID = 'cc97e157-a0fa-478a-8ade-5692bbaa08e0';
+
     /**
      * @var ErrataFeedRepository&MockObject
      */
@@ -33,7 +35,7 @@ class ErrataUniqueServiceTest extends TestCase
      */
     public function shouldDetectDuplicateIdentity(): void
     {
-        $errataId = ErrataId::fromString($uuid = 'cc97e157-a0fa-478a-8ade-5692bbaa08e0');
+        $errataId = ErrataId::fromString(self::UUID);
 
         $this->repository->expects(self::once())
             ->method('withId')
@@ -50,7 +52,7 @@ class ErrataUniqueServiceTest extends TestCase
      */
     public function shouldNotDetectDuplicateIdentity(): void
     {
-        $errataId = ErrataId::fromString($uuid = 'cc97e157-a0fa-478a-8ade-5692bbaa08e0');
+        $errataId = ErrataId::fromString(self::UUID);
 
         $this->repository->expects(self::once())
             ->method('withId')
