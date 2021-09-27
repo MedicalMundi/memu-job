@@ -6,7 +6,7 @@ use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 
-class AppHealCheckController extends AbstractController
+class AppHealtCheckController extends AbstractController
 {
     /**
      * @Route("/sys/healt/check", name="app_healt_check")
