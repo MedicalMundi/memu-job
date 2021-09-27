@@ -14,6 +14,8 @@ use PHPUnit\Framework\TestCase;
  */
 class JobUniqueServiceTest extends TestCase
 {
+    private const UUID = 'cc97e157-a0fa-478a-8ade-5692bbaa08e0';
+
     /**
      * @var JobRepository & MockObject
      */
@@ -33,7 +35,7 @@ class JobUniqueServiceTest extends TestCase
      */
     public function shouldDetectDuplicateIdentity(): void
     {
-        $jobId = JobId::fromString($uuid = 'cc97e157-a0fa-478a-8ade-5692bbaa08e0');
+        $jobId = JobId::fromString(self::UUID);
 
         $this->repository->expects(self::once())
             ->method('withId')
@@ -50,7 +52,7 @@ class JobUniqueServiceTest extends TestCase
      */
     public function shouldNotDetectDuplicateIdentity(): void
     {
-        $jobId = JobId::fromString($uuid = 'cc97e157-a0fa-478a-8ade-5692bbaa08e0');
+        $jobId = JobId::fromString(self::UUID);
 
         $this->repository->expects(self::once())
             ->method('withId')
