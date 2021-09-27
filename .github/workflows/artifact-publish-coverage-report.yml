@@ -22,18 +22,29 @@ jobs:
       - name: Reveal GitHub context
         env:
           GITHUB_CONTEXT: ${{ toJson(github) }}
-        run: |
-          echo "$GITHUB_CONTEXT"
+        run: echo "$GITHUB_CONTEXT"
 
-      - run: ls -al
-
-      - name: Login to gh
+      - name: Download Phpunit coverage artifact
+        id: download-artifact
         run: |
+          ls -al
           gh run download -n ${{ env.PHPUNIT_ARTIFACT_NAME }}-${{ env.GITHUB_SHA }}
+          ls -al artifact-data/
         env:
           GITHUB_TOKEN: ${{secrets.GITHUB_TOKEN}}
 
-      - run: ls -al artifact-data/
+      - name: Upload coverage results to Codecov
+        if: ${{ (steps.download-artifact.outcome == 'success')}}
+        uses: codecov/codecov-action@v1
+        with:
+          directory: artifact-data/
+          files: artifact-data/unit-test-clover.xml, artifact-data/integration-test-clover.xml
+          name: phpunit-core-test
+          #flags: unit-test
+          fail_ci_if_error: false
+        continue-on-error: true
+
+
 
 
 
