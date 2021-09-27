@@ -1,0 +1,64 @@
+# see https://docs.github.com/en/packages/managing-github-packages-using-github-actions-workflows/publishing-and-installing-a-package-with-github-actions
+
+name: Publish coverage report to sonar cloud
+
+on:
+  repository_dispatch:
+    types: [code-coverage-report-was-completed-successfully]
+
+env:
+  GITHUB_PAT: ${{ secrets.MEMUJOB_CI_GHA_PAT }}
+  REPORT_FOLDER_PHPUNIT: ${{ secrets.REPORT_FOLDER_PHPUNIT }}
+  PHPUNIT_ARTIFACT_NAME: ${{ secrets.CI_ENV_PHPUNIT_ARTIFACT_NAME }}
+
+jobs:
+
+  publish-coverage-report-to-sonar-cloud:
+    runs-on: ubuntu-18.04
+
+    steps:
+      - uses: actions/checkout@v2
+
+      - name: Reveal GitHub context
+        env:
+          GITHUB_CONTEXT: ${{ toJson(github) }}
+        run: echo "$GITHUB_CONTEXT"
+
+      - name: Download Phpunit coverage artifact
+        id: download-artifact
+        run: |
+          ls -al
+          gh run download -n ${{ env.PHPUNIT_ARTIFACT_NAME }}-${{ env.GITHUB_SHA }}
+          ls -al artifact-data/
+        env:
+          GITHUB_TOKEN: ${{secrets.GITHUB_TOKEN}}
+
+      - name: SonarCloud Scan And publication
+        if: ${{ (steps.download-artifact.outcome == 'success')}}
+        uses: sonarsource/sonarcloud-github-action@master
+        with:
+          projectBaseDir: ./
+          args: >
+            -Dsonar.organization=medicalmundi
+            -Dsonar.projectKey=MedicalMundi_memu-job
+            -Dsonar.projectName=memu-job
+            -Dsonar.links.homepage=https://github.com/MedicalMundi/memu-job
+            -Dsonar.links.ci=https://github.com/MedicalMundi/memu-job/actions
+            -Dsonar.links.scm=https://github.com/MedicalMundi/memu-job
+            -Dsonar.links.issue=https://github.com/MedicalMundi/memu-job/issues
+            -Dsonar.sourceEncoding=UTF-8
+            -Dsonar.language=php
+            -Dsonar.sources=src/,core/ingesting/src/,core/publishing/src/
+            -Dsonar.test.exclusions=tests/**,docker/**,nginx.conf,sys/**,tools/**,var/**
+            -Dsonar.php.tests.reportPaths=artifact-data/unit-test-clover.xml,artifact-data/integration-test-clover.xml
+            -Dsonar.tests=tests/,core/ingesting/src
+            -Dsonar.verbose=true
+
+        env:
+         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+         SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
+        continue-on-error: true
+
+
+
+
