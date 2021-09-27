@@ -11,7 +11,7 @@ class ProductionServiceContainer extends ServiceContainer
 
     public function __construct(?LoggerInterface $logger = null)
     {
-        $this->logger = $logger ?? $logger;
+        $this->logger = $logger;
     }
 
     protected function logger(): LoggerInterface
