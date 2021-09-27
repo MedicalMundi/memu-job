@@ -33,6 +33,6 @@ class FeedIoGazzettaAdapterTest extends TestCase
 
         $feedIo = new FeedIo($gazzettaClient, $logger);
 
-        $x = $feedIo->read($url);
+        $feedIo->read($url);
     }
 }
