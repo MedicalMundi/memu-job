@@ -315,13 +315,15 @@ jobs:
         id: phpunit-unit-test-suite
         run: |
           mkdir -p var/tools/phpunit/core
-          ./vendor/bin/phpunit --configuration phpunit.core.xml --testsuite unit --coverage-clover $REPORT_FOLDER_PHPUNIT/artifact-data/unit-test-clover.xml
+          ./vendor/bin/phpunit --configuration phpunit.core.xml --testsuite unit \
+            --coverage-clover $REPORT_FOLDER_PHPUNIT/artifact-data/unit-test-clover.xml --log-junit $REPORT_FOLDER_PHPUNIT/artifact-data/unit-test-junit.xml
 
       - name: Run Core Integration test suite
         id: phpunit-integration-test-suite
         run:  |
           mkdir -p var/tools/phpunit/core
-          ./vendor/bin/phpunit --configuration phpunit.core.xml --testsuite integration --coverage-clover $REPORT_FOLDER_PHPUNIT/artifact-data/integration-test-clover.xml
+          ./vendor/bin/phpunit --configuration phpunit.core.xml --testsuite integration \
+            --coverage-clover $REPORT_FOLDER_PHPUNIT/artifact-data/integration-test-clover.xml --log-junit $REPORT_FOLDER_PHPUNIT/artifact-data/integration-test-junit.xml
 
       - name: Run Core Quarantine tests
         run: ./vendor/bin/phpunit --configuration phpunit.core.xml --testsuite unit,integration --group quarantine
