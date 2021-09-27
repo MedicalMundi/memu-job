@@ -50,8 +50,9 @@ jobs:
             -Dsonar.language=php
             -Dsonar.sources=src/,core/ingesting/src/,core/publishing/src/
             -Dsonar.test.exclusions=tests/**,docker/**,nginx.conf,sys/**,tools/**,var/**
-            -Dsonar.php.tests.reportPaths=artifact-data/unit-test-clover.xml,artifact-data/integration-test-clover.xml
-            -Dsonar.tests=tests/,core/ingesting/src
+            -Dsonar.php.coverage.reportPaths=artifact-data/unit-test-clover.xml,artifact-data/integration-test-clover.xml
+            -Dsonar.php.tests.reportPath=artifact-data/unit-test-junit.xml,artifact-data/integration-test-junit.xml
+            -Dsonar.tests=tests/,core/ingesting/tests/,core/publishing/tests/
             -Dsonar.verbose=true
 
         env:
