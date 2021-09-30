@@ -315,6 +315,7 @@ jobs:
         id: phpunit-unit-test-suite
         run: |
           mkdir -p var/tools/phpunit/core
+          mkdir -p $REPORT_FOLDER_PHPUNIT/artifact-data/
           ./vendor/bin/phpunit --configuration phpunit.core.xml --testsuite unit \
             --coverage-clover $REPORT_FOLDER_PHPUNIT/artifact-data/unit-test-clover.xml --log-junit $REPORT_FOLDER_PHPUNIT/artifact-data/unit-test-junit.xml
 
