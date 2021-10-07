@@ -1,0 +1,32 @@
+name: Acceptance stage
+
+on:
+  schedule:
+    # * is a special character in YAML so you have to quote this string
+    - cron:  '3 * * * *'
+
+
+env:
+  GITHUB_PAT: ${{ secrets.MEMUJOB_CI_GHA_PAT }}
+  PHP_RELEASE_CANDIDATE_IMAGE_NAME: internal-php-rc
+  PHP_EXTENSIONS: ctype, curl, gd, iconv, intl, opcache, openssl, mbstring, mysql, pdo_sqlite
+  PHP_EXTENSIONS_CACHE_KEY: cache-php-extensions-v1
+
+
+jobs:
+  detect-release-candidate:
+    runs-on: ubuntu-18.04
+    permissions:
+      packages: write
+      contents: read
+
+    steps:
+      - uses: actions/checkout@v2
+
+      - name: Login to GHCR
+        id: docker_ghrc_login
+        uses: docker/login-action@v1
+        with:
+          registry: ghcr.io
+          username: ${{ github.actor }}
+          password: ${{ secrets.GITHUB_TOKEN }}
