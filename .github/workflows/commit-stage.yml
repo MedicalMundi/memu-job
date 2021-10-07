@@ -342,7 +342,7 @@ jobs:
     needs:
       - core-test
       - lint-symfony-container
-      - lint-symfony-contfiguration
+      - lint-symfony-configuration
     runs-on: ubuntu-18.04
 
     strategy:
