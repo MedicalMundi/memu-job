@@ -456,7 +456,7 @@ jobs:
         run: ./bin/console lint:container -e prod --verbose
 
 
-  lint-symfony-contfiguration:
+  lint-symfony-configuration:
     runs-on: ubuntu-18.04
 
     strategy:
@@ -521,7 +521,7 @@ jobs:
       - core-test
       - symfony-test
       - lint-symfony-container
-      - lint-symfony-contfiguration
+      - lint-symfony-configuration
     runs-on: ubuntu-18.04
     steps:
       - name: emit pipeline event
