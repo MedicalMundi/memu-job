@@ -309,7 +309,7 @@ jobs:
           restore-keys: ${{ runner.os }}-composer-${{ matrix.php }}
 
       - name: Install Composer dependencies
-        run: composer install --prefer-dist --no-progress --no-suggest --ansi --no-scripts
+        run: composer install --prefer-dist --no-progress --ansi --no-scripts
 
       - name: Run Core Unit test suite
         id: phpunit-unit-test-suite
@@ -390,7 +390,7 @@ jobs:
           restore-keys: ${{ runner.os }}-composer-${{ matrix.php }}
 
       - name: Install Composer dependencies
-        run: composer install --prefer-dist --no-progress --no-suggest --ansi --no-scripts
+        run: composer install --prefer-dist --no-progress --ansi --no-scripts
 
       - name: Run webserver
         run: symfony server:start --port=8080 --dir=public --daemon --no-tls
@@ -447,7 +447,7 @@ jobs:
           restore-keys: ${{ runner.os }}-composer-${{ matrix.php }}
 
       - name: Install Composer dependencies
-        run: composer install --prefer-dist --no-progress --no-suggest --ansi --no-scripts
+        run: composer install --prefer-dist --no-progress --ansi --no-scripts
 
       - name: lint test container
         run: ./bin/console lint:container -e test --verbose
@@ -504,7 +504,7 @@ jobs:
           restore-keys: ${{ runner.os }}-composer-${{ matrix.php }}
 
       - name: Install Composer dependencies
-        run: composer install --prefer-dist --no-progress --no-suggest --ansi --no-scripts
+        run: composer install --prefer-dist --no-progress --ansi --no-scripts
 
       - name: lint symfony configuration
         run: ./bin/console lint:yaml config --parse-tags
