@@ -38,7 +38,7 @@
         "bamarni/composer-bin-plugin": "^1.4",
         "phpunit/phpunit": "^9.5",
         "symfony/browser-kit": "4.4.*",
-        "symfony/css-selector": "4.4.*",
+        "symfony/css-selector": "5.4.*",
         "symfony/phpunit-bridge": "^5.3"
     },
     "config": {
