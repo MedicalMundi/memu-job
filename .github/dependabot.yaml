@@ -25,6 +25,8 @@ updates:
         versions: ["5.x", "6.x"]
       - dependency-name: "symfony/browser-kit"
         versions: ["5.x", "6.x"]
+      - dependency-name: "symfony/css-selector"
+        versions: ["5.x", "6.x"]
 
 
   #
