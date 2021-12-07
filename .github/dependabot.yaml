@@ -3,17 +3,20 @@
 version: 2
 
 updates:
-  - commit-message:
-      include: "scope"
-      prefix: "composer"
+  - package-ecosystem: "composer"
+    target-branch: "main"
     directory: "/"
-    labels:
-      - "php dependency"
+    versioning-strategy: "increase-if-necessary"
     open-pull-requests-limit: 10
-    package-ecosystem: "composer"
     schedule:
       interval: "daily"
-    versioning-strategy: "increase-if-necessary"
+    assignees:
+      - "zerai"
+    commit-message:
+      include: "scope"
+      prefix: "composer"
+    labels:
+      - "php dependency"
     ignore:
       - dependency-name: "symfony/framework-bundle"
         versions: ["5.x", "6.x"]
@@ -32,38 +35,47 @@ updates:
   #
   # Tools dependecy track
   #
-  - commit-message:
-      include: "scope"
-      prefix: "composer"
+  - package-ecosystem: "composer"
+    target-branch: "main"
     directory: "/tools/phpstan"
-    labels:
-      - "tool dependency"
-    open-pull-requests-limit: 10
-    package-ecosystem: "composer"
+    versioning-strategy: "increase-if-necessary"
+    open-pull-requests-limit: 5
     schedule:
       interval: "daily"
-    versioning-strategy: "increase-if-necessary"
-
-  - commit-message:
+    assignees:
+      - "zerai"
+    commit-message:
       include: "scope"
       prefix: "composer"
+    labels:
+      - "tool dependency"
+
+  - package-ecosystem: "composer"
+    target-branch: "main"
     directory: "/tools/psalm"
-    labels:
-      - "tool dependency"
-    open-pull-requests-limit: 10
-    package-ecosystem: "composer"
+    versioning-strategy: "increase-if-necessary"
+    open-pull-requests-limit: 5
     schedule:
       interval: "daily"
-    versioning-strategy: "increase-if-necessary"
-
-  - commit-message:
+    assignees:
+      - "zerai"
+    commit-message:
       include: "scope"
       prefix: "composer"
-    directory: "/tools/ecs"
     labels:
       - "tool dependency"
-    open-pull-requests-limit: 10
-    package-ecosystem: "composer"
+
+  - package-ecosystem: "composer"
+    target-branch: "main"
+    directory: "/tools/ecs"
+    versioning-strategy: "increase-if-necessary"
+    open-pull-requests-limit: 5
     schedule:
       interval: "daily"
-    versioning-strategy: "increase-if-necessary"
+    assignees:
+      - "zerai"
+    commit-message:
+      include: "scope"
+      prefix: "composer"
+    labels:
+      - "tool dependency"
