@@ -13,7 +13,7 @@
         "php": ">=7.4 || ^8.0",
         "ext-ctype": "*",
         "ext-iconv": "*",
-        "composer/package-versions-deprecated": "1.11.99.4",
+        "composer/package-versions-deprecated": "1.11.99.*",
         "debril/feed-io": "^4.9",
         "doctrine/doctrine-bundle": "^2.5",
         "doctrine/doctrine-migrations-bundle": "^3.2",
