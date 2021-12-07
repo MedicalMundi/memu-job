@@ -33,3 +33,30 @@ services:
     environment:
       WEB_DOCUMENT_ROOT: /app/public
       WEB_DOCUMENT_INDEX: index.php
+
+
+  pgsql:
+    image: postgres:${POSTGRES_VERSION:-13}-alpine
+    ports:
+      - "5432"
+    links:
+      - pgadmin
+    environment:
+      POSTGRES_DB: ${POSTGRES_DB:-app}
+      # You should definitely change the password in production
+      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD:-ChangeMe}
+      POSTGRES_USER: ${POSTGRES_USER:-symfony}
+    # volumes:
+      # - db-data:/var/lib/postgresql/data:rw
+      # You may use a bind-mounted host directory instead, so that it is harder to accidentally remove the volume and lose all your data!
+      # - ./docker/db/data:/var/lib/postgresql/data:rw
+
+
+  pgadmin:
+    image: dpage/pgadmin4:6.2
+    ports:
+      - "8181:80"
+    environment:
+      PGADMIN_DEFAULT_EMAIL: "foobar@example.com"
+      PGADMIN_DEFAULT_PASSWORD: "foobar"
+
