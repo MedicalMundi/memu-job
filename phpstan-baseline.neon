@@ -21,6 +21,11 @@ parameters:
 			path: core/ingesting/src/Errata/Adapter/Rss/FeedIoRssReader.php
 
 		-
+			message: "#^Return type \\(Ingesting\\\\PublicJob\\\\Application\\\\Model\\\\JobId\\|null\\) of method Ingesting\\\\PublicJob\\\\Adapter\\\\Persistence\\\\Doctrine\\\\Config\\\\JobIdType\\:\\:convertToPHPValue\\(\\) should be covariant with return type \\(Ramsey\\\\Uuid\\\\UuidInterface\\|null\\) of method Ramsey\\\\Uuid\\\\Doctrine\\\\UuidType\\:\\:convertToPHPValue\\(\\)$#"
+			count: 1
+			path: core/ingesting/src/PublicJob/Adapter/Persistence/Doctrine/Config/JobIdType.php
+
+		-
 			message: "#^Cannot call method format\\(\\) on DateTime\\|null\\.$#"
 			count: 1
 			path: core/ingesting/src/PublicJob/Adapter/Rss/FeedIoRssReader.php
