@@ -23,7 +23,7 @@ class InMemoryJobFeedRepository implements JobRepository
 
     public function withId(JobId $jobId): JobFeed
     {
-        if (\array_key_exists($jobId->toString(), $this->items)) {
+        if (! \array_key_exists($jobId->toString(), $this->items)) {
             throw CouldNotFindJobFeed::withId($jobId);
         }
 
