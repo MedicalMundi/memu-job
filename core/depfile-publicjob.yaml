@@ -41,13 +41,15 @@ layers:
 ruleset:
   Adapter:
     - ApplicationPort
+  ApplicationPort:
+    - Application
   Application:
     - ApplicationPort
 
 skip_violations:
   # JobRepository interface, skip return type, exception and method parameters
-  Ingesting\PublicJob\Application\Model\JobRepository:
-    - Ingesting\PublicJob\Application\Model\JobFeed
-    - Ingesting\PublicJob\Application\Model\JobId
-    - Ingesting\PublicJob\Application\Model\CouldNotPersistJobFeed
-    - Ingesting\PublicJob\Application\Model\CouldNotFindJobFeed
+#  Ingesting\PublicJob\Application\Model\JobRepository:
+#    - Ingesting\PublicJob\Application\Model\JobFeed
+#    - Ingesting\PublicJob\Application\Model\JobId
+#    - Ingesting\PublicJob\Application\Model\CouldNotPersistJobFeed
+#    - Ingesting\PublicJob\Application\Model\CouldNotFindJobFeed
