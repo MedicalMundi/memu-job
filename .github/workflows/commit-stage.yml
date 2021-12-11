@@ -390,6 +390,8 @@ jobs:
           mkdir -p $REPORT_FOLDER_PHPUNIT/artifact-data/
           ./vendor/bin/phpunit --configuration phpunit.core.xml --testsuite integration \
             --coverage-clover $REPORT_FOLDER_PHPUNIT/artifact-data/integration-test-clover.xml --log-junit $REPORT_FOLDER_PHPUNIT/artifact-data/integration-test-junit.xml
+        env:
+          DATABASE_URL: postgresql://symfony:ChangeMe@127.0.0.1:${{ job.services.pgsql.ports['5432'] }}/app
 
       - name: Run Core Quarantine tests
         run: ./vendor/bin/phpunit --configuration phpunit.core.xml --testsuite unit,integration --group quarantine
