@@ -43,6 +43,11 @@
       <code>$value</code>
     </MoreSpecificImplementedParamType>
   </file>
+  <file src="core/ingesting/src/PublicJob/Adapter/Persistence/Doctrine/DoctrineJobFeedRepository.php">
+    <LessSpecificImplementedReturnType occurrences="1">
+      <code>JobFeed[]</code>
+    </LessSpecificImplementedReturnType>
+  </file>
   <file src="core/ingesting/src/PublicJob/Adapter/Persistence/InMemoryJobFeedRepository.php">
     <MixedInferredReturnType occurrences="1">
       <code>JobFeed</code>
