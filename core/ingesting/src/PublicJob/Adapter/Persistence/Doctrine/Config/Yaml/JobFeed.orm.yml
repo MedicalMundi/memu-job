@@ -21,3 +21,11 @@ Ingesting\PublicJob\Application\Model\JobFeed:
       column: link
       type: string
       nullable: false
+    publicationDate:
+      column: publication_date
+      type: datetime_immutable
+#      scale: null
+#      length: null
+#      unique: false
+      nullable: false
+      precision: null
