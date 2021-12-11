@@ -105,6 +105,12 @@
       <code>hasHeader</code>
     </UndefinedInterfaceMethod>
   </file>
+  <file src="core/ingesting/tests/PublicJob/Integration/Infrastructure/PublicJobProductionServiceContainerTest.php">
+    <PossiblyNullPropertyAssignmentValue occurrences="1">
+      <code>null</code>
+    </PossiblyNullPropertyAssignmentValue>
+    <PropertyTypeCoercion occurrences="1"/>
+  </file>
   <file src="core/ingesting/tests/PublicJob/Integration/Persistence/DoctrineJobRepositoryTest.php">
     <LessSpecificReturnStatement occurrences="1">
       <code>$this-&gt;doctrineJobFeedRepository</code>

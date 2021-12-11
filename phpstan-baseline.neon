@@ -86,6 +86,16 @@ parameters:
 			path: core/ingesting/src/SharedKernel/Infrastructure/FeedIoAdapter/Response.php
 
 		-
+			message: "#^Property Ingesting\\\\Tests\\\\PublicJob\\\\Integration\\\\Infrastructure\\\\PublicJobProductionServiceContainerTest\\:\\:\\$jobRepository \\(Ingesting\\\\PublicJob\\\\Application\\\\Model\\\\JobRepository\\) does not accept null\\.$#"
+			count: 1
+			path: core/ingesting/tests/PublicJob/Integration/Infrastructure/PublicJobProductionServiceContainerTest.php
+
+		-
+			message: "#^Property Ingesting\\\\Tests\\\\PublicJob\\\\Integration\\\\Infrastructure\\\\PublicJobProductionServiceContainerTest\\:\\:\\$jobRepository \\(Ingesting\\\\PublicJob\\\\Application\\\\Model\\\\JobRepository\\) does not accept object\\|null\\.$#"
+			count: 1
+			path: core/ingesting/tests/PublicJob/Integration/Infrastructure/PublicJobProductionServiceContainerTest.php
+
+		-
 			message: "#^Method Ingesting\\\\Tests\\\\PublicJob\\\\Integration\\\\Persistence\\\\DoctrineJobRepositoryTest\\:\\:createRepository\\(\\) should return Ingesting\\\\PublicJob\\\\Application\\\\Model\\\\JobRepository but returns object\\|null\\.$#"
 			count: 1
 			path: core/ingesting/tests/PublicJob/Integration/Persistence/DoctrineJobRepositoryTest.php
