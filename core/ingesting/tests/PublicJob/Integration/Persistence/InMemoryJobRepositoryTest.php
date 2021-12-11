@@ -5,6 +5,9 @@ namespace Ingesting\Tests\PublicJob\Integration\Persistence;
 use Ingesting\PublicJob\Adapter\Persistence\InMemoryJobFeedRepository;
 use Ingesting\PublicJob\Application\Model\JobRepository;
 
+/**
+ * @covers \Ingesting\PublicJob\Adapter\Persistence\InMemoryJobFeedRepository
+ */
 class InMemoryJobRepositoryTest extends JobRepositoryContractTest
 {
     protected function createRepository(): JobRepository

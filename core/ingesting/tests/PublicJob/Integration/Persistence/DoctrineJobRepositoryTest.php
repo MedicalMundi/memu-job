@@ -4,6 +4,9 @@ namespace Ingesting\Tests\PublicJob\Integration\Persistence;
 
 use Ingesting\PublicJob\Application\Model\JobRepository;
 
+/**
+ * @covers \Ingesting\PublicJob\Adapter\Persistence\Doctrine\DoctrineJobFeedRepository
+ */
 class DoctrineJobRepositoryTest extends JobRepositoryContractTest
 {
     /**
