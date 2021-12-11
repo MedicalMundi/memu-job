@@ -2,7 +2,6 @@
 
 namespace Ingesting\PublicJob\Infrastructure;
 
-use Ingesting\PublicJob\Adapter\Persistence\InMemoryJobFeedRepository;
 use Ingesting\PublicJob\Application\Model\JobRepository;
 
 class ProductionServiceContainer extends ServiceContainer
@@ -17,11 +16,7 @@ class ProductionServiceContainer extends ServiceContainer
     protected function jobRepository(): JobRepository
     {
         if ($this->jobRepository === null) {
-            /**
-             * Todo remove InMemoryJobFeedRepository
-             * add Doctrine repository
-             */
-            $this->jobRepository = new InMemoryJobFeedRepository();
+            throw new \RuntimeException('Doctrine JobFeedRepository is missing');
         }
 
         return $this->jobRepository;

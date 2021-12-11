@@ -2,15 +2,31 @@
 
 namespace Ingesting\Tests\PublicJob\Integration\Infrastructure;
 
+use Ingesting\PublicJob\Application\Model\JobRepository;
 use Ingesting\PublicJob\Infrastructure\ProductionServiceContainer;
-use PHPUnit\Framework\TestCase;
+use Symfony\Bundle\FrameworkBundle\Test\KernelTestCase;
 
 /**
  * @covers \Ingesting\PublicJob\Infrastructure\ProductionServiceContainer
  * @group quarantine
  */
-class PublicJobProductionServiceContainerTest extends TestCase
+class PublicJobProductionServiceContainerTest extends KernelTestCase
 {
+    /**
+     * @var JobRepository
+     */
+    private $jobRepository;
+
+    protected function setUp(): void
+    {
+        $kernel = parent::bootKernel();
+
+        $this->jobRepository = $kernel->getContainer()
+            ->get('Ingesting\PublicJob\Adapter\Persistence\Doctrine\DoctrineJobFeedRepository');
+
+        parent::setUp();
+    }
+
     /**
      * @test
      */
@@ -18,7 +34,14 @@ class PublicJobProductionServiceContainerTest extends TestCase
     {
         self::expectNotToPerformAssertions();
 
-        $moduleContainer = new ProductionServiceContainer();
+        $moduleContainer = new ProductionServiceContainer(
+            $this->jobRepository
+        );
         $moduleContainer->module();
+    }
+
+    protected function tearDown(): void
+    {
+        $this->jobRepository = null;
     }
 }

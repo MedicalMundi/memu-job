@@ -34,6 +34,8 @@ services:
         public: true
 
     Ingesting\PublicJob\Infrastructure\ProductionServiceContainer:
+        arguments:
+            - '@Ingesting\PublicJob\Adapter\Persistence\Doctrine\DoctrineJobFeedRepository'
 
     Ingesting\PublicJob\Application\PublicJobModule:
         factory: [ '@Ingesting\PublicJob\Infrastructure\ProductionServiceContainer', 'module' ]
