@@ -305,6 +305,21 @@ jobs:
 
   core-test:
     runs-on: ubuntu-18.04
+    services:
+      pgsql:
+        image: postgres:13-alpine
+        env:
+          POSTGRES_DB: app_test
+          POSTGRES_PASSWORD: ChangeMe
+          POSTGRES_USER: symfony
+
+        ports:
+          - 5432/tcp
+        options: >-
+          --health-cmd pg_isready
+          --health-interval 10s
+          --health-timeout 5s
+          --health-retries 3
 
     strategy:
       matrix:
@@ -360,6 +375,13 @@ jobs:
           mkdir -p $REPORT_FOLDER_PHPUNIT/artifact-data/
           ./vendor/bin/phpunit --configuration phpunit.core.xml --testsuite unit \
             --coverage-clover $REPORT_FOLDER_PHPUNIT/artifact-data/unit-test-clover.xml --log-junit $REPORT_FOLDER_PHPUNIT/artifact-data/unit-test-junit.xml
+
+      - name: Setup Database for Integration tests (schema & migration)
+        run: |
+          php bin/console doctrine:schema:update --force || echo "No migrations found or schema update failed"
+          php bin/console doctrine:migrations:migrate || echo "No migrations found or migration failed"
+        env:
+          DATABASE_URL: postgresql://symfony:ChangeMe@127.0.0.1:${{ job.services.pgsql.ports['5432'] }}/app_test
 
       - name: Run Core Integration test suite
         id: phpunit-integration-test-suite
