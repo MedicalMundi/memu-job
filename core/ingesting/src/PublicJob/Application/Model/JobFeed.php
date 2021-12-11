@@ -2,6 +2,7 @@
 
 namespace Ingesting\PublicJob\Application\Model;
 
+use DateTimeImmutable;
 use Ingesting\SharedKernel\Model\PublicationDate;
 
 class JobFeed
@@ -14,27 +15,28 @@ class JobFeed
 
     private string $link;
 
-    private PublicationDate $publicationDate;
+    private DateTimeImmutable $publicationDate;
 
     private function __construct(JobId $id)
     {
         $this->id = $id;
     }
 
-    public static function create(string $title, string $description, string $link, string $pubDate, ?JobId $id = null): self
+    public static function create(string $title, string $description, string $link, DateTimeImmutable $pubDate, ?JobId $id = null): self
     {
         $identity = $id ?? JobId::generate();
-        $errata = new self($identity);
+        $job = new self($identity);
 
-        $errata->title = $title;
-        $errata->description = $description;
-        $errata->link = $link;
+        $job->title = $title;
+        $job->description = $description;
+        $job->link = $link;
 
         //TODO ramdomness in domain?
         //TODO orario italiano usare clock?
-        $errata->publicationDate = PublicationDate::fromString((new \DateTimeImmutable($pubDate))->format('Y-m-d H:i:s'));
+        //$job->publicationDate = PublicationDate::fromString((new \DateTimeImmutable($pubDate))->format('Y-m-d H:i:s'));
+        $job->publicationDate = $pubDate;
 
-        return $errata;
+        return $job;
     }
 
     public function id(): JobId
@@ -57,7 +59,7 @@ class JobFeed
         return $this->link;
     }
 
-    public function publicationDate(): PublicationDate
+    public function publicationDate(): DateTimeImmutable
     {
         return $this->publicationDate;
     }

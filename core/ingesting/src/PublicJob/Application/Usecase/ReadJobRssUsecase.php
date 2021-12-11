@@ -41,7 +41,7 @@ class ReadJobRssUsecase implements JobRssDataSourceChecker
                 throw new \RuntimeException('Id exist');
             }
 
-            $jobFeed = JobFeed::create($item->title(), $item->description(), $item->link(), $item->publicationDate(), $jobId);
+            $jobFeed = JobFeed::create($item->title(), $item->description(), $item->link(), new \DateTimeImmutable($item->publicationDate()), $jobId);
 
             $this->repository->save($jobFeed);
         }

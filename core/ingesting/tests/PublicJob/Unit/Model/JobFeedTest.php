@@ -4,7 +4,6 @@ namespace Ingesting\Tests\PublicJob\Unit\Model;
 
 use Ingesting\PublicJob\Application\Model\JobFeed;
 use Ingesting\PublicJob\Application\Model\JobId;
-use Ingesting\SharedKernel\Model\PublicationDate;
 use PHPUnit\Framework\TestCase;
 
 /**
@@ -23,11 +22,11 @@ class JobFeedTest extends TestCase
         $title = 'a feed title';
         $description = 'a feed description';
         $link = 'https://www.pincopallino.com';
-        $publicationDate = '2047-02-01 10:00:00';
+        $publicationDate = new \DateTimeImmutable('2047-02-01 10:00:00');
 
-        $errata = JobFeed::create($title, $description, $link, $publicationDate, $id);
+        $jobFeed = JobFeed::create($title, $description, $link, $publicationDate, $id);
 
-        self::assertNotEmpty($errata->id()->toString());
+        self::assertNotEmpty($jobFeed->id()->toString());
     }
 
     /**
@@ -38,11 +37,11 @@ class JobFeedTest extends TestCase
         $title = 'a feed title';
         $description = 'a feed description';
         $link = 'https://www.pincopallino.com';
-        $publicationDate = '2047-02-01 10:00:00';
+        $publicationDate = new \DateTimeImmutable('2047-02-01 10:00:00');
 
-        $errata = JobFeed::create($title, $description, $link, $publicationDate);
+        $jobFeed = JobFeed::create($title, $description, $link, $publicationDate);
 
-        self::assertNotEmpty($errata->id()->toString());
+        self::assertNotEmpty($jobFeed->id()->toString());
     }
 
     /**
@@ -54,14 +53,14 @@ class JobFeedTest extends TestCase
         $title = 'a feed title';
         $description = 'a feed description';
         $link = 'https://www.pincopallino.com';
-        $publicationDate = '2047-02-01 10:00:00';
+        $publicationDate = new \DateTimeImmutable('2047-02-01 10:00:00');
 
-        $errata = JobFeed::create($title, $description, $link, $publicationDate, $id);
+        $jobFeed = JobFeed::create($title, $description, $link, $publicationDate, $id);
 
-        self::assertSame($id, $errata->id());
-        self::assertSame($title, $errata->title());
-        self::assertSame($description, $errata->description());
-        self::assertSame($link, $errata->link());
-        self::assertSame(PublicationDate::fromString($publicationDate)->toString(), $errata->publicationDate()->toString());
+        self::assertSame($id, $jobFeed->id());
+        self::assertSame($title, $jobFeed->title());
+        self::assertSame($description, $jobFeed->description());
+        self::assertSame($link, $jobFeed->link());
+        self::assertSame($publicationDate, $jobFeed->publicationDate());
     }
 }

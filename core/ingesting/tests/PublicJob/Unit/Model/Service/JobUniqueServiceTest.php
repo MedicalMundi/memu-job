@@ -65,6 +65,6 @@ class JobUniqueServiceTest extends TestCase
 
     private function createJobFeedItem(?JobId $id): JobFeed
     {
-        return JobFeed::create('a title', 'a description', 'https://www.google.com', '2047-02-01 10:00:00', $id);
+        return JobFeed::create('a title', 'a description', 'https://www.google.com', new \DateTimeImmutable('2047-02-01 10:00:00'), $id);
     }
 }

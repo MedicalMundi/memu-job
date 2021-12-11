@@ -2,6 +2,7 @@
 
 namespace Ingesting\Tests\PublicJob\Integration\Persistence;
 
+use DateTimeImmutable;
 use Ingesting\PublicJob\Application\Model\JobFeed;
 use Ingesting\PublicJob\Application\Model\JobFeedAlreadyExist;
 use Ingesting\PublicJob\Application\Model\JobId;
@@ -67,7 +68,7 @@ abstract class JobRepositoryContractTest extends KernelTestCase
             self::TITLE,
             self::DESCRIPTION,
             self::LINK,
-            self::PUB_DATE,
+            new DateTimeImmutable(self::PUB_DATE),
             $id,
         );
 
