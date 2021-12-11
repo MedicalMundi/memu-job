@@ -60,3 +60,18 @@ services:
       PGADMIN_DEFAULT_EMAIL: "foobar@example.com"
       PGADMIN_DEFAULT_PASSWORD: "foobar"
 
+  pgsql-test:
+    image: postgres:${POSTGRES_VERSION:-13}-alpine
+    ports:
+      - "5432"
+    links:
+      - pgadmin
+    environment:
+      POSTGRES_DB: ${POSTGRES_TEST_DB:-app_test}
+      # You should definitely change the password in production
+      POSTGRES_PASSWORD: ${POSTGRES_TEST_PASSWORD:-ChangeMe}
+      POSTGRES_USER: ${POSTGRES_TEST_USER:-symfony}
+      # volumes:
+      # - db-data:/var/lib/postgresql/data:rw
+      # You may use a bind-mounted host directory instead, so that it is harder to accidentally remove the volume and lose all your data!
+      # - ./docker/db/data:/var/lib/postgresql/data:rw
