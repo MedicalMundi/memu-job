@@ -8,6 +8,7 @@ interface JobRepository extends ApplicationPort
 {
     /**
      * @throws CouldNotPersistJobFeed
+     * @throws JobFeedAlreadyExist
      */
     public function save(JobFeed $job): void;
 
