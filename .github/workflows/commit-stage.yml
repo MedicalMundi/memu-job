@@ -309,9 +309,9 @@ jobs:
       pgsql:
         image: postgres:13-alpine
         env:
-          POSTGRES_DB: app_test
-          POSTGRES_PASSWORD: ChangeMe
-          POSTGRES_USER: symfony
+          POSTGRES_DB: ci-db_test
+          POSTGRES_PASSWORD: ci-db-password
+          POSTGRES_USER: ci-db-user
 
         ports:
           - 5432/tcp
@@ -378,10 +378,10 @@ jobs:
 
       - name: Setup Database for Integration tests (schema & migration)
         run: |
-          php bin/console doctrine:schema:update --force || echo "No migrations found or schema update failed"
-          php bin/console doctrine:migrations:migrate || echo "No migrations found or migration failed"
+          php bin/console doctrine:schema:update --force -e test || echo "No migrations found or schema update failed"
+          php bin/console doctrine:migrations:migrate -e test || echo "No migrations found or migration failed"
         env:
-          DATABASE_URL: postgresql://symfony:ChangeMe@127.0.0.1:${{ job.services.pgsql.ports['5432'] }}/app_test
+          DATABASE_URL: postgresql://ci-db-user:ci-db-password@127.0.0.1:${{ job.services.pgsql.ports['5432'] }}/ci-db
 
       - name: Run Core Integration test suite
         id: phpunit-integration-test-suite
@@ -391,7 +391,7 @@ jobs:
           ./vendor/bin/phpunit --configuration phpunit.core.xml --testsuite integration \
             --coverage-clover $REPORT_FOLDER_PHPUNIT/artifact-data/integration-test-clover.xml --log-junit $REPORT_FOLDER_PHPUNIT/artifact-data/integration-test-junit.xml
         env:
-          DATABASE_URL: postgresql://symfony:ChangeMe@127.0.0.1:${{ job.services.pgsql.ports['5432'] }}/app
+          DATABASE_URL: postgresql://ci-db-user:ci-db-password@127.0.0.1:${{ job.services.pgsql.ports['5432'] }}/ci-db
 
       - name: Run Core Quarantine tests
         run: ./vendor/bin/phpunit --configuration phpunit.core.xml --testsuite unit,integration --group quarantine
