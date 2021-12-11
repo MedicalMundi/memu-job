@@ -105,6 +105,17 @@
       <code>hasHeader</code>
     </UndefinedInterfaceMethod>
   </file>
+  <file src="core/ingesting/tests/PublicJob/Integration/Persistence/DoctrineJobRepositoryTest.php">
+    <LessSpecificReturnStatement occurrences="1">
+      <code>$this-&gt;doctrineJobFeedRepository</code>
+    </LessSpecificReturnStatement>
+    <MoreSpecificReturnType occurrences="1">
+      <code>JobRepository</code>
+    </MoreSpecificReturnType>
+    <NullableReturnStatement occurrences="1">
+      <code>$this-&gt;doctrineJobFeedRepository</code>
+    </NullableReturnStatement>
+  </file>
   <file src="core/ingesting/tests/SharedKernel/Integration/FeedIoGazzettaAdapterTest.php">
     <InternalMethod occurrences="1">
       <code>doesNotPerformAssertions</code>
