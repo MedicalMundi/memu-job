@@ -5,6 +5,7 @@ namespace Ingesting\PublicJob\Adapter\Persistence;
 use Ingesting\PublicJob\Application\Model\CouldNotFindJobFeed;
 use Ingesting\PublicJob\Application\Model\CouldNotPersistJobFeed;
 use Ingesting\PublicJob\Application\Model\JobFeed;
+use Ingesting\PublicJob\Application\Model\JobFeedAlreadyExist;
 use Ingesting\PublicJob\Application\Model\JobId;
 use Ingesting\PublicJob\Application\Model\JobRepository;
 
@@ -14,6 +15,10 @@ class InMemoryJobFeedRepository implements JobRepository
 
     public function save(JobFeed $job): void
     {
+        if (\array_key_exists($job->id()->toString(), $this->items)) {
+            throw JobFeedAlreadyExist::withId($job->id());
+        }
+
         try {
             $this->items[$job->id()->toString()] = $job;
         } catch (\Exception $e) {
