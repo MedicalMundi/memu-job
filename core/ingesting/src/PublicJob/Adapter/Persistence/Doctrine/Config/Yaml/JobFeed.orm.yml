@@ -1,0 +1,23 @@
+Ingesting\PublicJob\Application\Model\JobFeed:
+  type: entity
+  table: 'ingestion_jobfeed'
+  repositoryClass: Ingesting\PublicJob\Adapter\Persistence\Doctrine\DoctrineJobFeedRepository
+  id:
+    id:
+      column: job_id
+      type: job_id
+      generator:
+        strategy: NONE
+  fields:
+    title:
+      column: title
+      type: string
+      nullable: false
+    description:
+      column: description
+      type: text
+      nullable: false
+    link:
+      column: link
+      type: string
+      nullable: false
