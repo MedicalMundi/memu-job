@@ -16,4 +16,6 @@ interface JobRepository extends ApplicationPort
      * @throws CouldNotFindJobFeed
      */
     public function withId(JobId $jobId): JobFeed;
+
+    public function isUniqueIdentity(JobId $jobId): bool;
 }

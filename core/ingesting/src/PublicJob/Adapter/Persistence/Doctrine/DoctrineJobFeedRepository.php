@@ -40,4 +40,13 @@ class DoctrineJobFeedRepository extends ServiceEntityRepository implements JobRe
         }
         return $jobFeed;
     }
+
+    public function isUniqueIdentity(JobId $jobId): bool
+    {
+        $result = false;
+        if (null !== ($this->find($jobId))) {
+            $result = true;
+        }
+        return $result;
+    }
 }

@@ -34,4 +34,14 @@ class InMemoryJobFeedRepository implements JobRepository
 
         return $this->items[$jobId->toString()];
     }
+
+    public function isUniqueIdentity(JobId $jobId): bool
+    {
+        $result = false;
+        if (\array_key_exists($jobId->toString(), $this->items)) {
+            $result = true;
+        }
+
+        return $result;
+    }
 }
