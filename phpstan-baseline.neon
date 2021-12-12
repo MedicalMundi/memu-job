@@ -31,17 +31,17 @@ parameters:
 			path: core/ingesting/src/PublicJob/Adapter/Persistence/Doctrine/DoctrineJobFeedRepository.php
 
 		-
+			message: "#^Cannot access offset 0 on iterable\\.$#"
+			count: 1
+			path: core/ingesting/src/PublicJob/Adapter/Rss/FeedIoRssReader.php
+
+		-
 			message: "#^Cannot call method format\\(\\) on DateTime\\|null\\.$#"
 			count: 1
 			path: core/ingesting/src/PublicJob/Adapter/Rss/FeedIoRssReader.php
 
 		-
 			message: "#^Parameter \\#1 \\$title of static method Ingesting\\\\PublicJob\\\\Adapter\\\\Rss\\\\RssDataItem\\:\\:create\\(\\) expects string, string\\|null given\\.$#"
-			count: 1
-			path: core/ingesting/src/PublicJob/Adapter/Rss/FeedIoRssReader.php
-
-		-
-			message: "#^Parameter \\#2 \\$description of static method Ingesting\\\\PublicJob\\\\Adapter\\\\Rss\\\\RssDataItem\\:\\:create\\(\\) expects string, string\\|null given\\.$#"
 			count: 1
 			path: core/ingesting/src/PublicJob/Adapter/Rss/FeedIoRssReader.php
 

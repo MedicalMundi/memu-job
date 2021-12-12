@@ -36,7 +36,7 @@ class FeedIoRssReader implements RssReader
         foreach ($result->getFeed() as $item) {
             $feed = RssDataItem::create(
                 $item->getTitle(),
-                $item->getDescription(),
+                ($item->getAllElements()[0])->getValue(),
                 $item->getLink(),
                 $item->getLastModified()->format('Y-m-d H:i:s')
             );
