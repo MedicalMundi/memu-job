@@ -2,7 +2,6 @@
 
 namespace Ingesting\PublicJob\Application\Model\Service;
 
-use Ingesting\PublicJob\Application\Model\CouldNotFindJobFeed;
 use Ingesting\PublicJob\Application\Model\JobId;
 use Ingesting\PublicJob\Application\Model\JobRepository;
 
@@ -17,14 +16,6 @@ class JobUniqueService implements UniqueIdentity
 
     public function isUnique(JobId $id): bool
     {
-        try {
-            $this->repository->withId($id);
-            $result = false;
-        } catch (CouldNotFindJobFeed $e) {
-            // silent exception
-            $result = true;
-        }
-
-        return $result;
+        return $this->repository->isUniqueIdentity($id);
     }
 }

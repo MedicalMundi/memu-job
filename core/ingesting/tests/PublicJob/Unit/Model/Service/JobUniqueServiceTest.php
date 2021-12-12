@@ -2,7 +2,6 @@
 
 namespace Ingesting\Tests\PublicJob\Unit\Model\Service;
 
-use Ingesting\PublicJob\Application\Model\JobFeed;
 use Ingesting\PublicJob\Application\Model\JobId;
 use Ingesting\PublicJob\Application\Model\JobRepository;
 use Ingesting\PublicJob\Application\Model\Service\JobUniqueService;
@@ -33,18 +32,18 @@ class JobUniqueServiceTest extends TestCase
     /**
      * @test
      */
-    public function shouldDetectDuplicateIdentity(): void
+    public function shouldDetectAUniqueIdentity(): void
     {
         $jobId = JobId::fromString(self::UUID);
 
         $this->repository->expects(self::once())
-            ->method('withId')
-            ->willReturn($this->createJobFeedItem($jobId))
+            ->method('isUniqueIdentity')
+            ->willReturn(true)
         ;
 
         $result = $this->jobUniqueService->isUnique($jobId);
 
-        self::assertFalse($result);
+        self::assertTrue($result);
     }
 
     /**
@@ -55,16 +54,12 @@ class JobUniqueServiceTest extends TestCase
         $jobId = JobId::fromString(self::UUID);
 
         $this->repository->expects(self::once())
-            ->method('withId')
+            ->method('isUniqueIdentity')
+            ->willReturn(false)
         ;
 
         $result = $this->jobUniqueService->isUnique($jobId);
 
         self::assertFalse($result);
-    }
-
-    private function createJobFeedItem(?JobId $id): JobFeed
-    {
-        return JobFeed::create('a title', 'a description', 'https://www.google.com', new \DateTimeImmutable('2047-02-01 10:00:00'), $id);
     }
 }
