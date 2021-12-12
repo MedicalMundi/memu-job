@@ -56,6 +56,17 @@
       <code>$this-&gt;items[$jobId-&gt;toString()]</code>
     </MixedReturnStatement>
   </file>
+  <file src="core/ingesting/src/PublicJob/Adapter/Rss/FeedIoRssReader.php">
+    <InvalidArrayAccess occurrences="1">
+      <code>$item-&gt;getAllElements()[0]</code>
+    </InvalidArrayAccess>
+    <MixedArgument occurrences="1">
+      <code>($item-&gt;getAllElements()[0])-&gt;getValue()</code>
+    </MixedArgument>
+    <MixedMethodCall occurrences="1">
+      <code>getValue</code>
+    </MixedMethodCall>
+  </file>
   <file src="core/ingesting/src/PublicJob/Application/Model/JobFeed.php">
     <PropertyNotSetInConstructor occurrences="4">
       <code>$description</code>
