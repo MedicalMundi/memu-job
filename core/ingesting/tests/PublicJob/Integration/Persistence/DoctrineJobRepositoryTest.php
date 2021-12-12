@@ -6,6 +6,7 @@ use Ingesting\PublicJob\Application\Model\JobRepository;
 
 /**
  * @covers \Ingesting\PublicJob\Adapter\Persistence\Doctrine\DoctrineJobFeedRepository
+ * @group io-database
  */
 class DoctrineJobRepositoryTest extends JobRepositoryContractTest
 {

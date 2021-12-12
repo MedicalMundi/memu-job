@@ -44,6 +44,7 @@
         <exclude>
             <group>slow</group>
             <group>io-network</group>
+            <group>io-database</group>
             <group>quarantine</group>
         </exclude>
     </groups>
