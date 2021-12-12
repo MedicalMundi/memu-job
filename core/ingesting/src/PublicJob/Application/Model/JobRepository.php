@@ -18,4 +18,6 @@ interface JobRepository extends ApplicationPort
     public function withId(JobId $jobId): JobFeed;
 
     public function isUniqueIdentity(JobId $jobId): bool;
+
+    public function isUniqueLink(string $jobLink): bool;
 }

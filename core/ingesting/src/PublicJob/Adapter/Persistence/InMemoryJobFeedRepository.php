@@ -44,4 +44,20 @@ class InMemoryJobFeedRepository implements JobRepository
 
         return $result;
     }
+
+    public function isUniqueLink(string $jobLink): bool
+    {
+        if (0 === \count($this->items)) {
+            return true;
+        }
+
+        $result = true;
+        foreach ($this->items as $jobFeed) {
+            if ($jobLink === $jobFeed->link()) {
+                $result = false;
+            }
+        }
+
+        return $result;
+    }
 }

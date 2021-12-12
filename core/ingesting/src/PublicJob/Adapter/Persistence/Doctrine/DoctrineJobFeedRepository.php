@@ -49,4 +49,15 @@ class DoctrineJobFeedRepository extends ServiceEntityRepository implements JobRe
         }
         return $result;
     }
+
+    public function isUniqueLink(string $jobLink): bool
+    {
+        $result = false;
+        if (null === $this->findOneBy([
+            'link' => $jobLink,
+        ])) {
+            $result = true;
+        }
+        return $result;
+    }
 }

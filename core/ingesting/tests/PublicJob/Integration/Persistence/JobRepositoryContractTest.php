@@ -76,6 +76,30 @@ abstract class JobRepositoryContractTest extends KernelTestCase
         self::assertTrue($result);
     }
 
+    /**
+     * @test
+     */
+    public function should_detect_unique_link(): void
+    {
+        $result = $this->repository->isUniqueLink(self::LINK);
+
+        self::assertTrue($result);
+    }
+
+    /**
+     * @test
+     */
+    public function should_detect_a_not_unique_link(): void
+    {
+        $identity = JobId::generate();
+        $jobFeed = $this->createJobFeed($identity);
+        $this->repository->save($jobFeed);
+
+        $result = $this->repository->isUniqueLink(self::LINK);
+
+        self::assertFalse($result);
+    }
+
     protected function createJobFeed(JobId $id): JobFeed
     {
         $data = JobFeed::create(
