@@ -94,7 +94,7 @@ class ReadJobRssUsecaseTest extends TestCase
                             $param->title() === self::ITEM_TITLE
                             && $param->description() === self::ITEM_DESCRIPTION
                             // TODO fix input date format
-                            //&& $param->publicationDate()->sameValueAs(PublicationDate::fromString(self::ITEM_PUB_DATE))
+                            //&& $param->publicationDate() === new \DateTimeImmutable(self::ITEM_PUB_DATE)
                             && $param->link() === self::ITEM_LINK
                         ) {
                             return true;

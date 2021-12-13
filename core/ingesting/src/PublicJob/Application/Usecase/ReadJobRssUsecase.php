@@ -38,12 +38,10 @@ class ReadJobRssUsecase implements JobRssDataSourceChecker
 
         /** @var RssData $item */
         foreach ($downloadedItem as $item) {
-            // IS UNIQUE LINK SEND FEEDBACK MESSAGE AND RETURN
             if (! $this->linkChecker->isUniqueLink($item->link())) {
                 return;
             }
 
-            //Todo randomness in domain (unpredictable test/assertion)
             $jobId = JobId::generate();
 
             if (! $this->identityChecker->isUnique($jobId)) {

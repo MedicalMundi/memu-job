@@ -68,12 +68,23 @@ abstract class JobRepositoryContractTest extends KernelTestCase
     public function should_detect_unique_identity(): void
     {
         $identity = JobId::generate();
+//        $jobFeed = $this->createJobFeed($identity);
+//        $this->repository->save($jobFeed);
+//
+        $result = $this->repository->isUniqueIdentity($identity);
+
+        self::assertTrue($result);
+    }
+
+    public function should_detect_a_not_unique_identity(): void
+    {
+        $identity = JobId::generate();
         $jobFeed = $this->createJobFeed($identity);
         $this->repository->save($jobFeed);
 
         $result = $this->repository->isUniqueIdentity($identity);
 
-        self::assertTrue($result);
+        self::assertFalse($result);
     }
 
     /**
