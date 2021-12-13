@@ -7,6 +7,8 @@ use Ingesting\PublicJob\Adapter\Rss\FeedIoRssReader;
 use Ingesting\PublicJob\Application\Model\Iso\RssReader;
 use Ingesting\PublicJob\Application\Model\JobRepository;
 use Ingesting\PublicJob\Application\Model\Service\JobUniqueService;
+use Ingesting\PublicJob\Application\Model\Service\UniqueJobLinkService;
+use Ingesting\PublicJob\Application\Model\Service\UniqueLink;
 use Ingesting\PublicJob\Application\PublicJobContextInterface;
 use Ingesting\PublicJob\Application\PublicJobModule;
 use Ingesting\PublicJob\Application\Usecase\JobRssDataSourceChecker;
@@ -19,6 +21,8 @@ abstract class ServiceContainer
     protected ?JobRepository $jobRepository = null;
 
     protected ?JobUniqueService $jobUniqueService = null;
+
+    protected ?UniqueJobLinkService $uniqueJobLinkService = null;
 
     protected ?JobRssDataSourceChecker $readJobRssUsecase = null;
 
@@ -52,6 +56,15 @@ abstract class ServiceContainer
         return $this->jobUniqueService;
     }
 
+    protected function uniqueJobLinkService(): UniqueLink
+    {
+        if ($this->uniqueJobLinkService === null) {
+            $this->uniqueJobLinkService = new UniqueJobLinkService($this->jobRepository());
+        }
+
+        return $this->uniqueJobLinkService;
+    }
+
     protected function jobRepository(): JobRepository
     {
         if ($this->jobRepository === null) {
@@ -67,6 +80,7 @@ abstract class ServiceContainer
             $this->readJobRssUsecase = new ReadJobRssUsecase(
                 $this->jobRssReader(),
                 $this->jobUniqueService(),
+                $this->uniqueJobLinkService(),
                 $this->jobRepository()
             );
         }
