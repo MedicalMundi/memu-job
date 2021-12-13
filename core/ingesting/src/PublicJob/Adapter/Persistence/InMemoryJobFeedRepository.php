@@ -38,7 +38,7 @@ class InMemoryJobFeedRepository implements JobRepository
     public function isUniqueIdentity(JobId $jobId): bool
     {
         $result = false;
-        if (\array_key_exists($jobId->toString(), $this->items)) {
+        if (! \array_key_exists($jobId->toString(), $this->items)) {
             $result = true;
         }
 
