@@ -5,23 +5,29 @@ namespace Ingesting\PublicJob\Application\Usecase;
 use Ingesting\PublicJob\Application\Model\Iso\RssData;
 use Ingesting\PublicJob\Application\Model\Iso\RssReader;
 use Ingesting\PublicJob\Application\Model\JobFeed;
+use Ingesting\PublicJob\Application\Model\JobFeedAlreadyExist;
 use Ingesting\PublicJob\Application\Model\JobId;
 use Ingesting\PublicJob\Application\Model\JobRepository;
 use Ingesting\PublicJob\Application\Model\Service\JobUniqueService;
+use Ingesting\PublicJob\Application\Model\Service\UniqueLink;
 
 class ReadJobRssUsecase implements JobRssDataSourceChecker
 {
     private RssReader $rssReader;
 
-    private JobUniqueService $jobUniqueService;
+    private JobUniqueService $identityChecker;
+
+    private UniqueLink $linkChecker;
 
     private JobRepository $repository;
 
-    public function __construct(rssReader $rssReader, JobUniqueService $jobUniqueService, JobRepository $repository)
+    public function __construct(rssReader $rssReader, JobUniqueService $jobUniqueService, UniqueLink $uniqueLink, JobRepository $repository)
     {
         $this->rssReader = $rssReader;
 
-        $this->jobUniqueService = $jobUniqueService;
+        $this->identityChecker = $jobUniqueService;
+
+        $this->linkChecker = $uniqueLink;
 
         $this->repository = $repository;
     }
@@ -32,13 +38,16 @@ class ReadJobRssUsecase implements JobRssDataSourceChecker
 
         /** @var RssData $item */
         foreach ($downloadedItem as $item) {
+            // IS UNIQUE LINK SEND FEEDBACK MESSAGE AND RETURN
+            if (! $this->linkChecker->isUniqueLink($item->link())) {
+                return;
+            }
 
-            //Todo ramdomness in domain (unpredictable test/assertion)
+            //Todo randomness in domain (unpredictable test/assertion)
             $jobId = JobId::generate();
 
-            if (! $this->jobUniqueService->isUnique($jobId)) {
-                // todo add custom exception with message 'xxx with id x already exist/used'
-                throw new \RuntimeException('Id exist');
+            if (! $this->identityChecker->isUnique($jobId)) {
+                throw JobFeedAlreadyExist::withId($jobId);
             }
 
             $jobFeed = JobFeed::create($item->title(), $item->description(), $item->link(), new \DateTimeImmutable($item->publicationDate()), $jobId);

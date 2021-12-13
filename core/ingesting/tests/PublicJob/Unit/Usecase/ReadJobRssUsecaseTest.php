@@ -5,8 +5,10 @@ namespace Ingesting\Tests\PublicJob\Unit\Usecase;
 use Ingesting\PublicJob\Adapter\Rss\RssDataItem;
 use Ingesting\PublicJob\Application\Model\Iso\RssReader;
 use Ingesting\PublicJob\Application\Model\JobFeed;
+use Ingesting\PublicJob\Application\Model\JobFeedAlreadyExist;
 use Ingesting\PublicJob\Application\Model\JobRepository;
 use Ingesting\PublicJob\Application\Model\Service\JobUniqueService;
+use Ingesting\PublicJob\Application\Model\Service\UniqueLink;
 use Ingesting\PublicJob\Application\Usecase\ReadJobRssUsecase;
 use Ingesting\SharedKernel\Model\PublicationDate;
 use PHPUnit\Framework\MockObject\MockObject;
@@ -38,6 +40,11 @@ class ReadJobRssUsecaseTest extends TestCase
     private $jobUniqueService;
 
     /**
+     * @var UniqueLink&MockObject
+     */
+    private $uniqueJobLinkService;
+
+    /**
      * @var RssReader&MockObject
      */
     private $rssReader;
@@ -52,9 +59,11 @@ class ReadJobRssUsecaseTest extends TestCase
             ->disableOriginalConstructor()
             ->getMock();
 
+        $this->uniqueJobLinkService = $this->getMockBuilder(UniqueLink::class)->getMock();
+
         $this->rssReader = $this->getMockBuilder(RssReader::class)->getMock();
 
-        $this->usecase = new ReadJobRssUsecase($this->rssReader, $this->jobUniqueService, $this->repository);
+        $this->usecase = new ReadJobRssUsecase($this->rssReader, $this->jobUniqueService, $this->uniqueJobLinkService, $this->repository);
     }
 
     /**
@@ -66,6 +75,10 @@ class ReadJobRssUsecaseTest extends TestCase
             ->method('readRssFeed')
             ->willReturn($this->createRssData())
             ;
+
+        $this->uniqueJobLinkService->expects(self::once())
+            ->method('isUniqueLink')
+            ->willReturn(true);
 
         $this->jobUniqueService->expects(self::once())
             ->method('isUnique')
@@ -104,6 +117,10 @@ class ReadJobRssUsecaseTest extends TestCase
             ->willReturn($this->createRssDataWithFiveItem())
         ;
 
+        $this->uniqueJobLinkService->expects(self::exactly(5))
+            ->method('isUniqueLink')
+            ->willReturn(true);
+
         $this->jobUniqueService->expects(self::exactly(5))
             ->method('isUnique')
             ->willReturn(true)
@@ -136,12 +153,16 @@ class ReadJobRssUsecaseTest extends TestCase
      */
     public function shouldNotPersistDuplicatedItem(): void
     {
+        $this->expectException(JobFeedAlreadyExist::class);
+
         $this->rssReader->expects(self::once())
             ->method('readRssFeed')
             ->willReturn($this->createRssData())
         ;
 
-        $this->expectException(\RuntimeException::class);
+        $this->uniqueJobLinkService->expects(self::once())
+            ->method('isUniqueLink')
+            ->willReturn(true);
 
         $this->jobUniqueService->expects(self::once())
             ->method('isUnique')
@@ -152,6 +173,32 @@ class ReadJobRssUsecaseTest extends TestCase
             ->method('save')
             ->withAnyParameters()
             ;
+
+        $this->usecase->readJobRssDataSource();
+    }
+
+    /**
+     * @test
+     */
+    public function shouldIgnoreFeedWithSameLink(): void
+    {
+        $this->rssReader->expects(self::once())
+            ->method('readRssFeed')
+            ->willReturn($this->createRssData())
+        ;
+
+        $this->uniqueJobLinkService->expects(self::once())
+            ->method('isUniqueLink')
+            ->willReturn(false);
+
+        $this->jobUniqueService->expects(self::never())
+            ->method('isUnique')
+        ;
+
+        $this->repository->expects(self::never())
+            ->method('save')
+            ->withAnyParameters()
+        ;
 
         $this->usecase->readJobRssDataSource();
     }
