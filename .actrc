@@ -1,0 +1,23 @@
+#   NOTE
+#
+#   Per mantenere una compatibilità tra l'eseguzione dei workflow tra GHA e nektos/act usare ubuntu-18.04
+#   nei workflows file.
+#
+#   Assicurarsi di avere in locale l'immagine altrimenti viene usata l'immagine di default di nektos
+#
+#   Download: docker pull hcr.io/catthehacker/ubuntu:full-18.04
+#
+#   Run: (base)
+#   act --bind -P ubuntu-18.04=ghcr.io/catthehacker/ubuntu:full-18.04
+#
+#   Run: (con workflow)
+#   act --bind -P ubuntu-18.04=ghcr.io/catthehacker/ubuntu:full-18.04 -W .github/workflows/php-edge.yml
+#
+#   Run: (singolo job)
+#   act --bind -P ubuntu-18.04=ghcr.io/catthehacker/ubuntu:full-18.04 -W .github/workflows/php-edge.yml -j nome-del-job
+
+
+#act -P ubuntu-18.04=ghcr.io/catthehacker/ubuntu:full-18.04
+
+#--bind -P ubuntu-latest=nektos/act-environments-ubuntu:18.04-full
+#act -P ubuntu-18.04=nektos/act-environments-ubuntu:18.04 -P ubuntu-latest=ubuntu:latest -P ubuntu-16.04=node:12-buster-slim

@@ -38,7 +38,7 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v2
       - name: Start services
-        run: docker-compose up --detach
+        run: docker-compose -f docker-compose.ci-gha.yaml up -d
       - name: Wait for services
         run: |
           while status="$(docker inspect --format="{{if .Config.Healthcheck}}{{print .State.Health.Status}}{{end}}" "$(docker-compose ps -q php)")"; do
@@ -53,3 +53,5 @@ jobs:
             esac
           done
           exit 1
+      - name: Stop services
+        run: docker-compose -f docker-compose.ci-gha.yaml down
