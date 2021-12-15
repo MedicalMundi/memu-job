@@ -2,7 +2,9 @@ version: '3.8'
 
 services:
   php:
-    image: medicalmundi/internal-php-rc:${MEMU-JOB_VERSION:-master}
+    image: ghcr.io/medicalmundi/internal-php-rc:${MEMU_JOB_VERSION:-main}
+    depends_on:
+      - pgsql
     ports:
       - "9021:9021"
     volumes:
@@ -20,11 +22,14 @@ services:
       XDEBUG_REMOTE_PORT: 9021
 
   php-nginx:
-    build:
-      context: .
-      dockerfile: docker/webdevilops/php-nginx/Dockerfile
+    image: webdevops/php-nginx:7.4
+#    build:
+#      context: .
+#      dockerfile: docker/webdevilops/php-nginx/Dockerfile
+    depends_on:
+      - php
     ports:
-      - "8088:80"
+      - "80:80"
     volumes:
       - "./:/app"
     environment:
@@ -36,8 +41,6 @@ services:
     image: postgres:${POSTGRES_VERSION:-13}-alpine
     ports:
       - "5432"
-    links:
-      - pgadmin
     environment:
       POSTGRES_DB: ${POSTGRES_DB:-app}
       # You should definitely change the password in production
@@ -47,12 +50,3 @@ services:
       # - db-data:/var/lib/postgresql/data:rw
       # You may use a bind-mounted host directory instead, so that it is harder to accidentally remove the volume and lose all your data!
       # - ./docker/db/data:/var/lib/postgresql/data:rw
-
-
-  pgadmin:
-    image: dpage/pgadmin4:6.2
-    ports:
-      - "8181:80"
-    environment:
-      PGADMIN_DEFAULT_EMAIL: "foobar@example.com"
-      PGADMIN_DEFAULT_PASSWORD: "foobar"
