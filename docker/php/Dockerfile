@@ -62,7 +62,10 @@ FROM builder_medicalmundi
 
 WORKDIR '/app'
 
-COPY --from=builder_vendor --chown=${MEDICALMUNDI_UID}:${MEDICALMUNDI_GID} /app /app
+RUN mkdir -p /app/var/cache \
+    mkdir -p /app/var/log
+
+COPY --from=builder_vendor --chown=${MEDICALMUNDI_UID}:${MEDICALMUNDI_GID} --chmod=0776 /app /app
 
 EXPOSE 9000
 
