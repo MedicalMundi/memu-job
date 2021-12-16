@@ -26,7 +26,7 @@ services:
 #      XDEBUG_REMOTE_PORT: 9021
 
   php-nginx:
-    image: webdevops/php-nginx:7.4
+    image: webdevops/nginx:alpine
 #    build:
 #      context: .
 #      dockerfile: docker/webdevilops/php-nginx/Dockerfile
@@ -48,7 +48,7 @@ services:
     environment:
       WEB_DOCUMENT_ROOT: /app/public
       WEB_DOCUMENT_INDEX: index.php
-      #WEB_PHP_SOCKET: php:9000
+      WEB_PHP_SOCKET: php:9000
 
 
   pgsql:
