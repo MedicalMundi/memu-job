@@ -70,11 +70,15 @@ jobs:
       - name: services list
         run: docker-compose -f docker-compose.ci-gha.yaml ps
 
-      - name: Check HTTP reachability
-        run: curl -v -o /dev/null http://127.0.0.1:8088
-        continue-on-error: true
+      - name: Check HTTP reachability (localhost)
+        run: curl -v -o /dev/null http://localhost
+        continue-on-error: false
 
-      - name: Check HTTP reachability
+#      - name: Check HTTP reachability (0.0.0.0)
+#        run: curl -v -o /dev/null http://0.0.0.0
+#        continue-on-error: false
+
+      - name: Check HTTP reachability (127.0.0.1)
         run: curl -v -o /dev/null http://127.0.0.1
         continue-on-error: true
 
@@ -86,8 +90,15 @@ jobs:
         run: curl  -vk -o /dev/null https://127.0.0.1
         continue-on-error: true
 
+      - name: Show application log
+        run: |
+          docker-compose -f docker-compose.ci-gha.yaml logs php
+          docker-compose -f docker-compose.ci-gha.yaml exec -T php ls -al /app/var/log
+          docker-compose -f docker-compose.ci-gha.yaml exec -T php ls -al /app/var/cache
+        continue-on-error: true
+
       - name: Doctrine Schema Validator
-        run: docker-compose exec -T php bin/console doctrine:schema:validate --skip-sync
+        run: docker-compose -f docker-compose.ci-gha.yaml exec -T php bin/console doctrine:schema:validate --skip-sync
         continue-on-error: true
 
       - name: Stop services
