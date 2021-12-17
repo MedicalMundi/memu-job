@@ -4,7 +4,7 @@ services:
   php:
     build:
       context: .
-      dockerfile: docker/webdevilops/php-dev/Dockerfile
+      dockerfile: var/webdevilops/php-dev/Dockerfile
     ports:
       - "9021:9021"
     volumes:
@@ -25,7 +25,7 @@ services:
   php-nginx:
     build:
       context: .
-      dockerfile: docker/webdevilops/php-nginx/Dockerfile
+      dockerfile: var/webdevilops/php-nginx/Dockerfile
     ports:
       - "8088:80"
     volumes:
