@@ -1,6 +1,6 @@
-ARG PHP_BASE_VERSION=base-v0.1.0
+ARG PHP_BASE_VERSION=7.4
 
-FROM ghcr.io/medicalmundi/internal-php-base:$PHP_BASE_VERSION AS builder_vendor
+FROM webdevops/php:$PHP_BASE_VERSION AS builder_vendor
 
 WORKDIR '/app'
 
@@ -43,33 +43,35 @@ RUN rm -f .dockerignore \
 
 
 
-ARG MEDICALMUNDI_UID=medicalmundi
-ARG MEDICALMUNDI_GID=medicalmundi
-FROM builder_vendor AS builder_medicalmundi
+#ARG MEDICALMUNDI_UID=medicalmundi
+#ARG MEDICALMUNDI_GID=medicalmundi
+#FROM builder_vendor AS builder_medicalmundi
+#
+##SHELL ["/bin/bash", "--login", "-c"]
+#
+#WORKDIR '/app'
+#
+## Create a group and user
+#RUN addgroup -S ${MEDICALMUNDI_GID} && adduser -S ${MEDICALMUNDI_UID} -G ${MEDICALMUNDI_GID}
+#
+#
+#ARG MEDICALMUNDI_UID=medicalmundi
+#ARG MEDICALMUNDI_GID=medicalmundi
 
-#SHELL ["/bin/bash", "--login", "-c"]
-
-WORKDIR '/app'
-
-# Create a group and user
-RUN addgroup -S ${MEDICALMUNDI_GID} && adduser -S ${MEDICALMUNDI_UID} -G ${MEDICALMUNDI_GID}
-
-
-ARG MEDICALMUNDI_UID=medicalmundi
-ARG MEDICALMUNDI_GID=medicalmundi
-
-FROM builder_medicalmundi
+FROM builder_vendor
 
 WORKDIR '/app'
 
 RUN mkdir -p /app/var/cache \
     mkdir -p /app/var/log
 
-COPY --from=builder_vendor --chown=${MEDICALMUNDI_UID}:${MEDICALMUNDI_GID} --chmod=0776 /app /app
+#COPY --from=builder_vendor --chown=${MEDICALMUNDI_UID}:${MEDICALMUNDI_GID} --chmod=0776 /app /app
+COPY --from=builder_vendor --chmod=0776 /app /app
+
 
 EXPOSE 9000
 
 # SETUP healtcheck method
 #HEALTHCHECK NONE
 
-CMD [ "php-fpm" ]
+#CMD [ "php-fpm" ]

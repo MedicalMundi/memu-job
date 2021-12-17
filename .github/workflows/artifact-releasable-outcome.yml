@@ -77,8 +77,10 @@ jobs:
 
       - name: Test image as not root user
         id: test-builded-image-as-not-root-user
+#        run: |
+#          docker run -u medicalmundi --rm ${{ env.TEST_TAG_PHP_RELEASE_CANDIDATE }} ls -al /app
         run: |
-          docker run -u medicalmundi --rm ${{ env.TEST_TAG_PHP_RELEASE_CANDIDATE }} ls -al /app
+          docker run -u application --rm ${{ env.TEST_TAG_PHP_RELEASE_CANDIDATE }} ls -al /app
 
       - name: Build image
         id: docker_build
