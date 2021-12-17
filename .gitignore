@@ -4,7 +4,7 @@
 /tools/*/vendor/
 /.deptrac.cache
 /workflow
-.docker-compose.override.yml
+docker-compose.override.yml
 ###> symfony/framework-bundle ###
 /.env.local
 /.env.local.php
