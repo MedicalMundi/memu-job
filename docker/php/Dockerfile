@@ -62,11 +62,11 @@ FROM builder_vendor
 
 WORKDIR '/app'
 
-RUN mkdir -p /app/var/cache \
-    mkdir -p /app/var/log
+#RUN mkdir -p /app/var/cache \
+#    mkdir -p /app/var/log
 
 #COPY --from=builder_vendor --chown=${MEDICALMUNDI_UID}:${MEDICALMUNDI_GID} --chmod=0776 /app /app
-COPY --from=builder_vendor --chmod=0776 /app /app
+COPY --from=builder_vendor --chown=application:application --chmod=0776 /app /app
 
 
 EXPOSE 9000
