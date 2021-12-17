@@ -1,4 +1,4 @@
-FROM webdevops/php-nginx:7.4
+FROM webdevops/nginx:alpine
 
 # Fix Apple Silicon M1 ARM problem
 # see https://github.com/webdevops/Dockerfile/issues/395

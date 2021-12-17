@@ -50,41 +50,56 @@ jobs:
         run: docker image ls
 
       - name: Start services
-        run: docker-compose -f docker-compose.ci-gha.yaml up -d
+        run: docker-compose -f docker-compose.ci-gha.yml up -d
 
-#      - name: Wait for services
-#        run: |
-#          while status="$(docker inspect --format="{{if .Config.Healthcheck}}{{print .State.Health.Status}}{{end}}" "$(docker-compose -f docker-compose.ci-gha.yaml ps -q php)")"; do
-#            case $status in
-#              starting) sleep 1;;
-#              healthy) exit 0;;
-#              unhealthy)
-#                docker-compose -f docker-compose.ci-gha.yaml ps
-#                docker-compose -f docker-compose.ci-gha.yaml logs
-#                exit 1
-#              ;;
-#            esac
-#          done
-#          exit 1
+      #      - name: Wait for services
+      #        run: |
+      #          while status="$(docker inspect --format="{{if .Config.Healthcheck}}{{print .State.Health.Status}}{{end}}" "$(docker-compose -f docker-compose.ci-gha.yml ps -q php)")"; do
+      #            case $status in
+      #              starting) sleep 1;;
+      #              healthy) exit 0;;
+      #              unhealthy)
+      #                docker-compose -f docker-compose.ci-gha.yml ps
+      #                docker-compose -f docker-compose.ci-gha.yml logs
+      #                exit 1
+      #              ;;
+      #            esac
+      #          done
+      #          exit 1
 
       - name: services list
-        run: docker-compose -f docker-compose.ci-gha.yaml ps
+        run: docker-compose -f docker-compose.ci-gha.yml ps
 
-      - name: Check HTTP reachability
-        run: curl -v -o /dev/null http://127.0.0.1:8088
+      - name: Check HTTP reachability (localhost)
+        run: curl -v -o /dev/null http://localhost
         continue-on-error: true
 
-      - name: Check HTTP reachability
+      - name: Check HTTP reachability (0.0.0.0)
+        run: curl -v -o /dev/null http://0.0.0.0
+        continue-on-error: true
+
+      - name: Check HTTP reachability (127.0.0.1)
         run: curl -v -o /dev/null http://127.0.0.1
+        continue-on-error: true
+
+      - name: Check HTTP reachability (healcheck)
+        run: curl -v -o /dev/null http://127.0.0.1/sys/healt/check
         continue-on-error: true
 
       - name: Check HTTPS reachability
         run: curl  -vk -o /dev/null https://127.0.0.1
         continue-on-error: true
 
+      - name: Show application log
+        run: |
+          docker-compose -f docker-compose.ci-gha.yml logs php
+          docker-compose -f docker-compose.ci-gha.yml exec -T php ls -al /app/var/log
+          docker-compose -f docker-compose.ci-gha.yml exec -T php ls -al /app/var/cache
+        continue-on-error: true
+
       - name: Doctrine Schema Validator
-        run: docker-compose exec -T php bin/console doctrine:schema:validate --skip-sync
+        run: docker-compose -f docker-compose.ci-gha.yml exec -T php bin/console doctrine:schema:validate --skip-sync
         continue-on-error: true
 
       - name: Stop services
-        run: docker-compose -f docker-compose.ci-gha.yaml down
+        run: docker-compose -f docker-compose.ci-gha.yml down
