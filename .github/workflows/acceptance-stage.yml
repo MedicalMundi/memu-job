@@ -31,9 +31,9 @@ jobs:
           username: ${{ github.actor }}
           password: ${{ secrets.GITHUB_TOKEN }}
 
-  try-test:
-    runs-on: ubuntu-20.04
-    timeout-minutes: 5
+  prod-stack-env:
+    runs-on: ubuntu-18.04
+    timeout-minutes: 10
     steps:
       - name: Checkout
         uses: actions/checkout@v2
@@ -75,24 +75,100 @@ jobs:
         continue-on-error: false
 
       - name: Doctrine Schema Update
-        run: docker-compose -f docker-compose.ci-gha.yml exec -T php bin/console doctrine:schema:update --force
+        run: docker-compose -f docker-compose.ci-gha.yml exec -T php bin/console doctrine:schema:update --force -vvv
         continue-on-error: false
 
       - name: Check HTTP reachability (localhost)
         run: curl -v -o /dev/null http://localhost
-        continue-on-error: true
+        continue-on-error: false
 
       - name: Check HTTP reachability (127.0.0.1)
         run: curl -v -o /dev/null http://127.0.0.1
-        continue-on-error: true
+        continue-on-error: false
 
       - name: Check HTTP reachability (healtcheck)
         run: curl -v -o /dev/null http://127.0.0.1/sys/healt/check
-        continue-on-error: true
+        continue-on-error: false
 
       - name: Check HTTPS reachability
         run: curl  -vk -o /dev/null https://127.0.0.1
+        continue-on-error: false
+
+      - name: Show application log
+        run: |
+          docker-compose -f docker-compose.ci-gha.yml logs php
+          docker-compose -f docker-compose.ci-gha.yml exec -T php ls -al /app/var/log
+          docker-compose -f docker-compose.ci-gha.yml exec -T php ls -al /app/var/cache
         continue-on-error: true
+
+      - name: Stop services
+        run: docker-compose -f docker-compose.ci-gha.yml down
+
+  test-stack-env:
+    runs-on: ubuntu-18.04
+    timeout-minutes: 10
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v2
+
+      - name: Login to GHCR
+        id: docker_ghrc_login
+        uses: docker/login-action@v1
+        with:
+          registry: ghcr.io
+          username: ${{ github.actor }}
+          password: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: List imgaes
+        run: docker image ls
+
+      - name: Start services
+        run: docker-compose -f docker-compose.ci-gha.yml up -d
+        env:
+          APP_ENV: test
+          POSTGRES_DB: ci-db-name_test
+
+      #      - name: Wait for services
+      #        run: |
+      #          while status="$(docker inspect --format="{{if .Config.Healthcheck}}{{print .State.Health.Status}}{{end}}" "$(docker-compose -f docker-compose.ci-gha.yml ps -q php)")"; do
+      #            case $status in
+      #              starting) sleep 1;;
+      #              healthy) exit 0;;
+      #              unhealthy)
+      #                docker-compose -f docker-compose.ci-gha.yml ps
+      #                docker-compose -f docker-compose.ci-gha.yml logs
+      #                exit 1
+      #              ;;
+      #            esac
+      #          done
+      #          exit 1
+
+      - name: services list
+        run: docker-compose -f docker-compose.ci-gha.yml ps
+
+      - name: Doctrine Schema Validator
+        run: docker-compose -f docker-compose.ci-gha.yml exec -T php bin/console doctrine:schema:validate --skip-sync
+        continue-on-error: false
+
+      - name: Doctrine Schema Update
+        run: docker-compose -f docker-compose.ci-gha.yml exec -T php bin/console doctrine:schema:update --force -vvv
+        continue-on-error: false
+
+      - name: Check HTTP reachability (localhost)
+        run: curl -v -o /dev/null http://localhost
+        continue-on-error: false
+
+      - name: Check HTTP reachability (127.0.0.1)
+        run: curl -v -o /dev/null http://127.0.0.1
+        continue-on-error: false
+
+      - name: Check HTTP reachability (healtcheck)
+        run: curl -v -o /dev/null http://127.0.0.1/sys/healt/check
+        continue-on-error: false
+
+      - name: Check HTTPS reachability
+        run: curl  -vk -o /dev/null https://127.0.0.1
+        continue-on-error: false
 
       - name: Show application log
         run: |
