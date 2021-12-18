@@ -8,9 +8,9 @@ services:
     environment:
       WEB_DOCUMENT_ROOT: /app/public
       WEB_DOCUMENT_INDEX: index.php
-      APP_ENV: dev
+      APP_ENV: ${APP_ENV:-prod}
       APP_SECRET: 9efe3211a261ad2a84eb847aa045ffc2
-      DATABASE_URL: "postgresql://symfony:ChangeMe@127.0.0.1:5432/app?serverVersion=13&charset=utf8"
+      DATABASE_URL: "postgresql://ci-db-user:ci-db-password@pgsql:5432/ci-db-name?serverVersion=13&charset=utf8"
 
   nginx:
     image: webdevops/nginx:alpine
