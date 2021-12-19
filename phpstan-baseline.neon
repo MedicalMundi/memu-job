@@ -100,12 +100,3 @@ parameters:
 			count: 1
 			path: core/ingesting/tests/PublicJob/Integration/Persistence/DoctrineJobRepositoryTest.php
 
-		-
-			message:
-				"""
-					#^Parameter \\$routes of method App\\\\Kernel\\:\\:configureRoutes\\(\\) has typehint with deprecated class Symfony\\\\Component\\\\Routing\\\\RouteCollectionBuilder\\:
-					since Symfony 5\\.1, use RoutingConfigurator instead$#
-				"""
-			count: 1
-			path: src/Kernel.php
-

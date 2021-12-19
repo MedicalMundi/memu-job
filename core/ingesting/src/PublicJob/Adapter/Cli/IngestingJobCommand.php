@@ -12,7 +12,7 @@ class IngestingJobCommand extends Command
 {
     protected static $defaultName = 'app:ingesting:job';
 
-    protected static string $defaultDescription = 'Download rss from Gazzetta Ufficiale';
+    //protected static string $defaultDescription = 'Download rss from Gazzetta Ufficiale';
 
     private JobRssDataSourceChecker $usecase;
 
@@ -24,8 +24,8 @@ class IngestingJobCommand extends Command
 
     protected function configure(): void
     {
-        $this
-            ->setDescription(self::$defaultDescription);
+        //$this
+            //->setDescription(self::$defaultDescription);
     }
 
     protected function execute(InputInterface $input, OutputInterface $output): int
