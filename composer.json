@@ -48,6 +48,11 @@
         "symfony/phpunit-bridge": "^5.3"
     },
     "config": {
+        "allow-plugins": {
+            "symfony/flex": true,
+            "symfony/runtime": true
+        },
+        "optimize-autoloader": true,
         "preferred-install": {
             "*": "dist"
         },
