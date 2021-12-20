@@ -12,7 +12,7 @@
          beStrictAboutCoversAnnotation="false"
          beStrictAboutOutputDuringTests="true"
          beStrictAboutTodoAnnotatedTests="true"
-         cacheResultFile="./var/tools/phpunit/core/.phpunit.cache"
+         cacheResultFile="var/tools/phpunit/core/.phpunit.cache"
 >
     <php>
         <ini name="display_errors" value="1" />
@@ -49,7 +49,7 @@
         </exclude>
     </groups>
 
-    <coverage cacheDirectory="./var/tools/phpunit/core/.phpunit.cache"
+    <coverage cacheDirectory="var/tools/phpunit/core/.phpunit.cache"
               processUncoveredFiles="true">
         <include>
             <directory suffix=".php">core/ingesting/src</directory>
