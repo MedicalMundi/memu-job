@@ -32,7 +32,6 @@
         "symfony/yaml": "5.4.*"
     },
     "replace": {
-        "paragonie/random_compat": "2.*",
         "symfony/polyfill-ctype": "*",
         "symfony/polyfill-iconv": "*"
     },
