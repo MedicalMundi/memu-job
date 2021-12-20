@@ -373,7 +373,8 @@ jobs:
           mkdir -p var/tools/phpunit/core
           mkdir -p $REPORT_FOLDER_PHPUNIT/artifact-data/
           ./vendor/bin/phpunit --configuration phpunit.core.xml --testsuite unit \
-            --coverage-clover $REPORT_FOLDER_PHPUNIT/artifact-data/unit-test-clover.xml --log-junit $REPORT_FOLDER_PHPUNIT/artifact-data/unit-test-junit.xml
+            --coverage-clover $REPORT_FOLDER_PHPUNIT/artifact-data/unit-test-clover.xml --log-junit $REPORT_FOLDER_PHPUNIT/artifact-data/unit-test-junit.xml \
+          --do-not-cache-result
 
       - name: Setup Database for Integration tests (schema & migration)
         run: |
@@ -388,7 +389,8 @@ jobs:
           mkdir -p var/tools/phpunit/core
           mkdir -p $REPORT_FOLDER_PHPUNIT/artifact-data/
           ./vendor/bin/phpunit --configuration phpunit.core.xml --testsuite integration \
-            --coverage-clover $REPORT_FOLDER_PHPUNIT/artifact-data/integration-test-clover.xml --log-junit $REPORT_FOLDER_PHPUNIT/artifact-data/integration-test-junit.xml
+            --coverage-clover $REPORT_FOLDER_PHPUNIT/artifact-data/integration-test-clover.xml --log-junit $REPORT_FOLDER_PHPUNIT/artifact-data/integration-test-junit.xml \
+          --cache-result-file var/tools/phpunit/core/.phpunit.cache
         env:
           DATABASE_URL: postgresql://ci-db-user:ci-db-password@127.0.0.1:${{ job.services.pgsql.ports['5432'] }}/ci-db
 
