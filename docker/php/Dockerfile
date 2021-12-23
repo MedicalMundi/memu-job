@@ -1,8 +1,10 @@
 ARG PHP_BASE_VERSION=7.4
 
-FROM webdevops/php:$PHP_BASE_VERSION AS infrastructure
+FROM webdevops/php:$PHP_BASE_VERSION AS builder_infrastructure
 
-RUN apk add --no-cache fcgi
+RUN set -eux \
+    apk add --update --no-cache fcgi \
+    libfcgi-bin
 # Enable php fpm status page
 #RUN set -xe && echo "pm.status_path = /status" >> /usr/local/etc/php-fpm.d/zz-docker.conf
 RUN set -xe && echo "pm.status_path = /status" >> /opt/docker/etc/php/fpm/pool.d/zz-docker.conf
@@ -15,7 +17,7 @@ HEALTHCHECK --interval=10s --timeout=3s --retries=3 CMD ["php-fpm-healthcheck"]
 
 
 
-FROM infrastructure
+FROM builder_infrastructure as builder_vendor
 
 WORKDIR '/app'
 
