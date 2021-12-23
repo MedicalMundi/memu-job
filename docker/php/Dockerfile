@@ -72,6 +72,9 @@ COPY --from=builder_vendor --chown=application:application --chmod=0776 /app /ap
 EXPOSE 9000
 
 # SETUP healtcheck method
+COPY docker/php/docker-healthcheck.sh /usr/local/bin/docker-healthcheck
+RUN chmod +x /usr/local/bin/docker-healthcheck
+HEALTHCHECK --interval=10s --timeout=3s --retries=3 CMD ["docker-healthcheck"]
 #HEALTHCHECK NONE
 
 #CMD [ "php-fpm" ]
