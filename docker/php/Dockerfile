@@ -2,8 +2,8 @@ ARG PHP_BASE_VERSION=7.4
 
 FROM webdevops/php:$PHP_BASE_VERSION AS builder_infrastructure
 
-#RUN set -eux \
-#    apk add --update --no-cache fcgi
+RUN set -eux \
+    apk add --update --no-cache fcgi
 
 RUN set -eux \
     apk add --update --no-cache libfcgi-bin
