@@ -1,6 +1,21 @@
 ARG PHP_BASE_VERSION=7.4
 
-FROM webdevops/php:$PHP_BASE_VERSION AS builder_vendor
+FROM webdevops/php:$PHP_BASE_VERSION AS infrastructure
+
+RUN apk add --no-cache fcgi
+# Enable php fpm status page
+#RUN set -xe && echo "pm.status_path = /status" >> /usr/local/etc/php-fpm.d/zz-docker.conf
+RUN set -xe && echo "pm.status_path = /status" >> /opt/docker/etc/php/fpm/pool.d/zz-docker.conf
+
+RUN wget -O "/usr/local/bin/php-fpm-healthcheck" \
+  "https://raw.githubusercontent.com/renatomefi/php-fpm-healthcheck/master/php-fpm-healthcheck" \
+  && chmod +x "/usr/local/bin/php-fpm-healthcheck"
+
+HEALTHCHECK --interval=10s --timeout=3s --retries=3 CMD ["php-fpm-healthcheck"]
+
+
+
+FROM infrastructure
 
 WORKDIR '/app'
 
@@ -68,13 +83,4 @@ WORKDIR '/app'
 #COPY --from=builder_vendor --chown=${MEDICALMUNDI_UID}:${MEDICALMUNDI_GID} --chmod=0776 /app /app
 COPY --from=builder_vendor --chown=application:application --chmod=0776 /app /app
 
-
 EXPOSE 9000
-
-# SETUP healtcheck method
-COPY docker/php/docker-healthcheck.sh /usr/local/bin/docker-healthcheck
-RUN chmod +x /usr/local/bin/docker-healthcheck
-HEALTHCHECK --interval=10s --timeout=3s --retries=3 CMD ["docker-healthcheck"]
-#HEALTHCHECK NONE
-
-#CMD [ "php-fpm" ]
