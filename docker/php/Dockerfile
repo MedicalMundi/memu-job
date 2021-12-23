@@ -3,8 +3,12 @@ ARG PHP_BASE_VERSION=7.4
 FROM webdevops/php:$PHP_BASE_VERSION AS builder_infrastructure
 
 RUN set -eux \
-    apk add --update --no-cache fcgi \
-    libfcgi-bin
+    apk add --update --no-cache fcgi 
+
+RUN set -eux \
+    apk add --update --no-cache libfcgi-bin
+
+
 # Enable php fpm status page
 #RUN set -xe && echo "pm.status_path = /status" >> /usr/local/etc/php-fpm.d/zz-docker.conf
 RUN set -xe && echo "pm.status_path = /status" >> /opt/docker/etc/php/fpm/pool.d/zz-docker.conf
