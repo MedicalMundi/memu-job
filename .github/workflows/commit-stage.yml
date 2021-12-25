@@ -631,6 +631,9 @@ jobs:
 
     runs-on: ubuntu-18.04
     steps:
+      - name: Dump context
+        uses: crazy-max/ghaction-dump-context@v1
+
       - name: emit pipeline event
         uses: peter-evans/repository-dispatch@v1
         with:
