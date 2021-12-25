@@ -4,7 +4,7 @@ name: Deprecation & recipes
 
 on:
   repository_dispatch:
-    types: [code-coverage-report-was-completed-successfully]
+    types: [coverage-report-was-ready]
 
 env:
   GITHUB_PAT: ${{ secrets.MEMUJOB_CI_GHA_PAT }}

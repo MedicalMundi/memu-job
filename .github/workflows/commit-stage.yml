@@ -624,8 +624,8 @@ jobs:
           client-payload: '{"ref": "${{ github.ref }}", "sha": "${{ github.sha }}"}'
 
 
-  notifiy-code-coverage-report-was-completed-successfully:
-    name: notifiy-code-coverage-report-was-completed-successfully
+  notifiy-coverage-report-was-ready:
+    name: notifiy-coverage-report-was-ready
     needs:
       - core-test
 
@@ -636,5 +636,5 @@ jobs:
         with:
           token: ${{ secrets.MEMUJOB_CI_GHA_PAT }}
           repository: ${{ github.repository }}
-          event-type: code-coverage-report-was-completed-successfully
+          event-type: coverage-report-was-ready
           client-payload: '{"ref": "${{ github.ref }}", "sha": "${{ github.sha }}"}'
