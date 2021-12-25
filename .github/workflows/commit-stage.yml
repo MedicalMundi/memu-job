@@ -621,7 +621,7 @@ jobs:
           token: ${{ secrets.MEMUJOB_CI_GHA_PAT }}
           repository: ${{ github.repository }}
           event-type: commit-stage-was-completed-successfully
-          client-payload: '{"ref": "${{ github.ref }}", "sha": "${{ github.sha }}"}'
+          client-payload: '{"ref": "${{ github.ref }}", "sha": "${{ github.sha }}", "ref_name": "${{ github.ref_name }}"}'
 
 
   notifiy-coverage-report-was-ready:
@@ -640,4 +640,4 @@ jobs:
           token: ${{ secrets.MEMUJOB_CI_GHA_PAT }}
           repository: ${{ github.repository }}
           event-type: coverage-report-was-ready
-          client-payload: '{"ref": "${{ github.ref }}", "sha": "${{ github.sha }}"}'
+          client-payload: '{"ref": "${{ github.ref }}", "sha": "${{ github.sha }}", "ref_name": "${{ github.ref_name }}"}'
