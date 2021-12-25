@@ -24,7 +24,8 @@ jobs:
         uses: actions/checkout@v2
         with:
           ref: ${{ github.event.client_payload.ref }}
-      - run: echo ${{ github.event.client_payload.sha }}
+      - run: echo sha-${{ github.event.client_payload.sha }}
+      - run: echo ref- ${{ github.event.client_payload.ref }}
 
       - run: sudo chown runner:docker /var/run/docker.sock
         if: ${{ env.ACT }}
