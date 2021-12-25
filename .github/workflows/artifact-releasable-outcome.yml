@@ -23,7 +23,7 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v2
         with:
-          ref: ${{ github.event.client_payload.ref }}
+          ref: ${{ github.event.client_payload.sha }}
       - run: echo sha-${{ github.event.client_payload.sha }}
       - run: echo ref- ${{ github.event.client_payload.ref }}
 
