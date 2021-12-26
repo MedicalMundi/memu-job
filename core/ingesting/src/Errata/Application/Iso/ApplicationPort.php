@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace Ingesting\Errata\Application;
+namespace Ingesting\Errata\Application\Iso;
 
 /**
  * null
