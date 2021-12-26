@@ -2,12 +2,12 @@
 
 namespace Ingesting\Errata\Application\Usecase;
 
+use Ingesting\Errata\Application\Iso\RssData;
+use Ingesting\Errata\Application\Iso\RssReader;
 use Ingesting\Errata\Application\Model\ErrataFeed;
 use Ingesting\Errata\Application\Model\ErrataFeedRepository;
 use Ingesting\Errata\Application\Model\ErrataId;
 use Ingesting\Errata\Application\Model\Service\ErrataUniqueService;
-use Ingesting\Errata\Application\Iso\RssData;
-use Ingesting\Errata\Application\Iso\RssReader;
 
 class ReadErrataRssUsecase implements ErrataRssDataSoureChecker
 {

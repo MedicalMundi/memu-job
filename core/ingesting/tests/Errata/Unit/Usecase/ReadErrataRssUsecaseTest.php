@@ -3,10 +3,10 @@
 namespace Ingesting\Tests\Errata\Unit\Usecase;
 
 use Ingesting\Errata\Adapter\Rss\RssDataItem;
+use Ingesting\Errata\Application\Iso\RssReader;
 use Ingesting\Errata\Application\Model\ErrataFeed;
 use Ingesting\Errata\Application\Model\ErrataFeedRepository;
 use Ingesting\Errata\Application\Model\Service\ErrataUniqueService;
-use Ingesting\Errata\Application\Iso\RssReader;
 use Ingesting\Errata\Application\Usecase\ReadErrataRssUsecase;
 use Ingesting\SharedKernel\Model\PublicationDate;
 use PHPUnit\Framework\MockObject\MockObject;
@@ -76,7 +76,7 @@ class ReadErrataRssUsecaseTest extends TestCase
             ->method('save')
             ->with(
                 self::callback(
-                    function (\Ingesting\Errata\Application\Model\ErrataFeed $param): bool {
+                    function (ErrataFeed $param): bool {
                         if (
                             $param->title() === self::ITEM_TITLE
                             && $param->description() === self::ITEM_DESCRIPTION
@@ -112,7 +112,7 @@ class ReadErrataRssUsecaseTest extends TestCase
             ->method('save')
             ->with(
                 self::callback(
-                    function (\Ingesting\Errata\Application\Model\ErrataFeed $param): bool {
+                    function (ErrataFeed $param): bool {
                         if (
                             $param->title() === self::ITEM_TITLE
                             && $param->description() === self::ITEM_DESCRIPTION
