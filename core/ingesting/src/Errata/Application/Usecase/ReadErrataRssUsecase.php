@@ -39,7 +39,7 @@ class ReadErrataRssUsecase implements ErrataRssDataSoureChecker
                 throw new \RuntimeException('Id exist');
             }
 
-            $errataFeed = ErrataFeed::create($item->title(), $item->description(), $item->link(), $item->publicationDate(), $errataId);
+            $errataFeed = ErrataFeed::create($item->title(), $item->description(), $item->link(), new \DateTimeImmutable($item->publicationDate()), $errataId);
 
             $this->repository->save($errataFeed);
         }

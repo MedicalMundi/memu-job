@@ -4,7 +4,6 @@ namespace Ingesting\Tests\Errata\Unit\Domain;
 
 use Ingesting\Errata\Application\Model\ErrataFeed;
 use Ingesting\Errata\Application\Model\ErrataId;
-use Ingesting\SharedKernel\Model\PublicationDate;
 use PHPUnit\Framework\TestCase;
 
 /**
@@ -31,7 +30,7 @@ class ErrataFeedTest extends TestCase
         $title = self::A_FEED_TITLE;
         $description = self::A_FEED_DESCRIPTION;
         $link = self::A_FEED_LINK;
-        $publicationDate = self::A_FEED_PUBLICATION_DATE;
+        $publicationDate = new \DateTimeImmutable(self::A_FEED_PUBLICATION_DATE);
 
         $errata = ErrataFeed::create($title, $description, $link, $publicationDate, $id);
 
@@ -46,7 +45,7 @@ class ErrataFeedTest extends TestCase
         $title = self::A_FEED_TITLE;
         $description = self::A_FEED_DESCRIPTION;
         $link = self::A_FEED_LINK;
-        $publicationDate = self::A_FEED_PUBLICATION_DATE;
+        $publicationDate = new \DateTimeImmutable(self::A_FEED_PUBLICATION_DATE);
 
         $errata = ErrataFeed::create($title, $description, $link, $publicationDate);
 
@@ -62,7 +61,7 @@ class ErrataFeedTest extends TestCase
         $title = self::A_FEED_TITLE;
         $description = self::A_FEED_DESCRIPTION;
         $link = self::A_FEED_LINK;
-        $publicationDate = self::A_FEED_PUBLICATION_DATE;
+        $publicationDate = new \DateTimeImmutable(self::A_FEED_PUBLICATION_DATE);
 
         $errata = ErrataFeed::create($title, $description, $link, $publicationDate, $id);
 
@@ -70,6 +69,6 @@ class ErrataFeedTest extends TestCase
         self::assertSame($title, $errata->title());
         self::assertSame($description, $errata->description());
         self::assertSame($link, $errata->link());
-        self::assertSame(PublicationDate::fromString($publicationDate)->toString(), $errata->publicationDate()->toString());
+        self::assertSame($publicationDate, $errata->publicationDate());
     }
 }
