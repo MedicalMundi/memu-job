@@ -14,16 +14,24 @@ class ErrataFeedTest extends TestCase
 {
     private const UUID = 'dc97e157-a0fa-478a-8ade-5692bbaa08e0';
 
+    private const A_FEED_TITLE = 'a feed title';
+
+    private const A_FEED_DESCRIPTION = 'a feed description';
+
+    private const A_FEED_LINK = 'https://www.pincopallino.com';
+
+    private const A_FEED_PUBLICATION_DATE = '2047-02-01 10:00:00';
+
     /**
      * @test
      */
     public function shouldBeCreatedWithIdentityParameters(): void
     {
         $id = ErrataId::generate();
-        $title = 'a feed title';
-        $description = 'a feed description';
-        $link = 'https://www.pincopallino.com';
-        $publicationDate = '2047-02-01 10:00:00';
+        $title = self::A_FEED_TITLE;
+        $description = self::A_FEED_DESCRIPTION;
+        $link = self::A_FEED_LINK;
+        $publicationDate = self::A_FEED_PUBLICATION_DATE;
 
         $errata = ErrataFeed::create($title, $description, $link, $publicationDate, $id);
 
@@ -35,10 +43,10 @@ class ErrataFeedTest extends TestCase
      */
     public function shouldBeCreatedWithoutIdentityParameters(): void
     {
-        $title = 'a feed title';
-        $description = 'a feed description';
-        $link = 'https://www.pincopallino.com';
-        $publicationDate = '2047-02-01 10:00:00';
+        $title = self::A_FEED_TITLE;
+        $description = self::A_FEED_DESCRIPTION;
+        $link = self::A_FEED_LINK;
+        $publicationDate = self::A_FEED_PUBLICATION_DATE;
 
         $errata = ErrataFeed::create($title, $description, $link, $publicationDate);
 
@@ -51,10 +59,10 @@ class ErrataFeedTest extends TestCase
     public function shouldExposeTheInternalState(): void
     {
         $id = ErrataId::fromString(self::UUID);
-        $title = 'a feed title';
-        $description = 'a feed description';
-        $link = 'https://www.pincopallino.com';
-        $publicationDate = '2047-02-01 10:00:00';
+        $title = self::A_FEED_TITLE;
+        $description = self::A_FEED_DESCRIPTION;
+        $link = self::A_FEED_LINK;
+        $publicationDate = self::A_FEED_PUBLICATION_DATE;
 
         $errata = ErrataFeed::create($title, $description, $link, $publicationDate, $id);
 
