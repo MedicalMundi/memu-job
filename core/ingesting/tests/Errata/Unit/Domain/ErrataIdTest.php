@@ -2,12 +2,12 @@
 
 namespace Ingesting\Tests\Errata\Unit\Domain;
 
-use Ingesting\Errata\Application\Domain\Model\ErrataId;
+use Ingesting\Errata\Application\Model\ErrataId;
 use PHPUnit\Framework\TestCase;
 use Ramsey\Uuid\Exception\InvalidUuidStringException;
 
 /**
- * @covers \Ingesting\Errata\Application\Domain\Model\ErrataId
+ * @covers \Ingesting\Errata\Application\Model\ErrataId
  */
 class ErrataIdTest extends TestCase
 {

@@ -2,11 +2,11 @@
 
 namespace Ingesting\Errata\Adapter\Persistence;
 
-use Ingesting\Errata\Application\Domain\Model\CouldNotFindErrataFeed;
-use Ingesting\Errata\Application\Domain\Model\CouldNotPersistErrataFeed;
-use Ingesting\Errata\Application\Domain\Model\ErrataFeed;
-use Ingesting\Errata\Application\Domain\Model\ErrataFeedRepository;
-use Ingesting\Errata\Application\Domain\Model\ErrataId;
+use Ingesting\Errata\Application\Model\CouldNotFindErrataFeed;
+use Ingesting\Errata\Application\Model\CouldNotPersistErrataFeed;
+use Ingesting\Errata\Application\Model\ErrataFeed;
+use Ingesting\Errata\Application\Model\ErrataFeedRepository;
+use Ingesting\Errata\Application\Model\ErrataId;
 
 class InMemoryErrataFeedRepository implements ErrataFeedRepository
 {

@@ -4,8 +4,8 @@ namespace Ingesting\Errata\Infrastructure;
 
 use FeedIo\Factory;
 use Ingesting\Errata\Adapter\Rss\FeedIoRssReader;
-use Ingesting\Errata\Application\Domain\Model\ErrataFeedRepository;
-use Ingesting\Errata\Application\Domain\Model\Service\ErrataUniqueService;
+use Ingesting\Errata\Application\Model\ErrataFeedRepository;
+use Ingesting\Errata\Application\Model\Service\ErrataUniqueService;
 use Ingesting\Errata\Application\ErrataContextInterface;
 use Ingesting\Errata\Application\ErrataModule;
 use Ingesting\Errata\Application\Iso\RssReader;

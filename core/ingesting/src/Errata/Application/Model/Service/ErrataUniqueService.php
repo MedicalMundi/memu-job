@@ -1,12 +1,12 @@
 <?php declare(strict_types=1);
 
-namespace Ingesting\Errata\Application\Domain\Model\Service;
+namespace Ingesting\Errata\Application\Model\Service;
 
-use Ingesting\Errata\Application\Domain\Model\CouldNotFindErrataFeed;
-use Ingesting\Errata\Application\Domain\Model\ErrataFeedRepository;
-use Ingesting\Errata\Application\Domain\Model\ErrataId;
+use Ingesting\Errata\Application\Model\CouldNotFindErrataFeed;
+use Ingesting\Errata\Application\Model\ErrataFeedRepository;
+use Ingesting\Errata\Application\Model\ErrataId;
 
-class ErrataUniqueService implements UniqueErrataIdentity
+class ErrataUniqueService implements \Ingesting\Errata\Application\Model\Service\UniqueErrataIdentity
 {
     private ErrataFeedRepository $repository;
 

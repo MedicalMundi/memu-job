@@ -1,6 +1,6 @@
 <?php declare(strict_types=1);
 
-namespace Ingesting\Errata\Application\Domain\Model;
+namespace Ingesting\Errata\Application\Model;
 
 use Ramsey\Uuid\Uuid;
 use Ramsey\Uuid\UuidInterface;
@@ -9,14 +9,14 @@ class ErrataId
 {
     private UuidInterface $uuid;
 
-    public static function generate(): ErrataId
+    public static function generate(): self
     {
-        return new self(Uuid::uuid4());
+        return new ErrataId(Uuid::uuid4());
     }
 
-    public static function fromString(string $id): ErrataId
+    public static function fromString(string $id): self
     {
-        return new self(Uuid::fromString($id));
+        return new ErrataId(Uuid::fromString($id));
     }
 
     private function __construct(UuidInterface $id)
@@ -34,7 +34,7 @@ class ErrataId
         return $this->uuid->toString();
     }
 
-    public function equals(ErrataId $other): bool
+    public function equals(self $other): bool
     {
         return $this->uuid->equals($other->uuid);
     }

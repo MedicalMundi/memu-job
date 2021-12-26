@@ -2,13 +2,13 @@
 
 namespace Ingesting\Tests\Errata\Unit\Domain;
 
-use Ingesting\Errata\Application\Domain\Model\ErrataFeed;
-use Ingesting\Errata\Application\Domain\Model\ErrataId;
+use Ingesting\Errata\Application\Model\ErrataFeed;
+use Ingesting\Errata\Application\Model\ErrataId;
 use Ingesting\SharedKernel\Model\PublicationDate;
 use PHPUnit\Framework\TestCase;
 
 /**
- * @covers \Ingesting\Errata\Application\Domain\Model\ErrataFeed
+ * @covers \Ingesting\Errata\Application\Model\ErrataFeed
  */
 class ErrataFeedTest extends TestCase
 {

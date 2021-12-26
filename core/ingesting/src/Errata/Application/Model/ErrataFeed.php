@@ -1,6 +1,6 @@
 <?php declare(strict_types=1);
 
-namespace Ingesting\Errata\Application\Domain\Model;
+namespace Ingesting\Errata\Application\Model;
 
 use Ingesting\SharedKernel\Model\PublicationDate;
 
@@ -24,7 +24,7 @@ class ErrataFeed
     public static function create(string $title, string $description, string $link, string $pubDate, ?ErrataId $id = null): self
     {
         $identity = $id ?? ErrataId::generate();
-        $errata = new self($identity);
+        $errata = new ErrataFeed($identity);
 
         $errata->title = $title;
         $errata->description = $description;

@@ -2,10 +2,10 @@
 
 namespace Ingesting\Errata\Application\Usecase;
 
-use Ingesting\Errata\Application\Domain\Model\ErrataFeed;
-use Ingesting\Errata\Application\Domain\Model\ErrataFeedRepository;
-use Ingesting\Errata\Application\Domain\Model\ErrataId;
-use Ingesting\Errata\Application\Domain\Model\Service\ErrataUniqueService;
+use Ingesting\Errata\Application\Model\ErrataFeed;
+use Ingesting\Errata\Application\Model\ErrataFeedRepository;
+use Ingesting\Errata\Application\Model\ErrataId;
+use Ingesting\Errata\Application\Model\Service\ErrataUniqueService;
 use Ingesting\Errata\Application\Iso\RssData;
 use Ingesting\Errata\Application\Iso\RssReader;
 

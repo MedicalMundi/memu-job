@@ -2,15 +2,15 @@
 
 namespace Ingesting\Tests\Errata\Unit\Domain\Service;
 
-use Ingesting\Errata\Application\Domain\Model\ErrataFeed;
-use Ingesting\Errata\Application\Domain\Model\ErrataFeedRepository;
-use Ingesting\Errata\Application\Domain\Model\ErrataId;
-use Ingesting\Errata\Application\Domain\Model\Service\ErrataUniqueService;
+use Ingesting\Errata\Application\Model\ErrataFeed;
+use Ingesting\Errata\Application\Model\ErrataFeedRepository;
+use Ingesting\Errata\Application\Model\ErrataId;
+use Ingesting\Errata\Application\Model\Service\ErrataUniqueService;
 use PHPUnit\Framework\MockObject\MockObject;
 use PHPUnit\Framework\TestCase;
 
 /**
- * @covers \Ingesting\Errata\Application\Domain\Model\Service\ErrataUniqueService
+ * @covers \Ingesting\Errata\Application\Model\Service\ErrataUniqueService
  */
 class ErrataUniqueServiceTest extends TestCase
 {
