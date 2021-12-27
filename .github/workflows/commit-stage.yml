@@ -389,7 +389,7 @@ jobs:
         run:  |
           mkdir -p var/tools/phpunit/core
           mkdir -p $REPORT_FOLDER_PHPUNIT/artifact-data/
-          ./vendor/bin/phpunit --configuration phpunit.core.xml --testsuite integration \
+          ./vendor/bin/phpunit --configuration phpunit.core.xml --testsuite integration --group=io-network,io-database \
             --coverage-clover $REPORT_FOLDER_PHPUNIT/artifact-data/integration-test-clover.xml --log-junit $REPORT_FOLDER_PHPUNIT/artifact-data/integration-test-junit.xml
         env:
           DATABASE_URL: postgresql://ci-db-user:ci-db-password@127.0.0.1:${{ job.services.pgsql.ports['5432'] }}/ci-db
