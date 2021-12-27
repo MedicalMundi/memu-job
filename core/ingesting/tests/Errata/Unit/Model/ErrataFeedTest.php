@@ -1,6 +1,6 @@
 <?php declare(strict_types=1);
 
-namespace Ingesting\Tests\Errata\Unit\Domain;
+namespace Ingesting\Tests\Errata\Unit\Model;
 
 use Ingesting\Errata\Application\Model\ErrataFeed;
 use Ingesting\Errata\Application\Model\ErrataId;
