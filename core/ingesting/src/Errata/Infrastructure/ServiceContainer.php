@@ -42,7 +42,6 @@ abstract class ServiceContainer
     protected function errataFeedRepository(): ErrataFeedRepository
     {
         if ($this->errataFeedRepository === null) {
-            // Todo use a real implementation
             throw new \RuntimeException('ErrataFeed repository not yet implemented!');
         }
 

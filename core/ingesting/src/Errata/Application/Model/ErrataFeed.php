@@ -29,8 +29,6 @@ class ErrataFeed
         $errata->title = $title;
         $errata->description = $description;
         $errata->link = $link;
-
-        //TODO orario italiano?
         $errata->publicationDate = $pubDate;
 
         return $errata;
