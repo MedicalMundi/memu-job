@@ -170,6 +170,29 @@ class ReadErrataRssUsecaseTest extends TestCase
         $this->usecase->readErrataRssDataSource();
     }
 
+    /**
+     * @test
+     */
+    public function shouldIgnoreFeedWithSameLink(): void
+    {
+        $this->rssReader->expects(self::once())
+            ->method('readRssFeed')
+            ->willReturn($this->createRssData());
+
+        $this->errataUniqueLinkService->expects(self::once())
+            ->method('isUniqueLink')
+            ->willReturn(false);
+
+        $this->errataUniqueService->expects(self::never())
+            ->method('isUnique');
+
+        $this->repository->expects(self::never())
+            ->method('save')
+            ->withAnyParameters();
+
+        $this->usecase->readErrataRssDataSource();
+    }
+
     private function createRssData(): array
     {
         return [
