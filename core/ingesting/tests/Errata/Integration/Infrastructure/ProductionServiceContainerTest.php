@@ -1,6 +1,6 @@
 <?php declare(strict_types=1);
 
-namespace Ingesting\Tests\Errata\Integration;
+namespace Ingesting\Tests\Errata\Integration\Infrastructure;
 
 use Ingesting\Errata\Infrastructure\ProductionServiceContainer;
 use PHPUnit\Framework\TestCase;
