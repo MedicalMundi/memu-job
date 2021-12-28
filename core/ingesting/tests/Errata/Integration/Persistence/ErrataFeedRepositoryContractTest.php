@@ -50,6 +50,7 @@ abstract class ErrataFeedRepositoryContractTest extends KernelTestCase
 
     /**
      * @test
+     * @covers \Ingesting\Errata\Application\Model\ErrataFeedAlreadyExist
      */
     public function duplicate_identity_should_throw_exception(): void
     {
