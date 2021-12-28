@@ -1,6 +1,11 @@
 parameters:
 	ignoreErrors:
 		-
+			message: "#^Return type \\(Ingesting\\\\Errata\\\\Application\\\\Model\\\\ErrataId\\|null\\) of method Ingesting\\\\Errata\\\\Adapter\\\\Persistence\\\\Doctrine\\\\Config\\\\ErrataIdType\\:\\:convertToPHPValue\\(\\) should be covariant with return type \\(Ramsey\\\\Uuid\\\\UuidInterface\\|null\\) of method Ramsey\\\\Uuid\\\\Doctrine\\\\UuidType\\:\\:convertToPHPValue\\(\\)$#"
+			count: 1
+			path: core/ingesting/src/Errata/Adapter/Persistence/Doctrine/Config/ErrataIdType.php
+
+		-
 			message: "#^Cannot access offset 0 on iterable\\.$#"
 			count: 1
 			path: core/ingesting/src/Errata/Adapter/Rss/FeedIoRssReader.php
