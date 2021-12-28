@@ -5,10 +5,12 @@ namespace Ingesting\Tests\Errata\Unit\Usecase;
 use Ingesting\Errata\Adapter\Rss\RssDataItem;
 use Ingesting\Errata\Application\Iso\RssReader;
 use Ingesting\Errata\Application\Model\ErrataFeed;
+use Ingesting\Errata\Application\Model\ErrataFeedAlreadyExist;
 use Ingesting\Errata\Application\Model\ErrataFeedRepository;
 use Ingesting\Errata\Application\Model\Service\ErrataUniqueService;
+use Ingesting\Errata\Application\Model\Service\UniqueErrataLinkService;
+use Ingesting\Errata\Application\Model\Service\UniqueLink;
 use Ingesting\Errata\Application\Usecase\ReadErrataRssUsecase;
-use Ingesting\SharedKernel\Model\PublicationDate;
 use PHPUnit\Framework\MockObject\MockObject;
 use PHPUnit\Framework\TestCase;
 
@@ -38,6 +40,11 @@ class ReadErrataRssUsecaseTest extends TestCase
     private $errataUniqueService;
 
     /**
+     * @var UniqueLink&MockObject
+     */
+    private $errataUniqueLinkService;
+
+    /**
      * @var RssReader&MockObject
      */
     private $rssReader;
@@ -52,9 +59,13 @@ class ReadErrataRssUsecaseTest extends TestCase
             ->disableOriginalConstructor()
             ->getMock();
 
+        $this->errataUniqueLinkService = $this->getMockBuilder(UniqueErrataLinkService::class)
+            ->disableOriginalConstructor()
+            ->getMock();
+
         $this->rssReader = $this->getMockBuilder(RssReader::class)->getMock();
 
-        $this->usecase = new ReadErrataRssUsecase($this->repository, $this->errataUniqueService, $this->rssReader);
+        $this->usecase = new ReadErrataRssUsecase($this->repository, $this->errataUniqueService, $this->errataUniqueLinkService, $this->rssReader);
     }
 
     /**
@@ -64,13 +75,15 @@ class ReadErrataRssUsecaseTest extends TestCase
     {
         $this->rssReader->expects(self::once())
             ->method('readRssFeed')
-            ->willReturn($this->createRssData())
-            ;
+            ->willReturn($this->createRssData());
 
         $this->errataUniqueService->expects(self::once())
             ->method('isUnique')
-            ->willReturn(true)
-        ;
+            ->willReturn(true);
+
+        $this->errataUniqueLinkService->expects(self::once())
+            ->method('isUniqueLink')
+            ->willReturn(true);
 
         $this->repository->expects(self::once())
             ->method('save')
@@ -100,13 +113,15 @@ class ReadErrataRssUsecaseTest extends TestCase
     {
         $this->rssReader->expects(self::once())
             ->method('readRssFeed')
-            ->willReturn($this->createRssDataWithFiveItem())
-        ;
+            ->willReturn($this->createRssDataWithFiveItem());
+
+        $this->errataUniqueLinkService->expects(self::exactly(5))
+            ->method('isUniqueLink')
+            ->willReturn(true);
 
         $this->errataUniqueService->expects(self::exactly(5))
             ->method('isUnique')
-            ->willReturn(true)
-        ;
+            ->willReturn(true);
 
         $this->repository->expects(self::exactly(5))
             ->method('save')
@@ -134,22 +149,23 @@ class ReadErrataRssUsecaseTest extends TestCase
      */
     public function shouldNotPersistDuplicatedItem(): void
     {
+        $this->expectException(ErrataFeedAlreadyExist::class);
+
         $this->rssReader->expects(self::once())
             ->method('readRssFeed')
-            ->willReturn($this->createRssData())
-        ;
+            ->willReturn($this->createRssData());
 
-        $this->expectException(\RuntimeException::class);
+        $this->errataUniqueLinkService->expects(self::once())
+            ->method('isUniqueLink')
+            ->willReturn(true);
 
         $this->errataUniqueService->expects(self::once())
             ->method('isUnique')
-            ->willReturn(false)
-            ;
+            ->willReturn(false);
 
         $this->repository->expects(self::never())
             ->method('save')
-            ->withAnyParameters()
-            ;
+            ->withAnyParameters();
 
         $this->usecase->readErrataRssDataSource();
     }
