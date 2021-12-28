@@ -48,7 +48,7 @@ class JobIdType extends UuidType
         throw ConversionException::conversionFailed((string) $value, self::NAME);
     }
 
-    public function getName()
+    public function getName(): string
     {
         return self::NAME;
     }
