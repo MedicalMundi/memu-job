@@ -6,6 +6,11 @@ parameters:
 			path: core/ingesting/src/Errata/Adapter/Persistence/Doctrine/Config/ErrataIdType.php
 
 		-
+			message: "#^Class Ingesting\\\\Errata\\\\Adapter\\\\Persistence\\\\Doctrine\\\\DoctrineErrataFeedRepository extends generic class Doctrine\\\\Bundle\\\\DoctrineBundle\\\\Repository\\\\ServiceEntityRepository but does not specify its types\\: T$#"
+			count: 1
+			path: core/ingesting/src/Errata/Adapter/Persistence/Doctrine/DoctrineErrataFeedRepository.php
+
+		-
 			message: "#^Cannot access offset 0 on iterable\\.$#"
 			count: 1
 			path: core/ingesting/src/Errata/Adapter/Rss/FeedIoRssReader.php
@@ -89,6 +94,11 @@ parameters:
 			message: "#^Parameter \\#1 \\$string of function strlen expects string, string\\|null given\\.$#"
 			count: 1
 			path: core/ingesting/src/SharedKernel/Infrastructure/FeedIoAdapter/Response.php
+
+		-
+			message: "#^Method Ingesting\\\\Tests\\\\Errata\\\\Integration\\\\Persistence\\\\DoctrineErrataFeedRepositoryTest\\:\\:createRepository\\(\\) should return Ingesting\\\\Errata\\\\Application\\\\Model\\\\ErrataFeedRepository but returns object\\|null\\.$#"
+			count: 1
+			path: core/ingesting/tests/Errata/Integration/Persistence/DoctrineErrataFeedRepositoryTest.php
 
 		-
 			message: "#^Property Ingesting\\\\Tests\\\\PublicJob\\\\Integration\\\\Infrastructure\\\\PublicJobProductionServiceContainerTest\\:\\:\\$jobRepository \\(Ingesting\\\\PublicJob\\\\Application\\\\Model\\\\JobRepository\\) does not accept null\\.$#"

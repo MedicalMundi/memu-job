@@ -38,3 +38,7 @@ services:
     Ingesting\PublicJob\Adapter\Cli\IngestingJobCommand:
         arguments:
             - '@Ingesting\PublicJob\Application\PublicJobModule'
+
+
+    Ingesting\Errata\Adapter\Persistence\Doctrine\DoctrineErrataFeedRepository:
+        public: true
