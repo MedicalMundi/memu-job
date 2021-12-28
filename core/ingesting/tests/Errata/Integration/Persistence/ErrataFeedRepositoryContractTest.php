@@ -10,6 +10,10 @@ use Ingesting\Errata\Application\Model\ErrataId;
 
 use Symfony\Bundle\FrameworkBundle\Test\KernelTestCase;
 
+/**
+ * @covers \Ingesting\Errata\Adapter\Persistence\InMemoryErrataFeedRepository
+ * @covers \Ingesting\Errata\Adapter\Persistence\Doctrine\DoctrineErrataFeedRepository
+ */
 abstract class ErrataFeedRepositoryContractTest extends KernelTestCase
 {
     private const TITLE = 'Feed irrelevant title';
