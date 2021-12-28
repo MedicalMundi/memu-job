@@ -2,11 +2,10 @@
 
 namespace Ingesting\Errata\Application\Model\Service;
 
-use Ingesting\Errata\Application\Model\CouldNotFindErrataFeed;
 use Ingesting\Errata\Application\Model\ErrataFeedRepository;
 use Ingesting\Errata\Application\Model\ErrataId;
 
-class ErrataUniqueService implements \Ingesting\Errata\Application\Model\Service\UniqueErrataIdentity
+class ErrataUniqueService implements UniqueErrataIdentity
 {
     private ErrataFeedRepository $repository;
 
@@ -17,14 +16,6 @@ class ErrataUniqueService implements \Ingesting\Errata\Application\Model\Service
 
     public function isUnique(ErrataId $id): bool
     {
-        try {
-            $this->repository->withId($id);
-            $result = false;
-        } catch (CouldNotFindErrataFeed $e) {
-            // silent exception
-            $result = true;
-        }
-
-        return $result;
+        return $this->repository->isUniqueIdentity($id);
     }
 }

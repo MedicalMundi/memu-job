@@ -38,8 +38,8 @@ class ErrataUniqueServiceTest extends TestCase
         $errataId = ErrataId::fromString(self::UUID);
 
         $this->repository->expects(self::once())
-            ->method('withId')
-            ->willReturn($this->createErrataFeedItem($errataId))
+            ->method('isUniqueIdentity')
+            ->willReturn(false)
             ;
 
         $result = $this->errataUniqueService->isUnique($errataId);
@@ -55,7 +55,7 @@ class ErrataUniqueServiceTest extends TestCase
         $errataId = ErrataId::fromString(self::UUID);
 
         $this->repository->expects(self::once())
-            ->method('withId')
+            ->method('isUniqueIdentity')
         ;
 
         $result = $this->errataUniqueService->isUnique($errataId);
