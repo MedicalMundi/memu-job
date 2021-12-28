@@ -13,6 +13,10 @@ class InMemoryJobFeedRepository implements JobRepository
 {
     private array $items = [];
 
+    /**
+     * @throws CouldNotPersistJobFeed
+     * @throws JobFeedAlreadyExist
+     */
     public function save(JobFeed $job): void
     {
         if (\array_key_exists($job->id()->toString(), $this->items)) {

@@ -44,8 +44,7 @@ abstract class JobRepositoryContractTest extends KernelTestCase
         self::assertEquals(self::TITLE, $persistedItem->title());
         self::assertEquals(self::DESCRIPTION, $persistedItem->description());
         self::assertEquals(self::LINK, $persistedItem->link());
-        //TODO
-        //self::assertEquals(self::PUB_DATE, $savedItem->publicationDate());
+        self::assertEquals(new DateTimeImmutable(self::PUB_DATE), $persistedItem->publicationDate());
     }
 
     /**
@@ -68,14 +67,15 @@ abstract class JobRepositoryContractTest extends KernelTestCase
     public function should_detect_unique_identity(): void
     {
         $identity = JobId::generate();
-//        $jobFeed = $this->createJobFeed($identity);
-//        $this->repository->save($jobFeed);
-//
+
         $result = $this->repository->isUniqueIdentity($identity);
 
         self::assertTrue($result);
     }
 
+    /**
+     * @test
+     */
     public function should_detect_a_not_unique_identity(): void
     {
         $identity = JobId::generate();
