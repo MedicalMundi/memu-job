@@ -5,6 +5,8 @@ services:
     image: webdevops/php-dev:7.4
     ports:
       - "9021:9021"
+    working_dir: /app
+    user: application
     volumes:
       - "./:/app"
     environment:

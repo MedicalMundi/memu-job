@@ -20,7 +20,12 @@ jobs:
       contents: read
 
     steps:
-      - uses: actions/checkout@v2
+      - name: Checkout
+        uses: actions/checkout@v2
+        with:
+          ref: ${{ github.event.client_payload.sha }}
+      - run: echo sha-${{ github.event.client_payload.sha }}
+      - run: echo ref- ${{ github.event.client_payload.ref }}
 
       - run: sudo chown runner:docker /var/run/docker.sock
         if: ${{ env.ACT }}
@@ -32,18 +37,16 @@ jobs:
         id: meta
         uses: docker/metadata-action@v3
         with:
-          # list of Docker images to use as base name for tags
           images: |
             ghcr.io/medicalmundi/${{ env.PHP_RELEASE_CANDIDATE_IMAGE_NAME }}
-          # generate Docker tags based on the following events/attributes
           tags: |
             type=schedule
-            type=ref,event=branch
             type=ref,event=pr
             type=semver,pattern={{version}}
             type=semver,pattern={{major}}.{{minor}}
             type=semver,pattern={{major}}
             type=sha
+            type=raw,${{ github.event.client_payload.ref_name }}
 
       - name: Login to GHCR
         id: docker_ghrc_login
@@ -80,8 +83,6 @@ jobs:
 
       - name: Test image as not root user
         id: test-builded-image-as-not-root-user
-#        run: |
-#          docker run -u medicalmundi --rm ${{ env.TEST_TAG_PHP_RELEASE_CANDIDATE }} ls -al /app
         run: |
           docker run -u application --rm ${{ env.TEST_TAG_PHP_RELEASE_CANDIDATE }} ls -al /app
 
@@ -96,5 +97,6 @@ jobs:
           push: true
           load: false
           no-cache: false
-          tags: ${{ steps.meta.outputs.tags }}
+          tags: |
+            ${{ steps.meta.outputs.tags }}
           #labels: ${{ steps.meta.outputs.labels }}

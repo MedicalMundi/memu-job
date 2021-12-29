@@ -389,7 +389,7 @@ jobs:
         run:  |
           mkdir -p var/tools/phpunit/core
           mkdir -p $REPORT_FOLDER_PHPUNIT/artifact-data/
-          ./vendor/bin/phpunit --configuration phpunit.core.xml --testsuite integration \
+          ./vendor/bin/phpunit --configuration phpunit.core.xml --testsuite integration --group=io-network,io-database \
             --coverage-clover $REPORT_FOLDER_PHPUNIT/artifact-data/integration-test-clover.xml --log-junit $REPORT_FOLDER_PHPUNIT/artifact-data/integration-test-junit.xml
         env:
           DATABASE_URL: postgresql://ci-db-user:ci-db-password@127.0.0.1:${{ job.services.pgsql.ports['5432'] }}/ci-db
@@ -621,20 +621,23 @@ jobs:
           token: ${{ secrets.MEMUJOB_CI_GHA_PAT }}
           repository: ${{ github.repository }}
           event-type: commit-stage-was-completed-successfully
-          client-payload: '{"ref": "${{ github.ref }}", "sha": "${{ github.sha }}"}'
+          client-payload: '{"ref": "${{ github.ref }}", "sha": "${{ github.sha }}", "ref_name": "${{ github.ref_name }}"}'
 
 
-  notifiy-code-coverage-report-was-completed-successfully:
-    name: notifiy-code-coverage-report-was-completed-successfully
+  notifiy-coverage-report-was-ready:
+    name: notifiy-coverage-report-was-ready
     needs:
       - core-test
 
     runs-on: ubuntu-18.04
     steps:
+      - name: Dump context
+        uses: crazy-max/ghaction-dump-context@v1
+
       - name: emit pipeline event
         uses: peter-evans/repository-dispatch@v1
         with:
           token: ${{ secrets.MEMUJOB_CI_GHA_PAT }}
           repository: ${{ github.repository }}
-          event-type: code-coverage-report-was-completed-successfully
-          client-payload: '{"ref": "${{ github.ref }}", "sha": "${{ github.sha }}"}'
+          event-type: coverage-report-was-ready
+          client-payload: '{"ref": "${{ github.ref }}", "sha": "${{ github.sha }}", "ref_name": "${{ github.ref_name }}"}'

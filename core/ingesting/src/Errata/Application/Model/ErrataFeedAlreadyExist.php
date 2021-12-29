@@ -1,16 +1,16 @@
 <?php declare(strict_types=1);
 
-namespace Ingesting\Errata\Application\Domain\Model;
+namespace Ingesting\Errata\Application\Model;
 
 use RuntimeException;
 
-final class CouldNotPersistErrataFeed extends RuntimeException
+final class ErrataFeedAlreadyExist extends RuntimeException
 {
     public static function withId(ErrataId $errataId): self
     {
         return new self(
             sprintf(
-                'Could not persist  errata feed item with id %s',
+                'Errata feed item with id %s already exist',
                 $errataId->toString()
             )
         );

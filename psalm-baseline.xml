@@ -26,7 +26,7 @@
       <code>$title</code>
     </MissingConstructor>
   </file>
-  <file src="core/ingesting/src/Errata/Application/Domain/Model/ErrataFeed.php">
+  <file src="core/ingesting/src/Errata/Application/Model/Model/ErrataFeed.php">
     <PropertyNotSetInConstructor occurrences="4">
       <code>$description</code>
       <code>$link</code>

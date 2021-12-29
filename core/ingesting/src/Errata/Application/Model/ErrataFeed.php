@@ -1,8 +1,8 @@
 <?php declare(strict_types=1);
 
-namespace Ingesting\Errata\Application\Domain\Model;
+namespace Ingesting\Errata\Application\Model;
 
-use Ingesting\SharedKernel\Model\PublicationDate;
+use DateTimeImmutable;
 
 class ErrataFeed
 {
@@ -14,24 +14,22 @@ class ErrataFeed
 
     private string $link;
 
-    private PublicationDate $publicationDate;
+    private DateTimeImmutable $publicationDate;
 
     private function __construct(ErrataId $id)
     {
         $this->id = $id;
     }
 
-    public static function create(string $title, string $description, string $link, string $pubDate, ?ErrataId $id = null): self
+    public static function create(string $title, string $description, string $link, DateTimeImmutable $pubDate, ?ErrataId $id = null): self
     {
         $identity = $id ?? ErrataId::generate();
-        $errata = new self($identity);
+        $errata = new ErrataFeed($identity);
 
         $errata->title = $title;
         $errata->description = $description;
         $errata->link = $link;
-
-        //TODO orario italiano?
-        $errata->publicationDate = PublicationDate::fromString((new \DateTimeImmutable($pubDate))->format('Y-m-d H:i:s'));
+        $errata->publicationDate = $pubDate;
 
         return $errata;
     }
@@ -56,7 +54,7 @@ class ErrataFeed
         return $this->link;
     }
 
-    public function publicationDate(): PublicationDate
+    public function publicationDate(): DateTimeImmutable
     {
         return $this->publicationDate;
     }

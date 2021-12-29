@@ -1,15 +1,20 @@
 <?php declare(strict_types=1);
 
-namespace Ingesting\Tests\PublicJob\Integration\Persistence;
+namespace Ingesting\Tests\Errata\Integration\Persistence;
 
 use DateTimeImmutable;
-use Ingesting\PublicJob\Application\Model\JobFeed;
-use Ingesting\PublicJob\Application\Model\JobFeedAlreadyExist;
-use Ingesting\PublicJob\Application\Model\JobId;
-use Ingesting\PublicJob\Application\Model\JobRepository;
+use Ingesting\Errata\Application\Model\ErrataFeed;
+use Ingesting\Errata\Application\Model\ErrataFeedAlreadyExist;
+use Ingesting\Errata\Application\Model\ErrataFeedRepository;
+use Ingesting\Errata\Application\Model\ErrataId;
+
 use Symfony\Bundle\FrameworkBundle\Test\KernelTestCase;
 
-abstract class JobRepositoryContractTest extends KernelTestCase
+/**
+ * @covers \Ingesting\Errata\Adapter\Persistence\InMemoryErrataFeedRepository
+ * @covers \Ingesting\Errata\Adapter\Persistence\Doctrine\DoctrineErrataFeedRepository
+ */
+abstract class ErrataFeedRepositoryContractTest extends KernelTestCase
 {
     private const TITLE = 'Feed irrelevant title';
 
@@ -20,7 +25,7 @@ abstract class JobRepositoryContractTest extends KernelTestCase
     private const PUB_DATE = 'Thu, 25 Apr 2019 20:00:00 GMT';
 
     /**
-     * @var JobRepository
+     * @var ErrataFeedRepository
      */
     private $repository;
 
@@ -29,16 +34,16 @@ abstract class JobRepositoryContractTest extends KernelTestCase
         $this->repository = $this->createRepository();
     }
 
-    abstract protected function createRepository(): JobRepository;
+    abstract protected function createRepository(): ErrataFeedRepository;
 
     /**
      * @test
      */
     public function it_can_persist_data(): void
     {
-        $identity = JobId::generate();
-        $jobFeed = $this->createJobFeed($identity);
-        $this->repository->save($jobFeed);
+        $identity = ErrataId::generate();
+        $errataFeed = $this->createErrataFeed($identity);
+        $this->repository->save($errataFeed);
 
         $persistedItem = $this->verifyItemById($identity);
         self::assertEquals(self::TITLE, $persistedItem->title());
@@ -49,16 +54,17 @@ abstract class JobRepositoryContractTest extends KernelTestCase
 
     /**
      * @test
+     * @covers \Ingesting\Errata\Application\Model\ErrataFeedAlreadyExist
      */
     public function duplicate_identity_should_throw_exception(): void
     {
-        $this->expectException(JobFeedAlreadyExist::class);
+        $this->expectException(ErrataFeedAlreadyExist::class);
 
-        $identity = JobId::generate();
-        $jobFeed = $this->createJobFeed($identity);
-        $this->repository->save($jobFeed);
+        $identity = ErrataId::generate();
+        $errataFeed = $this->createErrataFeed($identity);
+        $this->repository->save($errataFeed);
 
-        $this->repository->save($jobFeed);
+        $this->repository->save($errataFeed);
     }
 
     /**
@@ -66,7 +72,7 @@ abstract class JobRepositoryContractTest extends KernelTestCase
      */
     public function should_detect_unique_identity(): void
     {
-        $identity = JobId::generate();
+        $identity = ErrataId::generate();
 
         $result = $this->repository->isUniqueIdentity($identity);
 
@@ -78,8 +84,8 @@ abstract class JobRepositoryContractTest extends KernelTestCase
      */
     public function should_detect_a_not_unique_identity(): void
     {
-        $identity = JobId::generate();
-        $jobFeed = $this->createJobFeed($identity);
+        $identity = ErrataId::generate();
+        $jobFeed = $this->createErrataFeed($identity);
         $this->repository->save($jobFeed);
 
         $result = $this->repository->isUniqueIdentity($identity);
@@ -102,18 +108,18 @@ abstract class JobRepositoryContractTest extends KernelTestCase
      */
     public function should_detect_a_not_unique_link(): void
     {
-        $identity = JobId::generate();
-        $jobFeed = $this->createJobFeed($identity);
-        $this->repository->save($jobFeed);
+        $identity = ErrataId::generate();
+        $errataFeed = $this->createErrataFeed($identity);
+        $this->repository->save($errataFeed);
 
         $result = $this->repository->isUniqueLink(self::LINK);
 
         self::assertFalse($result);
     }
 
-    protected function createJobFeed(JobId $id): JobFeed
+    protected function createErrataFeed(ErrataId $id): ErrataFeed
     {
-        $data = JobFeed::create(
+        $data = ErrataFeed::create(
             self::TITLE,
             self::DESCRIPTION,
             self::LINK,
@@ -124,7 +130,7 @@ abstract class JobRepositoryContractTest extends KernelTestCase
         return $data;
     }
 
-    protected function verifyItemById(JobId $id): JobFeed
+    protected function verifyItemById(ErrataId $id): ErrataFeed
     {
         return $this->repository->withId($id);
     }

@@ -3,7 +3,6 @@
 namespace Ingesting\PublicJob\Application\Model;
 
 use DateTimeImmutable;
-use Ingesting\SharedKernel\Model\PublicationDate;
 
 class JobFeed
 {
@@ -30,10 +29,6 @@ class JobFeed
         $job->title = $title;
         $job->description = $description;
         $job->link = $link;
-
-        //TODO ramdomness in domain?
-        //TODO orario italiano usare clock?
-        //$job->publicationDate = PublicationDate::fromString((new \DateTimeImmutable($pubDate))->format('Y-m-d H:i:s'));
         $job->publicationDate = $pubDate;
 
         return $job;

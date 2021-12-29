@@ -8,6 +8,7 @@ doctrine:
 
         types:
             job_id: Ingesting\PublicJob\Adapter\Persistence\Doctrine\Config\JobIdType
+            errata_id: Ingesting\Errata\Adapter\Persistence\Doctrine\Config\ErrataIdType
     orm:
         auto_generate_proxy_classes: true
         naming_strategy: doctrine.orm.naming_strategy.underscore_number_aware
@@ -26,3 +27,10 @@ doctrine:
                 dir: '%kernel.project_dir%/core/ingesting/src/PublicJob/Adapter/Persistence/Doctrine/Config/Yaml'
                 prefix: 'Ingesting\PublicJob\Application\Model'
                 alias: PublicJob
+
+            ErrataFeed:
+                is_bundle: false
+                type: yml
+                dir: '%kernel.project_dir%/core/ingesting/src/Errata/Adapter/Persistence/Doctrine/Config/Yaml'
+                prefix: 'Ingesting\Errata\Application\Model'
+                alias: ErrataFeed

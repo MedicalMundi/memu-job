@@ -1,0 +1,28 @@
+Ingesting\Errata\Application\Model\ErrataFeed:
+  type: entity
+  table: 'ingestion_erratafeed'
+  repositoryClass: Ingesting\Errata\Adapter\Persistence\Doctrine\DoctrineErrataFeedRepository
+  id:
+    id:
+      column: errata_id
+      type: errata_id
+      generator:
+        strategy: NONE
+  fields:
+    title:
+      column: title
+      type: string
+      nullable: false
+    description:
+      column: description
+      type: text
+      nullable: false
+    link:
+      column: link
+      type: string
+      nullable: false
+    publicationDate:
+      column: publication_date
+      type: datetime_immutable
+      nullable: false
+      precision: null

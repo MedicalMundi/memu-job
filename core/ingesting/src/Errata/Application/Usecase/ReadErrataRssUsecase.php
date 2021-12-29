@@ -2,12 +2,14 @@
 
 namespace Ingesting\Errata\Application\Usecase;
 
-use Ingesting\Errata\Application\Domain\Model\ErrataFeed;
-use Ingesting\Errata\Application\Domain\Model\ErrataFeedRepository;
-use Ingesting\Errata\Application\Domain\Model\ErrataId;
-use Ingesting\Errata\Application\Domain\Model\Service\ErrataUniqueService;
 use Ingesting\Errata\Application\Iso\RssData;
 use Ingesting\Errata\Application\Iso\RssReader;
+use Ingesting\Errata\Application\Model\ErrataFeed;
+use Ingesting\Errata\Application\Model\ErrataFeedAlreadyExist;
+use Ingesting\Errata\Application\Model\ErrataFeedRepository;
+use Ingesting\Errata\Application\Model\ErrataId;
+use Ingesting\Errata\Application\Model\Service\ErrataUniqueService;
+use Ingesting\Errata\Application\Model\Service\UniqueLink;
 
 class ReadErrataRssUsecase implements ErrataRssDataSoureChecker
 {
@@ -15,12 +17,15 @@ class ReadErrataRssUsecase implements ErrataRssDataSoureChecker
 
     private ErrataUniqueService $errataUniqueService;
 
+    private UniqueLink $uniqueLinkDetector;
+
     private RssReader $rssReader;
 
-    public function __construct(ErrataFeedRepository $repository, ErrataUniqueService $errataUniqueService, rssReader $rssReader)
+    public function __construct(ErrataFeedRepository $repository, ErrataUniqueService $errataUniqueService, UniqueLink $uniqueLinkDetector, rssReader $rssReader)
     {
         $this->repository = $repository;
         $this->errataUniqueService = $errataUniqueService;
+        $this->uniqueLinkDetector = $uniqueLinkDetector;
         $this->rssReader = $rssReader;
     }
 
@@ -30,16 +35,17 @@ class ReadErrataRssUsecase implements ErrataRssDataSoureChecker
 
         /** @var RssData $item */
         foreach ($downloadedItem as $item) {
+            if (! $this->uniqueLinkDetector->isUniqueLink($item->link())) {
+                return;
+            }
 
-            //Todo ramdomness in domain (unpredictable test/assertion)
             $errataId = ErrataId::generate();
 
             if (! $this->errataUniqueService->isUnique($errataId)) {
-                // todo add custom exception with message 'xxx with id x already exist/used'
-                throw new \RuntimeException('Id exist');
+                throw ErrataFeedAlreadyExist::withId($errataId);
             }
 
-            $errataFeed = ErrataFeed::create($item->title(), $item->description(), $item->link(), $item->publicationDate(), $errataId);
+            $errataFeed = ErrataFeed::create($item->title(), $item->description(), $item->link(), new \DateTimeImmutable($item->publicationDate()), $errataId);
 
             $this->repository->save($errataFeed);
         }

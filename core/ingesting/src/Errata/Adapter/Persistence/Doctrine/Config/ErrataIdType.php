@@ -1,32 +1,32 @@
 <?php declare(strict_types=1);
 
-namespace Ingesting\PublicJob\Adapter\Persistence\Doctrine\Config;
+namespace Ingesting\Errata\Adapter\Persistence\Doctrine\Config;
 
 use Doctrine\DBAL\Platforms\AbstractPlatform;
 use Doctrine\DBAL\Types\ConversionException;
-use Ingesting\PublicJob\Application\Model\JobId;
+use Ingesting\Errata\Application\Model\ErrataId;
 use Ramsey\Uuid\Doctrine\UuidType;
 use Ramsey\Uuid\UuidInterface;
 
-class JobIdType extends UuidType
+class ErrataIdType extends UuidType
 {
-    public const NAME = 'job_id';
+    public const NAME = 'errata_id';
 
     /**
      * @param UuidInterface|string|null $value
      *
      * @throws ConversionException
      */
-    public function convertToPHPValue($value, AbstractPlatform $platform): ?JobId
+    public function convertToPHPValue($value, AbstractPlatform $platform): ?ErrataId
     {
         if ('' === $value) {
             return null;
         }
-        if ($value instanceof JobId) {
+        if ($value instanceof ErrataId) {
             return $value;
         }
         try {
-            return JobId::fromString((string) $value);
+            return ErrataId::fromString((string) $value);
         } catch (\Exception $ex) {
             throw ConversionException::conversionFailed((string) $value, self::NAME);
         }
@@ -42,7 +42,7 @@ class JobIdType extends UuidType
         if (null === $value) {
             return null;
         }
-        if ($value instanceof JobId) {
+        if ($value instanceof ErrataId) {
             return $value->toString();
         }
         throw ConversionException::conversionFailed((string) $value, self::NAME);

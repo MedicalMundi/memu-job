@@ -4,11 +4,12 @@ namespace Ingesting\Errata\Infrastructure;
 
 use FeedIo\Factory;
 use Ingesting\Errata\Adapter\Rss\FeedIoRssReader;
-use Ingesting\Errata\Application\Domain\Model\ErrataFeedRepository;
-use Ingesting\Errata\Application\Domain\Model\Service\ErrataUniqueService;
 use Ingesting\Errata\Application\ErrataContextInterface;
 use Ingesting\Errata\Application\ErrataModule;
 use Ingesting\Errata\Application\Iso\RssReader;
+use Ingesting\Errata\Application\Model\ErrataFeedRepository;
+use Ingesting\Errata\Application\Model\Service\ErrataUniqueService;
+use Ingesting\Errata\Application\Model\Service\UniqueErrataLinkService;
 use Ingesting\Errata\Application\Usecase\ErrataRssDataSoureChecker;
 use Ingesting\Errata\Application\Usecase\ReadErrataRssUsecase;
 use Psr\Log\LoggerInterface;
@@ -22,6 +23,8 @@ abstract class ServiceContainer
     protected ?ErrataFeedRepository $errataFeedRepository = null;
 
     protected ?ErrataUniqueService $uniqueErrataIdentity = null;
+
+    protected ?UniqueErrataLinkService $uniqueErrataLinkService = null;
 
     protected ?RssReader $rssReader = null;
 
@@ -39,7 +42,6 @@ abstract class ServiceContainer
     protected function errataFeedRepository(): ErrataFeedRepository
     {
         if ($this->errataFeedRepository === null) {
-            // Todo use a real implementation
             throw new \RuntimeException('ErrataFeed repository not yet implemented!');
         }
 
@@ -57,12 +59,24 @@ abstract class ServiceContainer
         return $this->uniqueErrataIdentity;
     }
 
+    protected function uniqueErrataLinkService(): UniqueErrataLinkService
+    {
+        if ($this->uniqueErrataLinkService === null) {
+            $this->uniqueErrataLinkService = new UniqueErrataLinkService(
+                $this->errataFeedRepository()
+            );
+        }
+
+        return $this->uniqueErrataLinkService;
+    }
+
     protected function readErrataRssUsecase(): ErrataRssDataSoureChecker
     {
         if ($this->readErrataRssUsecase === null) {
             $this->readErrataRssUsecase = new ReadErrataRssUsecase(
                 $this->errataFeedRepository(),
                 $this->uniqueErrataIdentity(),
+                $this->uniqueErrataLinkService(),
                 $this->rssReader()
             );
         }

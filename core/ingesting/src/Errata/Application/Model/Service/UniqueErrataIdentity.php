@@ -1,8 +1,8 @@
 <?php declare(strict_types=1);
 
-namespace Ingesting\Errata\Application\Domain\Model\Service;
+namespace Ingesting\Errata\Application\Model\Service;
 
-use Ingesting\Errata\Application\Domain\Model\ErrataId;
+use Ingesting\Errata\Application\Model\ErrataId;
 
 interface UniqueErrataIdentity
 {
