@@ -38,6 +38,7 @@ services:
     Ingesting\PublicJob\Adapter\Cli\IngestingJobCommand:
         arguments:
             - '@Ingesting\PublicJob\Application\PublicJobModule'
+        tags: ['console.command']
 
 
     Ingesting\Errata\Adapter\Persistence\Doctrine\DoctrineErrataFeedRepository:

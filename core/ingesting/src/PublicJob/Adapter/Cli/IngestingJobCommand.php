@@ -12,7 +12,7 @@ class IngestingJobCommand extends Command
 {
     protected static $defaultName = 'app:ingesting:job';
 
-    //protected static string $defaultDescription = 'Download rss from Gazzetta Ufficiale';
+    protected static $defaultDescription = 'Download rss from Gazzetta Ufficiale';
 
     private JobRssDataSourceChecker $usecase;
 
@@ -24,8 +24,8 @@ class IngestingJobCommand extends Command
 
     protected function configure(): void
     {
-        //$this
-            //->setDescription(self::$defaultDescription);
+        $this
+            ->setHelp('Questo comando verifica la pubblicazione di nuovi RSS feed.');
     }
 
     protected function execute(InputInterface $input, OutputInterface $output): int
@@ -36,9 +36,9 @@ class IngestingJobCommand extends Command
             $io->success('You have a new command! Now make it your own! Pass --help to see your options.');
         } catch (\Exception $exception) {
             $io->error($exception->getMessage());
-            return 1;
+            return Command::FAILURE;
         }
 
-        return 0;
+        return Command::SUCCESS;
     }
 }
