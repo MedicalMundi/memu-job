@@ -41,5 +41,19 @@ services:
         tags: ['console.command']
 
 
+
     Ingesting\Errata\Adapter\Persistence\Doctrine\DoctrineErrataFeedRepository:
         public: true
+
+    Ingesting\Errata\Infrastructure\ProductionServiceContainer:
+        arguments:
+            - '@Ingesting\Errata\Adapter\Persistence\Doctrine\DoctrineErrataFeedRepository'
+
+    Ingesting\Errata\Application\ErrataModule:
+        factory: [ '@Ingesting\Errata\Infrastructure\ProductionServiceContainer', 'module' ]
+        public: true
+
+    Ingesting\Errata\Adapter\Cli\IngestingErrataCommand:
+        arguments:
+            - '@Ingesting\Errata\Application\ErrataModule'
+        tags: ['console.command']
