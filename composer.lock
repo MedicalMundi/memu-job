@@ -3276,16 +3276,16 @@
         },
         {
             "name": "symfony/doctrine-bridge",
-            "version": "v5.4.2",
+            "version": "v5.4.3",
             "source": {
                 "type": "git",
                 "url": "https://github.com/symfony/doctrine-bridge.git",
-                "reference": "1afa4465ead0d1f59decc8cb6111b89848e819d3"
+                "reference": "f8681974e744bca8359a596cbe94096c72429307"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/symfony/doctrine-bridge/zipball/1afa4465ead0d1f59decc8cb6111b89848e819d3",
-                "reference": "1afa4465ead0d1f59decc8cb6111b89848e819d3",
+                "url": "https://api.github.com/repos/symfony/doctrine-bridge/zipball/f8681974e744bca8359a596cbe94096c72429307",
+                "reference": "f8681974e744bca8359a596cbe94096c72429307",
                 "shasum": ""
             },
             "require": {
@@ -3373,7 +3373,7 @@
             "description": "Provides integration for Doctrine with various Symfony components",
             "homepage": "https://symfony.com",
             "support": {
-                "source": "https://github.com/symfony/doctrine-bridge/tree/v5.4.2"
+                "source": "https://github.com/symfony/doctrine-bridge/tree/v5.4.3"
             },
             "funding": [
                 {
@@ -3389,7 +3389,7 @@
                     "type": "tidelift"
                 }
             ],
-            "time": "2021-12-25T19:46:58+00:00"
+            "time": "2022-01-27T10:10:20+00:00"
         },
         {
             "name": "symfony/dotenv",
@@ -4588,12 +4588,12 @@
                 }
             },
             "autoload": {
-                "psr-4": {
-                    "Symfony\\Polyfill\\Intl\\Grapheme\\": ""
-                },
                 "files": [
                     "bootstrap.php"
-                ]
+                ],
+                "psr-4": {
+                    "Symfony\\Polyfill\\Intl\\Grapheme\\": ""
+                }
             },
             "notification-url": "https://packagist.org/downloads/",
             "license": [
@@ -4669,12 +4669,12 @@
                 }
             },
             "autoload": {
-                "psr-4": {
-                    "Symfony\\Polyfill\\Intl\\Normalizer\\": ""
-                },
                 "files": [
                     "bootstrap.php"
                 ],
+                "psr-4": {
+                    "Symfony\\Polyfill\\Intl\\Normalizer\\": ""
+                },
                 "classmap": [
                     "Resources/stubs"
                 ]
@@ -4833,12 +4833,12 @@
                 }
             },
             "autoload": {
-                "psr-4": {
-                    "Symfony\\Polyfill\\Php72\\": ""
-                },
                 "files": [
                     "bootstrap.php"
-                ]
+                ],
+                "psr-4": {
+                    "Symfony\\Polyfill\\Php72\\": ""
+                }
             },
             "notification-url": "https://packagist.org/downloads/",
             "license": [
@@ -4909,12 +4909,12 @@
                 }
             },
             "autoload": {
-                "psr-4": {
-                    "Symfony\\Polyfill\\Php73\\": ""
-                },
                 "files": [
                     "bootstrap.php"
                 ],
+                "psr-4": {
+                    "Symfony\\Polyfill\\Php73\\": ""
+                },
                 "classmap": [
                     "Resources/stubs"
                 ]
@@ -5878,16 +5878,16 @@
         },
         {
             "name": "dama/doctrine-test-bundle",
-            "version": "v6.7.3",
+            "version": "v6.7.4",
             "source": {
                 "type": "git",
                 "url": "https://github.com/dmaicher/doctrine-test-bundle.git",
-                "reference": "1f964d416cf89698064dd0d69b5fe3170d05558d"
+                "reference": "b1626f0e63a75a335aac49f6932d33018a6c5e2a"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/dmaicher/doctrine-test-bundle/zipball/1f964d416cf89698064dd0d69b5fe3170d05558d",
-                "reference": "1f964d416cf89698064dd0d69b5fe3170d05558d",
+                "url": "https://api.github.com/repos/dmaicher/doctrine-test-bundle/zipball/b1626f0e63a75a335aac49f6932d33018a6c5e2a",
+                "reference": "b1626f0e63a75a335aac49f6932d33018a6c5e2a",
                 "shasum": ""
             },
             "require": {
@@ -5938,9 +5938,9 @@
             ],
             "support": {
                 "issues": "https://github.com/dmaicher/doctrine-test-bundle/issues",
-                "source": "https://github.com/dmaicher/doctrine-test-bundle/tree/v6.7.3"
+                "source": "https://github.com/dmaicher/doctrine-test-bundle/tree/v6.7.4"
             },
-            "time": "2022-01-18T15:55:40+00:00"
+            "time": "2022-01-26T19:40:56+00:00"
         },
         {
             "name": "myclabs/deep-copy",
