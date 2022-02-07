@@ -2,15 +2,31 @@
 
 namespace Ingesting\Tests\Errata\Integration\Infrastructure;
 
+use Ingesting\Errata\Application\Model\ErrataFeedRepository;
 use Ingesting\Errata\Infrastructure\ProductionServiceContainer;
-use PHPUnit\Framework\TestCase;
+use Symfony\Bundle\FrameworkBundle\Test\KernelTestCase;
 
 /**
  * @covers \Ingesting\Errata\Infrastructure\ProductionServiceContainer
  * @group quarantine
  */
-class ProductionServiceContainerTest extends TestCase
+class ProductionServiceContainerTest extends KernelTestCase
 {
+    /**
+     * @var ErrataFeedRepository
+     */
+    private $errataFeedRepository;
+
+    protected function setUp(): void
+    {
+        $kernel = parent::bootKernel();
+
+        $this->errataFeedRepository = $kernel->getContainer()
+            ->get('Ingesting\Errata\Adapter\Persistence\Doctrine\DoctrineErrataFeedRepository');
+
+        parent::setUp();
+    }
+
     /**
      * @test
      */
@@ -18,7 +34,14 @@ class ProductionServiceContainerTest extends TestCase
     {
         self::expectNotToPerformAssertions();
 
-        $moduleContainer = new ProductionServiceContainer();
+        $moduleContainer = new ProductionServiceContainer(
+            $this->errataFeedRepository
+        );
         $moduleContainer->module();
+    }
+
+    protected function tearDown(): void
+    {
+        $this->errataFeedRepository = null;
     }
 }

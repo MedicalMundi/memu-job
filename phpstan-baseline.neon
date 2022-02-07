@@ -96,6 +96,16 @@ parameters:
 			path: core/ingesting/src/SharedKernel/Infrastructure/FeedIoAdapter/Response.php
 
 		-
+			message: "#^Property Ingesting\\\\Tests\\\\Errata\\\\Integration\\\\Infrastructure\\\\ProductionServiceContainerTest\\:\\:\\$errataFeedRepository \\(Ingesting\\\\Errata\\\\Application\\\\Model\\\\ErrataFeedRepository\\) does not accept null\\.$#"
+			count: 1
+			path: core/ingesting/tests/Errata/Integration/Infrastructure/ProductionServiceContainerTest.php
+
+		-
+			message: "#^Property Ingesting\\\\Tests\\\\Errata\\\\Integration\\\\Infrastructure\\\\ProductionServiceContainerTest\\:\\:\\$errataFeedRepository \\(Ingesting\\\\Errata\\\\Application\\\\Model\\\\ErrataFeedRepository\\) does not accept object\\|null\\.$#"
+			count: 1
+			path: core/ingesting/tests/Errata/Integration/Infrastructure/ProductionServiceContainerTest.php
+
+		-
 			message: "#^Method Ingesting\\\\Tests\\\\Errata\\\\Integration\\\\Persistence\\\\DoctrineErrataFeedRepositoryTest\\:\\:createRepository\\(\\) should return Ingesting\\\\Errata\\\\Application\\\\Model\\\\ErrataFeedRepository but returns object\\|null\\.$#"
 			count: 1
 			path: core/ingesting/tests/Errata/Integration/Persistence/DoctrineErrataFeedRepositoryTest.php
