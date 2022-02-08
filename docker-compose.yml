@@ -57,8 +57,9 @@ services:
     ports:
       - "8181:80"
     environment:
-      PGADMIN_DEFAULT_EMAIL: "foobar@example.com"
-      PGADMIN_DEFAULT_PASSWORD: "foobar"
+      PGADMIN_DEFAULT_EMAIL: "admin@example.com"
+      PGADMIN_DEFAULT_PASSWORD: "admin"
+
 
   pgsql-test:
     image: postgres:${POSTGRES_VERSION:-13}-alpine
