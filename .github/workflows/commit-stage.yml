@@ -15,13 +15,12 @@ env:
 jobs:
   lint-composer:
     runs-on: ubuntu-18.04
-    timeout-minutes: 5
+    timeout-minutes: 3
     strategy:
       matrix:
         php:
           - '7.4'
       fail-fast: true
-
     steps:
       - name: Checkout
         uses: actions/checkout@v2
@@ -75,13 +74,12 @@ jobs:
   coding-standard:
     if: "!contains(github.event.*.message, 'composer(deps')"
     runs-on: ubuntu-18.04
-
+    timeout-minutes: 3
     strategy:
       matrix:
         php:
           - '7.4'
       fail-fast: true
-
     steps:
       - uses: actions/checkout@v2
 
@@ -131,13 +129,12 @@ jobs:
   architecture-check:
     if: "!contains(github.event.*.message, 'composer(deps')"
     runs-on: ubuntu-18.04
-
+    timeout-minutes: 3
     strategy:
       matrix:
         php:
           - '7.4'
       fail-fast: true
-
     steps:
       - uses: actions/checkout@v2
 
@@ -195,13 +192,12 @@ jobs:
 
   phpstan:
     runs-on: ubuntu-18.04
-
+    timeout-minutes: 3
     strategy:
       matrix:
         php:
           - '7.4'
       fail-fast: true
-
     steps:
       - uses: actions/checkout@v2
 
@@ -250,13 +246,12 @@ jobs:
 
   psalm:
     runs-on: ubuntu-18.04
-
+    timeout-minutes: 3
     strategy:
       matrix:
         php:
           - '7.4'
       fail-fast: true
-
     steps:
       - uses: actions/checkout@v2
 
@@ -305,6 +300,7 @@ jobs:
 
   core-test:
     runs-on: ubuntu-18.04
+    timeout-minutes: 5
     services:
       pgsql:
         image: postgres:13-alpine
@@ -319,13 +315,11 @@ jobs:
           --health-interval 10s
           --health-timeout 5s
           --health-retries 3
-
     strategy:
       matrix:
         php:
           - '7.4'
       fail-fast: true
-
     steps:
       - uses: actions/checkout@v2
 
@@ -412,6 +406,7 @@ jobs:
       - lint-symfony-container
       - lint-symfony-configuration
     runs-on: ubuntu-18.04
+    timeout-minutes: 5
     services:
       pgsql:
         image: postgres:13-alpine
@@ -426,13 +421,11 @@ jobs:
           --health-interval 10s
           --health-timeout 5s
           --health-retries 3
-
     strategy:
       matrix:
         php:
           - '7.4'
       fail-fast: true
-
     steps:
       - uses: actions/checkout@v2
 
@@ -490,9 +483,10 @@ jobs:
           SYMFONY_DEPRECATIONS_HELPER: disabled
           DATABASE_URL: postgresql://ci-db-user:ci-db-password@127.0.0.1:${{ job.services.pgsql.ports['5432'] }}/ci-db
 
+
   lint-symfony-container:
     runs-on: ubuntu-18.04
-
+    timeout-minutes: 3
     strategy:
       matrix:
         php:
@@ -549,13 +543,12 @@ jobs:
 
   lint-symfony-configuration:
     runs-on: ubuntu-18.04
-
+    timeout-minutes: 3
     strategy:
       matrix:
         php:
           - '7.4'
       fail-fast: true
-
     steps:
       - uses: actions/checkout@v2
 
@@ -614,6 +607,7 @@ jobs:
       - lint-symfony-container
       - lint-symfony-configuration
     runs-on: ubuntu-18.04
+    timeout-minutes: 3
     steps:
       - name: emit pipeline event
         uses: peter-evans/repository-dispatch@v1
@@ -628,7 +622,7 @@ jobs:
     name: notifiy-coverage-report-was-ready
     needs:
       - core-test
-
+    timeout-minutes: 3
     runs-on: ubuntu-18.04
     steps:
       - name: Dump context
