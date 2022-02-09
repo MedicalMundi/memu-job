@@ -8,8 +8,8 @@ on:
 
 env:
   GITHUB_PAT: ${{ secrets.MEMUJOB_CI_GHA_PAT }}
-  REPORT_FOLDER_PHPUNIT: ${{ secrets.REPORT_FOLDER_PHPUNIT }}
-  PHPUNIT_ARTIFACT_NAME: ${{ secrets.CI_ENV_PHPUNIT_ARTIFACT_NAME }}
+  REPORT_FOLDER_PHPUNIT: 'coverage-report'
+  PHPUNIT_ARTIFACT_NAME: 'phpunit-artifact'
 
 jobs:
 
