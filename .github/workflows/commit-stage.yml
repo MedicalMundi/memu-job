@@ -300,6 +300,15 @@ jobs:
 
   core-test:
     runs-on: ubuntu-18.04
+    needs:
+      - lint-composer
+      - coding-standard
+      - architecture-check
+      - phpstan
+      - psalm
+      - lint-symfony-container
+      - lint-symfony-configuration
+
     timeout-minutes: 5
     services:
       pgsql:
