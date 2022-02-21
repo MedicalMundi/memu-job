@@ -59,6 +59,7 @@ class InMemoryErrataFeedRepository implements ErrataFeedRepository
         }
 
         $result = true;
+        /** @var ErrataFeed $errataFeed */
         foreach ($this->items as $errataFeed) {
             if ($errataLink === $errataFeed->link()) {
                 $result = false;
