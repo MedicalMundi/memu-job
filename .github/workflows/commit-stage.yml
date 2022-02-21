@@ -295,7 +295,7 @@ jobs:
           composer bin psalm install --ansi
 
       - name: Run psalm
-        run: vendor/bin/psalm --config=psalm.xml --diff --show-info=false --stats --threads=4
+        run: vendor/bin/psalm --config=psalm.xml --diff --show-info=false --stats --threads=4 --no-cache
 
 
   core-test:
