@@ -1,5 +1,19 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <files psalm-version="4.13.1@5cf660f63b548ccd4a56f62d916ee4d6028e01a3">
+  <file src="core/ingesting/src/Errata/Adapter/Persistence/Doctrine/Config/ErrataIdType.php">
+    <ImplementedReturnTypeMismatch occurrences="1">
+      <code>?ErrataId</code>
+    </ImplementedReturnTypeMismatch>
+    <MoreSpecificImplementedParamType occurrences="2">
+      <code>$value</code>
+      <code>$value</code>
+    </MoreSpecificImplementedParamType>
+  </file>
+  <file src="core/ingesting/src/Errata/Adapter/Persistence/Doctrine/DoctrineErrataFeedRepository.php">
+    <LessSpecificImplementedReturnType occurrences="1">
+      <code>ErrataFeed[]</code>
+    </LessSpecificImplementedReturnType>
+  </file>
   <file src="core/ingesting/src/Errata/Adapter/Persistence/InMemoryErrataFeedRepository.php">
     <MixedInferredReturnType occurrences="1">
       <code>ErrataFeed</code>
@@ -9,8 +23,16 @@
     </MixedReturnStatement>
   </file>
   <file src="core/ingesting/src/Errata/Adapter/Rss/FeedIoRssReader.php">
-    <PossiblyNullArgument occurrences="3">
-      <code>$item-&gt;getDescription()</code>
+    <InvalidArrayAccess occurrences="1">
+      <code>$item-&gt;getAllElements()[0]</code>
+    </InvalidArrayAccess>
+    <MixedArgument occurrences="1">
+      <code>($item-&gt;getAllElements()[0])-&gt;getValue()</code>
+    </MixedArgument>
+    <MixedMethodCall occurrences="1">
+      <code>getValue</code>
+    </MixedMethodCall>
+    <PossiblyNullArgument occurrences="2">
       <code>$item-&gt;getLink()</code>
       <code>$item-&gt;getTitle()</code>
     </PossiblyNullArgument>
@@ -26,7 +48,7 @@
       <code>$title</code>
     </MissingConstructor>
   </file>
-  <file src="core/ingesting/src/Errata/Application/Model/Model/ErrataFeed.php">
+  <file src="core/ingesting/src/Errata/Application/Model/ErrataFeed.php">
     <PropertyNotSetInConstructor occurrences="4">
       <code>$description</code>
       <code>$link</code>
@@ -121,6 +143,23 @@
       <code>getHeader</code>
       <code>hasHeader</code>
     </UndefinedInterfaceMethod>
+  </file>
+  <file src="core/ingesting/tests/Errata/Integration/Infrastructure/ProductionServiceContainerTest.php">
+    <PossiblyNullPropertyAssignmentValue occurrences="1">
+      <code>null</code>
+    </PossiblyNullPropertyAssignmentValue>
+    <PropertyTypeCoercion occurrences="1"/>
+  </file>
+  <file src="core/ingesting/tests/Errata/Integration/Persistence/DoctrineErrataFeedRepositoryTest.php">
+    <LessSpecificReturnStatement occurrences="1">
+      <code>$this-&gt;doctrineErrataFeedRepository</code>
+    </LessSpecificReturnStatement>
+    <MoreSpecificReturnType occurrences="1">
+      <code>ErrataFeedRepository</code>
+    </MoreSpecificReturnType>
+    <NullableReturnStatement occurrences="1">
+      <code>$this-&gt;doctrineErrataFeedRepository</code>
+    </NullableReturnStatement>
   </file>
   <file src="core/ingesting/tests/PublicJob/Integration/Infrastructure/PublicJobProductionServiceContainerTest.php">
     <PossiblyNullPropertyAssignmentValue occurrences="1">
