@@ -28,8 +28,8 @@ class DoctrineErrataFeedRepository extends ServiceEntityRepository implements Er
         if (null !== ($this->find($errata->id()))) {
             throw ErrataFeedAlreadyExist::withId($errata->id());
         }
-        $this->_em->persist($errata);
-        $this->_em->flush($errata);
+        $this->getEntityManager()->persist($errata);
+        $this->getEntityManager()->flush($errata);
     }
 
     public function withId(ErrataId $errataId): ErrataFeed
