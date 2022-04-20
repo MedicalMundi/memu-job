@@ -13,37 +13,37 @@
 
     <plugins>
         <pluginClass class="Psalm\PhpUnitPlugin\Plugin"/>
-    </plugins>
+    <pluginClass class="Weirdan\DoctrinePsalmPlugin\Plugin"/></plugins>
 
     <projectFiles>
-        <directory name="src/" />
-        <directory name="tests/" />
-        <directory name="core/ingesting/src/" />
-        <directory name="core/ingesting/tests/" />
-        <directory name="core/publishing/src/" />
+        <directory name="src/"/>
+        <directory name="tests/"/>
+        <directory name="core/ingesting/src/"/>
+        <directory name="core/ingesting/tests/"/>
+        <directory name="core/publishing/src/"/>
         <directory name="core/publishing/tests/"/>
         <ignoreFiles>
-            <file name="src/Kernel.php" />
-            <file name="config/bootstrap.php" />
-            <directory name="vendor" />
+            <file name="src/Kernel.php"/>
+            <file name="config/bootstrap.php"/>
+            <directory name="vendor"/>
         </ignoreFiles>
     </projectFiles>
 
     <issueHandlers>
         <PossiblyNullArgument>
             <errorLevel type="suppress">
-                <file name="core/ingesting/src/PublicJob/Adapter/Rss/FeedIoRssReader.php" />
+                <file name="core/ingesting/src/PublicJob/Adapter/Rss/FeedIoRssReader.php"/>
             </errorLevel>
         </PossiblyNullArgument>
         <PossiblyNullReference>
             <errorLevel type="suppress">
-                <file name="core/ingesting/src/PublicJob/Adapter/Rss/FeedIoRssReader.php" />
+                <file name="core/ingesting/src/PublicJob/Adapter/Rss/FeedIoRssReader.php"/>
             </errorLevel>
         </PossiblyNullReference>
         <MissingConstructor>
             <errorLevel type="suppress">
-                <file name="core/ingesting/src/PublicJob/Adapter/Rss/FeedIoRssReader.php" />
-                <file name="core/ingesting/src/PublicJob/Adapter/Rss/RssDataItem.php" />
+                <file name="core/ingesting/src/PublicJob/Adapter/Rss/FeedIoRssReader.php"/>
+                <file name="core/ingesting/src/PublicJob/Adapter/Rss/RssDataItem.php"/>
             </errorLevel>
         </MissingConstructor>
     </issueHandlers>
