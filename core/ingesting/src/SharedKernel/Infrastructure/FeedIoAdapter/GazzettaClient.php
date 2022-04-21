@@ -40,8 +40,7 @@ class GazzettaClient implements ClientInterface
     }
 
     /**
-     * @param DateTime|null $modifiedSince
-     * throws \GuzzleHttp\Exception\GuzzleException
+     * @param DateTime $modifiedSince
      */
     public function getResponse(string $url, DateTime $modifiedSince): ResponseInterface
     {
