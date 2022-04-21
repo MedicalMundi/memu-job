@@ -46,5 +46,11 @@
                 <file name="core/ingesting/src/PublicJob/Adapter/Rss/RssDataItem.php"/>
             </errorLevel>
         </MissingConstructor>
+        <LessSpecificImplementedReturnType>
+            <errorLevel type="suppress">
+                <file name="core/ingesting/src/Errata/Adapter/Persistence/Doctrine/DoctrineErrataFeedRepository.php"/>
+                <file name="core/ingesting/src/PublicJob/Adapter/Persistence/Doctrine/DoctrineJobFeedRepository.php"/>
+            </errorLevel>
+        </LessSpecificImplementedReturnType>
     </issueHandlers>
 </psalm>
