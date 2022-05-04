@@ -39,9 +39,6 @@ class GazzettaClient implements ClientInterface
         return $this;
     }
 
-    /**
-     * @param DateTime $modifiedSince
-     */
     public function getResponse(string $url, DateTime $modifiedSince): ResponseInterface
     {
 
