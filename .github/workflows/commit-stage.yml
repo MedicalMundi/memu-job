@@ -14,6 +14,7 @@ env:
 
 jobs:
   lint-composer:
+    name: Validate composer
     runs-on: ubuntu-18.04
     timeout-minutes: 3
     strategy:
@@ -62,7 +63,7 @@ jobs:
         continue-on-error: true
 
       - name: Install Composer dependencies
-        run: composer install --prefer-dist --no-progress --ansi --no-scripts
+        run: composer install --prefer-dist --no-progress --no-scripts --ansi
 
       - name: Run composer validate
         run: composer validate --strict --ansi
@@ -72,7 +73,7 @@ jobs:
 
 
   coding-standard:
-    if: "!contains(github.event.*.message, 'composer(deps')"
+    name: Coding Standard
     runs-on: ubuntu-18.04
     timeout-minutes: 3
     strategy:
@@ -127,7 +128,7 @@ jobs:
 
 
   architecture-check:
-    if: "!contains(github.event.*.message, 'composer(deps')"
+    name: Architecture Checks
     runs-on: ubuntu-18.04
     timeout-minutes: 3
     strategy:
@@ -191,6 +192,7 @@ jobs:
 
 
   phpstan:
+    name: SA (phpstan)
     runs-on: ubuntu-18.04
     timeout-minutes: 3
     strategy:
@@ -245,6 +247,7 @@ jobs:
 
 
   psalm:
+    name: SA (psalm)
     runs-on: ubuntu-18.04
     timeout-minutes: 3
     strategy:
@@ -299,6 +302,7 @@ jobs:
 
 
   core-test:
+    name: Core unit test
     runs-on: ubuntu-18.04
     needs:
       - lint-composer
@@ -308,7 +312,6 @@ jobs:
       - psalm
       - lint-symfony-container
       - lint-symfony-configuration
-
     timeout-minutes: 5
     services:
       pgsql:
@@ -368,7 +371,7 @@ jobs:
           restore-keys: ${{ runner.os }}-composer-${{ matrix.php }}
 
       - name: Install Composer dependencies
-        run: composer install --prefer-dist --no-progress --ansi --no-scripts
+        run: composer install --prefer-dist --no-progress --no-scripts --ansi
 
       - name: Run Core Unit test suite
         id: phpunit-unit-test-suite
@@ -474,7 +477,7 @@ jobs:
           restore-keys: ${{ runner.os }}-composer-${{ matrix.php }}
 
       - name: Install Composer dependencies
-        run: composer install --prefer-dist --no-progress --ansi --no-scripts
+        run: composer install --prefer-dist --no-progress --no-scripts --ansi
 
       - name: Setup Database (schema & migration)
         run: |
@@ -501,7 +504,6 @@ jobs:
         php:
           - '7.4'
       fail-fast: true
-
     steps:
       - uses: actions/checkout@v2
 
@@ -541,7 +543,7 @@ jobs:
           restore-keys: ${{ runner.os }}-composer-${{ matrix.php }}
 
       - name: Install Composer dependencies
-        run: composer install --prefer-dist --no-progress --ansi --no-scripts
+        run: composer install --prefer-dist --no-progress --no-scripts --ansi
 
       - name: lint test container
         run: ./bin/console lint:container -e test --verbose
@@ -597,7 +599,7 @@ jobs:
           restore-keys: ${{ runner.os }}-composer-${{ matrix.php }}
 
       - name: Install Composer dependencies
-        run: composer install --prefer-dist --no-progress --ansi --no-scripts
+        run: composer install --prefer-dist --no-progress --no-scripts --ansi
 
       - name: lint symfony configuration
         run: ./bin/console lint:yaml config --parse-tags
