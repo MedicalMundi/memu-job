@@ -17,6 +17,9 @@ env:
 
   TEST_TAG_PHP_RELEASE_CANDIDATE: medicalmundi/temp-test-rc-img:test
 
+  REGISTRY: ghcr.io
+  IMAGE_NAME: ${{ github.repository }}
+
 
 jobs:
   triggering-workflow-info:
@@ -66,7 +69,7 @@ jobs:
         id: docker_ghrc_login
         uses: docker/login-action@v1
         with:
-          registry: ghcr.io
+          registry: ${{ env.REGISTRY }}
           username: ${{ github.actor }}
           password: ${{ secrets.GITHUB_TOKEN }}
 
@@ -84,6 +87,7 @@ jobs:
             type=semver,pattern={{major}}
             type=sha
             type=raw,${{ github.event.client_payload.ref_name }}
+            type=raw,${{ github.event.client_payload.sha }}
 
       - name: Set up QEMU
         uses: docker/setup-qemu-action@v1
