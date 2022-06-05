@@ -1,7 +1,7 @@
 version: '3.8'
 
 services:
-  php:
+  app:
     image: webdevops/php-dev:7.4
     ports:
       - "9021:9021"
@@ -23,29 +23,42 @@ services:
       XDEBUG_REMOTE_PORT: 9021
 
 
-  nginx:
+  web:
     image: webdevops/nginx:alpine
     ports:
-      - "8088:80"
+      - "80:80"
     volumes:
       - "./:/app"
     environment:
       WEB_DOCUMENT_ROOT: /app/public
       WEB_DOCUMENT_INDEX: index.php
-      WEB_PHP_SOCKET: php:9000
+      WEB_PHP_SOCKET: app:9000
 
 
-  pgsql:
+  database:
     image: postgres:${POSTGRES_VERSION:-13}-alpine
     ports:
       - "5432"
-    links:
-      - pgadmin
     environment:
-      POSTGRES_DB: ${POSTGRES_DB:-app}
+      POSTGRES_DB: ${POSTGRES_DB:-db-name}
       # You should definitely change the password in production
-      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD:-ChangeMe}
-      POSTGRES_USER: ${POSTGRES_USER:-symfony}
+      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD:-db-password}
+      POSTGRES_USER: ${POSTGRES_USER:-db-user}
+      # volumes:
+      # - db-data:/var/lib/postgresql/data:rw
+      # You may use a bind-mounted host directory instead, so that it is harder to accidentally remove the volume and lose all your data!
+      # - ./docker/db/data:/var/lib/postgresql/data:rw
+
+
+  database-test:
+    image: postgres:${POSTGRES_VERSION:-13}-alpine
+    ports:
+      - "5432"
+    environment:
+      POSTGRES_DB: ${POSTGRES_TEST_DB:-db-name_test}
+      # You should definitely change the password in production
+      POSTGRES_PASSWORD: ${POSTGRES_TEST_PASSWORD:-db-password}
+      POSTGRES_USER: ${POSTGRES_TEST_USER:-db-user}
       # volumes:
       # - db-data:/var/lib/postgresql/data:rw
       # You may use a bind-mounted host directory instead, so that it is harder to accidentally remove the volume and lose all your data!
@@ -56,23 +69,11 @@ services:
     image: dpage/pgadmin4:6.2
     ports:
       - "8181:80"
+    links:
+      - database
+      - database-test
     environment:
       PGADMIN_DEFAULT_EMAIL: "admin@example.com"
       PGADMIN_DEFAULT_PASSWORD: "admin"
 
 
-  pgsql-test:
-    image: postgres:${POSTGRES_VERSION:-13}-alpine
-    ports:
-      - "5432"
-    links:
-      - pgadmin
-    environment:
-      POSTGRES_DB: ${POSTGRES_TEST_DB:-app_test}
-      # You should definitely change the password in production
-      POSTGRES_PASSWORD: ${POSTGRES_TEST_PASSWORD:-ChangeMe}
-      POSTGRES_USER: ${POSTGRES_TEST_USER:-symfony}
-      # volumes:
-      # - db-data:/var/lib/postgresql/data:rw
-      # You may use a bind-mounted host directory instead, so that it is harder to accidentally remove the volume and lose all your data!
-      # - ./docker/db/data:/var/lib/postgresql/data:rw
