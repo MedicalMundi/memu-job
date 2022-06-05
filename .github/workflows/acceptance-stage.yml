@@ -19,6 +19,31 @@ env:
 
 
 jobs:
+  triggering-workflow-info:
+    runs-on: ubuntu-18.04
+    name: Triggering workflow info
+    steps:
+      - name: Checkout on branch ${{ github.event.client_payload.ref }}|SHA-${{ github.event.client_payload.sha }}
+        uses: actions/checkout@v2
+        with:
+          ref: ${{ github.event.workflow_run.head_commit.id }}
+
+      - name: info triggering workflow - branch name ${{ github.event.client_payload.ref }}
+        run: echo ${{ github.event.client_payload.ref }}
+
+      - name: info triggering workflow - SHA ${{ github.event.client_payload.sha }}
+        run: echo SHA from triggering workflow ${{ github.event.client_payload.sha }}
+
+      - name: info triggering workflow - commit message
+        run: echo commit message from triggering workflow '${{ github.event.workflow_run.head_commit.message }}'
+
+      - name: info triggering workflow - author '${{ github.event.workflow_run.head_commit.author.name }}' -'${{ github.event.workflow_run.head_commit.author.email }}'
+        run: echo author '${{ github.event.workflow_run.head_commit.author.name }}' -'${{ github.event.workflow_run.head_commit.author.email }}'
+
+      - name: info triggering workflow - committer '${{ github.event.workflow_run.head_commit.committer.name }}' -'${{ github.event.workflow_run.head_commit.committer.email }}'
+        run: echo author '${{ github.event.workflow_run.head_commit.author.name }}' -'${{ github.event.workflow_run.head_commit.author.email }}'
+
+
   artifact-release-candidate:
     name: Create release candidate images
     runs-on: ubuntu-18.04
