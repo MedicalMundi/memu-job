@@ -113,6 +113,9 @@ jobs:
           docker run --rm ${{ env.TEST_TAG_PHP_RELEASE_CANDIDATE }} php -v
           docker run --rm ${{ env.TEST_TAG_PHP_RELEASE_CANDIDATE }} php -m
           docker run --rm ${{ env.TEST_TAG_PHP_RELEASE_CANDIDATE }} php -i
+          docker run --rm ${{ env.TEST_TAG_PHP_RELEASE_CANDIDATE }} bin/console lint:container -e prod --verbose
+          docker run --rm ${{ env.TEST_TAG_PHP_RELEASE_CANDIDATE }} bin/console lint:container -e dev --verbose
+          docker run --rm ${{ env.TEST_TAG_PHP_RELEASE_CANDIDATE }} bin/console lint:container -e test --verbose
 
       - name: Test image as not root user
         id: test-builded-image-as-not-root-user
