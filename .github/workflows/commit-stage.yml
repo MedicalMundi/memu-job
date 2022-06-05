@@ -302,7 +302,7 @@ jobs:
 
 
   core-test:
-    name: Core unit test
+    name: unit test (core)
     runs-on: ubuntu-18.04
     timeout-minutes: 5
     services:
