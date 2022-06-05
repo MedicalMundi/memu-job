@@ -340,11 +340,9 @@ jobs:
 #          path: ${{ env.REPORT_FOLDER_PHPUNIT }}
 
 
-
-
-  symfony-test:
-    needs:
-      - core-test
+  functional-test:
+    name: Functional test
+    needs: [app-preconditions-checks]
     runs-on: ubuntu-18.04
     timeout-minutes: 5
     services:
@@ -367,7 +365,13 @@ jobs:
           - '7.4'
       fail-fast: true
     steps:
-      - uses: actions/checkout@v2
+      - name: Checkout on branch ${{ github.event.client_payload.ref_name }}|SHA-${{ github.event.client_payload.sha }}
+        uses: actions/checkout@v2
+        with:
+          ref: ${{ github.event.client_payload.sha }}
+
+      - name: info triggering workflow - commit message
+        run: echo commit message from triggering workflow '${{ github.event.client_payload.commit_message }}'
 
       - name: Setup cache environment
         id: cache-php-extensions
@@ -391,7 +395,7 @@ jobs:
           extensions: ${{ env.PHP_EXTENSIONS }}
           ini-values: memory_limit=-1
           coverage: none
-          tools: symfony
+          tools: composer, symfony
 
       - name: Get Composer Cache Directory
         id: composer-cache
@@ -407,18 +411,23 @@ jobs:
       - name: Install Composer dependencies
         run: composer install --prefer-dist --no-progress --no-scripts --ansi
 
-      - name: Setup Database (schema & migration)
-        run: |
-          php bin/console doctrine:schema:update --force -e test
-          php bin/console doctrine:migrations:migrate -e test --allow-no-migration --no-interaction
+#      - name: Run database migrations
+#        if: ${{ github.ref_name == 'main' }}
+#        run: ./bin/console doctrine:migrations:migrate -e test -n -vv --allow-no-migration --ansi
+#        env:
+#          DATABASE_URL: postgresql://ci-db-user:ci-db-password@127.0.0.1:${{ job.services.pgsql.ports['5432'] }}/ci-db?serverVersion=13&charset=utf8
+
+      - name: Run database schema update
+        #        if: ${{ github.ref_name != 'main' }}
+        run: ./bin/console doctrine:schema:update -e test --force --ansi
         env:
-          DATABASE_URL: postgresql://ci-db-user:ci-db-password@127.0.0.1:${{ job.services.pgsql.ports['5432'] }}/ci-db
+          DATABASE_URL: postgresql://ci-db-user:ci-db-password@127.0.0.1:${{ job.services.pgsql.ports['5432'] }}/ci-db?serverVersion=13&charset=utf8
 
       - name: Run webserver
         run: symfony server:start --port=8080 --dir=public --daemon --no-tls
 
-      - name: Run test suite
-        run: ./vendor/bin/phpunit
+      - name: Run functional test suite
+        run: ./vendor/bin/phpunit tests/Functional
         env:
           SYMFONY_DEPRECATIONS_HELPER: disabled
           DATABASE_URL: postgresql://ci-db-user:ci-db-password@127.0.0.1:${{ job.services.pgsql.ports['5432'] }}/ci-db
