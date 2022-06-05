@@ -18,7 +18,7 @@ env:
   TEST_TAG_PHP_RELEASE_CANDIDATE: medicalmundi/temp-test-rc-img:test
 
   REGISTRY: ghcr.io
-  IMAGE_NAME: ${{ github.repository }}
+  #IMAGE_NAME: ${{ github.repository }}
 
 
 jobs:
@@ -138,58 +138,49 @@ jobs:
           #labels: ${{ steps.meta.outputs.labels }}
 
 
-  detect-release-candidate:
-    runs-on: ubuntu-18.04
-    permissions:
-      packages: write
-      contents: read
-
-    steps:
-      - uses: actions/checkout@v2
-
-      - name: Login to GHCR
-        id: docker_ghrc_login
-        uses: docker/login-action@v1
-        with:
-          registry: ghcr.io
-          username: ${{ github.actor }}
-          password: ${{ secrets.GITHUB_TOKEN }}
-
   prod-stack-env:
+    needs: [artifact-release-candidate]
     runs-on: ubuntu-18.04
     timeout-minutes: 10
+    permissions:
+      packages: read
+      contents: read
     steps:
       - name: Checkout
         uses: actions/checkout@v2
 
-      - name: Login to GHCR
-        id: docker_ghrc_login
-        uses: docker/login-action@v1
-        with:
-          registry: ghcr.io
-          username: ${{ github.actor }}
-          password: ${{ secrets.GITHUB_TOKEN }}
-
-      - name: List imgaes
-        run: docker image ls
+#      - name: Login to GHCR
+#        id: docker_ghrc_login
+#        uses: docker/login-action@v1
+#        with:
+#          registry: ghcr.io
+#          username: ${{ github.actor }}
+#          password: ${{ secrets.GITHUB_TOKEN }}
+#
+#      - name: List imgaes
+#        run: |
+#          docker pull ghcr.io/medicalmundi/${{ env.PHP_RELEASE_CANDIDATE_IMAGE_NAME}}:${{ github.event.client_payload.sha }}
+#          docker image ls
 
       - name: Start services
         run: docker-compose -f docker-compose.ci-gha.yml up -d
+        env:
+          MEMU_JOB_VERSION: ${{ github.event.client_payload.sha }}
 
-      #      - name: Wait for services
-      #        run: |
-      #          while status="$(docker inspect --format="{{if .Config.Healthcheck}}{{print .State.Health.Status}}{{end}}" "$(docker-compose -f docker-compose.ci-gha.yml ps -q php)")"; do
-      #            case $status in
-      #              starting) sleep 1;;
-      #              healthy) exit 0;;
-      #              unhealthy)
-      #                docker-compose -f docker-compose.ci-gha.yml ps
-      #                docker-compose -f docker-compose.ci-gha.yml logs
-      #                exit 1
-      #              ;;
-      #            esac
-      #          done
-      #          exit 1
+#      - name: Wait for services
+#        run: |
+#          while status="$(docker inspect --format="{{if .Config.Healthcheck}}{{print .State.Health.Status}}{{end}}" "$(docker-compose -f docker-compose.ci-gha.yml ps -q php)")"; do
+#            case $status in
+#              starting) sleep 1;;
+#              healthy) exit 0;;
+#              unhealthy)
+#                docker-compose -f docker-compose.ci-gha.yml ps
+#                docker-compose -f docker-compose.ci-gha.yml logs
+#                exit 1
+#              ;;
+#            esac
+#          done
+#          exit 1
 
       - name: services list
         run: docker-compose -f docker-compose.ci-gha.yml ps
@@ -218,6 +209,22 @@ jobs:
         run: curl  -vk -o /dev/null https://127.0.0.1
         continue-on-error: false
 
+      - name: Wait for services
+        run: |
+          while status="$(docker inspect --format="{{if .Config.Healthcheck}}{{print .State.Health.Status}}{{end}}" "$(docker-compose -f docker-compose.ci-gha.yml ps -q php)")"; do
+            case $status in
+              starting) sleep 1;;
+              healthy) exit 0;;
+              unhealthy)
+                docker-compose -f docker-compose.ci-gha.yml ps
+                docker-compose -f docker-compose.ci-gha.yml logs
+                exit 1
+              ;;
+            esac
+          done
+          exit 1
+
+
       - name: Show application log
         run: |
           docker-compose -f docker-compose.ci-gha.yml logs php
@@ -226,11 +233,14 @@ jobs:
         continue-on-error: true
 
       - name: Stop services
-        run: docker-compose -f docker-compose.ci-gha.yml down
+        run: docker-compose -f docker-compose.ci-gha.yml down -v --remove-orphans
 
   test-stack-env:
     runs-on: ubuntu-18.04
     timeout-minutes: 10
+    permissions:
+      packages: read
+      contents: read
     steps:
       - name: Checkout
         uses: actions/checkout@v2
