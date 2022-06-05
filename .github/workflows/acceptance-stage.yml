@@ -23,7 +23,7 @@ jobs:
     runs-on: ubuntu-18.04
     name: Triggering workflow info
     steps:
-      - name: Checkout on branch ${{ github.event.client_payload.ref }}|SHA-${{ github.event.client_payload.sha }}
+      - name: Checkout on branch ${{ github.event.client_payload.ref_name }}|SHA-${{ github.event.client_payload.sha }}
         uses: actions/checkout@v2
         with:
           ref: ${{ github.event.workflow_run.head_commit.id }}
