@@ -43,6 +43,9 @@ jobs:
       - name: info triggering workflow - committer '${{ github.event.workflow_run.head_commit.committer.name }}' -'${{ github.event.workflow_run.head_commit.committer.email }}'
         run: echo author '${{ github.event.workflow_run.head_commit.author.name }}' -'${{ github.event.workflow_run.head_commit.author.email }}'
 
+      - name: Dump context
+        uses: crazy-max/ghaction-dump-context@v1
+
 
   artifact-release-candidate:
     name: Create release candidate images
@@ -59,11 +62,13 @@ jobs:
       - run: echo sha-${{ github.event.client_payload.sha }}
       - run: echo ref- ${{ github.event.client_payload.ref }}
 
-      - run: sudo chown runner:docker /var/run/docker.sock
-        if: ${{ env.ACT }}
-
-      - name: Dump context
-        uses: crazy-max/ghaction-dump-context@v1
+      - name: Login to GHCR
+        id: docker_ghrc_login
+        uses: docker/login-action@v1
+        with:
+          registry: ghcr.io
+          username: ${{ github.actor }}
+          password: ${{ secrets.GITHUB_TOKEN }}
 
       - name: Docker meta
         id: meta
@@ -79,14 +84,6 @@ jobs:
             type=semver,pattern={{major}}
             type=sha
             type=raw,${{ github.event.client_payload.ref_name }}
-
-      - name: Login to GHCR
-        id: docker_ghrc_login
-        uses: docker/login-action@v1
-        with:
-          registry: ghcr.io
-          username: ${{ github.actor }}
-          password: ${{ secrets.GITHUB_TOKEN }}
 
       - name: Set up QEMU
         uses: docker/setup-qemu-action@v1
