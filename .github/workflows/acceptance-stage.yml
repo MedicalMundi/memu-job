@@ -50,6 +50,106 @@ jobs:
         uses: crazy-max/ghaction-dump-context@v1
 
 
+  app-preconditions-checks:
+    name: App preconditions checks
+    runs-on: ubuntu-18.04
+    timeout-minutes: 5
+    services:
+      pgsql:
+        image: postgres:13-alpine
+        env:
+          POSTGRES_DB: ci-db_test
+          POSTGRES_PASSWORD: ci-db-password
+          POSTGRES_USER: ci-db-user
+        ports:
+          - 5432/tcp
+        options: >-
+          --health-cmd pg_isready
+          --health-interval 10s
+          --health-timeout 5s
+          --health-retries 3
+    strategy:
+      matrix:
+        php:
+          - '7.4'
+      fail-fast: true
+    steps:
+      - name: Checkout on branch ${{ github.event.client_payload.ref_name }}|SHA-${{ github.event.client_payload.sha }}
+        uses: actions/checkout@v2
+        with:
+          ref: ${{ github.event.client_payload.sha }}
+
+      - name: info triggering workflow - commit message
+        run: echo commit message from triggering workflow '${{ github.event.client_payload.commit_message }}'
+
+      - name: Setup cache environment
+        id: cache-php-extensions
+        uses: shivammathur/cache-extensions@v1
+        with:
+          php-version: ${{ matrix.php }}
+          extensions: ${{ env.PHP_EXTENSIONS }}
+          key: ${{ env.PHP_EXTENSIONS_CACHE_KEY }}
+
+      - name: Cache extensions
+        uses: actions/cache@v2
+        with:
+          path: ${{ steps.cache-php-extensions.outputs.dir }}
+          key: ${{ steps.cache-php-extensions.outputs.key }}
+          restore-keys: ${{ steps.cache-php-extensions.outputs.key }}
+
+      - name: Setup PHP
+        uses: shivammathur/setup-php@v2
+        with:
+          php-version: ${{ matrix.php }}
+          extensions: ${{ env.PHP_EXTENSIONS }}
+          ini-values: memory_limit=-1
+          tools: composer
+
+      - name: Get Composer Cache Directory
+        id: composer-cache
+        run: echo "::set-output name=dir::$(composer config cache-files-dir)"
+
+      - name: Cache dependencies
+        uses: actions/cache@v2
+        with:
+          path: ${{ steps.composer-cache.outputs.dir }}
+          key: ${{ runner.os }}-composer-${{ hashFiles('**/composer.lock') }}
+          restore-keys: ${{ runner.os }}-composer-
+
+      - name: Install Composer dependencies
+        run: composer install --prefer-dist --no-progress --no-scripts --ansi
+
+      - name: Validate configurations files
+        run: |
+          ./bin/console lint:yaml config/ --ansi
+
+      - name: Validate Symfony containers (prod|dev)
+        run: |
+          ./bin/console lint:container -e prod --ansi
+          ./bin/console lint:container -e dev --ansi
+
+#      - name: Validate twig templates
+#        run: |
+#          ./bin/console lint:twig templates/ --ansi
+
+#      - name: Run database migrations
+#        if: ${{ github.ref_name == 'main' }}
+#        run: ./bin/console doctrine:migrations:migrate -e test -n -vv --allow-no-migration --ansi
+#        env:
+#          DATABASE_URL: postgresql://ci-db-user:ci-db-password@127.0.0.1:${{ job.services.pgsql.ports['5432'] }}/ci-db?serverVersion=13&charset=utf8
+
+      - name: Run database schema update
+#        if: ${{ github.ref_name != 'main' }}
+        run: ./bin/console doctrine:schema:update -e test --force --ansi
+        env:
+          DATABASE_URL: postgresql://ci-db-user:ci-db-password@127.0.0.1:${{ job.services.pgsql.ports['5432'] }}/ci-db?serverVersion=13&charset=utf8
+
+      - name: Run database schema validate
+        run: ./bin/console doctrine:schema:validate -e test --ansi
+        env:
+          DATABASE_URL: postgresql://ci-db-user:ci-db-password@127.0.0.1:${{ job.services.pgsql.ports['5432'] }}/ci-db?serverVersion=13&charset=utf8
+
+
   artifact-release-candidate:
     name: Create release candidate images
     runs-on: ubuntu-18.04
@@ -139,7 +239,7 @@ jobs:
 
 
   prod-stack-env:
-    needs: [artifact-release-candidate]
+    needs: [app-preconditions-checks, artifact-release-candidate]
     runs-on: ubuntu-18.04
     timeout-minutes: 10
     permissions:
@@ -211,7 +311,7 @@ jobs:
         run: docker-compose -f docker-compose.ci-gha.yml down -v --remove-orphans
 
   test-stack-env:
-    needs: [artifact-release-candidate]
+    needs: [app-preconditions-checks, artifact-release-candidate]
     runs-on: ubuntu-18.04
     timeout-minutes: 10
     permissions:
