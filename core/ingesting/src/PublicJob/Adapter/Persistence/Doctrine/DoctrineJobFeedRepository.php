@@ -30,7 +30,7 @@ class DoctrineJobFeedRepository extends ServiceEntityRepository implements JobRe
             throw JobFeedAlreadyExist::withId($job->id());
         }
         $this->getEntityManager()->persist($job);
-        $this->getEntityManager()->flush($job);
+        $this->getEntityManager()->flush();
     }
 
     public function withId(JobId $jobId): JobFeed
