@@ -38,7 +38,6 @@ jobs:
         run: echo SHA from triggering workflow ${{ github.event.client_payload.sha }}
 
       - name: info triggering workflow - commit message
-        #run: echo commit message from triggering workflow '${{ github.event.client_payload.commit_message }}'
         run: git log --oneline
 
       - name: info triggering workflow - author '${{ github.event.workflow_run.head_commit.author.name }}' -'${{ github.event.workflow_run.head_commit.author.email }}'
@@ -81,7 +80,7 @@ jobs:
           ref: ${{ github.event.client_payload.sha }}
 
       - name: info triggering workflow - commit message
-        run: echo commit message from triggering workflow '${{ github.event.client_payload.commit_message }}'
+        run: git log --oneline
 
       - name: Setup cache environment
         id: cache-php-extensions
@@ -164,7 +163,7 @@ jobs:
           ref: ${{ github.event.client_payload.sha }}
 
       - name: info triggering workflow - commit message
-        run: echo commit message from triggering workflow '${{ github.event.client_payload.commit_message }}'
+        run: git log --oneline
 
       - name: Login to GHCR
         id: docker_ghrc_login
@@ -274,7 +273,7 @@ jobs:
           ref: ${{ github.event.client_payload.sha }}
 
       - name: info triggering workflow - commit message
-        run: echo commit message from triggering workflow '${{ github.event.client_payload.commit_message }}'
+        run: git log --oneline
 
       - name: Setup cache environment
         id: cache-php-extensions
@@ -388,7 +387,7 @@ jobs:
           ref: ${{ github.event.client_payload.sha }}
 
       - name: info triggering workflow - commit message
-        run: echo commit message from triggering workflow '${{ github.event.client_payload.commit_message }}'
+        run: git log --oneline
 
       - name: Setup cache environment
         id: cache-php-extensions

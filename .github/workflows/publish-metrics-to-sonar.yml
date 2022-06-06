@@ -30,7 +30,7 @@ jobs:
           ref: ${{ github.event.client_payload.sha }}
 
       - name: info triggering workflow - commit message
-        run: echo commit message from triggering workflow '${{ github.event.client_payload.commit_message }}'
+        run: git log --oneline
 
       - name: Download unit test coverage artifact
         id: download-artifact
