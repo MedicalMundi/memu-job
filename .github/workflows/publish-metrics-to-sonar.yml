@@ -4,7 +4,7 @@ name: Publish metrics to sonar cloud
 
 on:
   repository_dispatch:
-    types: [notifiy-commit-stage-was-completed-successfully]
+    types: [commit-stage-was-completed-successfully]
 
 env:
   GITHUB_PAT: ${{ secrets.MEMUJOB_CI_GHA_PAT }}
