@@ -12,7 +12,6 @@
          beStrictAboutCoversAnnotation="false"
          beStrictAboutOutputDuringTests="true"
          beStrictAboutTodoAnnotatedTests="true"
-         cacheResultFile="var/tools/phpunit/core/.phpunit.cache"
 >
     <php>
         <ini name="display_errors" value="1" />
