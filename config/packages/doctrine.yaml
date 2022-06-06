@@ -20,17 +20,42 @@ doctrine:
                 dir: '%kernel.project_dir%/src/Entity'
                 prefix: 'App\Entity'
                 alias: App
-
             PubicJob:
                 is_bundle: false
                 type: yml
                 dir: '%kernel.project_dir%/core/ingesting/src/PublicJob/Adapter/Persistence/Doctrine/Config/Yaml'
                 prefix: 'Ingesting\PublicJob\Application\Model'
                 alias: PublicJob
-
             ErrataFeed:
                 is_bundle: false
                 type: yml
                 dir: '%kernel.project_dir%/core/ingesting/src/Errata/Adapter/Persistence/Doctrine/Config/Yaml'
                 prefix: 'Ingesting\Errata\Application\Model'
                 alias: ErrataFeed
+
+
+when@test:
+    doctrine:
+        dbal:
+            # "TEST_TOKEN" is typically set by ParaTest
+            dbname_suffix: '_test%env(default::TEST_TOKEN)%'
+
+when@prod:
+    doctrine:
+        orm:
+            auto_generate_proxy_classes: false
+            query_cache_driver:
+                type: pool
+                pool: doctrine.system_cache_pool
+            result_cache_driver:
+                type: pool
+                pool: doctrine.result_cache_pool
+
+    framework:
+        cache:
+            pools:
+                doctrine.result_cache_pool:
+                    adapter: cache.app
+                doctrine.system_cache_pool:
+                    adapter: cache.system
+
