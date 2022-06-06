@@ -1,20 +1,17 @@
 name: Acceptance stage
 
 on:
-#  schedule:
-#    # * is a special character in YAML so you have to quote this string
-#    - cron:  '*/5 * * * *'
-
   repository_dispatch:
     types: [commit-stage-was-completed-successfully]
 
 
 env:
   GITHUB_PAT: ${{ secrets.MEMUJOB_CI_GHA_PAT }}
-  PHP_RELEASE_CANDIDATE_IMAGE_NAME: internal-php-rc
+
   PHP_EXTENSIONS: ctype, curl, gd, iconv, intl, opcache, openssl, mbstring, mysql, pdo_sqlite
   PHP_EXTENSIONS_CACHE_KEY: cache-php-extensions-v1
 
+  PHP_RELEASE_CANDIDATE_IMAGE_NAME: internal-php-rc
   TEST_TAG_PHP_RELEASE_CANDIDATE: medicalmundi/temp-test-rc-img:test
 
   REGISTRY: ghcr.io
