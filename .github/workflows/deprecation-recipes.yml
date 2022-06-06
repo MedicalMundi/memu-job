@@ -4,7 +4,7 @@ name: Deprecation & recipes
 
 on:
   repository_dispatch:
-    types: [coverage-report-was-ready]
+    types: [commit-stage-was-completed-successfully]
 
 env:
   GITHUB_PAT: ${{ secrets.MEMUJOB_CI_GHA_PAT }}
@@ -12,10 +12,36 @@ env:
   PHP_EXTENSIONS_CACHE_KEY: cache-php-extensions-v1
 
 jobs:
+  triggering-workflow-info:
+    runs-on: ubuntu-18.04
+    name: Triggering workflow info
+    steps:
+      - name: Checkout on branch ${{ github.event.client_payload.ref_name }}|SHA-${{ github.event.client_payload.sha }}
+        uses: actions/checkout@v2
+        with:
+          ref: ${{ github.event.workflow_run.head_commit.id }}
+
+      - name: info triggering workflow - branch name ${{ github.event.client_payload.ref_name }}
+        run: echo ${{ github.event.client_payload.ref_name }}
+
+      - name: info triggering workflow - SHA ${{ github.event.client_payload.sha }}
+        run: echo SHA from triggering workflow ${{ github.event.client_payload.sha }}
+
+      - name: info triggering workflow - commit message
+        run: echo commit message from triggering workflow '${{ github.event.client_payload.commit_message }}'
+
+      - name: info triggering workflow - author '${{ github.event.workflow_run.head_commit.author.name }}' -'${{ github.event.workflow_run.head_commit.author.email }}'
+        run: echo author '${{ github.event.workflow_run.head_commit.author.name }}' -'${{ github.event.workflow_run.head_commit.author.email }}'
+
+      - name: info triggering workflow - committer '${{ github.event.workflow_run.head_commit.committer.name }}' -'${{ github.event.workflow_run.head_commit.committer.email }}'
+        run: echo author '${{ github.event.workflow_run.head_commit.author.name }}' -'${{ github.event.workflow_run.head_commit.author.email }}'
+
+      - name: Dump context
+        uses: crazy-max/ghaction-dump-context@v1
+
 
   symfony-deprecation-recipes:
     runs-on: ubuntu-18.04
-
     strategy:
       matrix:
         php:
@@ -23,7 +49,10 @@ jobs:
       fail-fast: true
 
     steps:
-      - uses: actions/checkout@v2
+      - name: Checkout on branch ${{ github.event.client_payload.ref_name }}|SHA-${{ github.event.client_payload.sha }}
+        uses: actions/checkout@v2
+        with:
+          ref: ${{ github.event.workflow_run.head_commit.id }}
 
       - name: Setup cache environment
         id: cache-php-extensions
@@ -46,7 +75,6 @@ jobs:
           php-version: ${{ matrix.php }}
           extensions: ${{ env.PHP_EXTENSIONS }}
           ini-values: memory_limit=-1
-          coverage: none
           tools: symfony
 
       - name: Get Composer Cache Directory
@@ -61,7 +89,7 @@ jobs:
           restore-keys: ${{ runner.os }}-composer-${{ matrix.php }}
 
       - name: Install Composer dependencies
-        run: composer install --prefer-dist --no-progress --ansi --no-scripts
+        run: composer install --prefer-dist --no-progress --no-scripts --ansi
 
       - name: Run webserver
         run: symfony server:start --port=8080 --dir=public --daemon --no-tls
@@ -70,7 +98,7 @@ jobs:
         run: ./vendor/bin/phpunit
         env:
           SYMFONY_DEPRECATIONS_HELPER: 0
-        continue-on-error: true
+        continue-on-error: false
 
       - name: Run check for Symfony recipes
         run: composer recipes --ansi
