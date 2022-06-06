@@ -4,7 +4,7 @@ name: Publish metrics to sonar cloud
 
 on:
   repository_dispatch:
-    types: [coverage-report-was-ready]
+    types: [notifiy-commit-stage-was-completed-successfully]
 
 env:
   GITHUB_PAT: ${{ secrets.MEMUJOB_CI_GHA_PAT }}
@@ -33,7 +33,6 @@ jobs:
         run: git log --oneline
 
       - name: Download unit test coverage artifact
-        id: download-artifact
         run: |
           ls -al
           gh run download -n ${{ env.COVERAGE_UNIT_ARTIFATC_NAME }}-${{ github.event.client_payload.sha }}
@@ -42,7 +41,6 @@ jobs:
           GITHUB_TOKEN: ${{secrets.GITHUB_TOKEN}}
 
       - name: Download integration test coverage artifact
-        id: download-artifact
         run: |
           ls -al
           gh run download -n ${{ env.COVERAGE_INTEGRATION_ARTIFATC_NAME }}-${{ github.event.client_payload.sha }}
