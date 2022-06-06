@@ -9,9 +9,6 @@ env:
   PHP_EXTENSIONS: ctype, curl, gd, iconv, intl, opcache, openssl, mbstring, mysql, pdo_sqlite
   PHP_EXTENSIONS_CACHE_KEY: cache-php-extensions-v1
 
-  COVERAGE_UNIT_ARTIFACT_NAME: 'coverage-report'
-  PHPUNIT_ARTIFACT_NAME: 'phpunit-artifact'
-
   COVERAGE_UNIT_ARTIFATC_NAME: 'Coverage-reports-unit-on-SHA'
   COVERAGE_CLOVER_UNIT_FILENAME: 'coverage-unit-test-clover.xml'
   COVERAGE_LOGJUNIT_UNIT_FILENAME: 'coverage-unit-test-junit.xml'
@@ -394,7 +391,6 @@ jobs:
             ${{ env.COVERAGE_CLOVER_UNIT_FILENAME }}
             ${{ env.COVERAGE_LOGJUNIT_UNIT_FILENAME }}
             
-
 
   notifiy-commit-stage-was-completed-successfully:
     name: notifiy-commit-stage-was-completed-successfully
