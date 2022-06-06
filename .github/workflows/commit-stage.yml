@@ -6,7 +6,6 @@ on: [ push ]
 env:
   GITHUB_PAT: ${{ secrets.MEMUJOB_CI_GHA_PAT }}
   COVERAGE: '0'
-  PHP_PRODUCTION_VERSION: '7.4'
   PHP_EXTENSIONS: ctype, curl, gd, iconv, intl, opcache, openssl, mbstring, mysql, pdo_sqlite
   PHP_EXTENSIONS_CACHE_KEY: cache-php-extensions-v1
 
@@ -22,7 +21,7 @@ jobs:
     strategy:
       matrix:
         php:
-          - ${{ env.PHP_PRODUCTION_VERSION }}
+          - '7.4'
       fail-fast: true
     steps:
       - name: Checkout
