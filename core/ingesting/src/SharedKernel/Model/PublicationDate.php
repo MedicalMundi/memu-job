@@ -2,12 +2,11 @@
 
 namespace Ingesting\SharedKernel\Model;
 
+use DateTimeImmutable;
+
 class PublicationDate
 {
-    /**
-     * @var \DateTimeImmutable
-     */
-    private $publicationDate;
+    private DateTimeImmutable $publicationDate;
 
     public static function fromString(string $publicationDate): PublicationDate
     {
