@@ -13,6 +13,11 @@ env:
   COVERAGE_CLOVER_UNIT_FILENAME: 'coverage-unit-test-clover.xml'
   COVERAGE_LOGJUNIT_UNIT_FILENAME: 'coverage-unit-test-junit.xml'
 
+  COVERAGE_INTEGRATION_ARTIFATC_NAME: 'Coverage-reports-integration-on-SHA'
+  COVERAGE_CLOVER_INTEGRATION_FILENAME: 'coverage-integration-test-clover.xml'
+  COVERAGE_LOGJUNIT_INTEGRATION_FILENAME: 'coverage-integration-test-junit.xml'
+
+
 jobs:
   publish-coverage-report-to-sonar-cloud:
     name: Publish metrics | Sonar cloud
@@ -31,7 +36,16 @@ jobs:
         id: download-artifact
         run: |
           ls -al
-          gh run download -n ${{ env.COVERAGE_UNIT_ARTIFATC_NAME }}-${{ env.GITHUB_SHA }}
+          gh run download -n ${{ env.COVERAGE_UNIT_ARTIFATC_NAME }}-${{ github.event.client_payload.sha }}
+          ls -al
+        env:
+          GITHUB_TOKEN: ${{secrets.GITHUB_TOKEN}}
+
+      - name: Download integration test coverage artifact
+        id: download-artifact
+        run: |
+          ls -al
+          gh run download -n ${{ env.COVERAGE_INTEGRATION_ARTIFATC_NAME }}-${{ github.event.client_payload.sha }}
           ls -al
         env:
           GITHUB_TOKEN: ${{secrets.GITHUB_TOKEN}}
@@ -53,10 +67,10 @@ jobs:
             -Dsonar.language=php
             -Dsonar.sources=src/,core/ingesting/src/,core/publishing/src/
             -Dsonar.test.exclusions=tests/**,docker/**,nginx.conf,sys/**,tools/**,var/**
-            -Dsonar.php.coverage.reportPaths=${{ env.COVERAGE_CLOVER_UNIT_FILENAME }},artifact-data/integration-test-clover.xml
-            -Dsonar.php.tests.reportPath=${{ env.COVERAGE_LOGJUNIT_UNIT_FILENAME }},artifact-data/integration-test-junit.xml
+            -Dsonar.php.coverage.reportPaths=${{ env.COVERAGE_CLOVER_UNIT_FILENAME }},${{ env.COVERAGE_CLOVER_INTEGRATION_FILENAME }}
+            -Dsonar.php.tests.reportPath=${{ env.COVERAGE_LOGJUNIT_UNIT_FILENAME }},${{ env.COVERAGE_LOGJUNIT_INTEGRATION_FILENAME }}
             -Dsonar.tests=tests/,core/ingesting/tests/,core/publishing/tests/
-            -Dsonar.verbose=true
+            -Dsonar.verbose=true COVERAGE_CLOVER_INTEGRATION_FILENAME
 
         env:
          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
