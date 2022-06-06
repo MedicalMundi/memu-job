@@ -432,6 +432,6 @@ jobs:
           token: ${{ secrets.MEMUJOB_CI_GHA_PAT }}
           repository: ${{ github.repository }}
           event-type: coverage-report-was-ready
-          client-payload: '{"ref": "${{ github.ref }}", "sha": "${{ github.sha }}", "ref_name": "${{ github.ref_name }}"}'
+          client-payload: '{"ref": "${{ github.ref }}", "sha": "${{ github.sha }}", "ref_name": "${{ github.ref_name }}", "commit_message": "${{ github.event.head_commit.message }}"}'
         env:
           GITHUB_TOKEN: ${{ secrets.MEMUJOB_CI_GHA_PAT }}
