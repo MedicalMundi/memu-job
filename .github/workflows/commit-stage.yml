@@ -371,15 +371,17 @@ jobs:
         run: composer install --prefer-dist --no-progress --no-scripts --ansi
 
       - name: Run Core Unit test suite
-        id: phpunit-unit-test-suite
         run: |
-          if [ "$COVERAGE" = '1' ]; then
-            ./vendor/bin/phpunit --configuration phpunit.core.xml --testsuite unit \
-            --coverage-clover $COVERAGE_CLOVER_UNIT_FILENAME \
-            --log-junit $COVERAGE_LOGJUNIT_UNIT_FILENAME
-          else
-            ./vendor/bin/phpunit --configuration phpunit.core.xml --testsuite unit
-          fi
+          ./vendor/bin/phpunit --configuration phpunit.core.xml --testsuite unit
+        env:
+          SYMFONY_DEPRECATIONS_HELPER: disabled
+
+      - name: Run Core Unit test suite WITH COVERAGE
+        if: matrix.coverage
+        run: |
+          ./vendor/bin/phpunit --configuration phpunit.core.xml --testsuite unit \
+          --coverage-clover $COVERAGE_CLOVER_UNIT_FILENAME \
+          --log-junit $COVERAGE_LOGJUNIT_UNIT_FILENAME
         env:
           SYMFONY_DEPRECATIONS_HELPER: disabled
 
