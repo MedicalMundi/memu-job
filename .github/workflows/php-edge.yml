@@ -5,10 +5,10 @@
 name: PHP edge
 
 on:
-  push:
+  repository_dispatch:
+    types: [commit-stage-was-completed-successfully]
     branches:
       - main
-      - develop
 
 env:
   GITHUB_PAT: ${{ secrets.MEMUJOB_CI_GHA_PAT }}
@@ -20,13 +20,11 @@ jobs:
   core-test:
     name: Core & Symfony tests (PHP ${{ matrix.php }})
     runs-on: ubuntu-18.04
-    #if: "!contains(github.event.head_commit.message, 'skip ci')"
-
     strategy:
       matrix:
         php:
-          - '8.0'
           - '8.1'
+          -  '8.2'
       fail-fast: true
 
     steps:
@@ -66,6 +64,10 @@ jobs:
           path: ${{ steps.composer-cache.outputs.dir }}
           key: ${{ runner.os }}-composer-${{ hashFiles('**/composer.lock') }}
           restore-keys: ${{ runner.os }}-composer-${{ matrix.php }}
+
+      - name: Update project dependencies
+        if: (startsWith(matrix.php, '8.2'))
+        run: composer update -W --no-interaction --no-progress --ansi
 
       - name: Install Composer dependencies
         run: composer install --prefer-dist --no-progress --ansi --no-scripts
