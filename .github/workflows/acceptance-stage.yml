@@ -328,13 +328,17 @@ jobs:
       - name: Run Core Integration test suite
         id: phpunit-integration-test-suite
         run: |
-          if [ "$COVERAGE" = '1' ]; then
-            ./vendor/bin/phpunit --configuration phpunit.core.xml --testsuite integration --group=io-network,io-database \
-            --coverage-clover ${{ env.COVERAGE_CLOVER_INTEGRATION_FILENAME }} \
-            --log-junit ${{ env.COVERAGE_LOGJUNIT_INTEGRATION_FILENAME }}
-          else
-            ./vendor/bin/phpunit --configuration phpunit.core.xml --testsuite integration --group=io-network,io-database
-          fi
+          ./vendor/bin/phpunit --configuration phpunit.core.xml --testsuite integration --group=io-network,io-database
+        env:
+          DATABASE_URL: postgresql://ci-db-user:ci-db-password@127.0.0.1:${{ job.services.pgsql.ports['5432'] }}/ci-db
+
+      - name: Run Core Integration test suite WITH COVERAGE
+        if: matrix.coverage
+        run: |
+          mkdir -p var/tools/phpunit/core
+          ./vendor/bin/phpunit --configuration phpunit.core.xml --testsuite integration --group=io-network,io-database \
+          --coverage-clover ${{ env.COVERAGE_CLOVER_INTEGRATION_FILENAME }} \
+          --log-junit ${{ env.COVERAGE_LOGJUNIT_INTEGRATION_FILENAME }}
         env:
           DATABASE_URL: postgresql://ci-db-user:ci-db-password@127.0.0.1:${{ job.services.pgsql.ports['5432'] }}/ci-db
 

@@ -379,6 +379,7 @@ jobs:
       - name: Run Core Unit test suite WITH COVERAGE
         if: matrix.coverage
         run: |
+          mkdir -p var/tools/phpunit/core
           ./vendor/bin/phpunit --configuration phpunit.core.xml --testsuite unit \
           --coverage-clover $COVERAGE_CLOVER_UNIT_FILENAME \
           --log-junit $COVERAGE_LOGJUNIT_UNIT_FILENAME
