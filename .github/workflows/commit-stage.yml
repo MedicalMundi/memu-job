@@ -14,65 +14,6 @@ env:
   COVERAGE_LOGJUNIT_UNIT_FILENAME: 'coverage-unit-test-junit.xml'
 
 jobs:
-  lint-composer:
-    name: Validate composer
-    runs-on: ubuntu-18.04
-    timeout-minutes: 3
-    strategy:
-      matrix:
-        php:
-          - '7.4'
-      fail-fast: true
-    steps:
-      - name: Checkout
-        uses: actions/checkout@v2
-
-      - name: Setup php extension cache environment
-        id: cache-php-extensions
-        uses: shivammathur/cache-extensions@v1
-        with:
-          php-version: ${{ matrix.php }}
-          extensions: ${{ env.PHP_EXTENSIONS }}
-          key: ${{ env.PHP_EXTENSIONS_CACHE_KEY }}
-
-      - name: Cache PHP extensions
-        uses: actions/cache@v2.1.7
-        with:
-          path: ${{ steps.cache-php-extensions.outputs.dir }}
-          key: ${{ steps.cache-php-extensions.outputs.key }}
-          restore-keys: ${{ steps.cache-php-extensions.outputs.key }}
-
-      - name: Setup PHP
-        uses: shivammathur/setup-php@2.15.0
-        with:
-          php-version: ${{ matrix.php }}
-          extensions: ${{ env.PHP_EXTENSIONS }}
-          ini-values: memory_limit=-1
-          coverage: none
-          tools: composer, composer-normalize:2.16.0
-
-      - name: Get Composer Cache Directory
-        id: composer-cache
-        run: echo "::set-output name=dir::$(composer config cache-files-dir)"
-
-      - name: Cache composer dependencies
-        uses: actions/cache@v2.1.7
-        with:
-          path: ${{ steps.composer-cache.outputs.dir }}
-          key: ${{ runner.os }}-php${{ matrix.php }}-composer-${{ hashFiles('**/composer.lock') }}
-          restore-keys: ${{ runner.os }}-php${{ matrix.php }}-composer-
-        continue-on-error: true
-
-      - name: Install Composer dependencies
-        run: composer install --prefer-dist --no-progress --no-scripts --ansi
-
-      - name: Run composer validate
-        run: composer validate --strict --ansi
-
-      - name: Run composer normalize
-        run: composer-normalize --dry-run --ansi
-
-
   coding-standard:
     name: Coding Standard
     runs-on: ubuntu-18.04
@@ -408,7 +349,6 @@ jobs:
   notifiy-commit-stage-was-completed-successfully:
     name: notifiy-commit-stage-was-completed-successfully
     needs:
-      - lint-composer
       - coding-standard
       - architecture-check
       - phpstan

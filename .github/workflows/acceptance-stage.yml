@@ -103,7 +103,7 @@ jobs:
           php-version: ${{ matrix.php }}
           extensions: ${{ env.PHP_EXTENSIONS }}
           ini-values: memory_limit=-1
-          tools: composer
+          tools: composer,composer-normalize:2.16.0
 
       - name: Get Composer Cache Directory
         id: composer-cache
@@ -117,7 +117,13 @@ jobs:
           restore-keys: ${{ runner.os }}-composer-
 
       - name: Install Composer dependencies
-        run: composer install --prefer-dist --no-progress --no-scripts --ansi
+        run: composer install --prefer-dist --no-progress --no-scripts --
+
+      - name: Run composer validate
+        run: composer validate --strict --ansi
+
+      - name: Run composer normalize
+        run: composer-normalize --dry-run --ansi
 
       - name: Validate configurations files
         run: |
