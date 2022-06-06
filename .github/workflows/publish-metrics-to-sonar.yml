@@ -40,13 +40,13 @@ jobs:
         env:
           GITHUB_TOKEN: ${{secrets.GITHUB_TOKEN}}
 
-      - name: Download integration test coverage artifact
-        run: |
-          ls -al
-          gh run download -n ${{ env.COVERAGE_INTEGRATION_ARTIFATC_NAME }}-${{ github.event.client_payload.sha }}
-          ls -al
-        env:
-          GITHUB_TOKEN: ${{secrets.GITHUB_TOKEN}}
+#      - name: Download integration test coverage artifact
+#        run: |
+#          ls -al
+#          gh run download -n ${{ env.COVERAGE_INTEGRATION_ARTIFATC_NAME }}-${{ github.event.client_payload.sha }}
+#          ls -al
+#        env:
+#          GITHUB_TOKEN: ${{secrets.GITHUB_TOKEN}}
 
       - name: SonarCloud Scan And publication
         if: ${{ (steps.download-artifact.outcome == 'success')}}
