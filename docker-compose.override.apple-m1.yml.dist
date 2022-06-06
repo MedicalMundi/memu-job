@@ -1,13 +1,13 @@
 version: '3.8'
 
 services:
-  php:
+  app:
     build:
       context: .
       dockerfile: docker/apple-m1/php-dev/Dockerfile
 
 
-  nginx:
+  web:
     build:
       context: .
       dockerfile: docker/apple-m1/nginx/Dockerfile
