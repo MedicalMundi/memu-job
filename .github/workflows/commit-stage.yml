@@ -324,6 +324,10 @@ jobs:
       matrix:
         php:
           - '7.4'
+          - '8.0'
+        include:
+          - php: '7.4'
+            coverage: true
       fail-fast: true
     steps:
       - uses: actions/checkout@v2
@@ -369,9 +373,13 @@ jobs:
       - name: Run Core Unit test suite
         id: phpunit-unit-test-suite
         run: |
-          ./vendor/bin/phpunit --configuration phpunit.core.xml --testsuite unit \
-          --coverage-clover $COVERAGE_CLOVER_UNIT_FILENAME \
-          --log-junit $COVERAGE_LOGJUNIT_UNIT_FILENAME
+          if [ "$COVERAGE" = '1' ]; then
+            ./vendor/bin/phpunit --configuration phpunit.core.xml --testsuite unit \
+            --coverage-clover $COVERAGE_CLOVER_UNIT_FILENAME \
+            --log-junit $COVERAGE_LOGJUNIT_UNIT_FILENAME
+          else
+            ./vendor/bin/phpunit --configuration phpunit.core.xml --testsuite unit
+          fi
         env:
           SYMFONY_DEPRECATIONS_HELPER: disabled
 
@@ -380,10 +388,12 @@ jobs:
         continue-on-error: true
 
       - name: Get Coverage artifact name
+        if: matrix.coverage
         id: coverage-artifact-name
         run: echo "::set-output name=name::$COVERAGE_UNIT_ARTIFATC_NAME-$GITHUB_SHA"
 
       - name: Save coverage reports
+        if: matrix.coverage
         uses: actions/upload-artifact@v3
         with:
           name: ${{ steps.coverage-artifact-name.outputs.name }}
