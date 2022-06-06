@@ -7,15 +7,18 @@ on:
 
 env:
   GITHUB_PAT: ${{ secrets.MEMUJOB_CI_GHA_PAT }}
-
+  COVERAGE: '0'
   PHP_EXTENSIONS: ctype, curl, gd, iconv, intl, opcache, openssl, mbstring, mysql, pdo_sqlite
   PHP_EXTENSIONS_CACHE_KEY: cache-php-extensions-v1
+
+  COVERAGE_INTEGRATION_ARTIFATC_NAME: 'Coverage-reports-integration-on-SHA'
+  COVERAGE_CLOVER_INTEGRATION_FILENAME: 'coverage-integration-test-clover.xml'
+  COVERAGE_LOGJUNIT_INTEGRATION_FILENAME: 'coverage-integration-test-junit.xml'
 
   PHP_RELEASE_CANDIDATE_IMAGE_NAME: internal-php-rc
   TEST_TAG_PHP_RELEASE_CANDIDATE: medicalmundi/temp-test-rc-img:test
 
   REGISTRY: ghcr.io
-  #IMAGE_NAME: ${{ github.repository }}
 
 
 jobs:
@@ -258,6 +261,10 @@ jobs:
       matrix:
         php:
           - '7.4'
+          - '8.0'
+        include:
+          - php: '7.4'
+            coverage: true
       fail-fast: true
     steps:
       - name: Checkout on branch ${{ github.event.client_payload.ref_name }}|SHA-${{ github.event.client_payload.sha }}
@@ -321,21 +328,29 @@ jobs:
       - name: Run Core Integration test suite
         id: phpunit-integration-test-suite
         run: |
-          ./vendor/bin/phpunit --configuration phpunit.core.xml --testsuite integration --group=io-network,io-database
+          if [ "$COVERAGE" = '1' ]; then
+            ./vendor/bin/phpunit --configuration phpunit.core.xml --testsuite integration --group=io-network,io-database \
+            --coverage-clover ${{ env.COVERAGE_CLOVER_INTEGRATION_FILENAME }} \
+            --log-junit ${{ env.COVERAGE_LOGJUNIT_INTEGRATION_FILENAME }}
+          else
+            ./vendor/bin/phpunit --configuration phpunit.core.xml --testsuite integration --group=io-network,io-database
+          fi
         env:
           DATABASE_URL: postgresql://ci-db-user:ci-db-password@127.0.0.1:${{ job.services.pgsql.ports['5432'] }}/ci-db
 
-#          mkdir -p var/tools/phpunit/core
-#          mkdir -p $REPORT_FOLDER_PHPUNIT/artifact-data/
-#          ./vendor/bin/phpunit --configuration phpunit.core.xml --testsuite integration --group=io-network,io-database \
-#            --coverage-clover $REPORT_FOLDER_PHPUNIT/artifact-data/integration-test-clover.xml --log-junit $REPORT_FOLDER_PHPUNIT/artifact-data/integration-test-junit.xml
+      - name: Get Coverage artifact name
+        if: matrix.coverage
+        id: coverage-artifact-name
+        run: echo "::set-output name=name::$COVERAGE_INTEGRATION_ARTIFATC_NAME-$GITHUB_SHA"
 
-#      - name: Save coverage reports
-#        uses: actions/upload-artifact@v2
-#        with:
-#          name: ${{ env.COVERAGE_INTEGRATION_ARTIFACT_NAME }}-${{ env.GITHUB_SHA }}
-#          path: ${{ env.REPORT_FOLDER_PHPUNIT }}
-
+      - name: Save coverage reports
+        if: matrix.coverage
+        uses: actions/upload-artifact@v3
+        with:
+          name: ${{ steps.coverage-artifact-name.outputs.name }}
+          path: |
+            ${{ env.COVERAGE_CLOVER_INTEGRATION_FILENAME }}
+            ${{ env.COVERAGE_LOGJUNIT_INTEGRATION_FILENAME }}
 
   functional-test:
     name: Functional test
