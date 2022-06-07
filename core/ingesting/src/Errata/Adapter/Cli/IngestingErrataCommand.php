@@ -31,13 +31,15 @@ class IngestingErrataCommand extends Command
     protected function execute(InputInterface $input, OutputInterface $output): int
     {
         $io = new SymfonyStyle($input, $output);
+        $io->success('Inizio Rss download (errata)');
         try {
             $this->usecase->readErrataRssDataSource();
-            $io->success('You have a new command! Now make it your own! Pass --help to see your options.');
         } catch (\Exception $exception) {
             $io->error($exception->getMessage());
             return Command::FAILURE;
         }
+
+        $io->success('Download Rss terminato');
 
         return Command::SUCCESS;
     }
