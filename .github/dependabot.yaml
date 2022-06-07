@@ -87,3 +87,20 @@ updates:
       prefix: "composer"
     labels:
       - "tool dependency"
+
+
+  #
+  # GHA dependency track
+  #
+  - package-ecosystem: "github-actions"
+    directory: "/"
+    open-pull-requests-limit: 5
+    schedule:
+      interval: "daily"
+    assignees:
+      - "zerai"
+    commit-message:
+      include: "scope"
+      prefix: "github-actions"
+    labels:
+      - "CI dependency"
