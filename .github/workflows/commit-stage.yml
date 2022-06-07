@@ -424,7 +424,7 @@ jobs:
         uses: crazy-max/ghaction-dump-context@v1
 
       - name: emit pipeline event
-        uses: peter-evans/repository-dispatch@v1
+        uses: peter-evans/repository-dispatch@v2
         with:
           token: ${{ secrets.MEMUJOB_CI_GHA_PAT }}
           repository: ${{ github.repository }}
@@ -443,7 +443,7 @@ jobs:
         uses: crazy-max/ghaction-dump-context@v1
 
       - name: emit pipeline event
-        uses: peter-evans/repository-dispatch@v1
+        uses: peter-evans/repository-dispatch@v2
         with:
           token: ${{ secrets.MEMUJOB_CI_GHA_PAT }}
           repository: ${{ github.repository }}
