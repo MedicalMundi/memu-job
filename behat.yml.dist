@@ -1,4 +1,8 @@
 default:
+    gherkin:
+        filters:
+            tags: ~@wip
+
     extensions:
         FriendsOfBehat\SymfonyExtension:
             bootstrap: tests/bootstrap.php
