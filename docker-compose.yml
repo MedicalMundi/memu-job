@@ -2,7 +2,7 @@ version: '3.8'
 
 services:
   app:
-    image: webdevops/php-dev:8.0
+    image: webdevops/php-dev:7.4
     ports:
       - "2222:22"
       - "9021:9021"

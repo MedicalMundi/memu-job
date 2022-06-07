@@ -1,4 +1,4 @@
-FROM webdevops/php-dev:8.0
+FROM webdevops/php-dev:7.4
 
 # Fix Apple Silicon M1 ARM problem
 # see https://github.com/webdevops/Dockerfile/issues/395
