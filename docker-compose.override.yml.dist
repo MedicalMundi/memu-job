@@ -5,9 +5,10 @@ services:
     build:
       context: .
       dockerfile: docker/apple-m1/php-dev/Dockerfile
-
+    working_dir: /app
 
   web:
     build:
       context: .
       dockerfile: docker/apple-m1/nginx/Dockerfile
+    working_dir: /app

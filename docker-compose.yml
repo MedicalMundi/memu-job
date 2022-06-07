@@ -2,12 +2,10 @@ version: '3.8'
 
 services:
   app:
-    image: webdevops/php-dev:7.4
-    user: application
-    working_dir: /app
+    image: webdevops/php-dev:8.0
     ports:
-      - "9021:9021"
       - "2222:22"
+      - "9021:9021"
     volumes:
       - "./:/app"
     environment:
@@ -22,11 +20,12 @@ services:
       #- XDEBUG_REMOTE_HOST=172.19.0.1
       XDEBUG_REMOTE_PORT: 9021
 
-
   web:
     image: webdevops/nginx:alpine
     ports:
       - "80:80"
+    depends_on:
+      - app
     volumes:
       - "./:/app"
     environment:
