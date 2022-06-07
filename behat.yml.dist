@@ -6,9 +6,26 @@ default:
     extensions:
         FriendsOfBehat\SymfonyExtension:
             bootstrap: tests/bootstrap.php
+        Robertfausk\Behat\PantherExtension: ~
+        Behat\MinkExtension:
+            #base_url: http://127.0.0.1
+            default_session: panther
+            browser_name: chrome
+            javascript_session: panther
+            panther:
+                options:
+                    browser: 'firefox'
+                    external_base_uri: 'http://127.0.0.1'
+                kernel_options:
+                   APP_ENV: test
+                   APP_DEBUG: false
+                manager_options:
+                   connection_timeout_in_ms: 5000
+                   request_timeout_in_ms: 120000
 
     suites:
         default:
             contexts:
                 - App\Tests\Behat\DemoContext
+                - App\Tests\Behat\OtherDemoContext
 

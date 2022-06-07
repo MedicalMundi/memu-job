@@ -455,7 +455,6 @@ jobs:
           DATABASE_URL: postgresql://ci-db-user:ci-db-password@127.0.0.1:${{ job.services.pgsql.ports['5432'] }}/ci-db
 
 
-
   prod-stack-env:
     needs: [app-preconditions-checks, artifact-release-candidate]
     runs-on: ubuntu-18.04
@@ -528,79 +527,81 @@ jobs:
       - name: Stop services
         run: docker-compose -f docker-compose.ci-gha.yml down -v --remove-orphans
 
-  test-stack-env:
-    needs: [app-preconditions-checks, artifact-release-candidate]
-    runs-on: ubuntu-18.04
-    timeout-minutes: 10
-    permissions:
-      packages: read
-      contents: read
-    steps:
-      - name: Checkout
-        uses: actions/checkout@v2
 
-      - name: Start services
-        run: docker-compose -f docker-compose.ci-gha.yml up -d
-        env:
-          MEMU_JOB_VERSION: ${{ github.event.client_payload.sha }}
-          APP_ENV: test
-          POSTGRES_DB: ci-db-name_test
+#  test-stack-env:
+#    needs: [app-preconditions-checks, artifact-release-candidate]
+#    runs-on: ubuntu-18.04
+#    timeout-minutes: 10
+#    permissions:
+#      packages: read
+#      contents: read
+#    steps:
+#      - name: Checkout
+#        uses: actions/checkout@v2
+#
+#      - name: Start services
+#        run: docker-compose -f docker-compose.ci-gha.yml up -d
+#        env:
+#          MEMU_JOB_VERSION: ${{ github.event.client_payload.sha }}
+#          APP_ENV: test
+#          POSTGRES_DB: ci-db-name_test
+#
+#      #      - name: Wait for services
+#      #        run: |
+#      #          while status="$(docker inspect --format="{{if .Config.Healthcheck}}{{print .State.Health.Status}}{{end}}" "$(docker-compose -f docker-compose.ci-gha.yml ps -q php)")"; do
+#      #            case $status in
+#      #              starting) sleep 1;;
+#      #              healthy) exit 0;;
+#      #              unhealthy)
+#      #                docker-compose -f docker-compose.ci-gha.yml ps
+#      #                docker-compose -f docker-compose.ci-gha.yml logs
+#      #                exit 1
+#      #              ;;
+#      #            esac
+#      #          done
+#      #          exit 1
+#
+#      - name: services list
+#        run: docker-compose -f docker-compose.ci-gha.yml ps
+#
+#      - name: Doctrine Schema Validator
+#        run: docker-compose -f docker-compose.ci-gha.yml exec -T php bin/console doctrine:schema:validate --skip-sync
+#        continue-on-error: false
+#
+#      - name: Doctrine Schema Update
+#        run: docker-compose -f docker-compose.ci-gha.yml exec -T php bin/console doctrine:schema:update --force -vvv
+#        continue-on-error: false
+#
+#      - name: Check HTTP reachability (localhost)
+#        run: curl -v -o /dev/null http://localhost
+#        continue-on-error: false
+#
+#      - name: Check HTTP reachability (127.0.0.1)
+#        run: curl -v -o /dev/null http://127.0.0.1
+#        continue-on-error: false
+#
+#      - name: Check HTTP reachability (healtcheck)
+#        run: curl -v -o /dev/null http://127.0.0.1/sys/healt/check
+#        continue-on-error: false
+#
+#      - name: Check HTTPS reachability
+#        run: curl  -vk -o /dev/null https://127.0.0.1
+#        continue-on-error: false
+#
+#      - name: Check HTTPS reachability (healtcheck)
+#        run: curl  -vk -o /dev/null https://127.0.0.1/sys/healt/check
+#        continue-on-error: false
+#
+#      - name: Show application log
+#        run: |
+#          docker-compose -f docker-compose.ci-gha.yml logs php
+#          docker-compose -f docker-compose.ci-gha.yml exec -T php ls -al /app/var/log
+#          docker-compose -f docker-compose.ci-gha.yml exec -T php ls -al /app/var/cache
+#        continue-on-error: true
+#
+#      - name: Stop services
+#        run: docker-compose -f docker-compose.ci-gha.yml down -v --remove-orphans
 
-      #      - name: Wait for services
-      #        run: |
-      #          while status="$(docker inspect --format="{{if .Config.Healthcheck}}{{print .State.Health.Status}}{{end}}" "$(docker-compose -f docker-compose.ci-gha.yml ps -q php)")"; do
-      #            case $status in
-      #              starting) sleep 1;;
-      #              healthy) exit 0;;
-      #              unhealthy)
-      #                docker-compose -f docker-compose.ci-gha.yml ps
-      #                docker-compose -f docker-compose.ci-gha.yml logs
-      #                exit 1
-      #              ;;
-      #            esac
-      #          done
-      #          exit 1
-
-      - name: services list
-        run: docker-compose -f docker-compose.ci-gha.yml ps
-
-      - name: Doctrine Schema Validator
-        run: docker-compose -f docker-compose.ci-gha.yml exec -T php bin/console doctrine:schema:validate --skip-sync
-        continue-on-error: false
-
-      - name: Doctrine Schema Update
-        run: docker-compose -f docker-compose.ci-gha.yml exec -T php bin/console doctrine:schema:update --force -vvv
-        continue-on-error: false
-
-      - name: Check HTTP reachability (localhost)
-        run: curl -v -o /dev/null http://localhost
-        continue-on-error: false
-
-      - name: Check HTTP reachability (127.0.0.1)
-        run: curl -v -o /dev/null http://127.0.0.1
-        continue-on-error: false
-
-      - name: Check HTTP reachability (healtcheck)
-        run: curl -v -o /dev/null http://127.0.0.1/sys/healt/check
-        continue-on-error: false
-
-      - name: Check HTTPS reachability
-        run: curl  -vk -o /dev/null https://127.0.0.1
-        continue-on-error: false
-
-      - name: Check HTTPS reachability (healtcheck)
-        run: curl  -vk -o /dev/null https://127.0.0.1/sys/healt/check
-        continue-on-error: false
-
-      - name: Show application log
-        run: |
-          docker-compose -f docker-compose.ci-gha.yml logs php
-          docker-compose -f docker-compose.ci-gha.yml exec -T php ls -al /app/var/log
-          docker-compose -f docker-compose.ci-gha.yml exec -T php ls -al /app/var/cache
-        continue-on-error: true
-
-      - name: Stop services
-        run: docker-compose -f docker-compose.ci-gha.yml down -v --remove-orphans
 
   e2e_prod-stack-env:
     name: E2E on production stack
@@ -677,10 +678,6 @@ jobs:
           docker-compose -f docker-compose.ci-gha.yml exec -T php ls -al /app/var/cache
         continue-on-error: true
 
-
-
-
-
       - name: Setup cache environment
         id: cache-php-extensions
         uses: shivammathur/cache-extensions@v1
@@ -729,94 +726,94 @@ jobs:
         run: docker-compose -f docker-compose.ci-gha.yml down -v --remove-orphans
 
 
-#  behat-test-standard:
-#    name: Behat test standard
-#    needs: [app-preconditions-checks]
-#    runs-on: ubuntu-18.04
-#    timeout-minutes: 5
-#    services:
-#      pgsql:
-#        image: postgres:13-alpine
-#        env:
-#          POSTGRES_DB: ci-db_test
-#          POSTGRES_PASSWORD: ci-db-password
-#          POSTGRES_USER: ci-db-user
-#        ports:
-#          - 5432/tcp
-#        options: >-
-#          --health-cmd pg_isready
-#          --health-interval 10s
-#          --health-timeout 5s
-#          --health-retries 3
-#    strategy:
-#      matrix:
-#        php:
-#          - '7.4'
-#      fail-fast: true
-#    steps:
-#      - name: Checkout on branch ${{ github.event.client_payload.ref_name }}|SHA-${{ github.event.client_payload.sha }}
-#        uses: actions/checkout@v2
-#        with:
-#          ref: ${{ github.event.client_payload.sha }}
-#
-#      - name: info triggering workflow - commit message
-#        run: git log --oneline
-#
-#      - name: Setup cache environment
-#        id: cache-php-extensions
-#        uses: shivammathur/cache-extensions@v1
-#        with:
-#          php-version: ${{ matrix.php }}
-#          extensions: ${{ env.PHP_EXTENSIONS }}
-#          key: ${{ env.PHP_EXTENSIONS_CACHE_KEY }}
-#
-#      - name: Cache extensions
-#        uses: actions/cache@v2
-#        with:
-#          path: ${{ steps.cache-php-extensions.outputs.dir }}
-#          key: ${{ steps.cache-php-extensions.outputs.key }}
-#          restore-keys: ${{ steps.cache-php-extensions.outputs.key }}
-#
-#      - name: Setup PHP
-#        uses: shivammathur/setup-php@v2
-#        with:
-#          php-version: ${{ matrix.php }}
-#          extensions: ${{ env.PHP_EXTENSIONS }}
-#          ini-values: memory_limit=-1
-#          coverage: none
-#          tools: composer, symfony
-#
-#      - name: Get Composer Cache Directory
-#        id: composer-cache
-#        run: echo "::set-output name=dir::$(composer config cache-files-dir)"
-#
-#      - name: Cache dependencies
-#        uses: actions/cache@v2
-#        with:
-#          path: ${{ steps.composer-cache.outputs.dir }}
-#          key: ${{ runner.os }}-composer-${{ hashFiles('**/composer.lock') }}
-#          restore-keys: ${{ runner.os }}-composer-${{ matrix.php }}
-#
-#      - name: Install Composer dependencies
-#        run: composer install --prefer-dist --no-progress --no-scripts --ansi
-#
-#      #      - name: Run database migrations
-#      #        if: ${{ github.ref_name == 'main' }}
-#      #        run: ./bin/console doctrine:migrations:migrate -e test -n -vv --allow-no-migration --ansi
-#      #        env:
-#      #          DATABASE_URL: postgresql://ci-db-user:ci-db-password@127.0.0.1:${{ job.services.pgsql.ports['5432'] }}/ci-db?serverVersion=13&charset=utf8
-#
-#      - name: Run database schema update
-#        #        if: ${{ github.ref_name != 'main' }}
-#        run: ./bin/console doctrine:schema:update -e test --force --ansi
-#        env:
-#          DATABASE_URL: postgresql://ci-db-user:ci-db-password@127.0.0.1:${{ job.services.pgsql.ports['5432'] }}/ci-db?serverVersion=13&charset=utf8
-#
-#      - name: Run behat test suite (standard mode)
-#        run: ./vendor/bin/behat --colors
-#        env:
-#          SYMFONY_DEPRECATIONS_HELPER: disabled
-#          DATABASE_URL: postgresql://ci-db-user:ci-db-password@127.0.0.1:${{ job.services.pgsql.ports['5432'] }}/ci-db
+  behat-test-standard:
+    name: Behat test standard
+    needs: [app-preconditions-checks]
+    runs-on: ubuntu-18.04
+    timeout-minutes: 5
+    services:
+      pgsql:
+        image: postgres:13-alpine
+        env:
+          POSTGRES_DB: ci-db_test
+          POSTGRES_PASSWORD: ci-db-password
+          POSTGRES_USER: ci-db-user
+        ports:
+          - 5432/tcp
+        options: >-
+          --health-cmd pg_isready
+          --health-interval 10s
+          --health-timeout 5s
+          --health-retries 3
+    strategy:
+      matrix:
+        php:
+          - '7.4'
+      fail-fast: true
+    steps:
+      - name: Checkout on branch ${{ github.event.client_payload.ref_name }}|SHA-${{ github.event.client_payload.sha }}
+        uses: actions/checkout@v2
+        with:
+          ref: ${{ github.event.client_payload.sha }}
+
+      - name: info triggering workflow - commit message
+        run: git log --oneline
+
+      - name: Setup cache environment
+        id: cache-php-extensions
+        uses: shivammathur/cache-extensions@v1
+        with:
+          php-version: ${{ matrix.php }}
+          extensions: ${{ env.PHP_EXTENSIONS }}
+          key: ${{ env.PHP_EXTENSIONS_CACHE_KEY }}
+
+      - name: Cache extensions
+        uses: actions/cache@v2
+        with:
+          path: ${{ steps.cache-php-extensions.outputs.dir }}
+          key: ${{ steps.cache-php-extensions.outputs.key }}
+          restore-keys: ${{ steps.cache-php-extensions.outputs.key }}
+
+      - name: Setup PHP
+        uses: shivammathur/setup-php@v2
+        with:
+          php-version: ${{ matrix.php }}
+          extensions: ${{ env.PHP_EXTENSIONS }}
+          ini-values: memory_limit=-1
+          coverage: none
+          tools: composer, symfony
+
+      - name: Get Composer Cache Directory
+        id: composer-cache
+        run: echo "::set-output name=dir::$(composer config cache-files-dir)"
+
+      - name: Cache dependencies
+        uses: actions/cache@v2
+        with:
+          path: ${{ steps.composer-cache.outputs.dir }}
+          key: ${{ runner.os }}-composer-${{ hashFiles('**/composer.lock') }}
+          restore-keys: ${{ runner.os }}-composer-${{ matrix.php }}
+
+      - name: Install Composer dependencies
+        run: composer install --prefer-dist --no-progress --no-scripts --ansi
+
+      #      - name: Run database migrations
+      #        if: ${{ github.ref_name == 'main' }}
+      #        run: ./bin/console doctrine:migrations:migrate -e test -n -vv --allow-no-migration --ansi
+      #        env:
+      #          DATABASE_URL: postgresql://ci-db-user:ci-db-password@127.0.0.1:${{ job.services.pgsql.ports['5432'] }}/ci-db?serverVersion=13&charset=utf8
+
+      - name: Run database schema update
+        #        if: ${{ github.ref_name != 'main' }}
+        run: ./bin/console doctrine:schema:update -e test --force --ansi
+        env:
+          DATABASE_URL: postgresql://ci-db-user:ci-db-password@127.0.0.1:${{ job.services.pgsql.ports['5432'] }}/ci-db?serverVersion=13&charset=utf8
+
+      - name: Run behat test suite (standard mode)
+        run: ./vendor/bin/behat --colors
+        env:
+          SYMFONY_DEPRECATIONS_HELPER: disabled
+          DATABASE_URL: postgresql://ci-db-user:ci-db-password@127.0.0.1:${{ job.services.pgsql.ports['5432'] }}/ci-db
 
 
   behat-test-on-prod-stack:
