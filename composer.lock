@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "e8cac499dc377eefb843a23db027f96e",
+    "content-hash": "0bcd2a47aa206455abf18ec01b08925b",
     "packages": [
         {
             "name": "brick/math",
@@ -7502,6 +7502,161 @@
                 }
             ],
             "time": "2022-04-01T12:37:26+00:00"
+        },
+        {
+            "name": "robertfausk/behat-panther-extension",
+            "version": "v1.1.0",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/robertfausk/behat-panther-extension.git",
+                "reference": "a51c41dc5d5e772a75d2c6c5dbd1ab73194ac803"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/robertfausk/behat-panther-extension/zipball/a51c41dc5d5e772a75d2c6c5dbd1ab73194ac803",
+                "reference": "a51c41dc5d5e772a75d2c6c5dbd1ab73194ac803",
+                "shasum": ""
+            },
+            "require": {
+                "behat/behat": "^3.0.5",
+                "friends-of-behat/mink-extension": "^2.3.0",
+                "php": ">=7.2",
+                "robertfausk/mink-panther-driver": "^1.0",
+                "symfony/config": "^3.4|^4.0|^5.0|^6.0"
+            },
+            "require-dev": {
+                "dbrekelmans/bdi": "^1.0",
+                "g1a/composer-test-scenarios": "^3.0",
+                "matthiasnoback/symfony-config-test": "^4.1",
+                "phpunit/phpunit": "~7.5|~9.3",
+                "roave/security-advisories": "dev-master"
+            },
+            "type": "behat-extension",
+            "extra": {
+                "branch-alias": {
+                    "dev-master": "1.1.x-dev"
+                },
+                "scenarios": {
+                    "symfony6": {
+                        "require": {
+                            "symfony/config": "^6.0"
+                        }
+                    },
+                    "symfony5": {
+                        "require": {
+                            "symfony/config": "^5.0"
+                        }
+                    },
+                    "symfony4": {
+                        "require": {
+                            "symfony/config": "^4.0"
+                        }
+                    },
+                    "symfony3": {
+                        "require": {
+                            "symfony/config": "^3.4"
+                        }
+                    }
+                }
+            },
+            "autoload": {
+                "psr-4": {
+                    "Robertfausk\\Behat\\PantherExtension\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Robert Freigang",
+                    "email": "robertfreigang@gmx.de"
+                }
+            ],
+            "description": "Symfony Panther extension for Behat",
+            "keywords": [
+                "Behat",
+                "Cucumber",
+                "Panther",
+                "browser",
+                "chrome",
+                "firefox",
+                "gherkin",
+                "gui",
+                "symfony",
+                "test",
+                "web"
+            ],
+            "support": {
+                "issues": "https://github.com/robertfausk/behat-panther-extension/issues",
+                "source": "https://github.com/robertfausk/behat-panther-extension/tree/v1.1.0"
+            },
+            "time": "2022-02-16T20:10:03+00:00"
+        },
+        {
+            "name": "robertfausk/mink-panther-driver",
+            "version": "v1.0.8",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/robertfausk/mink-panther-driver.git",
+                "reference": "92aee33495f684d1ba202db9499764ec00246355"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/robertfausk/mink-panther-driver/zipball/92aee33495f684d1ba202db9499764ec00246355",
+                "reference": "92aee33495f684d1ba202db9499764ec00246355",
+                "shasum": ""
+            },
+            "require": {
+                "behat/mink": "~1.8",
+                "ext-dom": "*",
+                "php": ">=7.1",
+                "symfony/panther": "~0.7|~1.0"
+            },
+            "require-dev": {
+                "mink/driver-testsuite": "dev-master",
+                "phpunit/phpunit": "~6.0|~7.0",
+                "symfony/dom-crawler": "~2.3|~3.0|~4.0",
+                "symfony/http-kernel": "~2.3|~3.0|~4.0"
+            },
+            "suggest": {
+                "ext-gd": "*"
+            },
+            "type": "mink-driver",
+            "extra": {
+                "branch-alias": {
+                    "dev-master": "1.0.x-dev"
+                }
+            },
+            "autoload": {
+                "psr-4": {
+                    "Behat\\Mink\\Driver\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Robert Freigang",
+                    "email": "robertfreigang@gmx.de"
+                }
+            ],
+            "description": "Symfony Panther driver for Mink framework",
+            "homepage": "http://mink.behat.org/",
+            "keywords": [
+                "Mink",
+                "browser",
+                "symfony",
+                "testing"
+            ],
+            "support": {
+                "issues": "https://github.com/robertfausk/mink-panther-driver/issues",
+                "source": "https://github.com/robertfausk/mink-panther-driver/tree/v1.0.8"
+            },
+            "time": "2021-03-14T07:50:56+00:00"
         },
         {
             "name": "sebastian/cli-parser",
