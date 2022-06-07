@@ -36,7 +36,7 @@ jobs:
         id: download-artifact
         run: |
           ls -al
-          gh run download -n ${{ env.COVERAGE_UNIT_ARTIFATC_NAME }}-${{ env.GITHUB_SHA }}
+          gh run download -n ${{ env.COVERAGE_UNIT_ARTIFATC_NAME }}-${{ github.event.client_payload.sha }}
           ls -al
         env:
           GITHUB_TOKEN: ${{secrets.GITHUB_TOKEN}}
