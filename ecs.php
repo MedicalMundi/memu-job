@@ -26,6 +26,7 @@ return static function (ContainerConfigurator $containerConfigurator): void {
         __DIR__ . '/core/publishing/src',
         __DIR__ . '/core/publishing/tests',
         __DIR__ . '/ecs.php',
+        __DIR__ . '/rector.php',
     ]);
 
     $parameters->set(
