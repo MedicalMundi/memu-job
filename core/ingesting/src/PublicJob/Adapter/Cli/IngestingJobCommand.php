@@ -33,7 +33,6 @@ class IngestingJobCommand extends Command
         $io = new SymfonyStyle($input, $output);
         $io->success('Inizio Rss download (errata)');
         try {
-            $io->success('You have a new command! Now make it your own! Pass --help to see your options.');
         } catch (\Exception $exception) {
             $io->error($exception->getMessage());
             return Command::FAILURE;
