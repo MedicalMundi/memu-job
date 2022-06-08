@@ -27,7 +27,7 @@ jobs:
     name: Triggering workflow info
     steps:
       - name: Checkout on branch ${{ github.event.client_payload.ref_name }}|SHA-${{ github.event.client_payload.sha }}
-        uses: actions/checkout@v2
+        uses: actions/checkout@v3
         with:
           ref: ${{ github.event.workflow_run.head_commit.id }}
 
@@ -75,7 +75,7 @@ jobs:
       fail-fast: true
     steps:
       - name: Checkout on branch ${{ github.event.client_payload.ref_name }}|SHA-${{ github.event.client_payload.sha }}
-        uses: actions/checkout@v2
+        uses: actions/checkout@v3
         with:
           ref: ${{ github.event.client_payload.sha }}
 
@@ -165,7 +165,7 @@ jobs:
       contents: read
     steps:
       - name: Checkout on branch ${{ github.event.client_payload.ref_name }}|SHA-${{ github.event.client_payload.sha }}
-        uses: actions/checkout@v2
+        uses: actions/checkout@v3
         with:
           ref: ${{ github.event.client_payload.sha }}
 
@@ -275,7 +275,7 @@ jobs:
       fail-fast: true
     steps:
       - name: Checkout on branch ${{ github.event.client_payload.ref_name }}|SHA-${{ github.event.client_payload.sha }}
-        uses: actions/checkout@v2
+        uses: actions/checkout@v3
         with:
           ref: ${{ github.event.client_payload.sha }}
 
@@ -389,7 +389,7 @@ jobs:
       fail-fast: true
     steps:
       - name: Checkout on branch ${{ github.event.client_payload.ref_name }}|SHA-${{ github.event.client_payload.sha }}
-        uses: actions/checkout@v2
+        uses: actions/checkout@v3
         with:
           ref: ${{ github.event.client_payload.sha }}
 
@@ -465,7 +465,7 @@ jobs:
       contents: read
     steps:
       - name: Checkout
-        uses: actions/checkout@v2
+        uses: actions/checkout@v3
 
       - name: Start services
         run: docker-compose -f docker-compose.ci-gha.yml up -d
@@ -538,7 +538,7 @@ jobs:
 #      contents: read
 #    steps:
 #      - name: Checkout
-#        uses: actions/checkout@v2
+#        uses: actions/checkout@v3
 #
 #      - name: Start services
 #        run: docker-compose -f docker-compose.ci-gha.yml up -d
@@ -614,7 +614,7 @@ jobs:
       contents: read
     steps:
       - name: Checkout on branch ${{ github.event.client_payload.ref_name }}|SHA-${{ github.event.client_payload.sha }}
-        uses: actions/checkout@v2
+        uses: actions/checkout@v3
         with:
           ref: ${{ github.event.client_payload.sha }}
 
@@ -753,7 +753,7 @@ jobs:
       fail-fast: true
     steps:
       - name: Checkout on branch ${{ github.event.client_payload.ref_name }}|SHA-${{ github.event.client_payload.sha }}
-        uses: actions/checkout@v2
+        uses: actions/checkout@v3
         with:
           ref: ${{ github.event.client_payload.sha }}
 
@@ -830,7 +830,7 @@ jobs:
       contents: read
     steps:
       - name: Checkout on branch ${{ github.event.client_payload.ref_name }}|SHA-${{ github.event.client_payload.sha }}
-        uses: actions/checkout@v2
+        uses: actions/checkout@v3
         with:
           ref: ${{ github.event.client_payload.sha }}
 
