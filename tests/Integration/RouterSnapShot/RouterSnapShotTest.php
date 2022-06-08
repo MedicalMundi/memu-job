@@ -2,30 +2,41 @@
 
 namespace App\Tests\Integration\RouterSnapShot;
 
+use Psr\Container\ContainerInterface;
 use Symfony\Bundle\FrameworkBundle\Test\KernelTestCase;
 use Symfony\Component\Filesystem\Filesystem;
 use Symfony\Component\Routing\RouteCollection;
+use Symfony\Component\Routing\RouterInterface;
 
+/**
+ * Snapshot test about the router configuration
+ *
+ * When you add new route run phpunit with env var UT=1 (Update Test)
+ * UT=1 bin/phpunit --filter=RouterSnapShotTest
+ */
 class RouterSnapShotTest extends KernelTestCase
 {
-    public function test(): void
+    public function testApplicationEndPoint(): void
     {
-        $container = $this->getContainer();
+        /** @var ContainerInterface $container */
+        $container = self::getContainer();
 
+        /** @var RouterInterface $router */
         $router = $container->get('router');
 
         $routeCollection = $router->getRouteCollection();
+
         $routeMap = $this->createRouteMap($routeCollection);
 
-        $currentRouteMapJson = json_encode($routeMap, JSON_PRETTY_PRINT); //  Json::encode($routeMap, Json::PRETTY);
+        $currentRouteMapJson = (string) json_encode($routeMap, JSON_PRETTY_PRINT); //  Json::encode($routeMap, Json::PRETTY);
 
         $expectedRouteMapFile = __DIR__ . '/Fixture/expected_route_map.json';
 
-        if (getenv('UT')) {
+        if ((bool) getenv('UT')) {
             (new FileSystem())->dumpFile($expectedRouteMapFile, $currentRouteMapJson);
         }
 
-        $this->assertJsonStringEqualsJsonFile(
+        self::assertJsonStringEqualsJsonFile(
             $expectedRouteMapFile,
             $currentRouteMapJson
         );
