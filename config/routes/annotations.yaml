@@ -5,3 +5,11 @@ controllers:
 kernel:
     resource: ../../src/Kernel.php
     type: annotation
+
+publishing_controllers:
+    resource: ../../core/publishing/src/Cms/Adapter/HttpWeb/
+    type: annotation
+
+publishing_api_controllers:
+    resource: ../../core/publishing/src/Cms/Adapter/HttpApi/
+    type: annotation

@@ -56,3 +56,21 @@ services:
         arguments:
             - '@Ingesting\Errata\Application\ErrataModule'
         tags: ['console.command']
+
+
+
+    #
+    #   PUBLISHING BOUNDED CONTEXT
+    #
+    Publishing\:
+        resource: '../core/publishing/src/'
+        exclude:
+            - '../core/publishing/src/Cms/Application/Model'
+
+    Publishing\Cms\Adapter\HttpWeb\:
+        resource: '../core/publishing/src/Cms/Adapter/HttpWeb/'
+        tags: [ 'controller.service_arguments' ]
+
+    Publishing\Cms\Adapter\HttpApi\:
+        resource: '../core/publishing/src/Cms/Adapter/HttpApi/'
+        tags: [ 'controller.service_arguments' ]
