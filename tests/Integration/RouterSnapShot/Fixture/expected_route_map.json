@@ -1,0 +1,10 @@
+{
+    "app_healt_check": {
+        "path": "\/sys\/healt\/check",
+        "requirements": [],
+        "defaults": {
+            "_controller": "App\\Controller\\AppHealtCheckController::index"
+        },
+        "methods": []
+    }
+}
