@@ -22,7 +22,7 @@ class RouterSnapShotTest extends KernelTestCase
         $expectedRouteMapFile = __DIR__ . '/Fixture/expected_route_map.json';
 
         if (getenv('UT')) {
-            (new FileSystem)->dumpFile($expectedRouteMapFile, $currentRouteMapJson);
+            (new FileSystem())->dumpFile($expectedRouteMapFile, $currentRouteMapJson);
         }
 
         $this->assertJsonStringEqualsJsonFile(
