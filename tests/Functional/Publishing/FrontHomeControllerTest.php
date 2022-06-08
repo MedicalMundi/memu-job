@@ -17,5 +17,4 @@ class FrontHomeControllerTest extends WebTestCase
 
         self::assertEquals(200, $client->getResponse()->getStatusCode());
     }
-
 }
