@@ -15,7 +15,7 @@ default:
             panther:
                 options:
                     browser: 'firefox'
-                    external_base_uri: 'http://127.0.0.1'
+                    #external_base_uri: 'http://127.0.0.1'
                 kernel_options:
                    APP_ENV: test
                    APP_DEBUG: false
