@@ -6,5 +6,13 @@
             "_controller": "App\\Controller\\AppHealtCheckController::index"
         },
         "methods": []
+    },
+    "app_home": {
+        "path": "\/",
+        "requirements": [],
+        "defaults": {
+            "_controller": "Publishing\\Cms\\Adapter\\HttpWeb\\FrontHomeController::index"
+        },
+        "methods": []
     }
 }
