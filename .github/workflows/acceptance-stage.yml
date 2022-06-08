@@ -585,77 +585,77 @@ jobs:
           DATABASE_URL: postgresql://ci-db-user:ci-db-password@127.0.0.1:${{ job.services.pgsql.ports['5432'] }}/ci-db
 
 
-  prod-stack-env:
-    needs: [app-preconditions-checks, artifact-release-candidate]
-    runs-on: ubuntu-18.04
-    timeout-minutes: 10
-    permissions:
-      packages: read
-      contents: read
-    steps:
-      - name: Checkout
-        uses: actions/checkout@v3
-
-      - name: Start services
-        run: docker-compose -f docker-compose.ci-gha.yml up -d
-        env:
-          MEMU_JOB_VERSION: ${{ github.event.client_payload.sha }}
-
-#      - name: Wait for services
+#  prod-stack-env:
+#    needs: [app-preconditions-checks, artifact-release-candidate]
+#    runs-on: ubuntu-18.04
+#    timeout-minutes: 10
+#    permissions:
+#      packages: read
+#      contents: read
+#    steps:
+#      - name: Checkout
+#        uses: actions/checkout@v3
+#
+#      - name: Start services
+#        run: docker-compose -f docker-compose.ci-gha.yml up -d
+#        env:
+#          MEMU_JOB_VERSION: ${{ github.event.client_payload.sha }}
+#
+##      - name: Wait for services
+##        run: |
+##          while status="$(docker inspect --format="{{if .Config.Healthcheck}}{{print .State.Health.Status}}{{end}}" "$(docker-compose -f docker-compose.ci-gha.yml ps -q php)")"; do
+##            case $status in
+##              starting) sleep 1;;
+##              healthy) exit 0;;
+##              unhealthy)
+##                docker-compose -f docker-compose.ci-gha.yml ps
+##                docker-compose -f docker-compose.ci-gha.yml logs
+##                exit 1
+##              ;;
+##            esac
+##          done
+##          exit 1
+#
+#      - name: services list
+#        run: docker-compose -f docker-compose.ci-gha.yml ps
+#
+#      - name: Doctrine Schema Validator
+#        run: docker-compose -f docker-compose.ci-gha.yml exec -T php bin/console doctrine:schema:validate --skip-sync
+#        continue-on-error: false
+#
+#      - name: Doctrine Schema Update
+#        run: docker-compose -f docker-compose.ci-gha.yml exec -T php bin/console doctrine:schema:update --force -vvv
+#        continue-on-error: false
+#
+#      - name: Check HTTP reachability (localhost)
+#        run: curl -v -o /dev/null http://localhost
+#        continue-on-error: false
+#
+#      - name: Check HTTP reachability (127.0.0.1)
+#        run: curl -v -o /dev/null http://127.0.0.1
+#        continue-on-error: false
+#
+#      - name: Check HTTP reachability (healtcheck)
+#        run: curl -v -o /dev/null http://127.0.0.1/sys/healt/check
+#        continue-on-error: false
+#
+#      - name: Check HTTPS reachability
+#        run: curl  -vk -o /dev/null https://127.0.0.1
+#        continue-on-error: false
+#
+#      - name: Check HTTPS reachability (healtcheck)
+#        run: curl  -vk -o /dev/null https://127.0.0.1/sys/healt/check
+#        continue-on-error: false
+#
+#      - name: Show application log
 #        run: |
-#          while status="$(docker inspect --format="{{if .Config.Healthcheck}}{{print .State.Health.Status}}{{end}}" "$(docker-compose -f docker-compose.ci-gha.yml ps -q php)")"; do
-#            case $status in
-#              starting) sleep 1;;
-#              healthy) exit 0;;
-#              unhealthy)
-#                docker-compose -f docker-compose.ci-gha.yml ps
-#                docker-compose -f docker-compose.ci-gha.yml logs
-#                exit 1
-#              ;;
-#            esac
-#          done
-#          exit 1
-
-      - name: services list
-        run: docker-compose -f docker-compose.ci-gha.yml ps
-
-      - name: Doctrine Schema Validator
-        run: docker-compose -f docker-compose.ci-gha.yml exec -T php bin/console doctrine:schema:validate --skip-sync
-        continue-on-error: false
-
-      - name: Doctrine Schema Update
-        run: docker-compose -f docker-compose.ci-gha.yml exec -T php bin/console doctrine:schema:update --force -vvv
-        continue-on-error: false
-
-      - name: Check HTTP reachability (localhost)
-        run: curl -v -o /dev/null http://localhost
-        continue-on-error: false
-
-      - name: Check HTTP reachability (127.0.0.1)
-        run: curl -v -o /dev/null http://127.0.0.1
-        continue-on-error: false
-
-      - name: Check HTTP reachability (healtcheck)
-        run: curl -v -o /dev/null http://127.0.0.1/sys/healt/check
-        continue-on-error: false
-
-      - name: Check HTTPS reachability
-        run: curl  -vk -o /dev/null https://127.0.0.1
-        continue-on-error: false
-
-      - name: Check HTTPS reachability (healtcheck)
-        run: curl  -vk -o /dev/null https://127.0.0.1/sys/healt/check
-        continue-on-error: false
-
-      - name: Show application log
-        run: |
-          docker-compose -f docker-compose.ci-gha.yml logs php
-          docker-compose -f docker-compose.ci-gha.yml exec -T php ls -al /app/var/log
-          docker-compose -f docker-compose.ci-gha.yml exec -T php ls -al /app/var/cache
-        continue-on-error: true
-
-      - name: Stop services
-        run: docker-compose -f docker-compose.ci-gha.yml down -v --remove-orphans
+#          docker-compose -f docker-compose.ci-gha.yml logs php
+#          docker-compose -f docker-compose.ci-gha.yml exec -T php ls -al /app/var/log
+#          docker-compose -f docker-compose.ci-gha.yml exec -T php ls -al /app/var/cache
+#        continue-on-error: true
+#
+#      - name: Stop services
+#        run: docker-compose -f docker-compose.ci-gha.yml down -v --remove-orphans
 
 
 #  test-stack-env:
@@ -851,7 +851,6 @@ jobs:
           SYMFONY_DEPRECATIONS_HELPER: disabled
           #DATABASE_URL: postgresql://ci-db-user:ci-db-password@127.0.0.1:${{ job.services.pgsql.ports['5432'] }}/ci-db
 
-
       - name: Stop services
         run: docker-compose -f docker-compose.ci-gha.yml down -v --remove-orphans
 
@@ -953,14 +952,14 @@ jobs:
         run: symfony server:start --port=8080 --dir=public --daemon --no-tls
 
       - name: Run behat test suite (exclude javascript)
-        run: ./vendor/bin/behat --tags='~@javascript' --colors
+        run: ./vendor/bin/behat -s front --tags='~@javascript' --colors
         env:
           PANTHER_EXTERNAL_BASE_URI: http://127.0.0.1:8080
           SYMFONY_DEPRECATIONS_HELPER: disabled
           DATABASE_URL: postgresql://ci-db-user:ci-db-password@127.0.0.1:${{ job.services.pgsql.ports['5432'] }}/ci-db
 
       - name: Run behat test suite (only javascript)
-        run: ./vendor/bin/behat --tags='@javascript' --colors
+        run: ./vendor/bin/behat -s front --tags='@javascript' --colors
         env:
           PANTHER_EXTERNAL_BASE_URI: http://127.0.0.1:8080
           SYMFONY_DEPRECATIONS_HELPER: disabled
@@ -1080,7 +1079,7 @@ jobs:
         run: composer install --prefer-dist --no-progress --no-scripts --
 
       - name: Run behat test on production stack
-        run: ./vendor/bin/behat --colors
+        run: ./vendor/bin/behat -s front --colors
         env:
           SYMFONY_DEPRECATIONS_HELPER: disabled
           #DATABASE_URL: postgresql://ci-db-user:ci-db-password@127.0.0.1:${{ job.services.pgsql.ports['5432'] }}/ci-db
