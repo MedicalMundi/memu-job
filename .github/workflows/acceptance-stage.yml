@@ -810,6 +810,9 @@ jobs:
         env:
           DATABASE_URL: postgresql://ci-db-user:ci-db-password@127.0.0.1:${{ job.services.pgsql.ports['5432'] }}/ci-db?serverVersion=13&charset=utf8
 
+      - name: Dwonload firefox driver
+        run: ./vendor/bin/bdi driver:geckodriver --os=linux drivers
+
       - name: Run behat test suite (standard mode)
         run: ./vendor/bin/behat --colors
         env:
