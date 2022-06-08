@@ -158,6 +158,7 @@ jobs:
 
   artifact-release-candidate:
     name: Build release candidate images
+    if: ( !startsWith( ${{ github.ref_name }}, 'dependabot' ) )
     runs-on: ubuntu-18.04
     permissions:
       packages: write
