@@ -24,8 +24,16 @@ default:
                    request_timeout_in_ms: 120000
 
     suites:
-        default:
+        demo:
             contexts:
                 - App\Tests\Behat\DemoContext
                 - App\Tests\Behat\OtherDemoContext
+            paths:
+                - '%paths.base%/features/demo.feature'
+
+        front:
+            contexts:
+                - App\Tests\Behat\AcceptanceContext
+            paths:
+                - '%paths.base%/features/front'
 
