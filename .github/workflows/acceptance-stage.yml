@@ -250,7 +250,7 @@ jobs:
 
 
   core-integration-test:
-    name: Integration test (core)
+    name: (Core) Integration test
     needs: [app-preconditions-checks]
     runs-on: ubuntu-18.04
     timeout-minutes: 5
@@ -951,15 +951,15 @@ jobs:
       - name: Run webserver
         run: symfony server:start --port=8080 --dir=public --daemon --no-tls
 
-      - name: Run behat test suite (exclude javascript)
-        run: ./vendor/bin/behat -s front --tags='~@javascript&&~@wip' --colors
+      - name: Run behat front testsuite
+        run: ./vendor/bin/behat -s front --colors
         env:
           PANTHER_EXTERNAL_BASE_URI: http://127.0.0.1:8080
           SYMFONY_DEPRECATIONS_HELPER: disabled
           DATABASE_URL: postgresql://ci-db-user:ci-db-password@127.0.0.1:${{ job.services.pgsql.ports['5432'] }}/ci-db
 
-      - name: Run behat test suite (only javascript)
-        run: ./vendor/bin/behat -s front --tags='@javascript&&~@wip' --colors
+      - name: Run behat backoffice testsuite
+        run: ./vendor/bin/behat -s backoffice --colors
         env:
           PANTHER_EXTERNAL_BASE_URI: http://127.0.0.1:8080
           SYMFONY_DEPRECATIONS_HELPER: disabled
@@ -1078,8 +1078,14 @@ jobs:
       - name: Install Composer dependencies
         run: composer install --prefer-dist --no-progress --no-scripts --
 
-      - name: Run behat test on production stack
+      - name: Run behat front testsuite on production stack
         run: ./vendor/bin/behat -s front --colors
+        env:
+          SYMFONY_DEPRECATIONS_HELPER: disabled
+          #DATABASE_URL: postgresql://ci-db-user:ci-db-password@127.0.0.1:${{ job.services.pgsql.ports['5432'] }}/ci-db
+
+      - name: Run behat backoffice testsuite on production stack
+        run: ./vendor/bin/behat -s backoffice --colors
         env:
           SYMFONY_DEPRECATIONS_HELPER: disabled
           #DATABASE_URL: postgresql://ci-db-user:ci-db-password@127.0.0.1:${{ job.services.pgsql.ports['5432'] }}/ci-db
