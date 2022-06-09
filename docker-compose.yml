@@ -3,6 +3,8 @@ version: '3.8'
 services:
   app:
     image: webdevops/php-dev:7.4
+    user: application
+    working_dir: /app
     ports:
       - "2222:22"
       - "9021:9021"
