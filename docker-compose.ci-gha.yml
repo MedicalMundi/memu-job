@@ -2,7 +2,7 @@ version: '3.8'
 
 services:
   php:
-    image: ghcr.io/medicalmundi/internal-php-rc:${RELEASE_CANDIDATE_TAG:-main}
+    image: ghcr.io/medicalmundi/${PHP_RELEASE_CANDIDATE_IMAGE_NAME:-internal-php-rc}:${RELEASE_CANDIDATE_TAG:-main}
     depends_on:
       - pgsql
     environment:

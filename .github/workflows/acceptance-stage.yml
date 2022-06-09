@@ -754,6 +754,7 @@ jobs:
       - name: Start services
         run: docker-compose -f docker-compose.ci-gha.yml up -d
         env:
+          PHP_RELEASE_CANDIDATE_IMAGE_NAME: ${{ env.PHP_RELEASE_CANDIDATE_IMAGE_NAME }}
           RELEASE_CANDIDATE_TAG: ${{ github.event.client_payload.sha }}
 
       #      - name: Wait for services
@@ -988,6 +989,7 @@ jobs:
       - name: Start services
         run: docker-compose -f docker-compose.ci-gha.yml up -d
         env:
+          PHP_RELEASE_CANDIDATE_IMAGE_NAME: ${{ env.PHP_RELEASE_CANDIDATE_IMAGE_NAME }}
           RELEASE_CANDIDATE_TAG: ${{ github.event.client_payload.sha }}
 
       #      - name: Wait for services
