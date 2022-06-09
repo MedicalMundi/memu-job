@@ -859,7 +859,7 @@ jobs:
     name: Behat test standard
     needs: [app-preconditions-checks]
     runs-on: ubuntu-18.04
-    timeout-minutes: 5
+    timeout-minutes: 10
     services:
       pgsql:
         image: postgres:13-alpine
@@ -952,14 +952,14 @@ jobs:
         run: symfony server:start --port=8080 --dir=public --daemon --no-tls
 
       - name: Run behat test suite (exclude javascript)
-        run: ./vendor/bin/behat -s front --tags='~@javascript' --colors
+        run: ./vendor/bin/behat -s front --tags='~@javascript&&~@wip' --colors
         env:
           PANTHER_EXTERNAL_BASE_URI: http://127.0.0.1:8080
           SYMFONY_DEPRECATIONS_HELPER: disabled
           DATABASE_URL: postgresql://ci-db-user:ci-db-password@127.0.0.1:${{ job.services.pgsql.ports['5432'] }}/ci-db
 
       - name: Run behat test suite (only javascript)
-        run: ./vendor/bin/behat -s front --tags='@javascript' --colors
+        run: ./vendor/bin/behat -s front --tags='@javascript&&~@wip' --colors
         env:
           PANTHER_EXTERNAL_BASE_URI: http://127.0.0.1:8080
           SYMFONY_DEPRECATIONS_HELPER: disabled
