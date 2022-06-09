@@ -20,6 +20,8 @@ return static function (ECSConfig $ecsConfig): void {
         __DIR__ . '/core/ingesting/tests',
         __DIR__ . '/core/publishing/src',
         __DIR__ . '/core/publishing/tests',
+        __DIR__ . '/core/backoffice/src',
+        __DIR__ . '/core/backoffice/tests',
         __DIR__ . '/ecs.php',
         __DIR__ . '/rector.php',
     ]);
