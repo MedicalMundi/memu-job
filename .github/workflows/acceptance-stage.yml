@@ -138,9 +138,9 @@ jobs:
           ./bin/console lint:container -e prod --ansi
           ./bin/console lint:container -e dev --ansi
 
-#      - name: Validate twig templates
-#        run: |
-#          ./bin/console lint:twig templates/ --ansi
+      - name: Validate twig templates
+        run: |
+          ./bin/console lint:twig templates/ --ansi
 
 #      - name: Run database migrations
 #        if: ${{ github.ref_name == 'main' }}
