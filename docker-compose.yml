@@ -75,4 +75,16 @@ services:
       PGADMIN_DEFAULT_EMAIL: "admin@example.com"
       PGADMIN_DEFAULT_PASSWORD: "admin"
 
+  encore:
+    image: node:16-alpine
+    container_name: encore
+    environment:
+      USER: node
+      PYTHON: python3
+    working_dir: /app
+    volumes:
+      - .:/app
+    #command: ["yarn", "encore", "dev", "--watch" ]
+    command: ["yarn", "watch" ]
+
 
