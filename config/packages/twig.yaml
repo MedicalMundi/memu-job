@@ -2,6 +2,7 @@ twig:
     default_path: '%kernel.project_dir%/templates'
     paths:
         '%kernel.project_dir%/core/publishing/templates': 'front'
+        '%kernel.project_dir%/core/backoffice/templates': 'backoffice'
 
 when@test:
     twig:
