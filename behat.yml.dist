@@ -37,3 +37,8 @@ default:
             paths:
                 - '%paths.base%/features/front'
 
+        backoffice:
+            contexts:
+                - App\Tests\Behat\AcceptanceContext
+            paths:
+                - '%paths.base%/features/backoffice'
