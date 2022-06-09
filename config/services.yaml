@@ -74,3 +74,20 @@ services:
     Publishing\Cms\Adapter\HttpApi\:
         resource: '../core/publishing/src/Cms/Adapter/HttpApi/'
         tags: [ 'controller.service_arguments' ]
+
+
+    #
+    #   BACKOFFICE UI
+    #
+    Backoffice\:
+        resource: '../core/backoffice/src/'
+        exclude:
+            - '../core/backoffice/src/Application/Model'
+
+    Backoffice\Adapter\HttpWeb\:
+        resource: '../core/backoffice/src/Adapter/HttpWeb/'
+        tags: [ 'controller.service_arguments' ]
+
+    Backoffice\Adapter\HttpApi\:
+        resource: '../core/backoffice/src/Adapter/HttpApi/'
+        tags: [ 'controller.service_arguments' ]
