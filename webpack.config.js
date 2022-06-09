@@ -21,11 +21,13 @@ Encore
      * and one CSS file (e.g. app.css) if your JavaScript imports CSS.
      */
     .addEntry('app', './assets/app.js')
-
-    .addEntry('app_front', './core/publishing/assets/app_front.js')
-
     // enables the Symfony UX Stimulus bridge (used in assets/bootstrap.js)
     .enableStimulusBridge('./assets/controllers.json')
+
+
+    .addEntry('app_front', './core/publishing/assets/app_front.js')
+    // enables the Symfony UX Stimulus bridge (used in core/publishing/assets/bootstrap.js)
+    .enableStimulusBridge('./core/publishing/assets/controllers.json')
 
     // When enabled, Webpack "splits" your files into smaller pieces for greater optimization.
     .splitEntryChunks()
