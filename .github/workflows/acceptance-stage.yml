@@ -186,7 +186,7 @@ jobs:
           password: ${{ secrets.GITHUB_TOKEN }}
 
       - name: Docker meta
-        id: meta
+        id: meta_php_release_candidate
         uses: docker/metadata-action@v3
         with:
           images: |
@@ -207,19 +207,18 @@ jobs:
       - name: Set up Docker Buildx
         uses: docker/setup-buildx-action@v2
 
-      - name: Pre build image
+      - name: Pre build image PHP
         id: docker_pre_build
         uses: docker/build-push-action@v3
         with:
           context: .
           file: docker/php/Dockerfile
-          #platforms: linux/amd64,linux/arm64
           platforms: linux/amd64
           load: true
           no-cache: false
           tags: ${{ env.TEST_TAG_PHP_RELEASE_CANDIDATE }}
 
-      - name: Test image
+      - name: Test pre build image PHP
         id: test-builded-image
         run: |
           docker run --rm ${{ env.TEST_TAG_PHP_RELEASE_CANDIDATE }} php -v
@@ -229,25 +228,24 @@ jobs:
           docker run --rm ${{ env.TEST_TAG_PHP_RELEASE_CANDIDATE }} bin/console lint:container -e dev --verbose
 #          docker run --rm ${{ env.TEST_TAG_PHP_RELEASE_CANDIDATE }} bin/console lint:container -e test --verbose
 
-      - name: Test image as not root user
+      - name: Test pre build image PHP as not root user
         id: test-builded-image-as-not-root-user
         run: |
           docker run -u application --rm ${{ env.TEST_TAG_PHP_RELEASE_CANDIDATE }} ls -al /app
 
       - name: Build image
-        id: docker_build
+        id: docker_build_php_release_candidate
         uses: docker/build-push-action@v3
         with:
           context: .
           file: docker/php/Dockerfile
-          #platforms: linux/amd64,linux/arm64
           platforms: linux/amd64
           push: true
           load: false
           no-cache: false
           tags: |
-            ${{ steps.meta.outputs.tags }}
-          #labels: ${{ steps.meta.outputs.labels }}
+            ${{ steps.meta_php_release_candidate.outputs.tags }}
+          #labels: ${{ steps.meta_php_release_candidate.outputs.labels }}
 
 
   core-integration-test:
