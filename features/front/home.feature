@@ -9,12 +9,12 @@ Feature:
 
     Scenario: I can navigate to the homepage
         Given I am on the homepage
-        Then I should see "Welcome to your new controller!"
+        Then I should see "Welcome to MedicalMundi!"
 
     @javascript
     Scenario: I can open the homepage in the Browser
         Given I am on "/"
-        Then I should see "Welcome to your new controller!"
+        Then I should see "Welcome to MedicalMundi!"
 
     @wip
     Scenario: It receives a list of available jobs

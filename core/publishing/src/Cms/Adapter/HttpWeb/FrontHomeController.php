@@ -3,7 +3,7 @@
 namespace Publishing\Cms\Adapter\HttpWeb;
 
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
-use Symfony\Component\HttpFoundation\JsonResponse;
+use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 
 class FrontHomeController extends AbstractController
@@ -11,11 +11,10 @@ class FrontHomeController extends AbstractController
     /**
      * @Route("/", name="app_home")
      */
-    public function index(): JsonResponse
+    public function index(): Response
     {
-        return $this->json([
-            'message' => 'Welcome to your new controller!',
-            'path' => '/core/publishing/src/Cms/Adapter/HttpWeb/FrontHomeController.php',
+        return $this->render('@front/home/index.html.twig', [
+            'message' => 'Welcome to MedicalMundi!',
         ]);
     }
 }
