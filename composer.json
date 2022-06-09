@@ -82,14 +82,16 @@
         "psr-4": {
             "App\\": "src/",
             "Ingesting\\": "core/ingesting/src/",
-            "Publishing\\": "core/publishing/src/"
+            "Publishing\\": "core/publishing/src/",
+            "Backoffice\\": "core/backoffice/src/"
         }
     },
     "autoload-dev": {
         "psr-4": {
             "App\\Tests\\": "tests/",
             "Ingesting\\Tests\\": "core/ingesting/tests/",
-            "Publishing\\Tests\\": "core/publishing/tests/"
+            "Publishing\\Tests\\": "core/publishing/tests/",
+            "Backoffice\\Tests\\": "core/backoffice/tests/"
         }
     },
     "scripts": {
