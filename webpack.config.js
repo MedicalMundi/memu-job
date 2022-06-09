@@ -29,6 +29,11 @@ Encore
     // enables the Symfony UX Stimulus bridge (used in core/publishing/assets/bootstrap.js)
     .enableStimulusBridge('./core/publishing/assets/controllers.json')
 
+
+    .addEntry('app_backoffice', './core/backoffice/assets/app_backoffice.js')
+    // enables the Symfony UX Stimulus bridge (used in core/publishing/assets/bootstrap.js)
+    .enableStimulusBridge('./core/backoffice/assets/controllers.json')
+
     // When enabled, Webpack "splits" your files into smaller pieces for greater optimization.
     .splitEntryChunks()
 
