@@ -600,7 +600,7 @@ jobs:
 #      - name: Start services
 #        run: docker-compose -f docker-compose.ci-gha.yml up -d
 #        env:
-#          MEMU_JOB_VERSION: ${{ github.event.client_payload.sha }}
+#          RELEASE_CANDIDATE_TAG: ${{ github.event.client_payload.sha }}
 #
 ##      - name: Wait for services
 ##        run: |
@@ -673,7 +673,7 @@ jobs:
 #      - name: Start services
 #        run: docker-compose -f docker-compose.ci-gha.yml up -d
 #        env:
-#          MEMU_JOB_VERSION: ${{ github.event.client_payload.sha }}
+#          RELEASE_CANDIDATE_TAG: ${{ github.event.client_payload.sha }}
 #          APP_ENV: test
 #          POSTGRES_DB: ci-db-name_test
 #
@@ -754,7 +754,7 @@ jobs:
       - name: Start services
         run: docker-compose -f docker-compose.ci-gha.yml up -d
         env:
-          MEMU_JOB_VERSION: ${{ github.event.client_payload.sha }}
+          RELEASE_CANDIDATE_TAG: ${{ github.event.client_payload.sha }}
 
       #      - name: Wait for services
       #        run: |
@@ -988,7 +988,7 @@ jobs:
       - name: Start services
         run: docker-compose -f docker-compose.ci-gha.yml up -d
         env:
-          MEMU_JOB_VERSION: ${{ github.event.client_payload.sha }}
+          RELEASE_CANDIDATE_TAG: ${{ github.event.client_payload.sha }}
 
       #      - name: Wait for services
       #        run: |

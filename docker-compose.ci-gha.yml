@@ -2,7 +2,7 @@ version: '3.8'
 
 services:
   php:
-    image: ghcr.io/medicalmundi/internal-php-rc:${MEMU_JOB_VERSION:-main}
+    image: ghcr.io/medicalmundi/internal-php-rc:${RELEASE_CANDIDATE_TAG:-main}
     depends_on:
       - pgsql
     environment:
