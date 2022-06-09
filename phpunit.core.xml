@@ -29,6 +29,7 @@
             <directory>core/ingesting/tests/Analyzer/Unit</directory>
             <directory>core/ingesting/tests/PublicJob/Unit</directory>
             <directory>core/publishing/tests/Cms/Unit</directory>
+            <directory>core/backoffice/tests/Unit</directory>
         </testsuite>
         <testsuite name="integration">
             <directory>core/ingesting/tests/SharedKernel/Integration</directory>
@@ -36,6 +37,7 @@
             <directory>core/ingesting/tests/Analyzer/Integration</directory>
             <directory>core/ingesting/tests/PublicJob/Integration</directory>
             <directory>core/publishing/tests/Cms/Integration</directory>
+            <directory>core/backoffice/tests/Integration</directory>
         </testsuite>
     </testsuites>
 
@@ -53,6 +55,7 @@
         <include>
             <directory suffix=".php">core/ingesting/src</directory>
             <directory suffix=".php">core/publishing/src</directory>
+            <directory suffix=".php">core/backoffice/src</directory>
         </include>
     </coverage>
 
