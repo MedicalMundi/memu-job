@@ -84,7 +84,6 @@ services:
     working_dir: /app
     volumes:
       - .:/app
-    #command: ["yarn", "encore", "dev", "--watch" ]
-    command: ["yarn", "watch" ]
+    command: ["yarn", "encore", "dev", "--watch" ]
 
 
