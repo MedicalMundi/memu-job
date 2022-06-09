@@ -76,6 +76,7 @@ jobs:
       matrix:
         php:
           - '7.4'
+          - '8.0'
       fail-fast: true
     steps:
       - name: Checkout on branch ${{ github.event.client_payload.ref_name }}|SHA-${{ github.event.client_payload.sha }}
@@ -878,6 +879,7 @@ jobs:
       matrix:
         php:
           - '7.4'
+          - '8.0'
       fail-fast: true
     steps:
       - name: Checkout on branch ${{ github.event.client_payload.ref_name }}|SHA-${{ github.event.client_payload.sha }}
