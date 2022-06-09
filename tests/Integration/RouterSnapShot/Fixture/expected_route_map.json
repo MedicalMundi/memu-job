@@ -14,5 +14,21 @@
             "_controller": "Publishing\\Cms\\Adapter\\HttpWeb\\FrontHomeController::index"
         },
         "methods": []
+    },
+    "backoffice_api_home": {
+        "path": "\/api-backoffice",
+        "requirements": [],
+        "defaults": {
+            "_controller": "Backoffice\\Adapter\\HttpApi\\ApiAdminController"
+        },
+        "methods": []
+    },
+    "backoffice_home": {
+        "path": "\/backoffice",
+        "requirements": [],
+        "defaults": {
+            "_controller": "Backoffice\\Adapter\\HttpWeb\\BackofficeHomeController::index"
+        },
+        "methods": []
     }
 }
