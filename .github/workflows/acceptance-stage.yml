@@ -995,6 +995,11 @@ jobs:
     permissions:
       packages: read
       contents: read
+    strategy:
+      matrix:
+        php:
+          - '7.4'
+          - '8.0'
     steps:
       - name: Checkout on branch ${{ github.event.client_payload.ref_name }}|SHA-${{ github.event.client_payload.sha }}
         uses: actions/checkout@v3
@@ -1007,7 +1012,8 @@ jobs:
       - name: Start services
         run: docker-compose -f docker-compose.ci-gha.yml up -d
         env:
-          PHP_RELEASE_CANDIDATE_IMAGE_NAME: ${{ env.PHP_RELEASE_CANDIDATE_IMAGE_NAME }}-${{ env.PHP_TARGET_VERSION }}
+#          PHP_RELEASE_CANDIDATE_IMAGE_NAME: ${{ env.PHP_RELEASE_CANDIDATE_IMAGE_NAME }}-${{ env.PHP_TARGET_VERSION }}
+          PHP_RELEASE_CANDIDATE_IMAGE_NAME: ${{ env.PHP_RELEASE_CANDIDATE_IMAGE_NAME }}-${{ matrix.php }}
           RELEASE_CANDIDATE_TAG: ${{ github.event.client_payload.sha }}
 
       #      - name: Wait for services
@@ -1067,7 +1073,7 @@ jobs:
         id: cache-php-extensions
         uses: shivammathur/cache-extensions@v1
         with:
-          php-version: '7.4'
+          php-version: ${{ matrix.php }}
           extensions: ${{ env.PHP_EXTENSIONS }}
           key: ${{ env.PHP_EXTENSIONS_CACHE_KEY }}
 
@@ -1081,7 +1087,7 @@ jobs:
       - name: Setup PHP
         uses: shivammathur/setup-php@v2
         with:
-          php-version: '7.4'
+          php-version: ${{ matrix.php }}
           extensions: ${{ env.PHP_EXTENSIONS }}
           ini-values: memory_limit=-1
           tools: composer,composer-normalize:2.16.0
