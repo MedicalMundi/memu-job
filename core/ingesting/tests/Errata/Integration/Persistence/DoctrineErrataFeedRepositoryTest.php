@@ -2,6 +2,7 @@
 
 namespace Ingesting\Tests\Errata\Integration\Persistence;
 
+use Ingesting\Errata\Adapter\Persistence\Doctrine\DoctrineErrataFeedRepository;
 use Ingesting\Errata\Application\Model\ErrataFeedRepository;
 
 /**
@@ -10,17 +11,14 @@ use Ingesting\Errata\Application\Model\ErrataFeedRepository;
  */
 class DoctrineErrataFeedRepositoryTest extends ErrataFeedRepositoryContractTest
 {
-    /**
-     * @var null|object
-     */
-    private $doctrineErrataFeedRepository;
+    private ?object $doctrineErrataFeedRepository;
 
     protected function setUp(): void
     {
         $kernel = parent::bootKernel();
 
         $this->doctrineErrataFeedRepository = $kernel->getContainer()
-            ->get('Ingesting\Errata\Adapter\Persistence\Doctrine\DoctrineErrataFeedRepository');
+            ->get(DoctrineErrataFeedRepository::class);
 
         parent::setUp();
     }

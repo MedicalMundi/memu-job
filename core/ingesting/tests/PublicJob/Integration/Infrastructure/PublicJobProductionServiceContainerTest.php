@@ -2,6 +2,7 @@
 
 namespace Ingesting\Tests\PublicJob\Integration\Infrastructure;
 
+use Ingesting\PublicJob\Adapter\Persistence\Doctrine\DoctrineJobFeedRepository;
 use Ingesting\PublicJob\Application\Model\JobRepository;
 use Ingesting\PublicJob\Infrastructure\ProductionServiceContainer;
 use Symfony\Bundle\FrameworkBundle\Test\KernelTestCase;
@@ -22,7 +23,7 @@ class PublicJobProductionServiceContainerTest extends KernelTestCase
         $kernel = parent::bootKernel();
 
         $this->jobRepository = $kernel->getContainer()
-            ->get('Ingesting\PublicJob\Adapter\Persistence\Doctrine\DoctrineJobFeedRepository');
+            ->get(DoctrineJobFeedRepository::class);
 
         parent::setUp();
     }

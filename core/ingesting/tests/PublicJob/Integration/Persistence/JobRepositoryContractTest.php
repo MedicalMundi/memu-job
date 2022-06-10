@@ -19,10 +19,7 @@ abstract class JobRepositoryContractTest extends KernelTestCase
 
     private const PUB_DATE = 'Thu, 25 Apr 2019 20:00:00 GMT';
 
-    /**
-     * @var JobRepository
-     */
-    private $repository;
+    private JobRepository $repository;
 
     protected function setUp(): void
     {

@@ -2,6 +2,7 @@
 
 namespace Ingesting\Tests\PublicJob\Integration\Persistence;
 
+use Ingesting\PublicJob\Adapter\Persistence\Doctrine\DoctrineJobFeedRepository;
 use Ingesting\PublicJob\Application\Model\JobRepository;
 
 /**
@@ -10,17 +11,14 @@ use Ingesting\PublicJob\Application\Model\JobRepository;
  */
 class DoctrineJobRepositoryTest extends JobRepositoryContractTest
 {
-    /**
-     * @var null|object
-     */
-    private $doctrineJobFeedRepository;
+    private ?object $doctrineJobFeedRepository;
 
     protected function setUp(): void
     {
         $kernel = parent::bootKernel();
 
         $this->doctrineJobFeedRepository = $kernel->getContainer()
-            ->get('Ingesting\PublicJob\Adapter\Persistence\Doctrine\DoctrineJobFeedRepository');
+            ->get(DoctrineJobFeedRepository::class);
 
         parent::setUp();
     }

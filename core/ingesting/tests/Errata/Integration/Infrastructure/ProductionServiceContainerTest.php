@@ -2,6 +2,7 @@
 
 namespace Ingesting\Tests\Errata\Integration\Infrastructure;
 
+use Ingesting\Errata\Adapter\Persistence\Doctrine\DoctrineErrataFeedRepository;
 use Ingesting\Errata\Application\Model\ErrataFeedRepository;
 use Ingesting\Errata\Infrastructure\ProductionServiceContainer;
 use Symfony\Bundle\FrameworkBundle\Test\KernelTestCase;
@@ -22,7 +23,7 @@ class ProductionServiceContainerTest extends KernelTestCase
         $kernel = parent::bootKernel();
 
         $this->errataFeedRepository = $kernel->getContainer()
-            ->get('Ingesting\Errata\Adapter\Persistence\Doctrine\DoctrineErrataFeedRepository');
+            ->get(DoctrineErrataFeedRepository::class);
 
         parent::setUp();
     }
