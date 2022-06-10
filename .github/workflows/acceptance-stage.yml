@@ -1104,7 +1104,7 @@ jobs:
           restore-keys: ${{ runner.os }}-composer-
 
       - name: Install Composer dependencies
-        run: composer install --prefer-dist --no-progress --no-scripts --
+        run: composer install --prefer-dist --no-progress --no-scripts --ansi
 
       - name: Run behat front testsuite on production stack
         run: ./vendor/bin/behat -s front --colors
