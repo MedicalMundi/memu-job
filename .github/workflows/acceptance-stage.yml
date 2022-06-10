@@ -23,8 +23,8 @@ env:
   REGISTRY: ghcr.io
   PHP_RELEASE_CANDIDATE_IMAGE_NAME: internal-php-rc
   TEST_TAG_PHP_RELEASE_CANDIDATE: medicalmundi/temp-test-rc-img:test
-  PHP_TARGET_VERSION: 7.4 # current php version in production
-  PHP_NEXT_VERSION: 8.0 # next php version in production
+  PHP_TARGET_VERSION: '7.4' # current php version in production
+  PHP_NEXT_VERSION: '8.0' # next php version in production
 
 
 jobs:
@@ -170,6 +170,12 @@ jobs:
     permissions:
       packages: write
       contents: read
+    strategy:
+      matrix:
+        php:
+          - '7.4'
+          - '8.0'
+      fail-fast: true
     steps:
       - name: Checkout on branch ${{ github.event.client_payload.ref_name }}|SHA-${{ github.event.client_payload.sha }}
         uses: actions/checkout@v3
@@ -191,8 +197,10 @@ jobs:
         id: meta_php_release_candidate
         uses: docker/metadata-action@v3
         with:
+#          images: |
+#            ghcr.io/medicalmundi/${{ env.PHP_RELEASE_CANDIDATE_IMAGE_NAME }}-${{ env.PHP_TARGET_VERSION }}
           images: |
-            ghcr.io/medicalmundi/${{ env.PHP_RELEASE_CANDIDATE_IMAGE_NAME }}-${{ env.PHP_TARGET_VERSION }}
+            ghcr.io/medicalmundi/${{ env.PHP_RELEASE_CANDIDATE_IMAGE_NAME }}-${{ matrix.php }}
           tags: |
             type=schedule
             type=ref,event=pr
@@ -216,8 +224,10 @@ jobs:
           context: .
           #file: docker/php/Dockerfile
           file: docker/production/php/Dockerfile
+#          build-args: |
+#            PHP_BASE_VERSION=${{ env.PHP_TARGET_VERSION }}
           build-args: |
-            PHP_BASE_VERSION=${{ env.PHP_TARGET_VERSION }}
+            PHP_BASE_VERSION=${{ matrix.php }}
           platforms: linux/amd64
           load: true
           no-cache: false
@@ -245,8 +255,10 @@ jobs:
           context: .
           #file: docker/php/Dockerfile
           file: docker/production/php/Dockerfile
+#          build-args: |
+#            PHP_BASE_VERSION=${{ env.PHP_TARGET_VERSION }}
           build-args: |
-            PHP_BASE_VERSION=${{ env.PHP_TARGET_VERSION }}
+            PHP_BASE_VERSION=${{ matrix.php }}
           platforms: linux/amd64
           push: true
           load: false
