@@ -244,24 +244,22 @@ jobs:
           docker run --rm ${{ env.TEST_TAG_PHP_RELEASE_CANDIDATE }} php -v
           docker run --rm ${{ env.TEST_TAG_PHP_RELEASE_CANDIDATE }} php -m
           docker run --rm ${{ env.TEST_TAG_PHP_RELEASE_CANDIDATE }} php -i
-          docker run --rm ${{ env.TEST_TAG_PHP_RELEASE_CANDIDATE }} bin/console lint:container -e prod --verbose
-          docker run --rm ${{ env.TEST_TAG_PHP_RELEASE_CANDIDATE }} bin/console lint:container -e dev --verbose
-#          docker run --rm ${{ env.TEST_TAG_PHP_RELEASE_CANDIDATE }} bin/console lint:container -e test --verbose
+        env:
+          APP_ENV: prod
 
       - name: Test pre build image PHP as not root user
         id: test-builded-image-as-not-root-user
         run: |
           docker run -u application --rm ${{ env.TEST_TAG_PHP_RELEASE_CANDIDATE }} ls -al /app
+        env:
+          APP_ENV: prod
 
       - name: Build image
         id: docker_build_php_release_candidate
         uses: docker/build-push-action@v3
         with:
           context: .
-          #file: docker/php/Dockerfile
           file: docker/production/php/Dockerfile
-#          build-args: |
-#            PHP_BASE_VERSION=${{ env.PHP_TARGET_VERSION }}
           build-args: |
             PHP_BASE_VERSION=${{ matrix.php }}
           platforms: linux/amd64
@@ -922,6 +920,8 @@ jobs:
 
       - name: Doctrine Schema Validator
         run: docker-compose -f docker-compose.ci-gha.yml exec -T php bin/console doctrine:schema:validate --skip-sync
+        env:
+          APP_ENV: prod
         continue-on-error: false
 
       - name: Doctrine Schema Update
