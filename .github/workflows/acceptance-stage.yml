@@ -534,6 +534,8 @@ jobs:
         php:
           - '7.4'
           - '8.0'
+        node:
+          - '16.x'
       fail-fast: true
     steps:
       - name: Checkout on branch ${{ github.event.client_payload.ref_name }}|SHA-${{ github.event.client_payload.sha }}
@@ -593,6 +595,32 @@ jobs:
         run: ./bin/console doctrine:schema:update -e test --force --ansi
         env:
           DATABASE_URL: postgresql://ci-db-user:ci-db-password@127.0.0.1:${{ job.services.pgsql.ports['5432'] }}/ci-db?serverVersion=13&charset=utf8
+
+
+      - name: Setup Node
+        uses: actions/setup-node@v1
+        with:
+          node-version: "${{ matrix.node }}"
+
+      - name: Get Yarn cache directory
+        id: yarn-cache
+        run: echo "::set-output name=dir::$(yarn cache dir)"
+
+      - name: Cache Yarn
+        uses: actions/cache@v2
+        with:
+          path: ${{ steps.yarn-cache.outputs.dir }}
+          key: ${{ runner.os }}-node-${{ matrix.node }}-yarn-${{ hashFiles('**/package.json **/yarn.lock') }}
+          restore-keys: |
+            ${{ runner.os }}-node-${{ matrix.node }}-yarn-
+
+      - name: Install JS dependencies
+        run: yarn install
+
+      - name: Build assets
+        run: |
+          bin/console assets:install public -vvv -e test
+          yarn build
 
       - name: Run webserver
         run: symfony server:start --port=8080 --dir=public --daemon --no-tls
