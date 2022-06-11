@@ -5,5 +5,15 @@
 {% endblock %}
 
 {% block body %}
-    <h1>{{ message }}</h1>
+    <h1>{{ message }}
+        |
+        <svg class="bi" role="img" aria-label="Tools">
+            <use xlink:href="bootstrap-icons.svg#tools"/>
+        </svg>
+        |
+    </h1>
+    
+    <hr>
+
+    <img src="{{ asset('build-front/images/hero-img.png', 'build_front') }}">
 {% endblock %}
