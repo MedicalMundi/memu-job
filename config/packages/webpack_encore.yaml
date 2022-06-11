@@ -41,9 +41,9 @@ framework:
 #        json_manifest_path: '%kernel.project_dir%/public/build/manifest.json'
     assets:
         packages:
-            build_front:
+            front:
                 json_manifest_path: '%kernel.project_dir%/public/build-front/manifest.json'
-            build_backoffice:
+            backoffice:
                 json_manifest_path: '%kernel.project_dir%/public/build-backoffice/manifest.json'
 
 
