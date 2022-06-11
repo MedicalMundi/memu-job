@@ -1,3 +1,4 @@
+/.git
 /.github
 /core/backoffice/tests
 /core/publishing/tests
@@ -17,6 +18,7 @@
 /workflow
 
 .actrc
+.env
 .env.test
 .gitignore
 behat.yml.dist
