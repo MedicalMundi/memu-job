@@ -20,6 +20,8 @@
 .env.test
 .gitignore
 behat.yml.dist
+composer.json
+composer.lock
 docker-compose.ci-gha.yml
 docker-compose.override.yml.dist
 docker-compose.yml

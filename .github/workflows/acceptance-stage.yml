@@ -22,9 +22,14 @@ env:
   # Build vars
   REGISTRY: ghcr.io
   PHP_RELEASE_CANDIDATE_IMAGE_NAME: internal-php-rc
-  TEST_TAG_PHP_RELEASE_CANDIDATE: medicalmundi/temp-test-rc-img:test
+  TEST_TAG_PHP_RELEASE_CANDIDATE: medicalmundi/temp-test-php-rc-img:test
   PHP_TARGET_VERSION: '7.4' # current php version in production
   PHP_NEXT_VERSION: '8.0' # next php version in production
+
+  NGINX_RELEASE_CANDIDATE_IMAGE_NAME: internal-nginx-rc
+  TEST_TAG_NGINX_RELEASE_CANDIDATE: medicalmundi/temp-test-nginx-rc-img:test
+  NGINX_TARGET_VERSION: '7.4' # current php version in production
+  NGINX_NEXT_VERSION: '8.0' # next php version in production
 
 
 jobs:
