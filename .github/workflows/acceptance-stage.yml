@@ -898,6 +898,7 @@ jobs:
         run: docker-compose -f docker-compose.ci-gha.yml up -d
         env:
           PHP_RELEASE_CANDIDATE_IMAGE_NAME: ${{ env.PHP_RELEASE_CANDIDATE_IMAGE_NAME }}-${{ env.PHP_TARGET_VERSION }}
+          NGINX_RELEASE_CANDIDATE_IMAGE_NAME: ${{ env.NGINX_RELEASE_CANDIDATE_IMAGE_NAME }}
           RELEASE_CANDIDATE_TAG: ${{ github.event.client_payload.sha }}
 
       #      - name: Wait for services

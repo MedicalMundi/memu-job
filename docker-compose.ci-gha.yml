@@ -13,7 +13,8 @@ services:
       DATABASE_URL: "postgresql://ci-db-user:ci-db-password@pgsql:5432/ci-db-name?serverVersion=13&charset=utf8"
 
   nginx:
-    image: webdevops/nginx:alpine
+    #image: webdevops/nginx:alpine
+    image: ghcr.io/medicalmundi/${NGINX_RELEASE_CANDIDATE_IMAGE_NAME:-internal-nginx-rc}:${RELEASE_CANDIDATE_TAG:-main}
     depends_on:
       - php
     ports:
