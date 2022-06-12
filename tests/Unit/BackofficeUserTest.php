@@ -40,4 +40,15 @@ class BackofficeUserTest extends TestCase
 
         self::assertContains('ROLE_USER', $bu->getRoles());
     }
+
+    public function testCanAssignMultipleRoles(): void
+    {
+        $bu = BackofficeUser::create('foo', 'bar');
+
+        $bu->setRoles(['ROLE_FOO', 'ROLE_BAR']);
+
+        self::assertContains('ROLE_USER', $bu->getRoles());
+        self::assertContains('ROLE_FOO', $bu->getRoles());
+        self::assertContains('ROLE_BAR', $bu->getRoles());
+    }
 }
