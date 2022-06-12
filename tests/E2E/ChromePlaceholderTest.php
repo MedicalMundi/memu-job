@@ -10,13 +10,13 @@ class ChromePlaceholderTest extends PantherTestCase
     /**
      * @test
      */
-    public function systemStatusPageShouldBeAccessible(): void
+    public function frontPageShouldBeAccessible(): void
     {
         $client = Client::createChromeClient();
 
-        $client->request('GET', 'http://127.0.0.1/sys/healt/check');
+        $client->request('GET', 'http://127.0.0.1');
 
-        self::assertSame('http://127.0.0.1/sys/healt/check', $client->getCurrentURL());
+        self::assertSame('http://127.0.0.1/', $client->getCurrentURL());
     }
 
     /**
@@ -33,5 +33,21 @@ class ChromePlaceholderTest extends PantherTestCase
         $client->request('GET', '/sys/healt/check');
 
         self::assertSame('http://127.0.0.1:9080/sys/healt/check', $client->getCurrentURL());
+    }
+
+    /**
+     * @test
+     */
+    public function backofficePageShouldBeAccessible(): void
+    {
+        $client = static::createPantherClient(
+            [
+                'browser' => static::FIREFOX,
+            ]
+        );
+
+        $client->request('GET', '/backoffice');
+
+        self::assertSame('http://127.0.0.1:9080/backoffice', $client->getCurrentURL());
     }
 }
