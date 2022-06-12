@@ -879,7 +879,7 @@ jobs:
 
   e2e_prod-stack-env:
     name: E2E on production stack
-    needs: [app-preconditions-checks, build-php-release-candidate-artifact]
+    needs: [app-preconditions-checks, build-php-release-candidate-artifact, build-nginx-release-candidate-artifact]
     runs-on: ubuntu-18.04
     timeout-minutes: 10
     permissions:
@@ -1145,7 +1145,7 @@ jobs:
 
   behat-test-on-prod-stack:
     name: Behat on production stack
-    needs: [app-preconditions-checks, build-php-release-candidate-artifact]
+    needs: [app-preconditions-checks, build-php-release-candidate-artifact, build-nginx-release-candidate-artifact]
     runs-on: ubuntu-18.04
     timeout-minutes: 10
     permissions:
@@ -1170,6 +1170,7 @@ jobs:
         env:
 #          PHP_RELEASE_CANDIDATE_IMAGE_NAME: ${{ env.PHP_RELEASE_CANDIDATE_IMAGE_NAME }}-${{ env.PHP_TARGET_VERSION }}
           PHP_RELEASE_CANDIDATE_IMAGE_NAME: ${{ env.PHP_RELEASE_CANDIDATE_IMAGE_NAME }}-${{ matrix.php }}
+          NGINX_RELEASE_CANDIDATE_IMAGE_NAME: ${{ env.NGINX_RELEASE_CANDIDATE_IMAGE_NAME }}
           RELEASE_CANDIDATE_TAG: ${{ github.event.client_payload.sha }}
 
       #      - name: Wait for services
