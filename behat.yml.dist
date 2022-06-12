@@ -8,7 +8,7 @@ default:
             bootstrap: tests/bootstrap.php
         Robertfausk\Behat\PantherExtension: ~
         Behat\MinkExtension:
-            #base_url: http://127.0.0.1
+            base_url: http://127.0.0.1
             default_session: panther
             browser_name: chrome
             javascript_session: panther
