@@ -54,6 +54,7 @@
             <errorLevel type="suppress">
                 <file name="core/ingesting/src/Errata/Adapter/Persistence/Doctrine/DoctrineErrataFeedRepository.php"/>
                 <file name="core/ingesting/src/PublicJob/Adapter/Persistence/Doctrine/DoctrineJobFeedRepository.php"/>
+                <file name="src/Repository/BackofficeUserRepository.php"/>
             </errorLevel>
         </LessSpecificImplementedReturnType>
     </issueHandlers>
