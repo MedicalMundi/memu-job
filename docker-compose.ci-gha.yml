@@ -26,8 +26,6 @@ services:
       - target: 443
         published: 443
         protocol: tcp
-    volumes:
-      - "./:/app"
     environment:
       WEB_DOCUMENT_ROOT: /app/public
       WEB_DOCUMENT_INDEX: index.php
