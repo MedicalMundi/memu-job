@@ -743,7 +743,6 @@ jobs:
         env:
           DATABASE_URL: postgresql://ci-db-user:ci-db-password@127.0.0.1:${{ job.services.pgsql.ports['5432'] }}/ci-db?serverVersion=13&charset=utf8
 
-
       - name: Setup Node
         uses: actions/setup-node@v1
         with:
@@ -1314,13 +1313,13 @@ jobs:
         run: composer install --prefer-dist --no-progress --no-scripts --ansi
 
       - name: Run behat front testsuite on production stack
-        run: ./vendor/bin/behat -s front --colors
+        run: ./vendor/bin/behat  -s front --profile=gha-prod-in-docker --colors
         env:
           SYMFONY_DEPRECATIONS_HELPER: disabled
           #DATABASE_URL: postgresql://ci-db-user:ci-db-password@127.0.0.1:${{ job.services.pgsql.ports['5432'] }}/ci-db
 
       - name: Run behat backoffice testsuite on production stack
-        run: ./vendor/bin/behat -s backoffice --colors
+        run: ./vendor/bin/behat -s backoffice --profile=gha-prod-in-docker --colors
         env:
           SYMFONY_DEPRECATIONS_HELPER: disabled
           #DATABASE_URL: postgresql://ci-db-user:ci-db-password@127.0.0.1:${{ job.services.pgsql.ports['5432'] }}/ci-db

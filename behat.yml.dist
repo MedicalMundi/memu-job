@@ -8,7 +8,6 @@ default:
             bootstrap: tests/bootstrap.php
         Robertfausk\Behat\PantherExtension: ~
         Behat\MinkExtension:
-            base_url: http://127.0.0.1
             default_session: panther
             browser_name: chrome
             javascript_session: panther
@@ -42,3 +41,8 @@ default:
                 - App\Tests\Behat\AcceptanceContext
             paths:
                 - '%paths.base%/features/backoffice'
+
+gha-prod-in-docker:
+    extensions:
+        Behat\MinkExtension:
+            base_url: http://127.0.0.1
