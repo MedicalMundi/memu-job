@@ -153,14 +153,14 @@ jobs:
         run: |
           ./bin/console lint:twig templates/ --ansi
 
-#      - name: Run database migrations
-#        if: ${{ github.ref_name == 'main' }}
-#        run: ./bin/console doctrine:migrations:migrate -e test -n -vv --allow-no-migration --ansi
-#        env:
-#          DATABASE_URL: postgresql://ci-db-user:ci-db-password@127.0.0.1:${{ job.services.pgsql.ports['5432'] }}/ci-db?serverVersion=13&charset=utf8
+      #      - name: Run database migrations
+      #        if: ${{ github.ref_name == 'main' }}
+      #        run: ./bin/console doctrine:migrations:migrate -e test -n -vv --allow-no-migration --ansi
+      #        env:
+      #          DATABASE_URL: postgresql://ci-db-user:ci-db-password@127.0.0.1:${{ job.services.pgsql.ports['5432'] }}/ci-db?serverVersion=13&charset=utf8
 
       - name: Run database schema update
-#        if: ${{ github.ref_name != 'main' }}
+        #        if: ${{ github.ref_name != 'main' }}
         run: ./bin/console doctrine:schema:update -e test --force --ansi
         env:
           DATABASE_URL: postgresql://ci-db-user:ci-db-password@127.0.0.1:${{ job.services.pgsql.ports['5432'] }}/ci-db?serverVersion=13&charset=utf8
@@ -231,8 +231,8 @@ jobs:
         id: meta_php_release_candidate
         uses: docker/metadata-action@v3
         with:
-#          images: |
-#            ghcr.io/medicalmundi/${{ env.PHP_RELEASE_CANDIDATE_IMAGE_NAME }}-${{ env.PHP_TARGET_VERSION }}
+          #          images: |
+          #            ghcr.io/medicalmundi/${{ env.PHP_RELEASE_CANDIDATE_IMAGE_NAME }}-${{ env.PHP_TARGET_VERSION }}
           images: |
             ghcr.io/medicalmundi/${{ env.PHP_RELEASE_CANDIDATE_IMAGE_NAME }}-${{ matrix.php }}
           tags: |
@@ -258,8 +258,8 @@ jobs:
           context: .
           #file: docker/php/Dockerfile
           file: docker/production/php/Dockerfile
-#          build-args: |
-#            PHP_BASE_VERSION=${{ env.PHP_TARGET_VERSION }}
+          #          build-args: |
+          #            PHP_BASE_VERSION=${{ env.PHP_TARGET_VERSION }}
           build-args: |
             PHP_BASE_VERSION=${{ matrix.php }}
           platforms: linux/amd64
@@ -495,11 +495,11 @@ jobs:
       - name: Install Composer dependencies
         run: composer install --prefer-dist --no-progress --no-scripts --ansi
 
-#      - name: Run database migrations
-#        if: ${{ github.ref_name == 'main' }}
-#        run: ./bin/console doctrine:migrations:migrate -e test -n -vv --allow-no-migration --ansi
-#        env:
-#          DATABASE_URL: postgresql://ci-db-user:ci-db-password@127.0.0.1:${{ job.services.pgsql.ports['5432'] }}/ci-db?serverVersion=13&charset=utf8
+      #      - name: Run database migrations
+      #        if: ${{ github.ref_name == 'main' }}
+      #        run: ./bin/console doctrine:migrations:migrate -e test -n -vv --allow-no-migration --ansi
+      #        env:
+      #          DATABASE_URL: postgresql://ci-db-user:ci-db-password@127.0.0.1:${{ job.services.pgsql.ports['5432'] }}/ci-db?serverVersion=13&charset=utf8
 
       - name: Run database schema update
         #        if: ${{ github.ref_name != 'main' }}
@@ -740,11 +740,11 @@ jobs:
       - name: Install Composer dependencies
         run: composer install --prefer-dist --no-progress --no-scripts --ansi
 
-#      - name: Run database migrations
-#        if: ${{ github.ref_name == 'main' }}
-#        run: ./bin/console doctrine:migrations:migrate -e test -n -vv --allow-no-migration --ansi
-#        env:
-#          DATABASE_URL: postgresql://ci-db-user:ci-db-password@127.0.0.1:${{ job.services.pgsql.ports['5432'] }}/ci-db?serverVersion=13&charset=utf8
+      #      - name: Run database migrations
+      #        if: ${{ github.ref_name == 'main' }}
+      #        run: ./bin/console doctrine:migrations:migrate -e test -n -vv --allow-no-migration --ansi
+      #        env:
+      #          DATABASE_URL: postgresql://ci-db-user:ci-db-password@127.0.0.1:${{ job.services.pgsql.ports['5432'] }}/ci-db?serverVersion=13&charset=utf8
 
       - name: Run database schema update
         #        if: ${{ github.ref_name != 'main' }}
@@ -787,152 +787,152 @@ jobs:
           DATABASE_URL: postgresql://ci-db-user:ci-db-password@127.0.0.1:${{ job.services.pgsql.ports['5432'] }}/ci-db
 
 
-#  prod-stack-env:
-#    needs: [app-preconditions-checks, build-php-release-candidate-artifact]
-#    runs-on: ubuntu-18.04
-#    timeout-minutes: 10
-#    permissions:
-#      packages: read
-#      contents: read
-#    steps:
-#      - name: Checkout
-#        uses: actions/checkout@v3
-#
-#      - name: Start services
-#        run: docker-compose -f docker-compose.ci-gha.yml up -d
-#        env:
-#          RELEASE_CANDIDATE_TAG: ${{ github.event.client_payload.sha }}
-#
-##      - name: Wait for services
-##        run: |
-##          while status="$(docker inspect --format="{{if .Config.Healthcheck}}{{print .State.Health.Status}}{{end}}" "$(docker-compose -f docker-compose.ci-gha.yml ps -q php)")"; do
-##            case $status in
-##              starting) sleep 1;;
-##              healthy) exit 0;;
-##              unhealthy)
-##                docker-compose -f docker-compose.ci-gha.yml ps
-##                docker-compose -f docker-compose.ci-gha.yml logs
-##                exit 1
-##              ;;
-##            esac
-##          done
-##          exit 1
-#
-#      - name: services list
-#        run: docker-compose -f docker-compose.ci-gha.yml ps
-#
-#      - name: Doctrine Schema Validator
-#        run: docker-compose -f docker-compose.ci-gha.yml exec -T php bin/console doctrine:schema:validate --skip-sync
-#        continue-on-error: false
-#
-#      - name: Doctrine Schema Update
-#        run: docker-compose -f docker-compose.ci-gha.yml exec -T php bin/console doctrine:schema:update --force -vvv
-#        continue-on-error: false
-#
-#      - name: Check HTTP reachability (localhost)
-#        run: curl -v -o /dev/null http://localhost
-#        continue-on-error: false
-#
-#      - name: Check HTTP reachability (127.0.0.1)
-#        run: curl -v -o /dev/null http://127.0.0.1
-#        continue-on-error: false
-#
-#      - name: Check HTTP reachability (healtcheck)
-#        run: curl -v -o /dev/null http://127.0.0.1/sys/healt/check
-#        continue-on-error: false
-#
-#      - name: Check HTTPS reachability
-#        run: curl  -vk -o /dev/null https://127.0.0.1
-#        continue-on-error: false
-#
-#      - name: Check HTTPS reachability (healtcheck)
-#        run: curl  -vk -o /dev/null https://127.0.0.1/sys/healt/check
-#        continue-on-error: false
-#
-#      - name: Show application log
-#        run: |
-#          docker-compose -f docker-compose.ci-gha.yml logs php
-#          docker-compose -f docker-compose.ci-gha.yml exec -T php ls -al /app/var/log
-#          docker-compose -f docker-compose.ci-gha.yml exec -T php ls -al /app/var/cache
-#        continue-on-error: true
-#
-#      - name: Stop services
-#        run: docker-compose -f docker-compose.ci-gha.yml down -v --remove-orphans
+  #  prod-stack-env:
+  #    needs: [app-preconditions-checks, build-php-release-candidate-artifact]
+  #    runs-on: ubuntu-18.04
+  #    timeout-minutes: 10
+  #    permissions:
+  #      packages: read
+  #      contents: read
+  #    steps:
+  #      - name: Checkout
+  #        uses: actions/checkout@v3
+  #
+  #      - name: Start services
+  #        run: docker-compose -f docker-compose.ci-gha.yml up -d
+  #        env:
+  #          RELEASE_CANDIDATE_TAG: ${{ github.event.client_payload.sha }}
+  #
+  ##      - name: Wait for services
+  ##        run: |
+  ##          while status="$(docker inspect --format="{{if .Config.Healthcheck}}{{print .State.Health.Status}}{{end}}" "$(docker-compose -f docker-compose.ci-gha.yml ps -q php)")"; do
+  ##            case $status in
+  ##              starting) sleep 1;;
+  ##              healthy) exit 0;;
+  ##              unhealthy)
+  ##                docker-compose -f docker-compose.ci-gha.yml ps
+  ##                docker-compose -f docker-compose.ci-gha.yml logs
+  ##                exit 1
+  ##              ;;
+  ##            esac
+  ##          done
+  ##          exit 1
+  #
+  #      - name: services list
+  #        run: docker-compose -f docker-compose.ci-gha.yml ps
+  #
+  #      - name: Doctrine Schema Validator
+  #        run: docker-compose -f docker-compose.ci-gha.yml exec -T php bin/console doctrine:schema:validate --skip-sync
+  #        continue-on-error: false
+  #
+  #      - name: Doctrine Schema Update
+  #        run: docker-compose -f docker-compose.ci-gha.yml exec -T php bin/console doctrine:schema:update --force -vvv
+  #        continue-on-error: false
+  #
+  #      - name: Check HTTP reachability (localhost)
+  #        run: curl -v -o /dev/null http://localhost
+  #        continue-on-error: false
+  #
+  #      - name: Check HTTP reachability (127.0.0.1)
+  #        run: curl -v -o /dev/null http://127.0.0.1
+  #        continue-on-error: false
+  #
+  #      - name: Check HTTP reachability (healtcheck)
+  #        run: curl -v -o /dev/null http://127.0.0.1/sys/healt/check
+  #        continue-on-error: false
+  #
+  #      - name: Check HTTPS reachability
+  #        run: curl  -vk -o /dev/null https://127.0.0.1
+  #        continue-on-error: false
+  #
+  #      - name: Check HTTPS reachability (healtcheck)
+  #        run: curl  -vk -o /dev/null https://127.0.0.1/sys/healt/check
+  #        continue-on-error: false
+  #
+  #      - name: Show application log
+  #        run: |
+  #          docker-compose -f docker-compose.ci-gha.yml logs php
+  #          docker-compose -f docker-compose.ci-gha.yml exec -T php ls -al /app/var/log
+  #          docker-compose -f docker-compose.ci-gha.yml exec -T php ls -al /app/var/cache
+  #        continue-on-error: true
+  #
+  #      - name: Stop services
+  #        run: docker-compose -f docker-compose.ci-gha.yml down -v --remove-orphans
 
 
-#  test-stack-env:
-#    needs: [app-preconditions-checks, build-php-release-candidate-artifact]
-#    runs-on: ubuntu-18.04
-#    timeout-minutes: 10
-#    permissions:
-#      packages: read
-#      contents: read
-#    steps:
-#      - name: Checkout
-#        uses: actions/checkout@v3
-#
-#      - name: Start services
-#        run: docker-compose -f docker-compose.ci-gha.yml up -d
-#        env:
-#          RELEASE_CANDIDATE_TAG: ${{ github.event.client_payload.sha }}
-#          APP_ENV: test
-#          POSTGRES_DB: ci-db-name_test
-#
-#      #      - name: Wait for services
-#      #        run: |
-#      #          while status="$(docker inspect --format="{{if .Config.Healthcheck}}{{print .State.Health.Status}}{{end}}" "$(docker-compose -f docker-compose.ci-gha.yml ps -q php)")"; do
-#      #            case $status in
-#      #              starting) sleep 1;;
-#      #              healthy) exit 0;;
-#      #              unhealthy)
-#      #                docker-compose -f docker-compose.ci-gha.yml ps
-#      #                docker-compose -f docker-compose.ci-gha.yml logs
-#      #                exit 1
-#      #              ;;
-#      #            esac
-#      #          done
-#      #          exit 1
-#
-#      - name: services list
-#        run: docker-compose -f docker-compose.ci-gha.yml ps
-#
-#      - name: Doctrine Schema Validator
-#        run: docker-compose -f docker-compose.ci-gha.yml exec -T php bin/console doctrine:schema:validate --skip-sync
-#        continue-on-error: false
-#
-#      - name: Doctrine Schema Update
-#        run: docker-compose -f docker-compose.ci-gha.yml exec -T php bin/console doctrine:schema:update --force -vvv
-#        continue-on-error: false
-#
-#      - name: Check HTTP reachability (localhost)
-#        run: curl -v -o /dev/null http://localhost
-#        continue-on-error: false
-#
-#      - name: Check HTTP reachability (127.0.0.1)
-#        run: curl -v -o /dev/null http://127.0.0.1
-#        continue-on-error: false
-#
-#      - name: Check HTTP reachability (healtcheck)
-#        run: curl -v -o /dev/null http://127.0.0.1/sys/healt/check
-#        continue-on-error: false
-#
-#      - name: Check HTTPS reachability
-#        run: curl  -vk -o /dev/null https://127.0.0.1
-#        continue-on-error: false
-#
-#      - name: Check HTTPS reachability (healtcheck)
-#        run: curl  -vk -o /dev/null https://127.0.0.1/sys/healt/check
-#        continue-on-error: false
-#
-#      - name: Show application log
-#        run: |
-#          docker-compose -f docker-compose.ci-gha.yml logs php
-#          docker-compose -f docker-compose.ci-gha.yml exec -T php ls -al /app/var/log
-#          docker-compose -f docker-compose.ci-gha.yml exec -T php ls -al /app/var/cache
-#        continue-on-error: true
-#
-#      - name: Stop services
-#        run: docker-compose -f docker-compose.ci-gha.yml down -v --remove-orphans
+  #  test-stack-env:
+  #    needs: [app-preconditions-checks, build-php-release-candidate-artifact]
+  #    runs-on: ubuntu-18.04
+  #    timeout-minutes: 10
+  #    permissions:
+  #      packages: read
+  #      contents: read
+  #    steps:
+  #      - name: Checkout
+  #        uses: actions/checkout@v3
+  #
+  #      - name: Start services
+  #        run: docker-compose -f docker-compose.ci-gha.yml up -d
+  #        env:
+  #          RELEASE_CANDIDATE_TAG: ${{ github.event.client_payload.sha }}
+  #          APP_ENV: test
+  #          POSTGRES_DB: ci-db-name_test
+  #
+  #      #      - name: Wait for services
+  #      #        run: |
+  #      #          while status="$(docker inspect --format="{{if .Config.Healthcheck}}{{print .State.Health.Status}}{{end}}" "$(docker-compose -f docker-compose.ci-gha.yml ps -q php)")"; do
+  #      #            case $status in
+  #      #              starting) sleep 1;;
+  #      #              healthy) exit 0;;
+  #      #              unhealthy)
+  #      #                docker-compose -f docker-compose.ci-gha.yml ps
+  #      #                docker-compose -f docker-compose.ci-gha.yml logs
+  #      #                exit 1
+  #      #              ;;
+  #      #            esac
+  #      #          done
+  #      #          exit 1
+  #
+  #      - name: services list
+  #        run: docker-compose -f docker-compose.ci-gha.yml ps
+  #
+  #      - name: Doctrine Schema Validator
+  #        run: docker-compose -f docker-compose.ci-gha.yml exec -T php bin/console doctrine:schema:validate --skip-sync
+  #        continue-on-error: false
+  #
+  #      - name: Doctrine Schema Update
+  #        run: docker-compose -f docker-compose.ci-gha.yml exec -T php bin/console doctrine:schema:update --force -vvv
+  #        continue-on-error: false
+  #
+  #      - name: Check HTTP reachability (localhost)
+  #        run: curl -v -o /dev/null http://localhost
+  #        continue-on-error: false
+  #
+  #      - name: Check HTTP reachability (127.0.0.1)
+  #        run: curl -v -o /dev/null http://127.0.0.1
+  #        continue-on-error: false
+  #
+  #      - name: Check HTTP reachability (healtcheck)
+  #        run: curl -v -o /dev/null http://127.0.0.1/sys/healt/check
+  #        continue-on-error: false
+  #
+  #      - name: Check HTTPS reachability
+  #        run: curl  -vk -o /dev/null https://127.0.0.1
+  #        continue-on-error: false
+  #
+  #      - name: Check HTTPS reachability (healtcheck)
+  #        run: curl  -vk -o /dev/null https://127.0.0.1/sys/healt/check
+  #        continue-on-error: false
+  #
+  #      - name: Show application log
+  #        run: |
+  #          docker-compose -f docker-compose.ci-gha.yml logs php
+  #          docker-compose -f docker-compose.ci-gha.yml exec -T php ls -al /app/var/log
+  #          docker-compose -f docker-compose.ci-gha.yml exec -T php ls -al /app/var/cache
+  #        continue-on-error: true
+  #
+  #      - name: Stop services
+  #        run: docker-compose -f docker-compose.ci-gha.yml down -v --remove-orphans
 
 
   e2e_prod-stack-env:
@@ -1230,7 +1230,7 @@ jobs:
       - name: Start services
         run: docker-compose -f docker-compose.ci-gha.yml up -d
         env:
-#          PHP_RELEASE_CANDIDATE_IMAGE_NAME: ${{ env.PHP_RELEASE_CANDIDATE_IMAGE_NAME }}-${{ env.PHP_TARGET_VERSION }}
+          #          PHP_RELEASE_CANDIDATE_IMAGE_NAME: ${{ env.PHP_RELEASE_CANDIDATE_IMAGE_NAME }}-${{ env.PHP_TARGET_VERSION }}
           PHP_RELEASE_CANDIDATE_IMAGE_NAME: ${{ env.PHP_RELEASE_CANDIDATE_IMAGE_NAME }}-${{ matrix.php }}
           NGINX_RELEASE_CANDIDATE_IMAGE_NAME: ${{ env.NGINX_RELEASE_CANDIDATE_IMAGE_NAME }}
           RELEASE_CANDIDATE_TAG: ${{ github.event.client_payload.sha }}
