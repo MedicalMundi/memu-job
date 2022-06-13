@@ -40,6 +40,7 @@ default:
         backoffice:
             contexts:
                 - App\Tests\Behat\AcceptanceContext
+                - App\Tests\Behat\AuthenticationContext
             paths:
                 - '%paths.base%/features/backoffice'
 

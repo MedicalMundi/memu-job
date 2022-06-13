@@ -187,15 +187,13 @@
     <InvalidReturnType occurrences="1">
       <code>?NodeElement</code>
     </InvalidReturnType>
+    <MixedMethodCall occurrences="1">
+      <code>execute</code>
+    </MixedMethodCall>
     <MixedReturnStatement occurrences="1">
       <code>$closure()</code>
     </MixedReturnStatement>
     <NullableReturnStatement occurrences="1"/>
-  </file>
-  <file src="tests/Behat/AuthenticationContext.php">
-    <MixedMethodCall occurrences="1">
-      <code>execute</code>
-    </MixedMethodCall>
     <UndefinedInterfaceMethod occurrences="1">
       <code>createQuery</code>
     </UndefinedInterfaceMethod>
