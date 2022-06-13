@@ -126,6 +126,11 @@ parameters:
 			path: tests/Behat/AcceptanceContext.php
 
 		-
+			message: "#^Cannot call method getManager\\(\\) on object\\|null\\.$#"
+			count: 2
+			path: tests/Behat/AcceptanceContext.php
+
+		-
 			message: "#^Method App\\\\Tests\\\\Behat\\\\AcceptanceContext\\:\\:getNodeElement\\(\\) should return Behat\\\\Mink\\\\Element\\\\NodeElement but returns Behat\\\\Mink\\\\Element\\\\NodeElement\\|null\\.$#"
 			count: 1
 			path: tests/Behat/AcceptanceContext.php
@@ -134,9 +139,4 @@ parameters:
 			message: "#^Method App\\\\Tests\\\\Behat\\\\AcceptanceContext\\:\\:spin\\(\\) should return Behat\\\\Mink\\\\Element\\\\NodeElement\\|null but return statement is missing\\.$#"
 			count: 1
 			path: tests/Behat/AcceptanceContext.php
-
-		-
-			message: "#^Cannot call method getManager\\(\\) on object\\|null\\.$#"
-			count: 2
-			path: tests/Behat/AuthenticationContext.php
 

@@ -18,3 +18,15 @@ Feature:
     And I wait 3 second
     Then I should be on "/backoffice"
 
+  Scenario: As a visitor, I should not be able to navigate protected area
+    Given I am on "/backoffice"
+    Then I should be on "/login"
+
+  @wip
+  Scenario: As an administrator user, I should be able to see the dashboard
+    Given I am authenticated as "pippo@example.com"
+    When I am on "/backoffice"
+    #Then I wait for "Backoffice" to appear
+    Then print last response
+    Then I should see "Backoffice"
+    

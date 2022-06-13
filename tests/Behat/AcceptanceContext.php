@@ -2,11 +2,13 @@
 
 namespace App\Tests\Behat;
 
+use App\Entity\BackofficeUser;
 use Behat\Behat\Context\Context;
 use Behat\Mink\Element\NodeElement;
 use Behat\MinkExtension\Context\MinkContext;
 use PHPUnit\Framework\Assert;
 use Symfony\Component\HttpKernel\KernelInterface;
+use Symfony\Component\PasswordHasher\Hasher\UserPasswordHasherInterface;
 
 /**
  * @see http://behat.org/en/latest/quick_start.html
@@ -15,9 +17,54 @@ final class AcceptanceContext extends MinkContext implements Context
 {
     private KernelInterface $kernel;
 
-    public function __construct(KernelInterface $kernel)
+    private UserPasswordHasherInterface $userPasswordHasher;
+
+    public function __construct(KernelInterface $kernel, UserPasswordHasherInterface $userPasswordHasher)
     {
         $this->kernel = $kernel;
+        $this->userPasswordHasher = $userPasswordHasher;
+    }
+
+    /**
+     * @BeforeScenario
+     */
+    public function clearData(): void
+    {
+        $em = $this->kernel->getContainer()->get('doctrine')->getManager();
+
+        $em->createQuery('DELETE FROM App:BackofficeUser')->execute();
+    }
+
+    /**
+     * @Given /^I am authenticated as "([^"]*)"$/
+     *
+     * @throws \Throwable
+     */
+    public function iAmAuthenticatedAs(string $email): void
+    {
+        $this->thereIsAnAdminUserWithEmailAndPassword($email, $email);
+        $this->visit('/login');
+        $this->fillField('username', $email);
+        $this->fillField('password', $email);
+
+        $this->pressButton('login');
+        $this->iWaitForTextToAppear('BackOffice', 200);
+    }
+
+    /**
+     * @Given there is an admin user with email :email and password :password
+     */
+    public function thereIsAnAdminUserWithEmailAndPassword(string $email, string $password): void
+    {
+        $adminUser = BackofficeUser::create($email, '');
+
+        $adminUser = $adminUser->setPassword($this->userPasswordHasher->hashPassword($adminUser, $password));
+
+        $adminUser->setRoles(['ROLE_ADMIN']);
+
+        $em = $this->kernel->getContainer()->get('doctrine')->getManager();
+        $em->persist($adminUser);
+        $em->flush();
     }
 
     /**
@@ -37,7 +84,6 @@ final class AcceptanceContext extends MinkContext implements Context
      */
     public function iWaitForTextToAppear(string $text, ?int $tries = 125): void
     {
-        //$text = $this->enrichText($text);
         $this->spin(
             function () use ($text): void {
                 $this->assertPageContainsText($text);
