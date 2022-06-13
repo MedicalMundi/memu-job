@@ -10,7 +10,7 @@ services:
       WEB_DOCUMENT_INDEX: index.php
       APP_ENV: ${APP_ENV:-prod}
       APP_SECRET: 9efe3211a261ad2a84eb847aa045ffc2
-      DATABASE_URL: "postgresql://ci-db-user:ci-db-password@pgsql:5432/ci-db-name?serverVersion=13&charset=utf8"
+      DATABASE_URL: "postgresql://ci-db-user:ci-db-password@pgsql:5432/ci-db-name_test?serverVersion=13&charset=utf8"
 
   nginx:
     #image: webdevops/nginx:alpine
@@ -35,8 +35,8 @@ services:
   pgsql:
     image: postgres:${POSTGRES_VERSION:-13}-alpine
     ports:
-      - "5432"
+      - "5432:5432"
     environment:
-      POSTGRES_DB: ${POSTGRES_DB:-ci-db-name}
+      POSTGRES_DB: ${POSTGRES_DB:-ci-db-name_test}
       POSTGRES_PASSWORD: ${POSTGRES_PASSWORD:-ci-db-password}
       POSTGRES_USER: ${POSTGRES_USER:-ci-db-user}

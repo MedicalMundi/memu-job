@@ -39,9 +39,9 @@ services:
   database:
     image: postgres:${POSTGRES_VERSION:-13}-alpine
     ports:
-      - "5432"
+      - "5432:5432"
     environment:
-      POSTGRES_DB: ${POSTGRES_DB:-db-name}
+      POSTGRES_DB: ${POSTGRES_DB:-db-name_test}
       # You should definitely change the password in production
       POSTGRES_PASSWORD: ${POSTGRES_PASSWORD:-db-password}
       POSTGRES_USER: ${POSTGRES_USER:-db-user}
@@ -55,6 +55,7 @@ services:
     image: postgres:${POSTGRES_VERSION:-13}-alpine
     ports:
       - "5432"
+      - "5454:5432" ###--- used by behat (local execution against docker)
     environment:
       POSTGRES_DB: ${POSTGRES_TEST_DB:-db-name_test}
       # You should definitely change the password in production

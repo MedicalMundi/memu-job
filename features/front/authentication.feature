@@ -12,6 +12,6 @@ Feature:
     When I fill in "username" with "PIPPO@example.com"
     And I fill in "password" with "mypassword"
     And I press "login"
-    And I wait 1 second
+    And I wait 3 second
     Then I should be on "/backoffice"
 

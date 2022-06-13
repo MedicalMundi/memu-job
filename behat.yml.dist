@@ -47,6 +47,10 @@ gha-prod-in-docker:
     extensions:
         Behat\MinkExtension:
             base_url: http://127.0.0.1
+            panther:
+                kernel_options:
+                   APP_ENV: prod
+                   APP_DEBUG: false
 
 local-pc:
     extensions:
