@@ -229,7 +229,7 @@ jobs:
 
       - name: Docker meta
         id: meta_php_release_candidate
-        uses: docker/metadata-action@v3
+        uses: docker/metadata-action@v4
         with:
           #          images: |
           #            ghcr.io/medicalmundi/${{ env.PHP_RELEASE_CANDIDATE_IMAGE_NAME }}-${{ env.PHP_TARGET_VERSION }}
@@ -358,7 +358,7 @@ jobs:
 
       - name: Docker meta
         id: meta_nginx_release_candidate
-        uses: docker/metadata-action@v3
+        uses: docker/metadata-action@v4
         with:
           images: |
             ghcr.io/medicalmundi/${{ env.NGINX_RELEASE_CANDIDATE_IMAGE_NAME }}
