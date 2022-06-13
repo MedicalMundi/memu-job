@@ -1333,11 +1333,18 @@ jobs:
       - name: Install Composer dependencies
         run: composer install --prefer-dist --no-progress --no-scripts --ansi
 
+      # remove (duplication)
+      - name: Run behat backoffice testsuite on production stack
+        run: ./vendor/bin/behat -s backoffice --profile=gha-prod-in-docker --colors
+        env:
+          SYMFONY_DEPRECATIONS_HELPER: disabled
+          #DATABASE_URL: postgresql://ci-db-user:ci-db-password@127.0.0.1:${{ job.services.pgsql.ports['5432'] }}/ci-db
+
       - name: Run behat front testsuite on production stack
         run: ./vendor/bin/behat  -s front --profile=gha-prod-in-docker --colors
         env:
           SYMFONY_DEPRECATIONS_HELPER: disabled
-          #DATABASE_URL: postgresql://ci-db-user:ci-db-password@127.0.0.1:${{ job.services.pgsql.ports['5432'] }}/ci-db
+          #DATABASE_URL: postgresql://ci-db-user:ci-db-password@127.0.0.1:5432/ci-db-name
 
       - name: Run behat backoffice testsuite on production stack
         run: ./vendor/bin/behat -s backoffice --profile=gha-prod-in-docker --colors

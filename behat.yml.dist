@@ -47,11 +47,19 @@ gha-prod-in-docker:
     extensions:
         Behat\MinkExtension:
             base_url: http://127.0.0.1
+            default_session: panther
+            browser_name: chrome
+            javascript_session: panther
             panther:
+                options:
+                    browser: 'firefox'
+                    #external_base_uri: 'http://127.0.0.1'
                 kernel_options:
-                   APP_ENV: prod
+                   APP_ENV: dev
                    APP_DEBUG: false
-
+                manager_options:
+                   connection_timeout_in_ms: 5000
+                   request_timeout_in_ms: 120000
 local-pc:
     extensions:
         Behat\MinkExtension:
