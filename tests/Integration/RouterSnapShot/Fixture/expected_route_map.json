@@ -15,6 +15,22 @@
         },
         "methods": []
     },
+    "app_login": {
+        "path": "\/login",
+        "requirements": [],
+        "defaults": {
+            "_controller": "App\\Controller\\LoginController::index"
+        },
+        "methods": []
+    },
+    "app_logout": {
+        "path": "\/logout",
+        "requirements": [],
+        "defaults": {
+            "_controller": "App\\Controller\\LogoutController::index"
+        },
+        "methods": []
+    },
     "backoffice_api_home": {
         "path": "\/api-backoffice",
         "requirements": [],
