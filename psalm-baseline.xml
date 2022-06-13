@@ -177,4 +177,27 @@
       <code>array_unique($roles)</code>
     </MixedReturnTypeCoercion>
   </file>
+  <file src="tests/Behat/AcceptanceContext.php">
+    <ArgumentTypeCoercion occurrences="1">
+      <code>(int) $count * 1000000</code>
+    </ArgumentTypeCoercion>
+    <InvalidNullableReturnType occurrences="1">
+      <code>NodeElement</code>
+    </InvalidNullableReturnType>
+    <InvalidReturnType occurrences="1">
+      <code>?NodeElement</code>
+    </InvalidReturnType>
+    <MixedReturnStatement occurrences="1">
+      <code>$closure()</code>
+    </MixedReturnStatement>
+    <NullableReturnStatement occurrences="1"/>
+  </file>
+  <file src="tests/Behat/AuthenticationContext.php">
+    <MixedMethodCall occurrences="1">
+      <code>execute</code>
+    </MixedMethodCall>
+    <UndefinedInterfaceMethod occurrences="1">
+      <code>createQuery</code>
+    </UndefinedInterfaceMethod>
+  </file>
 </files>
