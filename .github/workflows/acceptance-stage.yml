@@ -952,6 +952,12 @@ jobs:
       - name: info triggering workflow - commit message
         run: git log --oneline
 
+      - name: Setup docker-compose for production stack
+        run: |
+          cp ./tests/Behat/GHA/docker-compose.ci-gha.yml .
+          cp ./tests/Behat/GHA/.env.test.ci.dist .
+          mv .env.test.ci.dist .env.test
+
       - name: Start services
         run: docker-compose -f docker-compose.ci-gha.yml up -d
         env:
