@@ -5,6 +5,7 @@ on: [ push ]
 
 env:
   GITHUB_PAT: ${{ secrets.MEMUJOB_CI_GHA_PAT }}
+  GITHUB_CACHE_PHP_EXTENSION: '0'
   COVERAGE: '0'
   PHP_EXTENSIONS: ctype, curl, gd, iconv, intl, opcache, openssl, mbstring, mysql, pdo_sqlite
   PHP_EXTENSIONS_CACHE_KEY: cache-php-extensions-v1
@@ -29,6 +30,7 @@ jobs:
 
       - name: Setup cache environment
         id: cache-php-extensions
+        if: ${{ env.GITHUB_CACHE_PHP_EXTENSION }}
         uses: shivammathur/cache-extensions@v1
         with:
           php-version: ${{ matrix.php }}
@@ -36,6 +38,7 @@ jobs:
           key: ${{ env.PHP_EXTENSIONS_CACHE_KEY }}
 
       - name: Cache extensions
+        if: ${{ env.GITHUB_CACHE_PHP_EXTENSION }}
         uses: actions/cache@v3
         with:
           path: ${{ steps.cache-php-extensions.outputs.dir }}
@@ -85,6 +88,7 @@ jobs:
 
       - name: Setup cache environment
         id: cache-php-extensions
+        if: ${{ env.GITHUB_CACHE_PHP_EXTENSION }}
         uses: shivammathur/cache-extensions@v1
         with:
           php-version: ${{ matrix.php }}
@@ -92,6 +96,7 @@ jobs:
           key: ${{ env.PHP_EXTENSIONS_CACHE_KEY }}
 
       - name: Cache extensions
+        if: ${{ env.GITHUB_CACHE_PHP_EXTENSION }}
         uses: actions/cache@v3
         with:
           path: ${{ steps.cache-php-extensions.outputs.dir }}
@@ -150,6 +155,7 @@ jobs:
 
       - name: Setup cache environment
         id: cache-php-extensions
+        if: ${{ env.GITHUB_CACHE_PHP_EXTENSION }}
         uses: shivammathur/cache-extensions@v1
         with:
           php-version: ${{ matrix.php }}
@@ -157,6 +163,7 @@ jobs:
           key: ${{ env.PHP_EXTENSIONS_CACHE_KEY }}
 
       - name: Cache extensions
+        if: ${{ env.GITHUB_CACHE_PHP_EXTENSION }}
         uses: actions/cache@v3
         with:
           path: ${{ steps.cache-php-extensions.outputs.dir }}
@@ -206,6 +213,7 @@ jobs:
 
       - name: Setup cache environment
         id: cache-php-extensions
+        if: ${{ env.GITHUB_CACHE_PHP_EXTENSION }}
         uses: shivammathur/cache-extensions@v1
         with:
           php-version: ${{ matrix.php }}
@@ -213,6 +221,7 @@ jobs:
           key: ${{ env.PHP_EXTENSIONS_CACHE_KEY }}
 
       - name: Cache extensions
+        if: ${{ env.GITHUB_CACHE_PHP_EXTENSION }}
         uses: actions/cache@v3
         with:
           path: ${{ steps.cache-php-extensions.outputs.dir }}
@@ -279,6 +288,7 @@ jobs:
 
       - name: Setup cache environment
         id: cache-php-extensions
+        if: ${{ env.GITHUB_CACHE_PHP_EXTENSION }}
         uses: shivammathur/cache-extensions@v1
         with:
           php-version: ${{ matrix.php }}
@@ -286,6 +296,7 @@ jobs:
           key: ${{ env.PHP_EXTENSIONS_CACHE_KEY }}
 
       - name: Cache extensions
+        if: ${{ env.GITHUB_CACHE_PHP_EXTENSION }}
         uses: actions/cache@v3
         with:
           path: ${{ steps.cache-php-extensions.outputs.dir }}
@@ -366,6 +377,7 @@ jobs:
 
       - name: Setup php extension cache environment
         id: cache-php-extensions
+        if: ${{ env.GITHUB_CACHE_PHP_EXTENSION }}
         uses: shivammathur/cache-extensions@v1
         with:
           php-version: ${{ matrix.php }}
@@ -373,6 +385,7 @@ jobs:
           key: ${{ env.PHP_EXTENSIONS_CACHE_KEY }}
 
       - name: Cache PHP extensions
+        if: ${{ env.GITHUB_CACHE_PHP_EXTENSION }}
         uses: actions/cache@v3
         with:
           path: ${{ steps.cache-php-extensions.outputs.dir }}
