@@ -6,13 +6,10 @@
 /docker
 /drivers
 /features
-/migrations
 /node_modules
 /sys
-/templates
 /test
 /tools
-/translations
 /var
 /vendor
 /workflow
