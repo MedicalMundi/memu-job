@@ -7,16 +7,25 @@ Feature:
     As a visitor
     I want to retrieve the job list
 
-    Scenario: I can navigate to the homepage
-        Given I am on the homepage
-        Then I should see "Welcome to MedicalMundi!"
+    Scenario: As a visitor I can not navigate the homepage
+        Given I am on "/home"
+        Then I should be on "/login"
 
-    @javascript
-    Scenario: I can open the homepage in the Browser
-        Given I am on "/"
-        Then I should see "Welcome to MedicalMundi!"
-
-    @wip
-    Scenario: It receives a list of available jobs
-        Given I am on "/"
-        Then I should see "Last jobs"
+    Scenario: As an administrator user, I should be able to see the home page
+        Given there is an admin user with email "admin@example.com" and password "mypassword"
+        And I am on "/login"
+        When I fill in "Email" with "admin@example.com"
+        And I fill in "Password" with "mypassword"
+        And I press "login"
+        And I wait 3 second
+        Then I should be on "/backoffice"
+#
+#    @javascript
+#    Scenario: I can open the homepage in the Browser
+#        Given I am on "/"
+#        Then I should see "Welcome to MedicalMundi!"
+#
+#    @wip
+#    Scenario: It receives a list of available jobs
+#        Given I am on "/"
+#        Then I should see "Last jobs"
