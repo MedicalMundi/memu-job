@@ -2,6 +2,7 @@
 
 namespace Publishing\Cms\Adapter\HttpWeb;
 
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\IsGranted;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
@@ -9,7 +10,8 @@ use Symfony\Component\Routing\Annotation\Route;
 class FrontHomeController extends AbstractController
 {
     /**
-     * @Route("/", name="app_home")
+     * @Route("/home", name="app_home")
+     * @IsGranted("ROLE_ADMIN")
      */
     public function index(): Response
     {

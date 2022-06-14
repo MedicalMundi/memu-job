@@ -8,7 +8,7 @@
         "methods": []
     },
     "app_home": {
-        "path": "\/",
+        "path": "\/home",
         "requirements": [],
         "defaults": {
             "_controller": "Publishing\\Cms\\Adapter\\HttpWeb\\FrontHomeController::index"
@@ -28,6 +28,14 @@
         "requirements": [],
         "defaults": {
             "_controller": "App\\Controller\\LogoutController::index"
+        },
+        "methods": []
+    },
+    "app_maintenance": {
+        "path": "\/",
+        "requirements": [],
+        "defaults": {
+            "_controller": "App\\Controller\\MaintenanceController"
         },
         "methods": []
     },

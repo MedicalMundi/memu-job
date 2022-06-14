@@ -23,9 +23,7 @@ class HomeTest extends PantherTestCase
     {
         $this->client->request('GET', '/');
 
-        $this->client->waitFor('.bi-heart');
-
-        $this->client->waitForElementToContain('.head-line', 'Welcome to MedicalMundi!');
+        $this->client->waitForElementToContain('.head-line', 'under maintenance');
     }
 
     public function tearDown(): void
