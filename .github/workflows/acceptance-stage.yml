@@ -1201,7 +1201,7 @@ jobs:
         env:
           PANTHER_EXTERNAL_BASE_URI: http://127.0.0.1:8080
           SYMFONY_DEPRECATIONS_HELPER: disabled
-          DATABASE_URL: postgresql://ci-db-user:ci-db-password@127.0.0.1:${{ job.services.pgsql.ports['5432'] }}/ci-db
+          DATABASE_URL: postgresql://ci-db-user:ci-db-password@127.0.0.1:${{ job.services.pgsql.ports['5432'] }}/ci-db_test?serverVersion=13&charset=utf8
 
       - name: Run behat backoffice testsuite
         if: ${{ always() }}
@@ -1209,7 +1209,7 @@ jobs:
         env:
           PANTHER_EXTERNAL_BASE_URI: http://127.0.0.1:8080
           SYMFONY_DEPRECATIONS_HELPER: disabled
-          DATABASE_URL: postgresql://ci-db-user:ci-db-password@127.0.0.1:${{ job.services.pgsql.ports['5432'] }}/ci-db
+          DATABASE_URL: postgresql://ci-db-user:ci-db-password@127.0.0.1:${{ job.services.pgsql.ports['5432'] }}/ci-db?serverVersion=13&charset=utf8
 
 
   behat-test-on-prod-stack:
