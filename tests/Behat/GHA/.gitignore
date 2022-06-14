@@ -1,1 +1,1 @@
-./tests/Behat/GHA/docker-compose.ci-gha.local.debug.yml
+docker-compose.ci-gha.local.debug.yml
