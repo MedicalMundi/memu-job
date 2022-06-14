@@ -143,10 +143,15 @@ parameters:
 		-
 			message: "#^Cannot call method request\\(\\) on Symfony\\\\Component\\\\Panther\\\\Client\\|null\\.$#"
 			count: 1
-			path: tests/E2E/Backoffice/BackofficeTest.php
+			path: tests/E2E/Front/HomeTest.php
 
 		-
-			message: "#^Cannot call method request\\(\\) on Symfony\\\\Component\\\\Panther\\\\Client\\|null\\.$#"
+			message: "#^Cannot call method waitFor\\(\\) on Symfony\\\\Component\\\\Panther\\\\Client\\|null\\.$#"
+			count: 1
+			path: tests/E2E/Front/HomeTest.php
+
+		-
+			message: "#^Cannot call method waitForElementToContain\\(\\) on Symfony\\\\Component\\\\Panther\\\\Client\\|null\\.$#"
 			count: 1
 			path: tests/E2E/Front/HomeTest.php
 

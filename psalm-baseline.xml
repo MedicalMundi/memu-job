@@ -198,11 +198,6 @@
       <code>createQuery</code>
     </UndefinedInterfaceMethod>
   </file>
-  <file src="tests/E2E/Backoffice/BackofficeTest.php">
-    <PossiblyNullReference occurrences="1">
-      <code>request</code>
-    </PossiblyNullReference>
-  </file>
   <file src="tests/E2E/Front/HomeTest.php">
     <PossiblyNullReference occurrences="1">
       <code>request</code>
