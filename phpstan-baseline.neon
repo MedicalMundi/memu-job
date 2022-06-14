@@ -140,3 +140,13 @@ parameters:
 			count: 1
 			path: tests/Behat/AcceptanceContext.php
 
+		-
+			message: "#^Cannot call method request\\(\\) on Symfony\\\\Component\\\\Panther\\\\Client\\|null\\.$#"
+			count: 1
+			path: tests/E2E/Backoffice/BackofficeTest.php
+
+		-
+			message: "#^Cannot call method request\\(\\) on Symfony\\\\Component\\\\Panther\\\\Client\\|null\\.$#"
+			count: 1
+			path: tests/E2E/Front/HomeTest.php
+
