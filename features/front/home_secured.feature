@@ -19,13 +19,3 @@ Feature:
         And I press "login"
         And I wait 3 second
         Then I should be on "/backoffice"
-#
-#    @javascript
-#    Scenario: I can open the homepage in the Browser
-#        Given I am on "/"
-#        Then I should see "Welcome to MedicalMundi!"
-#
-#    @wip
-#    Scenario: It receives a list of available jobs
-#        Given I am on "/"
-#        Then I should see "Last jobs"

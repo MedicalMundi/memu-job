@@ -4,6 +4,7 @@ default:
             tags: ~@wip
 
     extensions:
+        Behatch\Extension: ~
         FriendsOfBehat\SymfonyExtension:
             bootstrap: tests/bootstrap.php
         Robertfausk\Behat\PantherExtension: ~
@@ -34,6 +35,8 @@ default:
             contexts:
                 - App\Tests\Behat\AcceptanceContext
                 - App\Tests\Behat\AuthenticationContext
+                - behatch:context:debug:
+                    screenshotDir: "var"
             paths:
                 - '%paths.base%/features/front'
 
@@ -46,6 +49,7 @@ default:
 
 gha-prod-in-docker:
     extensions:
+        Behatch\Extension: ~
         Behat\MinkExtension:
             base_url: http://127.0.0.1
             default_session: panther
