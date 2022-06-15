@@ -121,7 +121,7 @@ parameters:
 			path: core/ingesting/tests/PublicJob/Integration/Persistence/DoctrineJobRepositoryTest.php
 
 		-
-			message: "#^Anonymous function should have native return typehint \"Behat\\\\Mink\\\\Element\\\\NodeElement\"\\.$#"
+			message: "#^Anonymous function should have native return typehint \"\\?Behat\\\\Mink\\\\Element\\\\NodeElement\"\\.$#"
 			count: 1
 			path: tests/Behat/AcceptanceContext.php
 
