@@ -1,4 +1,12 @@
 {
+    "app_concorsi_last": {
+        "path": "\/home\/concorsi\/last",
+        "requirements": [],
+        "defaults": {
+            "_controller": "Publishing\\Cms\\Adapter\\HttpWeb\\LastConcorsiController::index"
+        },
+        "methods": []
+    },
     "app_healt_check": {
         "path": "\/sys\/healt\/check",
         "requirements": [],
