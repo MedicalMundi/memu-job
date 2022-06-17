@@ -57,5 +57,10 @@
                 <file name="src/Repository/BackofficeUserRepository.php"/>
             </errorLevel>
         </LessSpecificImplementedReturnType>
+        <ArgumentTypeCoercion>
+            <errorLevel type="suppress">
+                <file name="tests/Behat/AcceptanceContext.php"/>
+            </errorLevel>
+        </ArgumentTypeCoercion>
     </issueHandlers>
 </psalm>
