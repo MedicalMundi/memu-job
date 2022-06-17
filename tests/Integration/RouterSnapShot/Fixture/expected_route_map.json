@@ -1,6 +1,6 @@
 {
     "app_concorsi": {
-        "path": "\/home\/concorsi",
+        "path": "\/concorsi",
         "requirements": [],
         "defaults": {
             "_controller": "Publishing\\Cms\\Adapter\\HttpWeb\\ConcorsiController::index"
