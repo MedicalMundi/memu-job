@@ -62,5 +62,13 @@
             "_controller": "Backoffice\\Adapter\\HttpWeb\\BackofficeHomeController::index"
         },
         "methods": []
+    },
+    "backoffice_vue": {
+        "path": "\/vue",
+        "requirements": [],
+        "defaults": {
+            "_controller": "Backoffice\\Adapter\\HttpWeb\\VueController::index"
+        },
+        "methods": []
     }
 }
