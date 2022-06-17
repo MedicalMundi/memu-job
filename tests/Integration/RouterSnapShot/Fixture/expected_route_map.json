@@ -1,9 +1,9 @@
 {
-    "app_concorsi_last": {
-        "path": "\/home\/concorsi\/last",
+    "app_concorsi": {
+        "path": "\/concorsi",
         "requirements": [],
         "defaults": {
-            "_controller": "Publishing\\Cms\\Adapter\\HttpWeb\\LastConcorsiController::index"
+            "_controller": "Publishing\\Cms\\Adapter\\HttpWeb\\ConcorsiController::index"
         },
         "methods": []
     },

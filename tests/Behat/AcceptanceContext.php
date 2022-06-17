@@ -6,9 +6,9 @@ use App\Entity\BackofficeUser;
 use Behat\Behat\Context\Context;
 use Behat\Mink\Element\NodeElement;
 use Behat\MinkExtension\Context\MinkContext;
-use PHPUnit\Framework\Assert;
 use Symfony\Component\HttpKernel\KernelInterface;
 use Symfony\Component\PasswordHasher\Hasher\UserPasswordHasherInterface;
+use Webmozart\Assert\Assert;
 
 /**
  * @see http://behat.org/en/latest/quick_start.html
@@ -72,7 +72,7 @@ final class AcceptanceContext extends MinkContext implements Context
      */
     public function iWaitSeconds(string $count): void
     {
-        usleep((int) $count * 1000000);
+        usleep((int) $count * 1_000_000);
     }
 
     /**
@@ -98,7 +98,7 @@ final class AcceptanceContext extends MinkContext implements Context
         return $this->spin(
             function () use ($locator) {
                 $element = $this->getSession()->getPage()->find('css', $locator);
-                Assert::assertNotNull(
+                Assert::notNull(
                     $element,
                     sprintf(
                         'locator "%s" not found on page %s',

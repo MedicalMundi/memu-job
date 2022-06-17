@@ -1,13 +1,11 @@
 {% extends '@backoffice/base.html.twig' %}
 
 {% block title %}
-    {{ parent() }} | Home page
+    {{ parent() }}
 {% endblock %}
 
 {% block body %}
-    <h1 class="head-line">{{ message }}</h1>
-
-    <hr>
-
-    <img src="{{ asset('build-backoffice/images/backoffice-hero-img.png', 'backoffice') }}">
+    <div class="container">
+        <h1 class="head-line">{{ message }}</h1>
+    </div>
 {% endblock %}

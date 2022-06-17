@@ -6,9 +6,6 @@ Feature:
   As an administrator user
   I want to login and logout in to the system
 
-  Scenario: Browser fixer
-    Given I am on "/login"
-
   Scenario: As an administrator user, I should be able to authenticate
     Given there is an admin user with email "admin@example.com" and password "mypassword"
     And I am on "/login"
