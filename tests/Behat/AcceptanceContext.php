@@ -72,7 +72,7 @@ final class AcceptanceContext extends MinkContext implements Context
      */
     public function iWaitSeconds(string $count): void
     {
-        usleep((int) $count * 1000000);
+        usleep((int) $count * 1_000_000);
     }
 
     /**
