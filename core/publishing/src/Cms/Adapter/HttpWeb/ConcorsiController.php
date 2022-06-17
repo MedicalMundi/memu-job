@@ -8,7 +8,7 @@ use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 
-class LastConcorsiController extends AbstractController
+class ConcorsiController extends AbstractController
 {
     private LastConcorsi $lastConcorsi;
 
@@ -18,7 +18,7 @@ class LastConcorsiController extends AbstractController
     }
 
     /**
-     * @Route("/home/concorsi/last", name="app_concorsi_last")
+     * @Route("/concorsi", name="app_concorsi")
      * @IsGranted("ROLE_ADMIN")
      */
     public function index(): Response
