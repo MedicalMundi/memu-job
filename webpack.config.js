@@ -43,15 +43,15 @@ Encore
     .enableSourceMaps(!Encore.isProduction())
     .enableVersioning(Encore.isProduction())
 
-    .configureBabel((config) => {
-        config.plugins.push('@babel/plugin-proposal-class-properties');
-    })
-
-    // enables @babel/preset-env polyfills
-    .configureBabelPresetEnv((config) => {
-        config.useBuiltIns = 'usage';
-        config.corejs = 3;
-    })
+    // .configureBabel((config) => {
+    //     config.plugins.push('@babel/plugin-proposal-class-properties');
+    // })
+    //
+    // // enables @babel/preset-env polyfills
+    // .configureBabelPresetEnv((config) => {
+    //     config.useBuiltIns = 'usage';
+    //     config.corejs = 3;
+    // })
 
     .enableSassLoader()
 
@@ -116,6 +116,7 @@ Encore
      * and one CSS file (e.g. app.css) if your JavaScript imports CSS.
      */
     .addEntry('app_backoffice', './core/backoffice/assets/app_backoffice.js')
+    .addEntry('ingesting', './core/backoffice/assets/ingesting.js')
     //enables the Symfony UX Stimulus bridge (used in core/publishing/assets/bootstrap.js)
     .enableStimulusBridge('./core/backoffice/assets/controllers.json')
 
@@ -136,19 +137,27 @@ Encore
     .enableSourceMaps(!Encore.isProduction())
     .enableVersioning(Encore.isProduction())
 
-    .configureBabel((config) => {
-        config.plugins.push('@babel/plugin-proposal-class-properties');
+    .enableVueLoader(() => {}, {
+        version: 3
     })
 
+    // moved to babel.conf.js
+    // .configureBabel((config) => {
+    //     config.plugins.push('@babel/plugin-proposal-class-properties');
+    // })
+
+    // moved to babel.conf.js
     // enables @babel/preset-env polyfills
-    .configureBabelPresetEnv((config) => {
-        config.useBuiltIns = 'usage';
-        config.corejs = 3;
-    })
+    // .configureBabelPresetEnv((config) => {
+    //     config.useBuiltIns = 'usage';
+    //     config.corejs = 3;
+    // })
 
     .enableSassLoader()
 
     .enablePostCssLoader()
+
+    .enableEslintPlugin()
 
     .copyFiles({
         from: './core/backoffice/assets/images',
