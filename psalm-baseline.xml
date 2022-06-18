@@ -51,6 +51,23 @@
       <code>$title</code>
     </PropertyNotSetInConstructor>
   </file>
+  <file src="core/ingesting/src/PublicJob/AclAdapter/DistributableJobFeedRepository.php">
+    <MixedAssignment occurrences="1">
+      <code>$resultSet</code>
+    </MixedAssignment>
+    <MixedInferredReturnType occurrences="1">
+      <code>array</code>
+    </MixedInferredReturnType>
+    <MixedMethodCall occurrences="1">
+      <code>fetchAllAssociative</code>
+    </MixedMethodCall>
+    <MixedReturnStatement occurrences="1">
+      <code>$resultSet-&gt;fetchAllAssociative()</code>
+    </MixedReturnStatement>
+    <UndefinedInterfaceMethod occurrences="1">
+      <code>executeQuery</code>
+    </UndefinedInterfaceMethod>
+  </file>
   <file src="core/ingesting/src/PublicJob/Adapter/Persistence/Doctrine/Config/JobIdType.php">
     <ImplementedReturnTypeMismatch occurrences="1">
       <code>?JobId</code>
@@ -147,6 +164,25 @@
       <code>$this-&gt;doctrineErrataFeedRepository</code>
     </NullableReturnStatement>
   </file>
+  <file src="core/ingesting/tests/PublicJob/Integration/AclAdapter/DistributableJobFeedRepositoryTest.php">
+    <PossiblyNullReference occurrences="1">
+      <code>close</code>
+    </PossiblyNullReference>
+  </file>
+  <file src="core/ingesting/tests/PublicJob/Integration/AclAdapter/JobFeedAclServiceTest.php">
+    <ArgumentTypeCoercion occurrences="1">
+      <code>$repository</code>
+    </ArgumentTypeCoercion>
+    <PossiblyNullArgument occurrences="1">
+      <code>$repository</code>
+    </PossiblyNullArgument>
+    <PossiblyNullReference occurrences="1">
+      <code>lastDay</code>
+    </PossiblyNullReference>
+    <ServiceNotFound occurrences="1">
+      <code>DistributableJobFeedRepository::class</code>
+    </ServiceNotFound>
+  </file>
   <file src="core/ingesting/tests/PublicJob/Integration/Infrastructure/PublicJobProductionServiceContainerTest.php">
     <PossiblyNullPropertyAssignmentValue occurrences="1">
       <code>null</code>
@@ -178,9 +214,6 @@
     </MixedReturnTypeCoercion>
   </file>
   <file src="tests/Behat/AcceptanceContext.php">
-    <ArgumentTypeCoercion occurrences="1">
-      <code>(int) $count * 1000000</code>
-    </ArgumentTypeCoercion>
     <InvalidNullableReturnType occurrences="1">
       <code>NodeElement</code>
     </InvalidNullableReturnType>
