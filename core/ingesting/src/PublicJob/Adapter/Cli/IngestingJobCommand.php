@@ -33,6 +33,7 @@ class IngestingJobCommand extends Command
         $io = new SymfonyStyle($input, $output);
         $io->success('Inizio Rss download (errata)');
         try {
+            $this->usecase->readJobRssDataSource();
         } catch (\Exception $exception) {
             $io->error($exception->getMessage());
             return Command::FAILURE;

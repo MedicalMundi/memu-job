@@ -106,6 +106,31 @@ parameters:
 			path: core/ingesting/tests/Errata/Integration/Persistence/DoctrineErrataFeedRepositoryTest.php
 
 		-
+			message: "#^Call to an undefined method Doctrine\\\\ORM\\\\EntityRepository\\<Ingesting\\\\PublicJob\\\\Application\\\\Model\\\\JobFeed\\>\\:\\:save\\(\\)\\.$#"
+			count: 4
+			path: core/ingesting/tests/PublicJob/Integration/AclAdapter/DistributableJobFeedRepositoryTest.php
+
+		-
+			message: "#^Cannot call method close\\(\\) on Doctrine\\\\ORM\\\\EntityManager\\|null\\.$#"
+			count: 1
+			path: core/ingesting/tests/PublicJob/Integration/AclAdapter/DistributableJobFeedRepositoryTest.php
+
+		-
+			message: "#^Cannot call method getManager\\(\\) on object\\|null\\.$#"
+			count: 1
+			path: core/ingesting/tests/PublicJob/Integration/AclAdapter/DistributableJobFeedRepositoryTest.php
+
+		-
+			message: "#^Cannot call method lastDay\\(\\) on Ingesting\\\\PublicJob\\\\AclAdapter\\\\JobFeedOutgoinAcl\\|null\\.$#"
+			count: 1
+			path: core/ingesting/tests/PublicJob/Integration/AclAdapter/JobFeedAclServiceTest.php
+
+		-
+			message: "#^Parameter \\#1 \\$repository of class Ingesting\\\\PublicJob\\\\AclAdapter\\\\JobFeedAclService constructor expects Ingesting\\\\PublicJob\\\\AclAdapter\\\\DistributableJobFeedRepository, object\\|null given\\.$#"
+			count: 1
+			path: core/ingesting/tests/PublicJob/Integration/AclAdapter/JobFeedAclServiceTest.php
+
+		-
 			message: "#^Property Ingesting\\\\Tests\\\\PublicJob\\\\Integration\\\\Infrastructure\\\\PublicJobProductionServiceContainerTest\\:\\:\\$jobRepository \\(Ingesting\\\\PublicJob\\\\Application\\\\Model\\\\JobRepository\\) does not accept null\\.$#"
 			count: 1
 			path: core/ingesting/tests/PublicJob/Integration/Infrastructure/PublicJobProductionServiceContainerTest.php

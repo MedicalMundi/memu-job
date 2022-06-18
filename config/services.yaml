@@ -39,6 +39,14 @@ services:
             - '@Ingesting\PublicJob\Application\PublicJobModule'
         tags: ['console.command']
 
+    Ingesting\PublicJob\AclAdapter\DistributableJobFeedRepository:
+        public: true
+
+    Ingesting\PublicJob\AclAdapter\JobFeedAclService:
+        arguments:
+            - '@Ingesting\PublicJob\AclAdapter\DistributableJobFeedRepository'
+
+
 
 
     Ingesting\Errata\Adapter\Persistence\Doctrine\DoctrineErrataFeedRepository:
