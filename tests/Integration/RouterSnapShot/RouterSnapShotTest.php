@@ -13,10 +13,12 @@ use Symfony\Component\Routing\RouterInterface;
  *
  * When you add new route run phpunit with env var UT=1 (Update Test)
  * UT=1 bin/phpunit --filter=RouterSnapShotTest
+ *
+ * @group regression
  */
-class RouterSnapShotTest extends KernelTestCase
+class RouterConfigurationSnapShotTest extends KernelTestCase
 {
-    public function testApplicationEndPoint(): void
+    public function testRouterConfigurationEndPoint(): void
     {
         /** @var ContainerInterface $container */
         $container = self::getContainer();
