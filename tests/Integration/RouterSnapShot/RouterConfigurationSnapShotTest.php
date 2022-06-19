@@ -12,7 +12,7 @@ use Symfony\Component\Routing\RouterInterface;
  * Snapshot test about the router configuration
  *
  * When you add new route run phpunit with env var UT=1 (Update Test)
- * UT=1 bin/phpunit --filter=RouterSnapShotTest
+ * UT=1 bin/phpunit --filter=RouterConfigurationSnapShotTest
  *
  * @group regression
  */
