@@ -435,6 +435,7 @@ jobs:
       - phpstan
       - psalm
       - core-test
+      - regression-test
     runs-on: ubuntu-18.04
     timeout-minutes: 3
     steps:
@@ -512,7 +513,6 @@ jobs:
     name: notifiy-coverage-report-was-ready
     needs:
       - core-test
-      - regression-test
     timeout-minutes: 3
     runs-on: ubuntu-18.04
     steps:
