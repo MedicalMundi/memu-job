@@ -1,0 +1,21 @@
+{% extends '@backoffice/base.html.twig' %}
+
+{% block title %}
+    {{ parent() }}
+{% endblock %}
+
+{% block body %}
+    <div id="app"></div>
+{% endblock %}
+
+
+{% block stylesheets %}
+    {{ parent() }}
+    {{ encore_entry_link_tags('ingesting', null, 'backofficeAppConfig') }}
+{% endblock %}
+
+{% block javascripts %}
+    {{ parent() }}
+    {{ encore_entry_script_tags('ingesting', null, 'backofficeAppConfig') }}
+{% endblock %}
+

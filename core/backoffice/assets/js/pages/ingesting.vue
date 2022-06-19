@@ -70,6 +70,15 @@
         <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
           <head-line-component v-bind:title="headLineTitle" />
         </div>
+
+        <div
+            v-for="concorso in concorsi"
+            :key="concorso.id"
+
+          >
+            {{ concorso.titolo }}
+
+        </div>
       </main>
 
     </div>
@@ -140,6 +149,7 @@
 </template>
 
 <script>
+  import axios from 'axios';
   import HeadLineComponent from "../components/head-line";
 
   export default {
@@ -151,8 +161,13 @@
       return {
         componentName: 'ingesting',
         headLineTitle: 'Ingesting',
+        concorsi:[],
       }
-    }
+    },
+    async mounted() {
+      const response = await axios.get('/vue-data');
+      this.concorsi = response.data['concorsi'];
+    },
   }
 </script>
 
@@ -167,8 +182,6 @@
       background: $green-component-link-hover;
     }
   }
+
 }
-  //.sidebar {
-  //  border-radius: 5px;
-  //}
 </style>
