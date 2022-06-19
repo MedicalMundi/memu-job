@@ -63,11 +63,27 @@
         },
         "methods": []
     },
+    "backoffice_ingesting": {
+        "path": "\/backoffice\/ingesting\/",
+        "requirements": [],
+        "defaults": {
+            "_controller": "Backoffice\\Adapter\\HttpWeb\\Ingesting\\IngestingController::index"
+        },
+        "methods": []
+    },
     "backoffice_vue": {
         "path": "\/vue",
         "requirements": [],
         "defaults": {
             "_controller": "Backoffice\\Adapter\\HttpWeb\\VueController::index"
+        },
+        "methods": []
+    },
+    "backoffice_vue_fake_data": {
+        "path": "\/vue-data",
+        "requirements": [],
+        "defaults": {
+            "_controller": "Backoffice\\Adapter\\HttpWeb\\VueController::fakeData"
         },
         "methods": []
     }
