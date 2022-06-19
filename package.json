@@ -37,5 +37,8 @@
         "last 2 versions",
         "Firefox ESR",
         "not dead"
-    ]
+    ],
+    "dependencies": {
+        "install": "^0.13.0"
+    }
 }
