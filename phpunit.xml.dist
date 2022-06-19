@@ -24,6 +24,12 @@
         </testsuite>
     </testsuites>
 
+    <groups>
+        <exclude>
+            <group>regression</group>
+        </exclude>
+    </groups>
+
     <coverage processUncoveredFiles="true">
         <include>
             <directory suffix=".php">src</directory>
