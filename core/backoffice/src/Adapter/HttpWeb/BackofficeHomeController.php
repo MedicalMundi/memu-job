@@ -10,7 +10,7 @@ use Symfony\Component\Routing\Annotation\Route;
 class BackofficeHomeController extends AbstractController
 {
     /**
-     * @Route("/backoffice", name="backoffice_home")
+     * @Route("/backoffice", name="backoffice_home", methods={"GET"})
      * @IsGranted("ROLE_ADMIN")
      */
     public function index(): Response

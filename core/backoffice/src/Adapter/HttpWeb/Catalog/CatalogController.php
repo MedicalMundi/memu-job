@@ -9,12 +9,12 @@ use Symfony\Component\Routing\Annotation\Route;
 
 /**
  * @Route("/backoffice/catalog")
+ * @IsGranted("ROLE_ADMIN")
  */
 class CatalogController extends AbstractController
 {
     /**
-     * @Route("/", name="backoffice_catalog")
-     * @IsGranted("ROLE_ADMIN")
+     * @Route("/", name="backoffice_catalog", methods={"GET"})
      */
     public function index(): Response
     {

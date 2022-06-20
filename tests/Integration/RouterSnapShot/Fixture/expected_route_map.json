@@ -61,7 +61,9 @@
         "defaults": {
             "_controller": "Backoffice\\Adapter\\HttpWeb\\Catalog\\CatalogController::index"
         },
-        "methods": []
+        "methods": [
+            "GET"
+        ]
     },
     "backoffice_dashboard": {
         "path": "\/backoffice\/dashboard\/",
@@ -69,7 +71,9 @@
         "defaults": {
             "_controller": "Backoffice\\Adapter\\HttpWeb\\Dashboard\\DashboardController::index"
         },
-        "methods": []
+        "methods": [
+            "GET"
+        ]
     },
     "backoffice_home": {
         "path": "\/backoffice",
@@ -77,7 +81,9 @@
         "defaults": {
             "_controller": "Backoffice\\Adapter\\HttpWeb\\BackofficeHomeController::index"
         },
-        "methods": []
+        "methods": [
+            "GET"
+        ]
     },
     "backoffice_ingesting": {
         "path": "\/backoffice\/ingesting\/",
@@ -85,7 +91,9 @@
         "defaults": {
             "_controller": "Backoffice\\Adapter\\HttpWeb\\Ingesting\\IngestingController::index"
         },
-        "methods": []
+        "methods": [
+            "GET"
+        ]
     },
     "backoffice_publishing": {
         "path": "\/backoffice\/publishing\/",
@@ -93,7 +101,9 @@
         "defaults": {
             "_controller": "Backoffice\\Adapter\\HttpWeb\\Publishing\\PublishingController::index"
         },
-        "methods": []
+        "methods": [
+            "GET"
+        ]
     },
     "backoffice_vue": {
         "path": "\/vue",
@@ -101,7 +111,9 @@
         "defaults": {
             "_controller": "Backoffice\\Adapter\\HttpWeb\\VueController::index"
         },
-        "methods": []
+        "methods": [
+            "GET"
+        ]
     },
     "backoffice_vue_fake_data": {
         "path": "\/vue-data",
@@ -109,6 +121,8 @@
         "defaults": {
             "_controller": "Backoffice\\Adapter\\HttpWeb\\VueController::fakeData"
         },
-        "methods": []
+        "methods": [
+            "GET"
+        ]
     }
 }

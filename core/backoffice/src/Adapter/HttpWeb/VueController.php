@@ -11,7 +11,7 @@ use Symfony\Component\Routing\Annotation\Route;
 class VueController extends AbstractController
 {
     /**
-     * @Route("/vue", name="backoffice_vue")
+     * @Route("/vue", name="backoffice_vue", methods={"GET"})
      * @IsGranted("ROLE_ADMIN")
      */
     public function index(): Response
@@ -22,7 +22,7 @@ class VueController extends AbstractController
     }
 
     /**
-     * @Route("/vue-data", name="backoffice_vue_fake_data")
+     * @Route("/vue-data", name="backoffice_vue_fake_data", methods={"GET"})
      * @IsGranted("ROLE_ADMIN")
      */
     public function fakeData(): Response

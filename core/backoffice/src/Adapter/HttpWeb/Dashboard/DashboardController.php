@@ -9,12 +9,12 @@ use Symfony\Component\Routing\Annotation\Route;
 
 /**
  * @Route("/backoffice/dashboard")
+ * @IsGranted("ROLE_ADMIN")
  */
 class DashboardController extends AbstractController
 {
     /**
-     * @Route("/", name="backoffice_dashboard")
-     * @IsGranted("ROLE_ADMIN")
+     * @Route("/", name="backoffice_dashboard", methods={"GET"})
      */
     public function index(): Response
     {

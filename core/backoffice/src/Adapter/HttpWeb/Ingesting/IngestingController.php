@@ -9,12 +9,12 @@ use Symfony\Component\Routing\Annotation\Route;
 
 /**
  * @Route("/backoffice/ingesting")
+ * @IsGranted("ROLE_ADMIN")
  */
 class IngestingController extends AbstractController
 {
     /**
-     * @Route("/", name="backoffice_ingesting")
-     * @IsGranted("ROLE_ADMIN")
+     * @Route("/", name="backoffice_ingesting", methods={"GET"})
      */
     public function index(): Response
     {
