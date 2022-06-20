@@ -117,6 +117,9 @@ Encore
      */
     .addEntry('app_backoffice', './core/backoffice/assets/app_backoffice.js')
     .addEntry('ingesting', './core/backoffice/assets/ingesting.js')
+    .addEntry('dashboard', './core/backoffice/assets/js/dashboard.js')
+    .addEntry('catalog', './core/backoffice/assets/js/catalog.js')
+    .addEntry('publishing', './core/backoffice/assets/js/publishing.js')
     //enables the Symfony UX Stimulus bridge (used in core/publishing/assets/bootstrap.js)
     .enableStimulusBridge('./core/backoffice/assets/controllers.json')
 

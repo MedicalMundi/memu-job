@@ -5,18 +5,17 @@
 {% endblock %}
 
 {% block body %}
-    {{ parent() }}
     <div id="app"></div>
 {% endblock %}
 
 
 {% block stylesheets %}
     {{ parent() }}
-    {{ encore_entry_link_tags('ingesting', null, 'backofficeAppConfig') }}
+    {{ encore_entry_link_tags('catalog', null, 'backofficeAppConfig') }}
 {% endblock %}
 
 {% block javascripts %}
     {{ parent() }}
-    {{ encore_entry_script_tags('ingesting', null, 'backofficeAppConfig') }}
+    {{ encore_entry_script_tags('catalog', null, 'backofficeAppConfig') }}
 {% endblock %}
 
