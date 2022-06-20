@@ -1,19 +1,29 @@
 {
     "devDependencies": {
+        "@babel/eslint-parser": "^7.18.2",
         "@hotwired/stimulus": "^3.0.0",
         "@popperjs/core": "^2.11.5",
         "@symfony/stimulus-bridge": "^3.0.0",
         "@symfony/webpack-encore": "^2.0.0",
+        "@vue/compiler-sfc": "^3.2.37",
+        "add": "^2.0.6",
         "autoprefixer": "^10.4.7",
+        "axios": "^0.27.2",
         "bootstrap": "^5",
         "bootstrap-icons": "^1.8.3",
         "core-js": "^3.0.0",
+        "eslint": "^8.18.0",
+        "eslint-plugin-vue": "^9.1.1",
+        "eslint-webpack-plugin": "^3.1.0",
         "file-loader": "^6",
         "node-sass": "^7.0.1",
         "postcss-loader": "^6.0.0",
         "regenerator-runtime": "^0.13.2",
         "sass-loader": "^12.0.0",
-        "webpack-notifier": "^1.6.0"
+        "vue": "^3.2.14",
+        "vue-loader": "^17.0.0",
+        "webpack-notifier": "^1.6.0",
+        "yarn": "^1.22.19"
     },
     "license": "UNLICENSED",
     "private": true,
@@ -28,5 +38,8 @@
         "last 2 versions",
         "Firefox ESR",
         "not dead"
-    ]
+    ],
+    "dependencies": {
+        "install": "^0.13.0"
+    }
 }

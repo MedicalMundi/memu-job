@@ -43,15 +43,15 @@ Encore
     .enableSourceMaps(!Encore.isProduction())
     .enableVersioning(Encore.isProduction())
 
-    .configureBabel((config) => {
-        config.plugins.push('@babel/plugin-proposal-class-properties');
-    })
-
-    // enables @babel/preset-env polyfills
-    .configureBabelPresetEnv((config) => {
-        config.useBuiltIns = 'usage';
-        config.corejs = 3;
-    })
+    // .configureBabel((config) => {
+    //     config.plugins.push('@babel/plugin-proposal-class-properties');
+    // })
+    //
+    // // enables @babel/preset-env polyfills
+    // .configureBabelPresetEnv((config) => {
+    //     config.useBuiltIns = 'usage';
+    //     config.corejs = 3;
+    // })
 
     .enableSassLoader()
 
@@ -116,6 +116,10 @@ Encore
      * and one CSS file (e.g. app.css) if your JavaScript imports CSS.
      */
     .addEntry('app_backoffice', './core/backoffice/assets/app_backoffice.js')
+    .addEntry('ingesting', './core/backoffice/assets/js/ingesting.js')
+    .addEntry('dashboard', './core/backoffice/assets/js/dashboard.js')
+    .addEntry('catalog', './core/backoffice/assets/js/catalog.js')
+    .addEntry('publishing', './core/backoffice/assets/js/publishing.js')
     //enables the Symfony UX Stimulus bridge (used in core/publishing/assets/bootstrap.js)
     .enableStimulusBridge('./core/backoffice/assets/controllers.json')
 
@@ -127,6 +131,11 @@ Encore
     .enableSingleRuntimeChunk()
     //.disableSingleRuntimeChunk()
 
+    .addAliases({
+        '@': path.resolve(__dirname, './core/backoffice/assets', 'js'),
+        styles: path.resolve(__dirname, './core/backoffice/assets', 'styles')
+    })
+
     /*
      * list of features, see:
      * https://symfony.com/doc/current/frontend.html#adding-more-features
@@ -136,19 +145,34 @@ Encore
     .enableSourceMaps(!Encore.isProduction())
     .enableVersioning(Encore.isProduction())
 
-    .configureBabel((config) => {
-        config.plugins.push('@babel/plugin-proposal-class-properties');
+    .enableVueLoader(() => {}, {
+        version: 3
     })
 
-    // enables @babel/preset-env polyfills
-    .configureBabelPresetEnv((config) => {
-        config.useBuiltIns = 'usage';
-        config.corejs = 3;
+    // Better module CSS name in dev
+    .configureCssLoader((config) => {
+        if (!Encore.isProduction() && config.modules){
+            config.modules.localIdentName = '[name]_[local]_[hash:base64:5]';
+        }
     })
+
+    // moved to babel.conf.js
+    // .configureBabel((config) => {
+    //     config.plugins.push('@babel/plugin-proposal-class-properties');
+    // })
+
+    // moved to babel.conf.js
+    // enables @babel/preset-env polyfills
+    // .configureBabelPresetEnv((config) => {
+    //     config.useBuiltIns = 'usage';
+    //     config.corejs = 3;
+    // })
 
     .enableSassLoader()
 
     .enablePostCssLoader()
+
+    .enableEslintPlugin()
 
     .copyFiles({
         from: './core/backoffice/assets/images',

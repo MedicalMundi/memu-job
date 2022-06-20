@@ -55,12 +55,74 @@
         },
         "methods": []
     },
+    "backoffice_catalog": {
+        "path": "\/backoffice\/catalog\/",
+        "requirements": [],
+        "defaults": {
+            "_controller": "Backoffice\\Adapter\\HttpWeb\\Catalog\\CatalogController::index"
+        },
+        "methods": [
+            "GET"
+        ]
+    },
+    "backoffice_dashboard": {
+        "path": "\/backoffice\/dashboard\/",
+        "requirements": [],
+        "defaults": {
+            "_controller": "Backoffice\\Adapter\\HttpWeb\\Dashboard\\DashboardController::index"
+        },
+        "methods": [
+            "GET"
+        ]
+    },
     "backoffice_home": {
         "path": "\/backoffice",
         "requirements": [],
         "defaults": {
             "_controller": "Backoffice\\Adapter\\HttpWeb\\BackofficeHomeController::index"
         },
-        "methods": []
+        "methods": [
+            "GET"
+        ]
+    },
+    "backoffice_ingesting": {
+        "path": "\/backoffice\/ingesting\/",
+        "requirements": [],
+        "defaults": {
+            "_controller": "Backoffice\\Adapter\\HttpWeb\\Ingesting\\IngestingController::index"
+        },
+        "methods": [
+            "GET"
+        ]
+    },
+    "backoffice_publishing": {
+        "path": "\/backoffice\/publishing\/",
+        "requirements": [],
+        "defaults": {
+            "_controller": "Backoffice\\Adapter\\HttpWeb\\Publishing\\PublishingController::index"
+        },
+        "methods": [
+            "GET"
+        ]
+    },
+    "backoffice_vue": {
+        "path": "\/vue",
+        "requirements": [],
+        "defaults": {
+            "_controller": "Backoffice\\Adapter\\HttpWeb\\VueController::index"
+        },
+        "methods": [
+            "GET"
+        ]
+    },
+    "backoffice_vue_fake_data": {
+        "path": "\/vue-data",
+        "requirements": [],
+        "defaults": {
+            "_controller": "Backoffice\\Adapter\\HttpWeb\\VueController::fakeData"
+        },
+        "methods": [
+            "GET"
+        ]
     }
 }

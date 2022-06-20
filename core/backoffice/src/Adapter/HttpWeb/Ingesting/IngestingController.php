@@ -1,22 +1,25 @@
 <?php declare(strict_types=1);
 
-namespace Backoffice\Adapter\HttpWeb;
+namespace Backoffice\Adapter\HttpWeb\Ingesting;
 
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\IsGranted;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 
-class BackofficeHomeController extends AbstractController
+/**
+ * @Route("/backoffice/ingesting")
+ * @IsGranted("ROLE_ADMIN")
+ */
+class IngestingController extends AbstractController
 {
     /**
-     * @Route("/backoffice", name="backoffice_home", methods={"GET"})
-     * @IsGranted("ROLE_ADMIN")
+     * @Route("/", name="backoffice_ingesting", methods={"GET"})
      */
     public function index(): Response
     {
-        return $this->render('@backoffice/home/index.html.twig', [
-            'message' => 'Backoffice MedicalMundi!',
+        return $this->render('@backoffice/ingesting/index.html.twig', [
+
         ]);
     }
 }
