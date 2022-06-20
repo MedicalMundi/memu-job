@@ -55,6 +55,22 @@
         },
         "methods": []
     },
+    "backoffice_catalog": {
+        "path": "\/backoffice\/catalog\/",
+        "requirements": [],
+        "defaults": {
+            "_controller": "Backoffice\\Adapter\\HttpWeb\\Catalog\\CatalogController::index"
+        },
+        "methods": []
+    },
+    "backoffice_dashboard": {
+        "path": "\/backoffice\/dashboard\/",
+        "requirements": [],
+        "defaults": {
+            "_controller": "Backoffice\\Adapter\\HttpWeb\\Dashboard\\DashboardController::index"
+        },
+        "methods": []
+    },
     "backoffice_home": {
         "path": "\/backoffice",
         "requirements": [],
@@ -68,6 +84,14 @@
         "requirements": [],
         "defaults": {
             "_controller": "Backoffice\\Adapter\\HttpWeb\\Ingesting\\IngestingController::index"
+        },
+        "methods": []
+    },
+    "backoffice_publishing": {
+        "path": "\/backoffice\/publishing\/",
+        "requirements": [],
+        "defaults": {
+            "_controller": "Backoffice\\Adapter\\HttpWeb\\Publishing\\PublishingController::index"
         },
         "methods": []
     },
