@@ -116,7 +116,7 @@ Encore
      * and one CSS file (e.g. app.css) if your JavaScript imports CSS.
      */
     .addEntry('app_backoffice', './core/backoffice/assets/app_backoffice.js')
-    .addEntry('ingesting', './core/backoffice/assets/ingesting.js')
+    .addEntry('ingesting', './core/backoffice/assets/js/ingesting.js')
     .addEntry('dashboard', './core/backoffice/assets/js/dashboard.js')
     .addEntry('catalog', './core/backoffice/assets/js/catalog.js')
     .addEntry('publishing', './core/backoffice/assets/js/publishing.js')

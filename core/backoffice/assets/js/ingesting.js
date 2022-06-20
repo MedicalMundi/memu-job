@@ -1,4 +1,4 @@
 import {createApp} from 'vue';
-import App from './js/pages/ingesting';
+import App from './pages/ingesting';
 
 const app =  createApp(App).mount('#app');
