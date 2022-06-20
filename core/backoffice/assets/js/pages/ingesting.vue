@@ -2,8 +2,35 @@
   <div class="container-fluid">
     <div class="row">
       <sidebar-component />
-      <fake-table-component />
-<!--      SIDEBAR 1-->
+      <main class="col-md-9 ms-sm-auto col-lg-10 px-md-4">
+        <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
+          <h1 class="h2">Ingesting</h1>
+          <div class="btn-toolbar mb-2 mb-md-0">
+            <div class="btn-group me-2">
+              <button type="button" class="btn btn-sm btn-outline-secondary">Share</button>
+              <button type="button" class="btn btn-sm btn-outline-secondary">Export</button>
+            </div>
+            <button type="button" class="btn btn-sm btn-outline-secondary dropdown-toggle">
+              <span data-feather="calendar"></span>
+              This week
+            </button>
+          </div>
+        </div>
+
+        <h2>Ingesting h2</h2>
+
+        <div> Hi i'm the Ingesting page!!</div>
+        <div
+            v-for="concorso in concorsi"
+            :key="concorso.id"
+
+          >
+            {{ concorso.titolo }}
+
+        </div>
+      </main>
+
+      <!--      SIDEBAR 1-->
 <!--      <div class="sidebar flex-shrink-0 p-3 bg-white" style="width: 280px;">-->
 <!--        <a href="/" class="d-flex align-items-center pb-3 mb-3 link-dark text-decoration-none border-bottom">-->
 <!--          <svg class="bi me-2" width="30" height="24"><use xlink:href="#bootstrap"></use></svg>-->
@@ -88,9 +115,9 @@
 
 <script>
   import axios from 'axios';
-  import HeadLineComponent from "../components/head-line";
-  import SidebarComponent from "../components/sidebar"
-  import FakeTableComponent from "../components/fake-table";
+  import HeadLineComponent from '@/components/head-line';
+  import SidebarComponent from '@/components/sidebar';
+  import FakeTableComponent from '@/components/fake-table';
 
   export default {
     name: "Ingesting",
@@ -113,17 +140,6 @@
   }
 </script>
 
-<style lang="scss" scoped>
-//@import "../../styles/component/light-component";
+<style lang="scss" module>
 
-//.sidebar {
-//  @include light-component;
-//
-//  ul {
-//    li a:hover {
-//      background: $green-component-link-hover;
-//    }
-//  }
-//
-//}
 </style>

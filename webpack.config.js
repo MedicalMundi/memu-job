@@ -131,6 +131,11 @@ Encore
     .enableSingleRuntimeChunk()
     //.disableSingleRuntimeChunk()
 
+    .addAliases({
+        '@': path.resolve(__dirname, './core/backoffice/assets', 'js'),
+        styles: path.resolve(__dirname, './core/backoffice/assets', 'styles')
+    })
+
     /*
      * list of features, see:
      * https://symfony.com/doc/current/frontend.html#adding-more-features
@@ -142,6 +147,13 @@ Encore
 
     .enableVueLoader(() => {}, {
         version: 3
+    })
+
+    // Better module CSS name in dev
+    .configureCssLoader((config) => {
+        if (!Encore.isProduction() && config.modules){
+            config.modules.localIdentName = '[name]_[local]_[hash:base64:5]';
+        }
     })
 
     // moved to babel.conf.js

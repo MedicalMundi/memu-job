@@ -1,5 +1,8 @@
 <template>
-  <nav id="sidebarMenu" class="col-md-3 col-lg-2 d-md-block bg-light sidebar collapse">
+<!--  <nav id="sidebarMenu" class="sidebar col-md-3 col-lg-2 d-md-block bg-light collapse">-->
+  <nav id="sidebarMenu"
+       :class="[$style.sidebar, 'col-md-3','col-lg-2','d-md-block','bg-light','collapse']"
+        >
     <div class="position-sticky pt-3">
       <ul class="nav flex-column">
         <li class="nav-item">
@@ -107,6 +110,18 @@ export default {
 }
 </script>
 
-<style scoped>
+<style lang="scss" module>
+@import '~styles/component/light-component';
+
+.sidebar {
+  @include light-component;
+
+ul {
+li a:hover {
+  background: $green-component-link-hover;
+}
+}
+
+}
 
 </style>
