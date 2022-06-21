@@ -39,6 +39,16 @@ services:
             - '@Ingesting\PublicJob\Application\PublicJobModule'
         tags: ['console.command']
 
+    Ingesting\PublicJob\Adapter\HttpWeb\:
+        resource: '../core/ingesting/src/PublicJob/Adapter/HttpWeb/'
+        tags: [ 'controller.service_arguments' ]
+
+    Ingesting\PublicJob\Application\Usecase\ShowFeed\ShowAllFeedJob: '@Ingesting\PublicJob\Application\Usecase\ShowFeed\ShowFeedJobViewCase'
+    Ingesting\PublicJob\Application\Usecase\ShowFeed\ShowFeedJobViewCase:
+
+    Ingesting\PublicJob\Application\Usecase\ReadableJobFeedRepository: '@Ingesting\PublicJob\Adapter\Persistence\Doctrine\DoctrineReadableJobFeedRepository'
+    Ingesting\PublicJob\Adapter\Persistence\Doctrine\DoctrineReadableJobFeedRepository:
+
     Ingesting\PublicJob\AclAdapter\DistributableJobFeedRepository:
         public: true
 
