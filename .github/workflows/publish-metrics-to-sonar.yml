@@ -33,6 +33,7 @@ jobs:
         run: git log --oneline
 
       - name: Download unit test coverage artifact
+        id: download-artifact
         run: |
           ls -al
           gh run download -n ${{ env.COVERAGE_UNIT_ARTIFATC_NAME }}-${{ github.event.client_payload.sha }}
@@ -68,7 +69,7 @@ jobs:
             -Dsonar.php.coverage.reportPaths=${{ env.COVERAGE_CLOVER_UNIT_FILENAME }},${{ env.COVERAGE_CLOVER_INTEGRATION_FILENAME }}
             -Dsonar.php.tests.reportPath=${{ env.COVERAGE_LOGJUNIT_UNIT_FILENAME }},${{ env.COVERAGE_LOGJUNIT_INTEGRATION_FILENAME }}
             -Dsonar.tests=tests/,core/ingesting/tests/,core/publishing/tests/
-            -Dsonar.verbose=true COVERAGE_CLOVER_INTEGRATION_FILENAME
+            -Dsonar.verbose=true
 
         env:
          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
