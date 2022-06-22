@@ -48,6 +48,7 @@ services:
 
     Ingesting\PublicJob\Application\Usecase\ReadableJobFeedRepository: '@Ingesting\PublicJob\Adapter\Persistence\Doctrine\DoctrineReadableJobFeedRepository'
     Ingesting\PublicJob\Adapter\Persistence\Doctrine\DoctrineReadableJobFeedRepository:
+        public: true
 
     Ingesting\PublicJob\AclAdapter\DistributableJobFeedRepository:
         public: true
