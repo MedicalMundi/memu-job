@@ -22,10 +22,11 @@
         <div> Hi i'm the Ingesting page!!</div>
         <div
             v-for="concorso in concorsi"
-            :key="concorso.id"
+            :key="concorso.job_id"
 
           >
-            {{ concorso.titolo }}
+<!--            {{ concorso.titolo }}-->
+            {{ concorso.title }}
 
         </div>
       </main>
@@ -134,8 +135,10 @@
       }
     },
     async mounted() {
-      const response = await axios.get('/vue-data');
-      this.concorsi = response.data['concorsi'];
+      //const response = await axios.get('/vue-data');
+      //this.concorsi = response.data['concorsi'];
+      const response = await axios.get('/wapi/ingestion/jobfeed');
+      this.concorsi = response.data;
     },
   }
 </script>

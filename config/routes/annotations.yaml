@@ -21,3 +21,7 @@ backoffice_controllers:
 backoffice_api_controllers:
     resource: ../../core/backoffice/src/Adapter/HttpApi/
     type: annotation
+
+ingesting_controllers:
+    resource: ../../core/ingesting/src/PublicJob/Adapter/HttpWeb/
+    type: annotation

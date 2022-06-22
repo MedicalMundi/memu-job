@@ -1,6 +1,6 @@
 <?php declare(strict_types=1);
 
-namespace Ingesting\Tests\PublicJob\Integration\Persistence;
+namespace Ingesting\Tests\PublicJob\Integration\Persistence\JobRepository;
 
 use Ingesting\PublicJob\Adapter\Persistence\Doctrine\DoctrineJobFeedRepository;
 use Ingesting\PublicJob\Application\Model\JobRepository;
@@ -11,12 +11,11 @@ use Ingesting\PublicJob\Application\Model\JobRepository;
  */
 class DoctrineJobRepositoryTest extends JobRepositoryContractTest
 {
-    private ?object $doctrineJobFeedRepository;
+    private ?JobRepository $doctrineJobFeedRepository;
 
     protected function setUp(): void
     {
         $kernel = parent::bootKernel();
-
         $this->doctrineJobFeedRepository = $kernel->getContainer()
             ->get(DoctrineJobFeedRepository::class);
 
@@ -25,6 +24,7 @@ class DoctrineJobRepositoryTest extends JobRepositoryContractTest
 
     protected function createRepository(): JobRepository
     {
+        \assert($this->doctrineJobFeedRepository instanceof DoctrineJobFeedRepository);
         return $this->doctrineJobFeedRepository;
     }
 

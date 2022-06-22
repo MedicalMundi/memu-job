@@ -1,6 +1,6 @@
 <?php declare(strict_types=1);
 
-namespace Ingesting\Tests\PublicJob\Integration\Persistence;
+namespace Ingesting\Tests\PublicJob\Integration\Persistence\JobRepository;
 
 use Ingesting\PublicJob\Adapter\Persistence\InMemoryJobFeedRepository;
 use Ingesting\PublicJob\Application\Model\JobRepository;

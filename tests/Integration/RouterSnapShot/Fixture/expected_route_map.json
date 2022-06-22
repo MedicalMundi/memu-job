@@ -124,5 +124,15 @@
         "methods": [
             "GET"
         ]
+    },
+    "ingestion_jobfeed": {
+        "path": "\/wapi\/ingestion\/jobfeed",
+        "requirements": [],
+        "defaults": {
+            "_controller": "Ingesting\\PublicJob\\Adapter\\HttpWeb\\WebApiController::showFeedJob"
+        },
+        "methods": [
+            "GET"
+        ]
     }
 }

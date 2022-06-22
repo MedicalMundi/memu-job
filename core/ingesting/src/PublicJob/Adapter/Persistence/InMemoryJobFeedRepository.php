@@ -64,4 +64,12 @@ class InMemoryJobFeedRepository implements JobRepository
 
         return $result;
     }
+
+    /**
+     * @internal
+     */
+    public function items(): array
+    {
+        return $this->items;
+    }
 }
