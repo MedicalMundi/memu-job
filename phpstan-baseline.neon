@@ -141,9 +141,19 @@ parameters:
 			path: core/ingesting/tests/PublicJob/Integration/Infrastructure/PublicJobProductionServiceContainerTest.php
 
 		-
-			message: "#^Method Ingesting\\\\Tests\\\\PublicJob\\\\Integration\\\\Persistence\\\\DoctrineJobRepositoryTest\\:\\:createRepository\\(\\) should return Ingesting\\\\PublicJob\\\\Application\\\\Model\\\\JobRepository but returns object\\|null\\.$#"
+			message: "#^Property Ingesting\\\\Tests\\\\PublicJob\\\\Integration\\\\Persistence\\\\JobRepository\\\\DoctrineJobRepositoryTest\\:\\:\\$doctrineJobFeedRepository \\(Ingesting\\\\PublicJob\\\\Application\\\\Model\\\\JobRepository\\|null\\) does not accept object\\|null\\.$#"
 			count: 1
-			path: core/ingesting/tests/PublicJob/Integration/Persistence/DoctrineJobRepositoryTest.php
+			path: core/ingesting/tests/PublicJob/Integration/Persistence/JobRepository/DoctrineJobRepositoryTest.php
+
+		-
+			message: "#^Property Ingesting\\\\Tests\\\\PublicJob\\\\Integration\\\\Persistence\\\\ReadableJobRepository\\\\DoctrineReadableJobRepositoryTest\\:\\:\\$doctrineReadableJobFeedRepository \\(Ingesting\\\\PublicJob\\\\Application\\\\Usecase\\\\ReadableJobFeedRepository\\|null\\) does not accept object\\|null\\.$#"
+			count: 1
+			path: core/ingesting/tests/PublicJob/Integration/Persistence/ReadableJobRepository/DoctrineReadableJobRepositoryTest.php
+
+		-
+			message: "#^Property Ingesting\\\\Tests\\\\PublicJob\\\\Integration\\\\Persistence\\\\ReadableJobRepository\\\\DoctrineReadableJobRepositoryTest\\:\\:\\$writeModel \\(Ingesting\\\\PublicJob\\\\Adapter\\\\Persistence\\\\Doctrine\\\\DoctrineJobFeedRepository\\) does not accept object\\|null\\.$#"
+			count: 1
+			path: core/ingesting/tests/PublicJob/Integration/Persistence/ReadableJobRepository/DoctrineReadableJobRepositoryTest.php
 
 		-
 			message: "#^Anonymous function should have native return typehint \"\\?Behat\\\\Mink\\\\Element\\\\NodeElement\"\\.$#"
