@@ -2,17 +2,17 @@
 
 namespace Ingesting\Tests\PublicJob\Integration\AclAdapter;
 
-use Ingesting\PublicJob\AclAdapter\DistributableJobFeedRepository;
-use Ingesting\PublicJob\AclAdapter\JobFeedAclService;
-use Ingesting\PublicJob\AclAdapter\JobFeedOutgoinAcl;
+use Ingesting\PublicJob\AclAdapter\IngestinOutgoinAcl;
+use Ingesting\PublicJob\AclAdapter\InProcess\IngestingAclService;
+use Ingesting\PublicJob\AclAdapter\Repository\DistributableJobFeedRepository;
 use Symfony\Bundle\FrameworkBundle\Test\KernelTestCase;
 
 /**
- * @covers \Ingesting\PublicJob\AclAdapter\JobFeedAclService
+ * @covers \Ingesting\PublicJob\AclAdapter\InProcess\IngestingAclService
  */
 class JobFeedAclServiceTest extends KernelTestCase
 {
-    private ?JobFeedOutgoinAcl $service;
+    private ?IngestinOutgoinAcl $aclService;
 
     protected function setUp(): void
     {
@@ -22,17 +22,18 @@ class JobFeedAclServiceTest extends KernelTestCase
         $repository = $kernel->getContainer()
             ->get(DistributableJobFeedRepository::class);
 
-        $this->service = new JobFeedAclService($repository);
+        $this->aclService = new IngestingAclService($repository);
     }
 
     public function testName(): void
     {
-        self::assertEmpty($this->service->lastDay());
+        \assert(null !== $this->aclService);
+        self::assertEmpty($this->aclService->getPublishedToday());
     }
 
     protected function tearDown(): void
     {
         parent::tearDown();
-        $this->service = null;
+        $this->aclService = null;
     }
 }

@@ -4,13 +4,14 @@ namespace Ingesting\PublicJob\AclAdapter;
 
 use Ingesting\PublicJob\Application\Model\GenericAclService;
 
-interface JobFeedOutgoinAcl extends GenericAclService
+interface IngestinOutgoinAcl extends GenericAclService
 {
     /**
-     * Return jobPost items with
+     * Return jobFeed items with
      * date equals today
      */
-    public function lastDay(): array;
+    public function getPublishedToday(): array;
+
 //
 //    /**
 //     * Return jobPost items with

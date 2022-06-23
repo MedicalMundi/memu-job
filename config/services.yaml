@@ -50,12 +50,12 @@ services:
     Ingesting\PublicJob\Adapter\Persistence\Doctrine\DoctrineReadableJobFeedRepository:
         public: true
 
-    Ingesting\PublicJob\AclAdapter\DistributableJobFeedRepository:
+    Ingesting\PublicJob\AclAdapter\Repository\DistributableJobFeedRepository:
         public: true
 
-    Ingesting\PublicJob\AclAdapter\JobFeedAclService:
+    Ingesting\PublicJob\AclAdapter\InProcess\IngestingAclService:
         arguments:
-            - '@Ingesting\PublicJob\AclAdapter\DistributableJobFeedRepository'
+            - '@Ingesting\PublicJob\AclAdapter\Repository\DistributableJobFeedRepository'
 
 
 

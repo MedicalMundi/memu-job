@@ -121,12 +121,7 @@ parameters:
 			path: core/ingesting/tests/PublicJob/Integration/AclAdapter/DistributableJobFeedRepositoryTest.php
 
 		-
-			message: "#^Cannot call method lastDay\\(\\) on Ingesting\\\\PublicJob\\\\AclAdapter\\\\JobFeedOutgoinAcl\\|null\\.$#"
-			count: 1
-			path: core/ingesting/tests/PublicJob/Integration/AclAdapter/JobFeedAclServiceTest.php
-
-		-
-			message: "#^Parameter \\#1 \\$repository of class Ingesting\\\\PublicJob\\\\AclAdapter\\\\JobFeedAclService constructor expects Ingesting\\\\PublicJob\\\\AclAdapter\\\\DistributableJobFeedRepository, object\\|null given\\.$#"
+			message: "#^Parameter \\#1 \\$repository of class Ingesting\\\\PublicJob\\\\AclAdapter\\\\InProcess\\\\IngestingAclService constructor expects Ingesting\\\\PublicJob\\\\AclAdapter\\\\Repository\\\\DistributableJobFeedRepository, object\\|null given\\.$#"
 			count: 1
 			path: core/ingesting/tests/PublicJob/Integration/AclAdapter/JobFeedAclServiceTest.php
 
@@ -154,6 +149,11 @@ parameters:
 			message: "#^Property Ingesting\\\\Tests\\\\PublicJob\\\\Integration\\\\Persistence\\\\ReadableJobRepository\\\\DoctrineReadableJobRepositoryTest\\:\\:\\$writeModel \\(Ingesting\\\\PublicJob\\\\Adapter\\\\Persistence\\\\Doctrine\\\\DoctrineJobFeedRepository\\) does not accept object\\|null\\.$#"
 			count: 1
 			path: core/ingesting/tests/PublicJob/Integration/Persistence/ReadableJobRepository/DoctrineReadableJobRepositoryTest.php
+
+		-
+			message: "#^Unreachable statement \\- code above always terminates\\.$#"
+			count: 1
+			path: core/ingesting/tests/PublicJob/Unit/AclAdapter/Model/JobFeedTest.php
 
 		-
 			message: "#^Anonymous function should have native return typehint \"\\?Behat\\\\Mink\\\\Element\\\\NodeElement\"\\.$#"
