@@ -4,6 +4,8 @@ namespace Ingesting\PublicJob\AclAdapter\Repository;
 
 use Doctrine\DBAL\Statement;
 use Doctrine\ORM\EntityManagerInterface;
+use Ingesting\PublicJob\AclAdapter\Model\DistributableJobFeed;
+use Ingesting\PublicJob\AclAdapter\Model\JobFeed;
 
 class DistributableJobFeedRepository
 {
@@ -34,6 +36,21 @@ class DistributableJobFeedRepository
             'today_date' => $todayDate-> format(\DateTimeInterface::ATOM),
         ]);
 
-        return $resultSet->fetchAllAssociative();
+        return $this->formatResult($resultSet->fetchAllAssociative());
+    }
+
+    /**
+     * @return DistributableJobFeed[]
+     */
+    private function formatResult(array $items): array
+    {
+        $result = [];
+
+        /** @var array $item */
+        foreach ($items as $item) {
+            $result[] = JobFeed::fromArray($item);
+        }
+
+        return $result;
     }
 }

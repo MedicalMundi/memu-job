@@ -8,7 +8,7 @@ use Ingesting\PublicJob\Application\Model\JobFeed;
 use Symfony\Bundle\FrameworkBundle\Test\KernelTestCase;
 
 /**
- * @covers \Ingesting\PublicJob\AclAdapter\DistributableJobFeedRepository
+ * @covers \Ingesting\PublicJob\AclAdapter\Repository\DistributableJobFeedRepository
  */
 class DistributableJobFeedRepositoryTest extends KernelTestCase
 {

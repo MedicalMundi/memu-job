@@ -20,6 +20,9 @@ class JobFeed implements DistributableJobFeed
         $this->link = $link;
     }
 
+    /**
+     * @param array<array-key, mixed> $item
+     */
     public static function fromArray(array $item): self
     {
         // TODO USE ASSERT LIBRARY
