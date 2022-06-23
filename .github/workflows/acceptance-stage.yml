@@ -634,7 +634,7 @@ jobs:
 
       - name: Run Integration test suite WITHOUT COVERAGE
         if: ( !matrix.coverage )
-        run: ./vendor/bin/phpunit tests/Integration
+        run: ./vendor/bin/phpunit --testsuite integration
         env:
           SYMFONY_DEPRECATIONS_HELPER: disabled
           DATABASE_URL: postgresql://ci-db-user:ci-db-password@127.0.0.1:${{ job.services.pgsql.ports['5432'] }}/ci-db
@@ -643,7 +643,7 @@ jobs:
         if: ( matrix.coverage )
         run: |
           mkdir -p var/tools/phpunit/core
-          ./vendor/bin/phpunit --configuration phpunit.core.xml --testsuite integration --group=io-network,io-database \
+          ./vendor/bin/phpunit --testsuite integration --group=io-network,io-database \
           --coverage-clover ${{ env.INTEGRATION_COVERAGE_CLOVER_FILENAME }} \
           --log-junit ${{ env.INTEGRATION_COVERAGE_LOGJUNIT_FILENAME }}
         env:
@@ -1355,3 +1355,24 @@ jobs:
 
       - name: Stop services
         run: docker-compose -f docker-compose.ci-gha.yml down -v --remove-orphans
+
+  notifiy-integration-coverage-report-was-ready:
+    name: notifiy-integration-coverage-report-was-ready
+    needs:
+      - core-integration-test
+      - integration-test
+    timeout-minutes: 3
+    runs-on: ubuntu-18.04
+    steps:
+      - name: Dump context
+        uses: crazy-max/ghaction-dump-context@v1
+
+      - name: emit pipeline event
+        uses: peter-evans/repository-dispatch@v2
+        with:
+          token: ${{ secrets.MEMUJOB_CI_GHA_PAT }}
+          repository: ${{ github.repository }}
+          event-type: integration-coverage-report-was-ready
+          client-payload: '{"ref": "${{ github.ref }}", "sha": "${{ github.sha }}", "ref_name": "${{ github.ref_name }}"}'
+        env:
+          GITHUB_TOKEN: ${{ secrets.MEMUJOB_CI_GHA_PAT }}

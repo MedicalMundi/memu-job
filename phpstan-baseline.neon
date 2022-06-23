@@ -185,3 +185,8 @@ parameters:
 			count: 1
 			path: tests/E2E/Front/HomeTest.php
 
+		-
+			message: "#^Call to static method PHPUnit\\\\Framework\\\\Assert\\:\\:assertTrue\\(\\) with true will always evaluate to true\\.$#"
+			count: 1
+			path: tests/Integration/Repository/PlaceholderTest.php
+

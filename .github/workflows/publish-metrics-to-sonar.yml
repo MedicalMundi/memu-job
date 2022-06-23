@@ -4,7 +4,7 @@ name: Publish metrics to sonar cloud
 
 on:
   repository_dispatch:
-    types: [commit-stage-was-completed-successfully]
+    types: [commit-stage-was-completed-successfully,integration-coverage-report-was-ready]
 
 env:
   GITHUB_PAT: ${{ secrets.MEMUJOB_CI_GHA_PAT }}
@@ -13,14 +13,19 @@ env:
   COVERAGE_CLOVER_UNIT_FILENAME: 'coverage-unit-test-clover.xml'
   COVERAGE_LOGJUNIT_UNIT_FILENAME: 'coverage-unit-test-junit.xml'
 
-  COVERAGE_INTEGRATION_ARTIFATC_NAME: 'Coverage-reports-integration-on-SHA'
-  COVERAGE_CLOVER_INTEGRATION_FILENAME: 'coverage-integration-test-clover.xml'
-  COVERAGE_LOGJUNIT_INTEGRATION_FILENAME: 'coverage-integration-test-junit.xml'
+  CORE_INTEGRATION_COVERAGE_ARTIFATC_NAME: 'Coverage-reports-core-integration-on-SHA'
+  CORE_INTEGRATION_COVERAGE_CLOVER_FILENAME: 'core-integration-test-clover.xml'
+  CORE_INTEGRATION_COVERAGE_LOGJUNIT_FILENAME: 'core-integration-test-junit.xml'
+
+  INTEGRATION_COVERAGE_ARTIFATC_NAME: 'Coverage-reports-integration-on-SHA'
+  INTEGRATION_COVERAGE_CLOVER_FILENAME: 'coverage-integration-test-clover.xml'
+  INTEGRATION_COVERAGE_LOGJUNIT_FILENAME: 'coverage-integration-test-junit.xml'
 
 
 jobs:
   publish-coverage-report-to-sonar-cloud:
     name: Publish metrics | Sonar cloud
+    if: ${{ github.event.action == 'commit-stage-was-completed-successfully' }}
     runs-on: ubuntu-18.04
 
     steps:
@@ -41,13 +46,64 @@ jobs:
         env:
           GITHUB_TOKEN: ${{secrets.GITHUB_TOKEN}}
 
-#      - name: Download integration test coverage artifact
-#        run: |
-#          ls -al
-#          gh run download -n ${{ env.COVERAGE_INTEGRATION_ARTIFATC_NAME }}-${{ github.event.client_payload.sha }}
-#          ls -al
-#        env:
-#          GITHUB_TOKEN: ${{secrets.GITHUB_TOKEN}}
+      - name: SonarCloud Scan And publication
+        if: ${{ (steps.download-artifact.outcome == 'success')}}
+        uses: sonarsource/sonarcloud-github-action@master
+        with:
+          projectBaseDir: ./
+          args: >
+            -Dsonar.organization=medicalmundi
+            -Dsonar.projectKey=MedicalMundi_memu-job
+            -Dsonar.projectName=memu-job
+            -Dsonar.links.homepage=https://github.com/MedicalMundi/memu-job
+            -Dsonar.links.ci=https://github.com/MedicalMundi/memu-job/actions
+            -Dsonar.links.scm=https://github.com/MedicalMundi/memu-job
+            -Dsonar.links.issue=https://github.com/MedicalMundi/memu-job/issues
+            -Dsonar.sourceEncoding=UTF-8
+            -Dsonar.language=php
+            -Dsonar.sources=src/,core/ingesting/src/,core/publishing/src/
+            -Dsonar.test.exclusions=tests/**,docker/**,nginx.conf,sys/**,tools/**,var/**
+            -Dsonar.php.coverage.reportPaths=${{ env.COVERAGE_CLOVER_UNIT_FILENAME }}
+            -Dsonar.php.tests.reportPath=${{ env.COVERAGE_LOGJUNIT_UNIT_FILENAME }}
+            -Dsonar.tests=tests/,core/ingesting/tests/,core/publishing/tests/
+            -Dsonar.verbose=true
+
+        env:
+         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+         SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
+        continue-on-error: true
+
+  publish-integration-coverage-report-to-sonar-cloud:
+    name: Publish integration metrics | Sonar cloud
+    if: ${{ github.event.action == 'integration-coverage-report-was-ready' }}
+    runs-on: ubuntu-18.04
+
+    steps:
+      - name: Checkout on branch ${{ github.event.client_payload.ref_name }}|SHA-${{ github.event.client_payload.sha }}
+        uses: actions/checkout@v3
+        with:
+          ref: ${{ github.event.client_payload.sha }}
+
+      - name: info triggering workflow - commit message
+        run: git log --oneline
+
+      - name: Download Core integration test coverage artifact
+        id: download-artifact
+        run: |
+          ls -al
+          gh run download -n ${{ env.CORE_INTEGRATION_COVERAGE_ARTIFATC_NAME }}-${{ github.event.client_payload.sha }}
+          ls -al
+        env:
+          GITHUB_TOKEN: ${{secrets.GITHUB_TOKEN}}
+
+
+      - name: Download integration test coverage artifact
+        run: |
+          ls -al
+          gh run download -n ${{ env.INTEGRATION_COVERAGE_ARTIFATC_NAME }}-${{ github.event.client_payload.sha }}
+          ls -al
+        env:
+          GITHUB_TOKEN: ${{secrets.GITHUB_TOKEN}}
 
       - name: SonarCloud Scan And publication
         if: ${{ (steps.download-artifact.outcome == 'success')}}
@@ -66,16 +122,15 @@ jobs:
             -Dsonar.language=php
             -Dsonar.sources=src/,core/ingesting/src/,core/publishing/src/
             -Dsonar.test.exclusions=tests/**,docker/**,nginx.conf,sys/**,tools/**,var/**
-            -Dsonar.php.coverage.reportPaths=${{ env.COVERAGE_CLOVER_UNIT_FILENAME }},${{ env.COVERAGE_CLOVER_INTEGRATION_FILENAME }}
-            -Dsonar.php.tests.reportPath=${{ env.COVERAGE_LOGJUNIT_UNIT_FILENAME }},${{ env.COVERAGE_LOGJUNIT_INTEGRATION_FILENAME }}
+            -Dsonar.php.coverage.reportPaths=${{ env.CORE_INTEGRATION_COVERAGE_CLOVER_FILENAME }} ${{ env.CORE_INTEGRATION_COVERAGE_CLOVER_FILENAME }}
+            -Dsonar.php.tests.reportPath=${{ env.CORE_INTEGRATION_COVERAGE_LOGJUNIT_FILENAME }} ${{ env.INTEGRATION_COVERAGE_LOGJUNIT_FILENAME }}
             -Dsonar.tests=tests/,core/ingesting/tests/,core/publishing/tests/
             -Dsonar.verbose=true
 
         env:
-         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-         SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
         continue-on-error: true
-
 
 
 
