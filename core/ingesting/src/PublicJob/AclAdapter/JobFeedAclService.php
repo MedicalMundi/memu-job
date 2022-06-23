@@ -11,7 +11,7 @@ class JobFeedAclService implements JobFeedOutgoinAcl
         $this->repository = $repository;
     }
 
-    public function lastDay(): array
+    public function getPublishedToday(): array
     {
         return $this->repository->getTodayData();
     }

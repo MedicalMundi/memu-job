@@ -27,7 +27,7 @@ class JobFeedAclServiceTest extends KernelTestCase
 
     public function testName(): void
     {
-        self::assertEmpty($this->service->lastDay());
+        self::assertEmpty($this->service->getPublishedToday());
     }
 
     protected function tearDown(): void
