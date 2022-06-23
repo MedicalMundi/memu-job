@@ -3,7 +3,7 @@
 namespace Ingesting\Tests\PublicJob\Integration\AclAdapter;
 
 use Doctrine\ORM\EntityManager;
-use Ingesting\PublicJob\AclAdapter\DistributableJobFeedRepository;
+use Ingesting\PublicJob\AclAdapter\Repository\DistributableJobFeedRepository;
 use Ingesting\PublicJob\Application\Model\JobFeed;
 use Symfony\Bundle\FrameworkBundle\Test\KernelTestCase;
 

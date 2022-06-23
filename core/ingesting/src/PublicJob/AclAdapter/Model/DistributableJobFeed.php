@@ -1,6 +1,6 @@
 <?php declare(strict_types=1);
 
-namespace Ingesting\PublicJob\AclAdapter;
+namespace Ingesting\PublicJob\AclAdapter\Model;
 
 interface DistributableJobFeed
 {

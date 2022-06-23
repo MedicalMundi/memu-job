@@ -4,7 +4,7 @@ namespace Ingesting\PublicJob\AclAdapter;
 
 use Ingesting\PublicJob\Application\Model\GenericAclService;
 
-interface JobFeedOutgoinAcl extends GenericAclService
+interface IngestinOutgoinAcl extends GenericAclService
 {
     /**
      * Return jobFeed items with
