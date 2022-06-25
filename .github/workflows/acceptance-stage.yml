@@ -600,7 +600,7 @@ jobs:
           php-version: ${{ matrix.php }}
           extensions: ${{ env.PHP_EXTENSIONS }}
           ini-values: memory_limit=-1
-          coverage: none
+          coverage: xdebug
           tools: composer, symfony
 
       - name: Get Composer Cache Directory
@@ -642,7 +642,7 @@ jobs:
       - name: Run Integration test suite WITH COVERAGE
         if: ( matrix.coverage )
         run: |
-          mkdir -p var/tools/phpunit/core
+          mkdir -p var/tools/phpunit/symfony
           ./vendor/bin/phpunit --testsuite integration --group=io-network,io-database \
           --coverage-clover ${{ env.INTEGRATION_COVERAGE_CLOVER_FILENAME }} \
           --log-junit ${{ env.INTEGRATION_COVERAGE_LOGJUNIT_FILENAME }}
