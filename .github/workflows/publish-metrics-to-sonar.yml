@@ -24,7 +24,7 @@ env:
 
 jobs:
   publish-coverage-report-to-sonar-cloud:
-    name: Publish metrics | Sonar cloud
+    name: Publish unit metrics | Sonar cloud
     if: ${{ github.event.action == 'commit-stage-was-completed-successfully' }}
     runs-on: ubuntu-18.04
 
@@ -45,6 +45,11 @@ jobs:
           ls -al
         env:
           GITHUB_TOKEN: ${{secrets.GITHUB_TOKEN}}
+
+      - name: Fix code coverage paths
+        run: |
+          sed -i 's@'$GITHUB_WORKSPACE'@/github/workspace/@g' ${{ env.COVERAGE_CLOVER_UNIT_FILENAME }}
+          sed -i 's@'$GITHUB_WORKSPACE'@/github/workspace/@g' ${{ env.COVERAGE_LOGJUNIT_UNIT_FILENAME }}
 
       - name: SonarCloud Scan And publication
         if: ${{ (steps.download-artifact.outcome == 'success')}}
@@ -96,6 +101,11 @@ jobs:
         env:
           GITHUB_TOKEN: ${{secrets.GITHUB_TOKEN}}
 
+      - name: Fix (core) code coverage paths
+        run: |
+          sed -i 's@'$GITHUB_WORKSPACE'@/github/workspace/@g' ${{ env.CORE_INTEGRATION_COVERAGE_CLOVER_FILENAME }}
+          sed -i 's@'$GITHUB_WORKSPACE'@/github/workspace/@g' ${{ env.CORE_INTEGRATION_COVERAGE_LOGJUNIT_FILENAME }}
+
 
       - name: Download integration test coverage artifact
         run: |
@@ -104,6 +114,12 @@ jobs:
           ls -al
         env:
           GITHUB_TOKEN: ${{secrets.GITHUB_TOKEN}}
+
+      - name: Fix code coverage paths
+        run: |
+          sed -i 's@'$GITHUB_WORKSPACE'@/github/workspace/@g' ${{ env.INTEGRATION_COVERAGE_CLOVER_FILENAME }}
+          sed -i 's@'$GITHUB_WORKSPACE'@/github/workspace/@g' ${{ env.INTEGRATION_COVERAGE_LOGJUNIT_FILENAME }}
+
 
       - name: SonarCloud Scan And publication
         if: ${{ (steps.download-artifact.outcome == 'success')}}
