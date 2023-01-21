@@ -41,14 +41,13 @@ class GazzettaClient implements ClientInterface
 
     public function getResponse(string $url, DateTime $modifiedSince): ResponseInterface
     {
-
-//        if ($modifiedSince) {
-//            //$headResponse = $this->request('HEAD', $url, $modifiedSince);
-//            $headResponse = $this->request('HEAD', $url, $modifiedSince);
-//            if (304 === $headResponse->getStatusCode()) {
-//                return $headResponse;
-//            }
-//        }
+        //        if ($modifiedSince) {
+        //            //$headResponse = $this->request('HEAD', $url, $modifiedSince);
+        //            $headResponse = $this->request('HEAD', $url, $modifiedSince);
+        //            if (304 === $headResponse->getStatusCode()) {
+        //                return $headResponse;
+        //            }
+        //        }
 
         return $this->request('GET', $url, $modifiedSince);
     }
@@ -62,9 +61,9 @@ class GazzettaClient implements ClientInterface
         $options = $this->getOptions($modifiedSince);
         $duration = 0;
         // TODO FIX
-//        $options['on_stats'] = function (TransferStats $stats) use (&$duration) {
-//            $duration = $stats->getTransferTime();
-//        };
+        //        $options['on_stats'] = function (TransferStats $stats) use (&$duration) {
+        //            $duration = $stats->getTransferTime();
+        //        };
         //$psrResponse = $this->symfonyClient->request($method, $url, $options);
         $psrResponse = $this->symfonyClient->request($method, $url, [
             'verify_host' => false,

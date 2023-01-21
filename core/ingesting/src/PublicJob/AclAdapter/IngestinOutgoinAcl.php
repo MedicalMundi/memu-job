@@ -12,16 +12,16 @@ interface IngestinOutgoinAcl extends GenericAclService
      */
     public function getPublishedToday(): array;
 
-//
-//    /**
-//     * Return jobPost items with
-//     * date between last N days
-//     */
-//    public function lastDays(int $days = 2): array;
-//
-//    /**
-//     * Return jobPost items with
-//     * date start from a day
-//     */
-//    public function sinceDate(\DateTimeImmutable $since): array;
+    //
+    //    /**
+    //     * Return jobPost items with
+    //     * date between last N days
+    //     */
+    //    public function lastDays(int $days = 2): array;
+    //
+    //    /**
+    //     * Return jobPost items with
+    //     * date start from a day
+    //     */
+    //    public function sinceDate(\DateTimeImmutable $since): array;
 }
