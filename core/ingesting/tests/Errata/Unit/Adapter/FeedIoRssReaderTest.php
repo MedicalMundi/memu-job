@@ -23,7 +23,7 @@ class FeedIoRssReaderTest extends TestCase
         $feedIoMock->expects(self::once())
             ->method('read')
             ->with('https://www.afeedurl.com')
-            ;
+        ;
 
         $rssReader = new FeedIoRssReader($feedIoMock, 'https://www.afeedurl.com');
 

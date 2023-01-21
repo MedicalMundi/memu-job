@@ -74,7 +74,7 @@ class ReadJobRssUsecaseTest extends TestCase
         $this->rssReader->expects(self::once())
             ->method('readRssFeed')
             ->willReturn($this->createRssData())
-            ;
+        ;
 
         $this->uniqueJobLinkService->expects(self::once())
             ->method('isUniqueLink')
@@ -167,12 +167,12 @@ class ReadJobRssUsecaseTest extends TestCase
         $this->jobUniqueService->expects(self::once())
             ->method('isUnique')
             ->willReturn(false)
-            ;
+        ;
 
         $this->repository->expects(self::never())
             ->method('save')
             ->withAnyParameters()
-            ;
+        ;
 
         $this->usecase->readJobRssDataSource();
     }

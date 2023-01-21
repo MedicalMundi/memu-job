@@ -46,7 +46,7 @@ class ShowFeedJobViewCaseTest extends TestCase
         $this->repository->expects(self::once())
             ->method('listAvailableJobFeed')
             ->willReturn([])
-            ;
+        ;
 
         $result = $this->viewcase->showFeedJob();
 

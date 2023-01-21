@@ -40,7 +40,7 @@ class ErrataUniqueServiceTest extends TestCase
         $this->repository->expects(self::once())
             ->method('isUniqueIdentity')
             ->willReturn(false)
-            ;
+        ;
 
         $result = $this->errataUniqueService->isUnique($errataId);
 
