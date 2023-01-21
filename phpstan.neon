@@ -19,6 +19,8 @@ parameters:
 
     #bootstrapFiles:
         #- bin/.phpunit/phpunit/vendor/autoload.php
+    #scanDirectories:
+        #- vendor/
 
     excludes_analyse:
         - tests/bootstrap.php
