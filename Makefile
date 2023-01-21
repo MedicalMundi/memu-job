@@ -1,3 +1,31 @@
+.PHONY: dependency-install dependency-purge coding-standards static-code-analysis static-code-analysis-baseline core-coverage core-architecture-check
+
+help:
+	@awk 'BEGIN {FS = ":.*##"; printf "Use: make \033[36m<target>\033[0m\n"} /^[a-zA-Z_-]+:.*?##/ { printf "  \033[36m%-20s\033[0m %s\n", $$1, $$2 } /^##@/ { printf "\n\033[1m%s\033[0m\n", substr($$0, 5) } ' $(MAKEFILE_LIST)
+
+.PHONY: init
+init:  ## Initialize dev environment
+	- docker-compose run encore yarn install
+	- make up
+
+.PHONY: up
+up:  ## Start docker-compose
+	- make down
+	- docker-compose up -d
+
+.PHONY: down
+down:  ## Stop docker-compose
+	- docker-compose down -v --remove-orphans
+
+.PHONY: status
+status:  ## Show containers status
+	- docker-compose ps
+
+.PHONY: bash
+bash:  ## Open a bash terminal inside php container
+	- docker-compose exec app bash
+
+
 .PHONY: dependency-install
 dependency-install:  ## Install all dependency with composer
 	composer install
@@ -8,6 +36,9 @@ dependency-install:  ## Install all dependency with composer
 dependency-purge:  ## Remove all dependency
 	rm -fR vendor
 	rm -fR tools/*/vendor
+	rm -fR var/logs
+	rm -fR tools/cache
+	rm -fR var/tools
 #	rm -fR bin/.phpunit
 
 

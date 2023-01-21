@@ -2,8 +2,9 @@ version: '3.8'
 
 services:
   app:
-    image: webdevops/php-dev:7.4
-    user: application
+    build:
+      context: ./docker/development/php
+      dockerfile: Dockerfile
     working_dir: /app
     ports:
       - "2222:22"
@@ -13,27 +14,29 @@ services:
     environment:
       WEB_DOCUMENT_ROOT: /app/public
       WEB_DOCUMENT_INDEX: index.php
-      PHP_DEBUGGER: xdebug
-      XDEBUG_MODE: coverage
-      XDEBUG_REMOTE_AUTOSTART: 1
-      XDEBUG_REMOTE_CONNECT_BACK: 1
-      # IMPORTANT: please change this ip address to your docker host ip. Get your docker host ip:
-      # docker inspect -f '{{range .NetworkSettings.Networks}}{{.IPAddress}}{{end}}' docker_php_1
-      #- XDEBUG_REMOTE_HOST=172.19.0.1
-      XDEBUG_REMOTE_PORT: 9021
+#      PHP_DEBUGGER: xdebug
+#      XDEBUG_MODE: coverage
+#      XDEBUG_REMOTE_AUTOSTART: 1
+#      XDEBUG_REMOTE_CONNECT_BACK: 1
+#      # IMPORTANT: please change this ip address to your docker host ip. Get your docker host ip:
+#      # docker inspect -f '{{range .NetworkSettings.Networks}}{{.IPAddress}}{{end}}' docker_php_1
+#      #- XDEBUG_REMOTE_HOST=172.19.0.1
+#      XDEBUG_REMOTE_PORT: 9021
+
 
   web:
-    image: webdevops/nginx:alpine
+    image: nginx:1.22-alpine
     ports:
       - "80:80"
     depends_on:
       - app
     volumes:
       - "./:/app"
-    environment:
-      WEB_DOCUMENT_ROOT: /app/public
-      WEB_DOCUMENT_INDEX: index.php
-      WEB_PHP_SOCKET: app:9000
+      - ./docker/development/nginx/default.conf:/etc/nginx/conf.d/default.conf
+#    environment:
+#      WEB_DOCUMENT_ROOT: /app/public
+#      WEB_DOCUMENT_INDEX: index.php
+#      WEB_PHP_SOCKET: app:9000
 
 
   database:
@@ -79,11 +82,9 @@ services:
       PGADMIN_DEFAULT_PASSWORD: "admin"
 
   encore:
-    image: node:16-alpine
-    container_name: encore
+    image: node:16
     environment:
       USER: node
-      PYTHON: python3
     working_dir: /app
     volumes:
       - .:/app
