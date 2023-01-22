@@ -35,7 +35,7 @@ env:
 
 jobs:
   triggering-workflow-info:
-    runs-on: ubuntu-18.04
+    runs-on: ubuntu-20.04
     name: Triggering workflow info
     steps:
       - name: Checkout on branch ${{ github.event.client_payload.ref_name }}|SHA-${{ github.event.client_payload.sha }}
@@ -64,7 +64,7 @@ jobs:
 
   app-preconditions-checks:
     name: App preconditions checks
-    runs-on: ubuntu-18.04
+    runs-on: ubuntu-20.04
     timeout-minutes: 5
     services:
       pgsql:
@@ -174,7 +174,7 @@ jobs:
   build-php-release-candidate-artifact:
     name: Build PHP release candidate images
     if: ( !startsWith( github.event.client_payload.ref_name, 'dependabot' ) )
-    runs-on: ubuntu-18.04
+    runs-on: ubuntu-20.04
     permissions:
       packages: write
       contents: read
@@ -303,7 +303,7 @@ jobs:
   build-nginx-release-candidate-artifact:
     name: Build NGINX release candidate images
     if: ( !startsWith( github.event.client_payload.ref_name, 'dependabot' ) )
-    runs-on: ubuntu-18.04
+    runs-on: ubuntu-20.04
     permissions:
       packages: write
       contents: read
@@ -421,7 +421,7 @@ jobs:
   core-integration-test:
     name: (Core) Integration test
     needs: [app-preconditions-checks]
-    runs-on: ubuntu-18.04
+    runs-on: ubuntu-20.04
     timeout-minutes: 5
     services:
       pgsql:
@@ -543,7 +543,7 @@ jobs:
   integration-test:
     name: Integration test
     needs: [app-preconditions-checks]
-    runs-on: ubuntu-18.04
+    runs-on: ubuntu-20.04
     timeout-minutes: 5
     services:
       pgsql:
@@ -667,7 +667,7 @@ jobs:
   functional-test:
     name: Functional test
     needs: [app-preconditions-checks]
-    runs-on: ubuntu-18.04
+    runs-on: ubuntu-20.04
     timeout-minutes: 5
     services:
       pgsql:
@@ -789,7 +789,7 @@ jobs:
 
   #  prod-stack-env:
   #    needs: [app-preconditions-checks, build-php-release-candidate-artifact]
-  #    runs-on: ubuntu-18.04
+  #    runs-on: ubuntu-20.04
   #    timeout-minutes: 10
   #    permissions:
   #      packages: read
@@ -862,7 +862,7 @@ jobs:
 
   #  test-stack-env:
   #    needs: [app-preconditions-checks, build-php-release-candidate-artifact]
-  #    runs-on: ubuntu-18.04
+  #    runs-on: ubuntu-20.04
   #    timeout-minutes: 10
   #    permissions:
   #      packages: read
@@ -938,7 +938,7 @@ jobs:
   e2e_prod-stack-env:
     name: E2E on production stack
     needs: [app-preconditions-checks, build-php-release-candidate-artifact, build-nginx-release-candidate-artifact]
-    runs-on: ubuntu-18.04
+    runs-on: ubuntu-20.04
     timeout-minutes: 10
     permissions:
       packages: read
@@ -1072,7 +1072,7 @@ jobs:
 #  behat-test-standard:
 #    name: Behat test standard
 #    needs: [app-preconditions-checks]
-#    runs-on: ubuntu-18.04
+#    runs-on: ubuntu-20.04
 #    timeout-minutes: 10
 #    services:
 #      pgsql:
@@ -1215,7 +1215,7 @@ jobs:
   behat-test-on-prod-stack:
     name: Behat on production stack
     needs: [app-preconditions-checks, build-php-release-candidate-artifact, build-nginx-release-candidate-artifact]
-    runs-on: ubuntu-18.04
+    runs-on: ubuntu-20.04
     timeout-minutes: 10
     permissions:
       packages: read
@@ -1362,7 +1362,7 @@ jobs:
       - core-integration-test
       - integration-test
     timeout-minutes: 3
-    runs-on: ubuntu-18.04
+    runs-on: ubuntu-20.04
     steps:
       - name: Dump context
         uses: crazy-max/ghaction-dump-context@v1

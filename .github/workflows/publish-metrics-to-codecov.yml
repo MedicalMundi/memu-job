@@ -17,7 +17,7 @@ env:
 jobs:
   publish-coverage-report:
     name: Publish metrics | Codecov
-    runs-on: ubuntu-18.04
+    runs-on: ubuntu-20.04
     steps:
       - name: Checkout on branch ${{ github.event.client_payload.ref_name }}|SHA-${{ github.event.client_payload.sha }}
         uses: actions/checkout@v3

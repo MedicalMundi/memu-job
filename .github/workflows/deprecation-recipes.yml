@@ -14,7 +14,7 @@ env:
 
 jobs:
   triggering-workflow-info:
-    runs-on: ubuntu-18.04
+    runs-on: ubuntu-20.04
     name: Triggering workflow info
     steps:
       - name: Checkout on branch ${{ github.event.client_payload.ref_name }}|SHA-${{ github.event.client_payload.sha }}
@@ -42,7 +42,7 @@ jobs:
 
 
   symfony-deprecation-recipes:
-    runs-on: ubuntu-18.04
+    runs-on: ubuntu-20.04
     strategy:
       matrix:
         php:

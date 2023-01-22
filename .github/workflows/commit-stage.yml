@@ -17,7 +17,7 @@ env:
 jobs:
   coding-standard:
     name: Coding Standard
-    runs-on: ubuntu-18.04
+    runs-on: ubuntu-20.04
     timeout-minutes: 3
     strategy:
       matrix:
@@ -75,7 +75,7 @@ jobs:
 
   architecture-check:
     name: Architecture Checks
-    runs-on: ubuntu-18.04
+    runs-on: ubuntu-20.04
     timeout-minutes: 3
     strategy:
       matrix:
@@ -142,7 +142,7 @@ jobs:
 
   phpstan:
     name: SA (phpstan)
-    runs-on: ubuntu-18.04
+    runs-on: ubuntu-20.04
     timeout-minutes: 3
     strategy:
       matrix:
@@ -200,7 +200,7 @@ jobs:
 
   psalm:
     name: SA (psalm)
-    runs-on: ubuntu-18.04
+    runs-on: ubuntu-20.04
     timeout-minutes: 3
     strategy:
       matrix:
@@ -258,7 +258,7 @@ jobs:
 
   core-test:
     name: Unit test (core)
-    runs-on: ubuntu-18.04
+    runs-on: ubuntu-20.04
     timeout-minutes: 5
     services:
       pgsql:
@@ -363,7 +363,7 @@ jobs:
 
   rector:
     name: Rector (maintenance)
-    runs-on: ubuntu-18.04
+    runs-on: ubuntu-20.04
     timeout-minutes: 5
     strategy:
       matrix:
@@ -436,7 +436,7 @@ jobs:
       - psalm
       - core-test
       - regression-test
-    runs-on: ubuntu-18.04
+    runs-on: ubuntu-20.04
     timeout-minutes: 3
     steps:
       - name: Dump context
@@ -453,7 +453,7 @@ jobs:
 
   regression-test:
     name: Regression test (quick)
-    runs-on: ubuntu-18.04
+    runs-on: ubuntu-20.04
     timeout-minutes: 3
     strategy:
       matrix:
@@ -514,7 +514,7 @@ jobs:
     needs:
       - core-test
     timeout-minutes: 3
-    runs-on: ubuntu-18.04
+    runs-on: ubuntu-20.04
     steps:
       - name: Dump context
         uses: crazy-max/ghaction-dump-context@v1
