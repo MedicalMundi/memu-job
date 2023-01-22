@@ -5547,16 +5547,16 @@
         },
         {
             "name": "symfony/property-info",
-            "version": "v5.4.15",
+            "version": "v5.4.17",
             "source": {
                 "type": "git",
                 "url": "https://github.com/symfony/property-info.git",
-                "reference": "3ef5e026a71a39345da241292c153979893033c2"
+                "reference": "12e1f7b3d73b1f3690aa524b92b5de9937507361"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/symfony/property-info/zipball/3ef5e026a71a39345da241292c153979893033c2",
-                "reference": "3ef5e026a71a39345da241292c153979893033c2",
+                "url": "https://api.github.com/repos/symfony/property-info/zipball/12e1f7b3d73b1f3690aa524b92b5de9937507361",
+                "reference": "12e1f7b3d73b1f3690aa524b92b5de9937507361",
                 "shasum": ""
             },
             "require": {
@@ -5571,7 +5571,7 @@
                 "symfony/dependency-injection": "<4.4"
             },
             "require-dev": {
-                "doctrine/annotations": "^1.10.4",
+                "doctrine/annotations": "^1.10.4|^2",
                 "phpdocumentor/reflection-docblock": "^3.0|^4.0|^5.0",
                 "phpstan/phpdoc-parser": "^1.0",
                 "symfony/cache": "^4.4|^5.0|^6.0",
@@ -5618,7 +5618,7 @@
                 "validator"
             ],
             "support": {
-                "source": "https://github.com/symfony/property-info/tree/v5.4.15"
+                "source": "https://github.com/symfony/property-info/tree/v5.4.17"
             },
             "funding": [
                 {
@@ -5634,7 +5634,7 @@
                     "type": "tidelift"
                 }
             ],
-            "time": "2022-10-27T07:55:40+00:00"
+            "time": "2022-12-20T11:10:57+00:00"
         },
         {
             "name": "symfony/proxy-manager-bridge",
@@ -9873,16 +9873,16 @@
         },
         {
             "name": "soyuka/contexts",
-            "version": "3.3.3",
+            "version": "v3.3.6",
             "source": {
                 "type": "git",
                 "url": "https://github.com/soyuka/contexts.git",
-                "reference": "9ed02c426179341403a8af6ffbe8bcbaa6e7cf9f"
+                "reference": "89c831e39355d646a4d141e9c9051323f27de8fb"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/soyuka/contexts/zipball/9ed02c426179341403a8af6ffbe8bcbaa6e7cf9f",
-                "reference": "9ed02c426179341403a8af6ffbe8bcbaa6e7cf9f",
+                "url": "https://api.github.com/repos/soyuka/contexts/zipball/89c831e39355d646a4d141e9c9051323f27de8fb",
+                "reference": "89c831e39355d646a4d141e9c9051323f27de8fb",
                 "shasum": ""
             },
             "require": {
@@ -9890,9 +9890,9 @@
                 "friends-of-behat/mink-extension": "^2.3.1",
                 "justinrainbow/json-schema": "^5.0",
                 "php": ">=5.5",
-                "symfony/dom-crawler": "^2.4|^3.0|^4.0|^5.0",
-                "symfony/http-foundation": "^2.3|^3.0|^4.0|^5.0",
-                "symfony/property-access": "^2.3|^3.0|^4.0|^5.0"
+                "symfony/dom-crawler": "^2.4|^3.0|^4.0|^5.0|^6.0",
+                "symfony/http-foundation": "^2.3|^3.0|^4.0|^5.0|^6.0",
+                "symfony/property-access": "^2.3|^3.0|^4.0|^5.0|^6.0"
             },
             "replace": {
                 "sanpi/behatch-contexts": "self.version"
@@ -9927,9 +9927,9 @@
                 "Symfony2"
             ],
             "support": {
-                "source": "https://github.com/soyuka/contexts/tree/3.3.3"
+                "source": "https://github.com/soyuka/contexts/tree/v3.3.6"
             },
-            "time": "2021-03-25T14:54:34+00:00"
+            "time": "2022-12-12T10:35:39+00:00"
         },
         {
             "name": "symfony/browser-kit",
