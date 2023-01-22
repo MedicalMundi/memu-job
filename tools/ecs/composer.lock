@@ -9,16 +9,16 @@
     "packages-dev": [
         {
             "name": "symplify/easy-coding-standard",
-            "version": "11.1.24",
+            "version": "11.2.4.72",
             "source": {
                 "type": "git",
                 "url": "https://github.com/symplify/easy-coding-standard.git",
-                "reference": "7d7eda3a8b42198b84ae0e5d67c4b15c2cd365d1"
+                "reference": "313027a266b6343479d4bb7380fd4ca449107f54"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/symplify/easy-coding-standard/zipball/7d7eda3a8b42198b84ae0e5d67c4b15c2cd365d1",
-                "reference": "7d7eda3a8b42198b84ae0e5d67c4b15c2cd365d1",
+                "url": "https://api.github.com/repos/symplify/easy-coding-standard/zipball/313027a266b6343479d4bb7380fd4ca449107f54",
+                "reference": "313027a266b6343479d4bb7380fd4ca449107f54",
                 "shasum": ""
             },
             "require": {
@@ -32,11 +32,6 @@
                 "bin/ecs"
             ],
             "type": "library",
-            "extra": {
-                "branch-alias": {
-                    "dev-main": "10.3-dev"
-                }
-            },
             "autoload": {
                 "files": [
                     "bootstrap.php"
@@ -46,9 +41,10 @@
             "license": [
                 "MIT"
             ],
-            "description": "Prefixed scoped version of ECS package",
+            "description": "Use Coding Standard with 0-knowledge of PHP-CS-Fixer and PHP_CodeSniffer",
             "support": {
-                "source": "https://github.com/symplify/easy-coding-standard/tree/11.1.24"
+                "issues": "https://github.com/symplify/easy-coding-standard/issues",
+                "source": "https://github.com/symplify/easy-coding-standard/tree/11.2.4.72"
             },
             "funding": [
                 {
@@ -60,7 +56,7 @@
                     "type": "github"
                 }
             ],
-            "time": "2022-12-23T15:01:12+00:00"
+            "time": "2023-01-21T14:47:36+00:00"
         }
     ],
     "aliases": [],
