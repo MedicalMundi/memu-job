@@ -122,7 +122,7 @@ jobs:
 
       - name: Get Composer Cache Directory
         id: composer-cache
-        run: echo "::set-output name=dir::$(composer config cache-files-dir)"
+        run: echo "dir=$(composer config cache-files-dir)" >> $GITHUB_OUTPUT
 
       - name: Cache dependencies
         uses: actions/cache@v3
@@ -202,7 +202,7 @@ jobs:
 
       - name: Get Yarn cache directory
         id: yarn-cache
-        run: echo "::set-output name=dir::$(yarn cache dir)"
+        run: echo "dir=$(yarn cache dir)" >> $GITHUB_OUTPUT
 
       - name: Cache Yarn
         uses: actions/cache@v2
@@ -331,7 +331,7 @@ jobs:
 
       - name: Get Yarn cache directory
         id: yarn-cache
-        run: echo "::set-output name=dir::$(yarn cache dir)"
+        run: echo "dir=$(yarn cache dir)" >> $GITHUB_OUTPUT
 
       - name: Cache Yarn
         uses: actions/cache@v2
@@ -483,7 +483,7 @@ jobs:
 
       - name: Get Composer Cache Directory
         id: composer-cache
-        run: echo "::set-output name=dir::$(composer config cache-files-dir)"
+        run: echo "dir=$(composer config cache-files-dir)" >> $GITHUB_OUTPUT
 
       - name: Cache dependencies
         uses: actions/cache@v3
@@ -528,7 +528,7 @@ jobs:
       - name: Get Coverage artifact name
         if: matrix.coverage
         id: coverage-artifact-name
-        run: echo "::set-output name=name::$CORE_INTEGRATION_COVERAGE_ARTIFATC_NAME-$GITHUB_SHA"
+        run: echo "name=$CORE_INTEGRATION_COVERAGE_ARTIFATC_NAME-$GITHUB_SHA" >> $GITHUB_OUTPUT
 
       - name: Save coverage reports
         if: matrix.coverage
@@ -605,7 +605,7 @@ jobs:
 
       - name: Get Composer Cache Directory
         id: composer-cache
-        run: echo "::set-output name=dir::$(composer config cache-files-dir)"
+        run: echo "dir=$(composer config cache-files-dir)" >> $GITHUB_OUTPUT
 
       - name: Cache dependencies
         uses: actions/cache@v3
@@ -652,7 +652,7 @@ jobs:
       - name: Get Coverage artifact name
         if: matrix.coverage
         id: coverage-artifact-name
-        run: echo "::set-output name=name::$INTEGRATION_COVERAGE_ARTIFATC_NAME-$GITHUB_SHA"
+        run: echo "name=$INTEGRATION_COVERAGE_ARTIFATC_NAME-$GITHUB_SHA" >> $GITHUB_OUTPUT
 
       - name: Save coverage reports
         if: matrix.coverage
@@ -728,7 +728,7 @@ jobs:
 
       - name: Get Composer Cache Directory
         id: composer-cache
-        run: echo "::set-output name=dir::$(composer config cache-files-dir)"
+        run: echo "dir=$(composer config cache-files-dir)" >> $GITHUB_OUTPUT
 
       - name: Cache dependencies
         uses: actions/cache@v3
@@ -759,7 +759,7 @@ jobs:
 
       - name: Get Yarn cache directory
         id: yarn-cache
-        run: echo "::set-output name=dir::$(yarn cache dir)"
+        run: echo "dir=$(yarn cache dir)" >> $GITHUB_OUTPUT
 
       - name: Cache Yarn
         uses: actions/cache@v2
@@ -1047,7 +1047,7 @@ jobs:
 
       - name: Get Composer Cache Directory
         id: composer-cache
-        run: echo "::set-output name=dir::$(composer config cache-files-dir)"
+        run: echo "dir=$(composer config cache-files-dir)" >> $GITHUB_OUTPUT
 
       - name: Cache dependencies
         uses: actions/cache@v3
@@ -1133,7 +1133,7 @@ jobs:
 #
 #      - name: Get Composer Cache Directory
 #        id: composer-cache
-#        run: echo "::set-output name=dir::$(composer config cache-files-dir)"
+#        run: echo "dir=$(composer config cache-files-dir)" >> $GITHUB_OUTPUT
 #
 #      - name: Cache dependencies
 #        uses: actions/cache@v3
@@ -1165,7 +1165,7 @@ jobs:
 #
 #      - name: Get Yarn cache directory
 #        id: yarn-cache
-#        run: echo "::set-output name=dir::$(yarn cache dir)"
+#        run: echo "dir=$(yarn cache dir)" >> $GITHUB_OUTPUT
 #
 #      - name: Cache Yarn
 #        uses: actions/cache@v2
@@ -1328,7 +1328,7 @@ jobs:
 
       - name: Get Composer Cache Directory
         id: composer-cache
-        run: echo "::set-output name=dir::$(composer config cache-files-dir)"
+        run: echo "dir=$(composer config cache-files-dir)" >> $GITHUB_OUTPUT
 
       - name: Cache dependencies
         uses: actions/cache@v3
