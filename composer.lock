@@ -7722,16 +7722,16 @@
         },
         {
             "name": "dbrekelmans/bdi",
-            "version": "1.0.3",
+            "version": "1.0.4",
             "source": {
                 "type": "git",
                 "url": "https://github.com/dbrekelmans/bdi.git",
-                "reference": "e22f93426a32967afd32afcc7a66511cb7b176b9"
+                "reference": "41f42576647789d15259baa7931e3928273940a2"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/dbrekelmans/bdi/zipball/e22f93426a32967afd32afcc7a66511cb7b176b9",
-                "reference": "e22f93426a32967afd32afcc7a66511cb7b176b9",
+                "url": "https://api.github.com/repos/dbrekelmans/bdi/zipball/41f42576647789d15259baa7931e3928273940a2",
+                "reference": "41f42576647789d15259baa7931e3928273940a2",
                 "shasum": ""
             },
             "require": {
@@ -7765,9 +7765,9 @@
                 "browser-driver-installer"
             ],
             "support": {
-                "source": "https://github.com/dbrekelmans/bdi/tree/1.0.3"
+                "source": "https://github.com/dbrekelmans/bdi/tree/1.0.4"
             },
-            "time": "2023-01-16T08:05:30+00:00"
+            "time": "2023-01-22T17:23:00+00:00"
         },
         {
             "name": "friends-of-behat/mink-browserkit-driver",
