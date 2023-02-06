@@ -253,7 +253,7 @@ jobs:
 
       - name: Pre build image PHP
         id: docker_pre_build
-        uses: docker/build-push-action@v3
+        uses: docker/build-push-action@v4
         with:
           context: .
           #file: docker/php/Dockerfile
@@ -285,7 +285,7 @@ jobs:
 
       - name: Build image
         id: docker_build_php_release_candidate
-        uses: docker/build-push-action@v3
+        uses: docker/build-push-action@v4
         with:
           context: .
           file: docker/production/php/Dockerfile
@@ -380,7 +380,7 @@ jobs:
 
       - name: Pre build image NGINX
         id: docker_pre_build
-        uses: docker/build-push-action@v3
+        uses: docker/build-push-action@v4
         with:
           context: .
           file: docker/production/nginx/Dockerfile
@@ -403,7 +403,7 @@ jobs:
 
       - name: Build image
         id: docker_build_nginx_release_candidate
-        uses: docker/build-push-action@v3
+        uses: docker/build-push-action@v4
         with:
           context: .
           file: docker/production/nginx/Dockerfile
