@@ -38,7 +38,7 @@ jobs:
         run: echo author '${{ github.event.workflow_run.head_commit.author.name }}' -'${{ github.event.workflow_run.head_commit.author.email }}'
 
       - name: Dump context
-        uses: crazy-max/ghaction-dump-context@v1
+        uses: crazy-max/ghaction-dump-context@v2
 
 
   symfony-deprecation-recipes:

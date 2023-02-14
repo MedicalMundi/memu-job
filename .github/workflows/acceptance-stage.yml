@@ -59,7 +59,7 @@ jobs:
         run: echo author '${{ github.event.workflow_run.head_commit.author.name }}' -'${{ github.event.workflow_run.head_commit.author.email }}'
 
       - name: Dump context
-        uses: crazy-max/ghaction-dump-context@v1
+        uses: crazy-max/ghaction-dump-context@v2
 
 
   app-preconditions-checks:
@@ -1365,7 +1365,7 @@ jobs:
     runs-on: ubuntu-20.04
     steps:
       - name: Dump context
-        uses: crazy-max/ghaction-dump-context@v1
+        uses: crazy-max/ghaction-dump-context@v2
 
       - name: emit pipeline event
         uses: peter-evans/repository-dispatch@v2

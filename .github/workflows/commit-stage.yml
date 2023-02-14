@@ -440,7 +440,7 @@ jobs:
     timeout-minutes: 3
     steps:
       - name: Dump context
-        uses: crazy-max/ghaction-dump-context@v1
+        uses: crazy-max/ghaction-dump-context@v2
 
       - name: emit pipeline event
         uses: peter-evans/repository-dispatch@v2
@@ -517,7 +517,7 @@ jobs:
     runs-on: ubuntu-20.04
     steps:
       - name: Dump context
-        uses: crazy-max/ghaction-dump-context@v1
+        uses: crazy-max/ghaction-dump-context@v2
 
       - name: emit pipeline event
         uses: peter-evans/repository-dispatch@v2
