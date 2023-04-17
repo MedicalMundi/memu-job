@@ -113,7 +113,7 @@ jobs:
           restore-keys: ${{ steps.cache-php-extensions.outputs.key }}
 
       - name: Setup PHP
-        uses: shivammathur/setup-php@2.23.0
+        uses: shivammathur/setup-php@2.25.0
         with:
           php-version: ${{ matrix.php }}
           extensions: ${{ env.PHP_EXTENSIONS }}
@@ -473,7 +473,7 @@ jobs:
           restore-keys: ${{ steps.cache-php-extensions.outputs.key }}
 
       - name: Setup PHP
-        uses: shivammathur/setup-php@2.23.0
+        uses: shivammathur/setup-php@2.25.0
         with:
           php-version: ${{ matrix.php }}
           extensions: ${{ env.PHP_EXTENSIONS }}
@@ -595,7 +595,7 @@ jobs:
           restore-keys: ${{ steps.cache-php-extensions.outputs.key }}
 
       - name: Setup PHP
-        uses: shivammathur/setup-php@2.23.0
+        uses: shivammathur/setup-php@2.25.0
         with:
           php-version: ${{ matrix.php }}
           extensions: ${{ env.PHP_EXTENSIONS }}
@@ -718,7 +718,7 @@ jobs:
           restore-keys: ${{ steps.cache-php-extensions.outputs.key }}
 
       - name: Setup PHP
-        uses: shivammathur/setup-php@2.23.0
+        uses: shivammathur/setup-php@2.25.0
         with:
           php-version: ${{ matrix.php }}
           extensions: ${{ env.PHP_EXTENSIONS }}
@@ -1038,7 +1038,7 @@ jobs:
           restore-keys: ${{ steps.cache-php-extensions.outputs.key }}
 
       - name: Setup PHP
-        uses: shivammathur/setup-php@2.23.0
+        uses: shivammathur/setup-php@2.25.0
         with:
           php-version: '7.4'
           extensions: ${{ env.PHP_EXTENSIONS }}
@@ -1123,7 +1123,7 @@ jobs:
 #          restore-keys: ${{ steps.cache-php-extensions.outputs.key }}
 #
 #      - name: Setup PHP
-#        uses: shivammathur/setup-php@2.23.0
+#        uses: shivammathur/setup-php@2.25.0
 #        with:
 #          php-version: ${{ matrix.php }}
 #          extensions: ${{ env.PHP_EXTENSIONS }}
@@ -1319,7 +1319,7 @@ jobs:
           restore-keys: ${{ steps.cache-php-extensions.outputs.key }}
 
       - name: Setup PHP
-        uses: shivammathur/setup-php@2.23.0
+        uses: shivammathur/setup-php@2.25.0
         with:
           php-version: ${{ matrix.php }}
           extensions: ${{ env.PHP_EXTENSIONS }}
