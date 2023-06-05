@@ -38,32 +38,42 @@ services:
 #      WEB_DOCUMENT_INDEX: index.php
 #      WEB_PHP_SOCKET: app:9000
 
-
   database:
-    image: postgres:${POSTGRES_VERSION:-13}-alpine
-    ports:
-      - "5432:5432"
+    image: mysql:${MYSQL_VERSION:-8.0}
+#    networks:
+#      - default
     environment:
-      POSTGRES_DB: ${POSTGRES_DB:-db-name_test}
-      # You should definitely change the password in production
-      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD:-db-password}
-      POSTGRES_USER: ${POSTGRES_USER:-db-user}
-      # volumes:
-      # - db-data:/var/lib/postgresql/data:rw
-      # You may use a bind-mounted host directory instead, so that it is harder to accidentally remove the volume and lose all your data!
-      # - ./docker/db/data:/var/lib/postgresql/data:rw
+      MYSQL_ROOT_PASSWORD: 'password'
+      MYSQL_DATABASE: ${MYSQL_DB:-db-name}
+      MYSQL_USER: ${MYSQL_USER:-db-user}
+      MYSQL_PASSWORD: ${MYSQL_PASSWORD:-db-password}
+    ports:
+      - "3306:3306"
+#  database:
+#    image: postgres:${POSTGRES_VERSION:-13}-alpine
+#    ports:
+#      - "5432:5432"
+#    environment:
+#      POSTGRES_DB: ${POSTGRES_DB:-db-name_test}
+#      # You should definitely change the password in production
+#      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD:-db-password}
+#      POSTGRES_USER: ${POSTGRES_USER:-db-user}
+#      # volumes:
+#      # - db-data:/var/lib/postgresql/data:rw
+#      # You may use a bind-mounted host directory instead, so that it is harder to accidentally remove the volume and lose all your data!
+#      # - ./docker/db/data:/var/lib/postgresql/data:rw
 
 
   database-test:
-    image: postgres:${POSTGRES_VERSION:-13}-alpine
+    image: mysql:${MYSQL_VERSION:-8.0}
     ports:
-      - "5432"
-      - "5454:5432" ###--- used by behat (local execution against docker)
+      - "3306"
+      - "3307:3306" ###--- used by behat (local execution against docker)
     environment:
-      POSTGRES_DB: ${POSTGRES_TEST_DB:-db-name_test}
-      # You should definitely change the password in production
-      POSTGRES_PASSWORD: ${POSTGRES_TEST_PASSWORD:-db-password}
-      POSTGRES_USER: ${POSTGRES_TEST_USER:-db-user}
+      MYSQL_ROOT_PASSWORD: 'password'
+      MYSQL_DATABASE: ${MYSQL_DB:-db-name_test}
+      MYSQL_USER: ${MYSQL_USER:-db-user}
+      MYSQL_PASSWORD: ${MYSQL_PASSWORD:-db-password}
       # volumes:
       # - db-data:/var/lib/postgresql/data:rw
       # You may use a bind-mounted host directory instead, so that it is harder to accidentally remove the volume and lose all your data!
