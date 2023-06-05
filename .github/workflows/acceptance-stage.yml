@@ -24,7 +24,7 @@ env:
   REGISTRY: ghcr.io
   PHP_RELEASE_CANDIDATE_IMAGE_NAME: internal-php-rc
   TEST_TAG_PHP_RELEASE_CANDIDATE: medicalmundi/temp-test-php-rc-img:test
-  PHP_TARGET_VERSION: '7.4' # current php version in production (based on webdevops/php)
+  PHP_TARGET_VERSION: '8.0' # current php version in production (based on webdevops/php)
   PHP_NEXT_VERSION: '8.0' # next php version in production (based on webdevops/php)
 
   NGINX_RELEASE_CANDIDATE_IMAGE_NAME: internal-nginx-rc
@@ -83,7 +83,7 @@ jobs:
     strategy:
       matrix:
         php:
-          - '7.4'
+          #- '7.4'
           - '8.0'
       fail-fast: true
     steps:
@@ -181,7 +181,7 @@ jobs:
     strategy:
       matrix:
         php:
-          - '7.4'
+          #- '7.4'
           - '8.0'
         node:
           - '16.x'
@@ -310,7 +310,7 @@ jobs:
     strategy:
       matrix:
         php:
-          - '7.4'
+          #- '7.4'
           - '8.0'
         node:
           - '16.x'
@@ -440,10 +440,10 @@ jobs:
     strategy:
       matrix:
         php:
-          - '7.4'
+          #- '7.4'
           - '8.0'
         include:
-          - php: '7.4'
+          - php: '8.0'
             coverage: true
       fail-fast: true
     steps:
@@ -562,10 +562,10 @@ jobs:
     strategy:
       matrix:
         php:
-          - '7.4'
+          #- '7.4'
           - '8.0'
         include:
-          - php: '7.4'
+          - php: '8.0'
             coverage: true
       fail-fast: true
     steps:
@@ -686,7 +686,7 @@ jobs:
     strategy:
       matrix:
         php:
-          - '7.4'
+          #- '7.4'
           - '8.0'
         node:
           - '16.x'
@@ -1025,7 +1025,7 @@ jobs:
         if: ${{ env.GITHUB_CACHE_PHP_EXTENSION  == '1' }}
         uses: shivammathur/cache-extensions@v1
         with:
-          php-version: '7.4'
+          php-version: '8.0'
           extensions: ${{ env.PHP_EXTENSIONS }}
           key: ${{ env.PHP_EXTENSIONS_CACHE_KEY }}
 
@@ -1040,7 +1040,7 @@ jobs:
       - name: Setup PHP
         uses: shivammathur/setup-php@2.23.0
         with:
-          php-version: '7.4'
+          php-version: '8.0'
           extensions: ${{ env.PHP_EXTENSIONS }}
           ini-values: memory_limit=-1
           tools: composer,composer-normalize:2.16.0
@@ -1223,7 +1223,7 @@ jobs:
     strategy:
       matrix:
         php:
-          - '7.4'
+          #- '7.4'
           - '8.0'
     steps:
       - name: Checkout on branch ${{ github.event.client_payload.ref_name }}|SHA-${{ github.event.client_payload.sha }}
