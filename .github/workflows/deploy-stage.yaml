@@ -56,6 +56,10 @@ jobs:
       - name: Install JS dependencies
         run: yarn install
 
+      - name: Build assets
+        run: |
+          bin/console assets:install public -vvv -e prod
+          yarn build
 
       - name: Overwrite Stage env file
         uses: DamianReeves/write-file-action@master
