@@ -25,10 +25,17 @@ class SymfonyCliController extends AbstractController
     /**
      * @Route("command/db/migrate", name="sys_cli_command_migrations_run")
      */
-    #[Route('/command/db/migrate', name: 'sys_cli_command_migrations_run')]
     public function command_migrations_run(KernelInterface $kernel): Response
     {
         return $this->do_commandWithOptions($kernel, 'doctrine:migrations:migrate');
+    }
+
+    /**
+     * @Route("command/ingesting/job", name="sys_cli_command_ingesting_job")
+     */
+    public function command_ingesting_job(KernelInterface $kernel): Response
+    {
+        return $this->do_command($kernel, 'app:ingesting:job');
     }
 
     private function do_command($kernel, $command): Response
