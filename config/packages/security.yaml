@@ -3,7 +3,7 @@ security:
 
     # https://symfony.com/doc/current/security.html#registering-the-user-hashing-passwords
     password_hashers:
-        App\Entity\BackofficeUser: 'auto'
+        App\Entity\BackofficeUser: 'bcrypt'
 
     # https://symfony.com/doc/current/security.html#loading-the-user-the-user-provider
     providers:
@@ -69,6 +69,4 @@ when@prod:
     security:
         password_hashers:
             App\Entity\BackofficeUser:
-                algorithm: sodium
-                time_cost: 5 # Lowest possible value for argon
-                memory_cost: 1024 # Lowest possible value for argon
+                algorithm: bcrypt
