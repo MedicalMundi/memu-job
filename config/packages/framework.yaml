@@ -17,6 +17,13 @@ framework:
     php_errors:
         log: true
 
+#    assets:
+#        packages:
+#            backofficeAppConfig:
+#                json_manifest_path: '%kernel.project_dir%/public/build-backoffice/manifest.json'
+#            frontAppConfig:
+#                json_manifest_path: '%kernel.project_dir%/public/build-front/manifest.json'
+
 when@test:
     framework:
         test: true

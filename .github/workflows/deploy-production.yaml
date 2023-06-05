@@ -58,8 +58,8 @@ jobs:
 
       - name: Build assets
         run: |
+          yarn run encore production
           bin/console assets:install public -vvv -e prod
-          yarn build
 
       - name: Overwrite Production env file
         uses: DamianReeves/write-file-action@master

@@ -12,17 +12,27 @@ Encore
     // directory where compiled assets will be stored
     .setOutputPath('public/build-front/')
     // public path used by the web server to access the output path
-    .setPublicPath('/build-front')
+    //.setPublicPath('/build-front')
+
+    //.setPublicPath('/public/build-front')
     // only needed for CDN's or sub-directory deploy
     //.setManifestKeyPrefix('build/')
 
-    /*
-     * ENTRY CONFIG
-     *
-     * Each entry will result in one JavaScript file (e.g. app.js)
-     * and one CSS file (e.g. app.css) if your JavaScript imports CSS.
-     */
-    .addEntry('app_front', './core/publishing/assets/app_front.js')
+    if (Encore.isProduction()) {
+        Encore.setPublicPath('https://medicaljob.altervista.org/public/build-front');
+        Encore.setManifestKeyPrefix('build/');
+    }else {
+        Encore.setPublicPath('/build-front')
+    }
+
+
+/*
+ * ENTRY CONFIG
+ *
+ * Each entry will result in one JavaScript file (e.g. app.js)
+ * and one CSS file (e.g. app.css) if your JavaScript imports CSS.
+ */
+    Encore.addEntry('app_front', './core/publishing/assets/app_front.js')
     // enables the Symfony UX Stimulus bridge (used in core/publishing/assets/bootstrap.js)
     .enableStimulusBridge('./core/publishing/assets/controllers.json')
 
@@ -103,9 +113,19 @@ Encore.reset();
 // define the webpack configuration for backoffice application
 Encore
     // directory where compiled assets will be stored
-    .setOutputPath('public/build-backoffice/')
+    .setOutputPath('public/build-backoffice/');
     // public path used by the web server to access the output path
-    .setPublicPath('/build-backoffice')
+    //.setPublicPath('/build-backoffice')
+
+    if (Encore.isProduction()) {
+        Encore.setPublicPath('https://medicaljob.altervista.org/public/build-backoffice');
+        Encore.setManifestKeyPrefix('build/');
+    }else {
+        Encore.setPublicPath('/build-backoffice')
+    }
+
+
+    //.setPublicPath('/public/build-backoffice')
     // only needed for CDN's or sub-directory deploy
     //.setManifestKeyPrefix('build/')
 
@@ -115,7 +135,7 @@ Encore
      * Each entry will result in one JavaScript file (e.g. app.js)
      * and one CSS file (e.g. app.css) if your JavaScript imports CSS.
      */
-    .addEntry('app_backoffice', './core/backoffice/assets/app_backoffice.js')
+Encore.addEntry('app_backoffice', './core/backoffice/assets/app_backoffice.js')
     .addEntry('ingesting', './core/backoffice/assets/js/ingesting.js')
     .addEntry('dashboard', './core/backoffice/assets/js/dashboard.js')
     .addEntry('catalog', './core/backoffice/assets/js/catalog.js')
