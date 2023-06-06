@@ -33,7 +33,18 @@ doctrine:
                 dir: '%kernel.project_dir%/core/ingesting/src/Errata/Adapter/Persistence/Doctrine/Config/Yaml'
                 prefix: 'Ingesting\Errata\Application\Model'
                 alias: ErrataFeed
-
+            Article:
+                is_bundle: false
+                type: annotation
+                dir: '%kernel.project_dir%/core/publishing/src/Cms/Application/Model/Article'
+                prefix: 'Publishing\Cms\Application\Model\Article'
+                alias: Article
+            JobArticle:
+                is_bundle: false
+                type: annotation
+                dir: '%kernel.project_dir%/core/publishing/src/Cms/Application/Model/JobArticle'
+                prefix: 'Publishing\Cms\Application\Model\JobArticle'
+                alias: JobArticle
 
 when@test:
     doctrine:

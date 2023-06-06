@@ -1,0 +1,13 @@
+{% extends '@backoffice/base.html.twig' %}
+
+{% block title %}Edit JobArticle{% endblock %}
+
+{% block body %}
+    <h1>Edit JobArticle</h1>
+
+    {{ include('job_article/_form.html.twig', {'button_label': 'Update'}) }}
+
+    <a href="{{ path('cms_job_article_index') }}">back to list</a>
+
+    {{ include('job_article/_delete_form.html.twig') }}
+{% endblock %}

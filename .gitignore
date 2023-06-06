@@ -5,6 +5,8 @@
 /.deptrac.cache
 /workflow
 docker-compose.override.yml
+*.php.dist
+/templates/*.dist
 ###> symfony/framework-bundle ###
 /.env.local
 /.env.local.php

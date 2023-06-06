@@ -38,7 +38,7 @@ class SymfonyCliController extends AbstractController
         return $this->do_command($kernel, 'app:ingesting:job');
     }
 
-    private function do_command($kernel, $command): Response
+    private function do_command(KernelInterface $kernel, string $command): Response
     {
         $env = $kernel->getEnvironment();
 
@@ -58,7 +58,7 @@ class SymfonyCliController extends AbstractController
         return new Response($content);
     }
 
-    private function do_commandWithOptions($kernel, $command, array $options = []): Response
+    private function do_commandWithOptions(KernelInterface $kernel, string $command, array $options = []): Response
     {
         $env = $kernel->getEnvironment();
 

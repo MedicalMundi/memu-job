@@ -1,0 +1,11 @@
+{% extends '@backoffice/base.html.twig' %}
+
+{% block title %}New JobArticle{% endblock %}
+
+{% block body %}
+    <h1>Create new JobArticle</h1>
+
+    {{ include('@cms/job_article/_form.html.twig') }}
+
+    <a href="{{ path('cms_job_article_index') }}">back to list</a>
+{% endblock %}

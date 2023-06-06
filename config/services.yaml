@@ -94,6 +94,9 @@ services:
         resource: '../core/publishing/src/Cms/Adapter/HttpApi/'
         tags: [ 'controller.service_arguments' ]
 
+    Publishing\Cms\Adapter\Persistence\DoctrineArticleRepository: ~
+
+
 
     #
     #   BACKOFFICE UI
