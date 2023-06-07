@@ -1,4 +1,4 @@
-name: Commit stage
+name: Commit stage - old
 
 on: [ push ]
 
