@@ -11,14 +11,14 @@ jobs:
     with:
       triggering-sha: "${{ github.sha }}"
 
-#  acceptance-stage-workflow:
-#    name: Acceptance Stage
-#    needs:
-#      - commit-stage-workflow
-#    uses: MedicalMundi/memu-job/.github/workflows/acceptance-stage-slow.yaml@main
-#    secrets: inherit
-#    with:
-#      triggering-sha: "${{ github.sha }}"
+  acceptance-stage-workflow:
+    name: Acceptance Stage
+    needs:
+      - commit-stage-workflow
+    uses: MedicalMundi/memu-job/.github/workflows/acceptance-stage-slow.yaml@main
+    secrets: inherit
+    with:
+      triggering-sha: "${{ github.sha }}"
 
 #  publish-metrics-workflow:
 #    name: Publish Metrics
