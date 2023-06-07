@@ -115,7 +115,7 @@ jobs:
 
   cache_clear-on-remote-server:
     name: Cache clear
-    needs: production-deployment
+    needs: stage-deployment
     runs-on: ubuntu-latest
     environment: av-stage
     steps:
@@ -127,7 +127,7 @@ jobs:
   database-migration-on-remote-server:
     name: Database migration
     needs:
-      - production-deployment
+      - stage-deployment
       - cache_clear-on-remote-server
     runs-on: ubuntu-latest
     environment: av-stage
