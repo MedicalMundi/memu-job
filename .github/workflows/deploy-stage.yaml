@@ -3,7 +3,7 @@ name: Deployment on Stage
 on:
   push:
     branches:
-      - main
+      - main-disabled
   workflow_call:
     # Map the workflow outputs to job outputs
     inputs:
@@ -103,36 +103,36 @@ jobs:
 
             .env.altervista*
 
-#      - name: Cache clear on remote server
-#        uses: wei/curl@master
-#        with:
-#          args: --insecure -I https://stagemedicaljob.altervista.org/command/cache/clear
-#
-#      - name: Run database migration on remote server
-#        uses: wei/curl@master
-#        with:
-#          args: --insecure -I https://stagemedicaljob.altervista.org/command/cache/clear
-
-  cache_clear-on-remote-server:
-    name: Cache clear
-    needs: stage-deployment
-    runs-on: ubuntu-latest
-    environment: av-stage
-    steps:
       - name: Cache clear on remote server
         uses: wei/curl@master
         with:
           args: --insecure -I https://stagemedicaljob.altervista.org/command/cache/clear
 
-  database-migration-on-remote-server:
-    name: Database migration
-    needs:
-      - stage-deployment
-      - cache_clear-on-remote-server
-    runs-on: ubuntu-latest
-    environment: av-stage
-    steps:
-      - name: database migration on remote server
+      - name: Run database migration on remote server
         uses: wei/curl@master
         with:
           args: --insecure -I https://stagemedicaljob.altervista.org/command/db/migrate
+
+#  cache_clear-on-remote-server:
+#    name: Cache clear
+#    needs: stage-deployment
+#    runs-on: ubuntu-latest
+#    environment: av-stage
+#    steps:
+#      - name: Cache clear on remote server
+#        uses: wei/curl@master
+#        with:
+#          args: --insecure -I https://stagemedicaljob.altervista.org/command/cache/clear
+#
+#  database-migration-on-remote-server:
+#    name: Database migration
+#    needs:
+#      - stage-deployment
+#      - cache_clear-on-remote-server
+#    runs-on: ubuntu-latest
+#    environment: av-stage
+#    steps:
+#      - name: database migration on remote server
+#        uses: wei/curl@master
+#        with:
+#          args: --insecure -I https://stagemedicaljob.altervista.org/command/db/migrate
