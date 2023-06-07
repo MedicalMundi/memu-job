@@ -156,6 +156,61 @@ parameters:
 			path: core/ingesting/tests/PublicJob/Unit/AclAdapter/Model/JobFeedTest.php
 
 		-
+			message: "#^Class Publishing\\\\Cms\\\\Adapter\\\\Persistence\\\\DoctrineArticleRepository extends generic class Doctrine\\\\Bundle\\\\DoctrineBundle\\\\Repository\\\\ServiceEntityRepository but does not specify its types\\: T$#"
+			count: 1
+			path: core/publishing/src/Cms/Adapter/Persistence/DoctrineArticleRepository.php
+
+		-
+			message: "#^Method Publishing\\\\Cms\\\\Adapter\\\\Persistence\\\\DoctrineArticleRepository\\:\\:withId\\(\\) should return Publishing\\\\Cms\\\\Application\\\\Model\\\\Article\\\\Article but returns Publishing\\\\Cms\\\\Application\\\\Model\\\\Article\\\\Article\\|null\\.$#"
+			count: 1
+			path: core/publishing/src/Cms/Adapter/Persistence/DoctrineArticleRepository.php
+
+		-
+			message: "#^Property Publishing\\\\Cms\\\\Application\\\\Model\\\\JobArticle\\\\JobArticle\\:\\:\\$content has no typehint specified\\.$#"
+			count: 1
+			path: core/publishing/src/Cms/Application/Model/JobArticle/JobArticle.php
+
+		-
+			message: "#^Property Publishing\\\\Cms\\\\Application\\\\Model\\\\JobArticle\\\\JobArticle\\:\\:\\$id has no typehint specified\\.$#"
+			count: 1
+			path: core/publishing/src/Cms/Application/Model/JobArticle/JobArticle.php
+
+		-
+			message: "#^Property Publishing\\\\Cms\\\\Application\\\\Model\\\\JobArticle\\\\JobArticle\\:\\:\\$pubicationStart has no typehint specified\\.$#"
+			count: 1
+			path: core/publishing/src/Cms/Application/Model/JobArticle/JobArticle.php
+
+		-
+			message: "#^Property Publishing\\\\Cms\\\\Application\\\\Model\\\\JobArticle\\\\JobArticle\\:\\:\\$publicationEnd has no typehint specified\\.$#"
+			count: 1
+			path: core/publishing/src/Cms/Application/Model/JobArticle/JobArticle.php
+
+		-
+			message: "#^Property Publishing\\\\Cms\\\\Application\\\\Model\\\\JobArticle\\\\JobArticle\\:\\:\\$title has no typehint specified\\.$#"
+			count: 1
+			path: core/publishing/src/Cms/Application/Model/JobArticle/JobArticle.php
+
+		-
+			message: "#^Cannot call method getRepository\\(\\) on object\\|null\\.$#"
+			count: 1
+			path: core/publishing/tests/Cms/Functional/JobArticleControllerTest.php
+
+		-
+			message: "#^Dynamic call to static method PHPUnit\\\\Framework\\\\Assert\\:\\:markTestIncomplete\\(\\)\\.$#"
+			count: 2
+			path: core/publishing/tests/Cms/Functional/JobArticleControllerTest.php
+
+		-
+			message: "#^Unreachable statement \\- code above always terminates\\.$#"
+			count: 2
+			path: core/publishing/tests/Cms/Functional/JobArticleControllerTest.php
+
+		-
+			message: "#^You should use assertCount\\(\\$expectedCount, \\$variable\\) instead of assertSame\\(\\$expectedCount, count\\(\\$variable\\)\\)\\.$#"
+			count: 2
+			path: core/publishing/tests/Cms/Functional/JobArticleControllerTest.php
+
+		-
 			message: "#^Anonymous function should have native return typehint \"\\?Behat\\\\Mink\\\\Element\\\\NodeElement\"\\.$#"
 			count: 1
 			path: tests/Behat/AcceptanceContext.php

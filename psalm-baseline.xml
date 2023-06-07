@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<files psalm-version="4.23.0@f1fe6ff483bf325c803df9f510d09a03fd796f88">
+<files psalm-version="4.30.0@d0bc6e25d89f649e4f36a534f330f8bb4643dd69">
   <file src="core/ingesting/src/Errata/Adapter/Persistence/Doctrine/Config/ErrataIdType.php">
     <ImplementedReturnTypeMismatch occurrences="1">
       <code>?ErrataId</code>
@@ -50,23 +50,6 @@
       <code>$publicationDate</code>
       <code>$title</code>
     </PropertyNotSetInConstructor>
-  </file>
-  <file src="core/ingesting/src/PublicJob/AclAdapter/DistributableJobFeedRepository.php">
-    <MixedAssignment occurrences="1">
-      <code>$resultSet</code>
-    </MixedAssignment>
-    <MixedInferredReturnType occurrences="1">
-      <code>array</code>
-    </MixedInferredReturnType>
-    <MixedMethodCall occurrences="1">
-      <code>fetchAllAssociative</code>
-    </MixedMethodCall>
-    <MixedReturnStatement occurrences="1">
-      <code>$resultSet-&gt;fetchAllAssociative()</code>
-    </MixedReturnStatement>
-    <UndefinedInterfaceMethod occurrences="1">
-      <code>executeQuery</code>
-    </UndefinedInterfaceMethod>
   </file>
   <file src="core/ingesting/src/PublicJob/Adapter/Persistence/Doctrine/Config/JobIdType.php">
     <ImplementedReturnTypeMismatch occurrences="1">
@@ -169,35 +152,10 @@
       <code>close</code>
     </PossiblyNullReference>
   </file>
-  <file src="core/ingesting/tests/PublicJob/Integration/AclAdapter/JobFeedAclServiceTest.php">
-    <ArgumentTypeCoercion occurrences="1">
-      <code>$repository</code>
-    </ArgumentTypeCoercion>
-    <PossiblyNullArgument occurrences="1">
-      <code>$repository</code>
-    </PossiblyNullArgument>
-    <PossiblyNullReference occurrences="1">
-      <code>lastDay</code>
-    </PossiblyNullReference>
-    <ServiceNotFound occurrences="1">
-      <code>DistributableJobFeedRepository::class</code>
-    </ServiceNotFound>
-  </file>
   <file src="core/ingesting/tests/PublicJob/Integration/Infrastructure/PublicJobProductionServiceContainerTest.php">
     <PossiblyNullPropertyAssignmentValue occurrences="1">
       <code>null</code>
     </PossiblyNullPropertyAssignmentValue>
-  </file>
-  <file src="core/ingesting/tests/PublicJob/Integration/Persistence/DoctrineJobRepositoryTest.php">
-    <LessSpecificReturnStatement occurrences="1">
-      <code>$this-&gt;doctrineJobFeedRepository</code>
-    </LessSpecificReturnStatement>
-    <MoreSpecificReturnType occurrences="1">
-      <code>JobRepository</code>
-    </MoreSpecificReturnType>
-    <NullableReturnStatement occurrences="1">
-      <code>$this-&gt;doctrineJobFeedRepository</code>
-    </NullableReturnStatement>
   </file>
   <file src="core/ingesting/tests/SharedKernel/Integration/FeedIoGazzettaAdapterTest.php">
     <InternalMethod occurrences="1">
@@ -206,6 +164,83 @@
     <UnusedMethodCall occurrences="1">
       <code>doesNotPerformAssertions</code>
     </UnusedMethodCall>
+  </file>
+  <file src="core/publishing/src/Cms/Adapter/HttpWeb/JobArticleController.php">
+    <InvalidOperand occurrences="1">
+      <code>$jobArticle-&gt;getId()</code>
+    </InvalidOperand>
+    <PossiblyNullOperand occurrences="1">
+      <code>$jobArticle-&gt;getId()</code>
+    </PossiblyNullOperand>
+  </file>
+  <file src="core/publishing/src/Cms/Application/Model/Article/Article.php">
+    <MissingConstructor occurrences="2">
+      <code>$id</code>
+      <code>$title</code>
+    </MissingConstructor>
+  </file>
+  <file src="core/publishing/src/Cms/Application/Model/JobArticle/JobArticle.php">
+    <MissingPropertyType occurrences="5">
+      <code>$content</code>
+      <code>$id</code>
+      <code>$pubicationStart</code>
+      <code>$publicationEnd</code>
+      <code>$title</code>
+    </MissingPropertyType>
+    <MixedInferredReturnType occurrences="5">
+      <code>?\DateTimeImmutable</code>
+      <code>?\DateTimeImmutable</code>
+      <code>?int</code>
+      <code>?string</code>
+      <code>?string</code>
+    </MixedInferredReturnType>
+    <MixedReturnStatement occurrences="5">
+      <code>$this-&gt;content</code>
+      <code>$this-&gt;id</code>
+      <code>$this-&gt;pubicationStart</code>
+      <code>$this-&gt;publicationEnd</code>
+      <code>$this-&gt;title</code>
+    </MixedReturnStatement>
+  </file>
+  <file src="core/publishing/tests/Cms/Functional/JobArticleControllerTest.php">
+    <PossiblyNullArgument occurrences="2">
+      <code>$fixture-&gt;getId()</code>
+      <code>$fixture-&gt;getId()</code>
+    </PossiblyNullArgument>
+    <PropertyTypeCoercion occurrences="1">
+      <code>(static::getContainer()-&gt;get('doctrine'))-&gt;getRepository(JobArticle::class)</code>
+    </PropertyTypeCoercion>
+    <UndefinedInterfaceMethod occurrences="1">
+      <code>remove</code>
+    </UndefinedInterfaceMethod>
+    <UnevaluatedCode occurrences="19">
+      <code>$fixture = $this-&gt;repository-&gt;findAll();</code>
+      <code>$fixture = new JobArticle();</code>
+      <code>$fixture-&gt;setContent('My Title');</code>
+      <code>$fixture-&gt;setPubicationStart(null);</code>
+      <code>$fixture-&gt;setPublicationEnd(null);</code>
+      <code>$fixture-&gt;setTitle('My Title');</code>
+      <code>$this-&gt;client-&gt;request('GET', sprintf('%s%s/edit', $this-&gt;path, $fixture-&gt;getId()));</code>
+      <code>$this-&gt;client-&gt;request('GET', sprintf('%snew', $this-&gt;path));</code>
+      <code>$this-&gt;repository-&gt;add($fixture, true);</code>
+      <code>self::assertResponseRedirects('/job/article/');</code>
+      <code>self::assertResponseRedirects('/job/article/');</code>
+      <code>self::assertResponseStatusCodeSame(200);</code>
+      <code>self::assertSame($originalNumObjectsInRepository + 1, \count($this-&gt;repository-&gt;findAll()));</code>
+      <code>self::assertSame('Something New', $fixture[0]-&gt;getContent());</code>
+      <code>self::assertSame('Something New', $fixture[0]-&gt;getPubicationStart());</code>
+      <code>self::assertSame('Something New', $fixture[0]-&gt;getPublicationEnd());</code>
+      <code>self::assertSame('Something New', $fixture[0]-&gt;getTitle());</code>
+    </UnevaluatedCode>
+    <UnusedVariable occurrences="2">
+      <code>$crawler</code>
+      <code>$originalNumObjectsInRepository</code>
+    </UnusedVariable>
+  </file>
+  <file src="src/Controller/SymfonyCliController.php">
+    <UnusedParam occurrences="1">
+      <code>$options</code>
+    </UnusedParam>
   </file>
   <file src="src/Entity/BackofficeUser.php">
     <MixedReturnTypeCoercion occurrences="2">

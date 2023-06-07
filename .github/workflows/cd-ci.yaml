@@ -1,0 +1,30 @@
+name: CD/CI
+
+on:
+  push:
+
+jobs:
+  commit-stage-workflow:
+    name: Commit Stage
+    uses: MedicalMundi/memu-job/.github/workflows/commit-stage-quick.yaml@main
+    secrets: inherit
+    with:
+      triggering-sha: "${{ github.sha }}"
+
+#  acceptance-stage-workflow:
+#    name: Acceptance Stage
+#    needs:
+#      - commit-stage-workflow
+#    uses: MedicalMundi/memu-job/.github/workflows/acceptance-stage.yaml@main
+#    secrets: inherit
+#    with:
+#      triggering-sha: "${{ github.sha }}"
+#
+#  publish-metrics-workflow:
+#    name: Publish Metrics
+#    needs:
+#      - commit-stage-workflow
+#      - acceptance-stage-workflow
+#    uses: MedicalMundi/memu-job/.github/workflows/publish-coverage-metrics.yaml@main
+#    with:
+#      triggering-sha: "${{ github.sha }}"

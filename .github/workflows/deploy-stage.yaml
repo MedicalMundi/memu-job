@@ -3,7 +3,7 @@ name: Deployment on Stage
 on:
   push:
     branches:
-      - main
+      - main-fake
   workflow_call:
     # Map the workflow outputs to job outputs
     inputs:
