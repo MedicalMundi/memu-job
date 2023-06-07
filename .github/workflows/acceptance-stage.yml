@@ -1,4 +1,4 @@
-name: Acceptance stage
+name: Acceptance stage old
 
 on:
   repository_dispatch:
