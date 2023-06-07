@@ -41,6 +41,8 @@ class JobArticleController extends AbstractController
         if ($form->isSubmitted() && $form->isValid()) {
             $jobArticleRepository->add($jobArticle, true);
 
+            $this->addFlash('success', 'JobArticle creato');
+
             return $this->redirectToRoute('cms_job_article_index', [], Response::HTTP_SEE_OTHER);
         }
 
