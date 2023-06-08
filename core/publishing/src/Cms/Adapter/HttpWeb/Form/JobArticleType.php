@@ -4,6 +4,7 @@ namespace Publishing\Cms\Adapter\HttpWeb\Form;
 
 use Publishing\Cms\Application\Model\JobArticle\JobArticle;
 use Symfony\Component\Form\AbstractType;
+use Symfony\Component\Form\Extension\Core\Type\DateType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 
@@ -14,8 +15,22 @@ class JobArticleType extends AbstractType
         $builder
             ->add('title')
             ->add('content')
-            ->add('pubicationStart')
-            ->add('publicationEnd')
+            ->add('publicationStart', DateType::class, [
+                'required' => false,
+                'label' => 'Inizio pubblicazione',
+                'widget' => 'single_text',
+                'input' => 'datetime_immutable',
+                'empty_data' => '',
+            ])
+
+            ->add('publicationEnd', DateType::class, [
+                'required' => false,
+                'label' => 'Fine pubblicazione',
+                'widget' => 'single_text',
+                'input' => 'datetime_immutable',
+                'empty_data' => '',
+            ])
+
         ;
     }
 

@@ -11,7 +11,7 @@ use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 
 /**
- * @Route("/job/article")
+ * @Route("/backoffice/job/article")
  */
 class JobArticleController extends AbstractController
 {
@@ -20,10 +20,6 @@ class JobArticleController extends AbstractController
      */
     public function index(JobArticleRepository $jobArticleRepository): Response
     {
-        //        return $this->render('job_article/index.html.twig', [
-        //            'job_articles' => $jobArticleRepository->findAll(),
-        //        ]);
-
         return $this->render('@cms/job_article/index.html.twig', [
             'job_articles' => $jobArticleRepository->findAll(),
         ]);

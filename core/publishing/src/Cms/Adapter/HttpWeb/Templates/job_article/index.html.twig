@@ -22,7 +22,7 @@
                 <td>{{ job_article.id }}</td>
                 <td>{{ job_article.title }}</td>
                 <td>{{ job_article.content }}</td>
-                <td>{{ job_article.pubicationStart ? job_article.pubicationStart|date('Y-m-d H:i:s') : '' }}</td>
+                <td>{{ job_article.publicationStart ? job_article.publicationStart|date('Y-m-d H:i:s') : '' }}</td>
                 <td>{{ job_article.publicationEnd ? job_article.publicationEnd|date('Y-m-d H:i:s') : '' }}</td>
                 <td>
                     <a href="{{ path('cms_job_article_show', {'id': job_article.id}) }}">show</a>
