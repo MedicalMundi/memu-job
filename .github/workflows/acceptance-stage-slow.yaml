@@ -173,9 +173,9 @@ jobs:
         php:
           - '8.0'
         generate-coverage-report: [true]
-        include:
-          - php: '7.4'
-            generate-coverage-report: false
+#        include:
+#          - php: '7.4'
+#            generate-coverage-report: false
       fail-fast: true
     steps:
       - name: Checkout on SHA-${{ inputs.triggering-sha }}
@@ -269,6 +269,134 @@ jobs:
           path: |
             ${{ vars.REPORT_NAME_FOR_INTEGRATION_TEST_COVERAGE_CLOVER }}
             ${{ vars.REPORT_NAME_FOR_INTEGRATION_TEST_COVERAGE_JUNIT }}
+
+
+  functional-test:
+    name: Functional test ${{ matrix.php }}
+    needs: [app-preconditions-checks]
+    runs-on: ubuntu-20.04
+    timeout-minutes: 10
+    services:
+      mysql:
+        image: mysql:8.0
+        env:
+          MYSQL_ALLOW_EMPTY_PASSWORD: no
+          MYSQL_DATABASE: ci-db_test
+          MYSQL_USER: ci-db-user
+          MYSQL_PASSWORD: ci-db-password
+        ports:
+          - 3306/tcp
+        options: --health-cmd="mysqladmin ping" --health-interval=10s --health-timeout=5s --health-retries=3
+    strategy:
+      matrix:
+        php:
+          - '8.0'
+        generate-coverage-report: [true]
+        include:
+          - php: '7.4'
+            generate-coverage-report: false
+      fail-fast: true
+    steps:
+      - name: Checkout on SHA-${{ inputs.triggering-sha }}
+        uses: actions/checkout@v3
+        with:
+          ref: ${{ inputs.triggering-sha }}
+
+      - name: Setup cache environment
+        id: cache-php-extensions
+        if: ${{ vars.USE_PHP_EXTENSION_CACHE  == '1' }}
+        uses: shivammathur/cache-extensions@v1
+        with:
+          php-version: ${{ matrix.php }}
+          extensions: ${{ env.PHP_EXTENSIONS }}
+          key: ${{ env.PHP_EXTENSIONS_CACHE_KEY }}
+
+      - name: Cache extensions
+        if: ${{ vars.USE_PHP_EXTENSION_CACHE  == '1' }}
+        uses: actions/cache@v3
+        with:
+          path: ${{ steps.cache-php-extensions.outputs.dir }}
+          key: ${{ steps.cache-php-extensions.outputs.key }}
+          restore-keys: ${{ steps.cache-php-extensions.outputs.key }}
+
+      - name: Setup PHP
+        uses: shivammathur/setup-php@2.23.0
+        with:
+          php-version: ${{ matrix.php }}
+          extensions: ${{ env.PHP_EXTENSIONS }}
+          ini-values: memory_limit=-1
+          coverage: xdebug
+          tools: symfony
+
+      - name: Setup Composer Cache Directory
+        if: ${{ vars.USE_COMPOSER_CACHE  == '1' }}
+        id: composer-cache
+        run: |
+          echo "dir=$(composer config cache-files-dir)" >> $GITHUB_OUTPUT
+
+      - name: Cache Composer dependencies
+        uses: actions/cache@v3
+        if: ${{ vars.USE_COMPOSER_CACHE  == '1' }}
+        with:
+          path: ${{ steps.composer-cache.outputs.dir }}
+          key: ${{ runner.os }}-php-${{ matrix.php }}-composer-${{ hashFiles('**/composer.lock') }}
+          restore-keys: |
+            ${{ runner.os }}-php-${{ matrix.php }}-composer-
+
+      - name: Install Composer dependencies
+        run: composer install --prefer-dist --no-progress --no-scripts --ansi
+
+      - name: Run database migrations
+        if: ${{ github.ref_name == 'main' }}
+        run: ./bin/console doctrine:migrations:migrate -e test -n -vv --allow-no-migration --ansi
+        env:
+          DATABASE_URL: mysql://ci-db-user:ci-db-password@127.0.0.1:${{ job.services.mysql.ports['3306'] }}/ci-db?serverVersion=8.0&charset=utf8mb4
+
+      - name: Run database schema update
+        if: ${{ github.ref_name != 'main' }}
+        run: ./bin/console doctrine:schema:update -e test --force --ansi
+        env:
+          DATABASE_URL: mysql://ci-db-user:ci-db-password@127.0.0.1:${{ job.services.mysql.ports['3306'] }}/ci-db?serverVersion=8.0&charset=utf8mb4
+
+      - name: Run Functional test suite WITHOUT COVERAGE
+        if: ${{ !matrix.generate-coverage-report }}
+        run: |
+          ./vendor/bin/phpunit --configuration phpunit.core.xml --testsuite functional --group=io-network,io-database --no-interaction
+        env:
+          DATABASE_URL: mysql://ci-db-user:ci-db-password@127.0.0.1:${{ job.services.mysql.ports['3306'] }}/ci-db?serverVersion=8.0&charset=utf8mb4
+
+      - name: Run Functional test suite WITH COVERAGE
+        if: ${{ matrix.generate-coverage-report }}
+        run: |
+          mkdir -p var/tools/phpunit/core
+          ./vendor/bin/phpunit --configuration phpunit.core.xml --testsuite functional --group=io-network,io-database --no-interaction \
+          --coverage-clover ${{ vars.REPORT_NAME_FOR_FUNCTIONAL_TEST_COVERAGE_CLOVER }} \
+          --log-junit ${{ vars.REPORT_NAME_FOR_FUNCTIONAL_TEST_COVERAGE_JUNIT }}
+        env:
+          DATABASE_URL: mysql://ci-db-user:ci-db-password@127.0.0.1:${{ job.services.mysql.ports['3306'] }}/ci-db?serverVersion=8.0&charset=utf8mb4
+
+      - name: Get Coverage artifact name
+        if: ${{ matrix.generate-coverage-report }}
+        id: coverage-artifact-name
+        run: echo "name=${{ vars.ARTIFATC_NAME_FOR_FUNCTIONAL_TEST_COVERAGE}}-$GITHUB_SHA" >> $GITHUB_OUTPUT
+
+      - name: Save coverage reports
+        if: ${{ matrix.generate-coverage-report }}
+        uses: actions/upload-artifact@v3
+        with:
+          name: ${{ steps.coverage-artifact-name.outputs.name }}
+          path: |
+            ${{ vars.REPORT_NAME_FOR_FUNCTIONAL_TEST_COVERAGE_CLOVER }}
+            ${{ vars.REPORT_NAME_FOR_FUNCTIONAL_TEST_COVERAGE_JUNIT }}
+
+
+
+
+
+
+
+
+
 
 
 #  integration-test:
