@@ -216,6 +216,26 @@ parameters:
 			path: core/publishing/tests/Cms/Functional/JobArticleControllerTest.php
 
 		-
+			message: "#^Unreachable statement \\- code above always terminates\\.$#"
+			count: 1
+			path: core/websiteBFF/tests/Functional/AbouUsControllerTest.php
+
+		-
+			message: "#^Unreachable statement \\- code above always terminates\\.$#"
+			count: 1
+			path: core/websiteBFF/tests/Functional/ConcorsiControllerTest.php
+
+		-
+			message: "#^Unreachable statement \\- code above always terminates\\.$#"
+			count: 1
+			path: core/websiteBFF/tests/Functional/HomeControllerTest.php
+
+		-
+			message: "#^Unreachable statement \\- code above always terminates\\.$#"
+			count: 1
+			path: core/websiteBFF/tests/Functional/LavoroControllerTest.php
+
+		-
 			message: "#^Anonymous function should have native return typehint \"\\?Behat\\\\Mink\\\\Element\\\\NodeElement\"\\.$#"
 			count: 1
 			path: tests/Behat/AcceptanceContext.php
