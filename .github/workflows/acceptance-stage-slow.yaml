@@ -294,9 +294,9 @@ jobs:
         node:
           - '16.x'
         generate-coverage-report: [true]
-        include:
-          - php: '7.4'
-            generate-coverage-report: false
+#        include:
+#          - php: '7.4'
+#            generate-coverage-report: false
       fail-fast: true
     steps:
       - name: Checkout on SHA-${{ inputs.triggering-sha }}

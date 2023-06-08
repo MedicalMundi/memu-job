@@ -20,11 +20,12 @@ jobs:
     with:
       triggering-sha: "${{ github.sha }}"
 
-#  publish-metrics-workflow:
-#    name: Publish Metrics
-#    needs:
-#      - commit-stage-workflow
-#      - acceptance-stage-workflow
-#    uses: MedicalMundi/memu-job/.github/workflows/publish-coverage-metrics.yaml@main
-#    with:
-#      triggering-sha: "${{ github.sha }}"
+  publish-metrics-workflow:
+    name: Publish Metrics
+    needs:
+      - commit-stage-workflow
+      - acceptance-stage-workflow
+    uses: MedicalMundi/memu-job/.github/workflows/publish-metrics-to-codecov.yaml@main
+    secrets: inherit
+    with:
+      triggering-sha: "${{ github.sha }}"

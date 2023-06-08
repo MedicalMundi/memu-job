@@ -1,0 +1,61 @@
+# see https://docs.github.com/en/packages/managing-github-packages-using-github-actions-workflows/publishing-and-installing-a-package-with-github-actions
+
+name: Publish metrics to codecov
+
+on:
+#  repository_dispatch:
+#    types: [coverage-report-was-ready]
+
+  workflow_call:
+    # Map the workflow outputs to job outputs
+    inputs:
+      triggering-sha:
+        required: true
+        type: string
+
+
+
+env:
+  GITHUB_PAT: ${{ secrets.MEMUJOB_CI_GHA_PAT }}
+
+#  COVERAGE_UNIT_ARTIFATC_NAME: 'Coverage-reports-unit-on-SHA'
+#  COVERAGE_CLOVER_UNIT_FILENAME: 'coverage-unit-test-clover.xml'
+#  COVERAGE_LOGJUNIT_UNIT_FILENAME: 'coverage-unit-test-junit.xml'
+
+
+jobs:
+  publish-coverage-report:
+    name: Publish metrics | Codecov
+    runs-on: ubuntu-20.04
+    steps:
+#      - name: Checkout on branch ${{ github.event.client_payload.ref_name }}|SHA-${{ github.event.client_payload.sha }}
+#        uses: actions/checkout@v3
+#        with:
+#          ref: ${{ github.event.client_payload.sha }}
+      - name: Checkout on SHA-${{ inputs.triggering-sha }}
+        uses: actions/checkout@v3
+        with:
+          ref: ${{ inputs.triggering-sha }}
+
+      - name: info triggering workflow - commit message
+        run: git log --oneline
+
+      - name: Reveal GitHub context
+        env:
+          GITHUB_CONTEXT: ${{ toJson(github) }}
+        run: echo "$GITHUB_CONTEXT"
+
+      - name: Download unit test coverage artifact
+        id: download-unit-test-coverage-artifact
+        uses: actions/download-artifact@v3
+        with:
+          name: ${{ vars.ARTIFATC_NAME_FOR_UNIT_TEST_COVERAGE }}-${{ inputs.triggering-sha}}
+
+      - name: Upload unit test coverage results to Codecov
+        if: ${{ (steps.download-unit-test-coverage-artifact.outcome == 'success')}}
+        uses: codecov/codecov-action@v3
+        with:
+          files: ${{ vars.REPORT_NAME_FOR_UNIT_TEST_COVERAGE_CLOVER }},${{ env.REPORT_NAME_FOR_UNIT_TEST_COVERAGE_JUNIT }}
+          name: phpunit-core-test
+          flags: unit-test
+          fail_ci_if_error: false
