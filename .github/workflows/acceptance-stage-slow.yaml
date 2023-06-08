@@ -11,8 +11,6 @@ on:
 
 env:
   GITHUB_PAT: ${{ secrets.MEMUJOB_CI_GHA_PAT }}
-  GITHUB_CACHE_PHP_EXTENSION: 0
-  #COVERAGE: '0'
   PHP_EXTENSIONS: ctype, curl, gd, iconv, intl, opcache, openssl, mbstring, mysql, pdo_sqlite
   PHP_EXTENSIONS_CACHE_KEY: cache-php-extensions-v1
 
@@ -154,8 +152,8 @@ jobs:
           DATABASE_URL: mysql://ci-db-user:ci-db-password@127.0.0.1:${{ job.services.mysql.ports['3306'] }}/ci-db?serverVersion=8.0&charset=utf8mb4
 
 
-  core-integration-test:
-    name: (Core) Integration test ${{ matrix.php }}
+  integration-test:
+    name: Integration test ${{ matrix.php }}
     needs: [app-preconditions-checks]
     runs-on: ubuntu-20.04
     timeout-minutes: 10
@@ -253,15 +251,15 @@ jobs:
         run: |
           mkdir -p var/tools/phpunit/core
           ./vendor/bin/phpunit --configuration phpunit.core.xml --testsuite integration --group=io-network,io-database \
-          --coverage-clover ${{ env.CORE_INTEGRATION_COVERAGE_CLOVER_FILENAME }} \
-          --log-junit ${{ env.CORE_INTEGRATION_COVERAGE_LOGJUNIT_FILENAME }}
+          --coverage-clover ${{ vars.REPORT_NAME_FOR_INTEGRATION_TEST_COVERAGE_CLOVER }} \
+          --log-junit ${{ vars.REPORT_NAME_FOR_INTEGRATION_TEST_COVERAGE_JUNIT }}
         env:
           DATABASE_URL: mysql://ci-db-user:ci-db-password@127.0.0.1:${{ job.services.mysql.ports['3306'] }}/ci-db?serverVersion=8.0&charset=utf8mb4
 
       - name: Get Coverage artifact name
         if: ${{ matrix.generate-coverage-report }}
         id: coverage-artifact-name
-        run: echo "name=$CORE_INTEGRATION_COVERAGE_ARTIFATC_NAME-$GITHUB_SHA" >> $GITHUB_OUTPUT
+        run: echo "name=${{ vars.ARTIFATC_NAME_FOR_INTEGRATION_TEST_COVERAGE}}-$GITHUB_SHA" >> $GITHUB_OUTPUT
 
       - name: Save coverage reports
         if: ${{ matrix.generate-coverage-report }}
@@ -269,8 +267,8 @@ jobs:
         with:
           name: ${{ steps.coverage-artifact-name.outputs.name }}
           path: |
-            ${{ env.CORE_INTEGRATION_COVERAGE_CLOVER_FILENAME }}
-            ${{ env.CORE_INTEGRATION_COVERAGE_LOGJUNIT_FILENAME }}
+            ${{ vars.REPORT_NAME_FOR_INTEGRATION_TEST_COVERAGE_CLOVER }}
+            ${{ vars.REPORT_NAME_FOR_INTEGRATION_TEST_COVERAGE_JUNIT }}
 
 
 #  integration-test:
