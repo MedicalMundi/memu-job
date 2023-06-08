@@ -7,10 +7,14 @@ parameters:
     paths:
         - src/
         - tests/
+        - core/backoffice/src/
+        - core/backoffice/tests/
         - core/ingesting/src/
         - core/ingesting/tests/
         - core/publishing/src/
         - core/publishing/tests/
+        - core/websiteBFF/src/
+        - core/websiteBFF/tests/
 
 
     checkMissingIterableValueType: false
