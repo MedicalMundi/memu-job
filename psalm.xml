@@ -22,10 +22,14 @@
     <projectFiles>
         <directory name="src/"/>
         <directory name="tests/"/>
+        <directory name="core/backoffice/src/"/>
+        <directory name="core/backoffice/tests/"/>
         <directory name="core/ingesting/src/"/>
         <directory name="core/ingesting/tests/"/>
         <directory name="core/publishing/src/"/>
         <directory name="core/publishing/tests/"/>
+        <directory name="core/websiteBFF/src/"/>
+        <directory name="core/websiteBFF/tests/"/>
         <ignoreFiles>
             <file name="src/Kernel.php"/>
             <file name="config/bootstrap.php"/>
