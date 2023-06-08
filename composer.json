@@ -94,7 +94,8 @@
             "App\\": "src/",
             "Ingesting\\": "core/ingesting/src/",
             "Publishing\\": "core/publishing/src/",
-            "Backoffice\\": "core/backoffice/src/"
+            "Backoffice\\": "core/backoffice/src/",
+            "WebSiteBFF\\": "core/websiteBFF/src/"
         }
     },
     "autoload-dev": {
@@ -102,7 +103,8 @@
             "App\\Tests\\": "tests/",
             "Ingesting\\Tests\\": "core/ingesting/tests/",
             "Publishing\\Tests\\": "core/publishing/tests/",
-            "Backoffice\\Tests\\": "core/backoffice/tests/"
+            "Backoffice\\Tests\\": "core/backoffice/tests/",
+            "WebSiteBFF\\Tests\\": "core/websiteBFF/tests/"
         }
     },
     "scripts": {
