@@ -183,8 +183,8 @@
     <MissingPropertyType occurrences="5">
       <code>$content</code>
       <code>$id</code>
-      <code>$pubicationStart</code>
       <code>$publicationEnd</code>
+      <code>$publicationStart</code>
       <code>$title</code>
     </MissingPropertyType>
     <MixedInferredReturnType occurrences="5">
@@ -197,13 +197,14 @@
     <MixedReturnStatement occurrences="5">
       <code>$this-&gt;content</code>
       <code>$this-&gt;id</code>
-      <code>$this-&gt;pubicationStart</code>
       <code>$this-&gt;publicationEnd</code>
+      <code>$this-&gt;publicationStart</code>
       <code>$this-&gt;title</code>
     </MixedReturnStatement>
   </file>
   <file src="core/publishing/tests/Cms/Functional/JobArticleControllerTest.php">
-    <PossiblyNullArgument occurrences="2">
+    <PossiblyNullArgument occurrences="3">
+      <code>$fixture-&gt;getId()</code>
       <code>$fixture-&gt;getId()</code>
       <code>$fixture-&gt;getId()</code>
     </PossiblyNullArgument>
@@ -213,28 +214,8 @@
     <UndefinedInterfaceMethod occurrences="1">
       <code>remove</code>
     </UndefinedInterfaceMethod>
-    <UnevaluatedCode occurrences="19">
-      <code>$fixture = $this-&gt;repository-&gt;findAll();</code>
-      <code>$fixture = new JobArticle();</code>
-      <code>$fixture-&gt;setContent('My Title');</code>
-      <code>$fixture-&gt;setPubicationStart(null);</code>
-      <code>$fixture-&gt;setPublicationEnd(null);</code>
-      <code>$fixture-&gt;setTitle('My Title');</code>
-      <code>$this-&gt;client-&gt;request('GET', sprintf('%s%s/edit', $this-&gt;path, $fixture-&gt;getId()));</code>
-      <code>$this-&gt;client-&gt;request('GET', sprintf('%snew', $this-&gt;path));</code>
-      <code>$this-&gt;repository-&gt;add($fixture, true);</code>
-      <code>self::assertResponseRedirects('/job/article/');</code>
-      <code>self::assertResponseRedirects('/job/article/');</code>
-      <code>self::assertResponseStatusCodeSame(200);</code>
-      <code>self::assertSame($originalNumObjectsInRepository + 1, \count($this-&gt;repository-&gt;findAll()));</code>
-      <code>self::assertSame('Something New', $fixture[0]-&gt;getContent());</code>
-      <code>self::assertSame('Something New', $fixture[0]-&gt;getPubicationStart());</code>
-      <code>self::assertSame('Something New', $fixture[0]-&gt;getPublicationEnd());</code>
-      <code>self::assertSame('Something New', $fixture[0]-&gt;getTitle());</code>
-    </UnevaluatedCode>
-    <UnusedVariable occurrences="2">
+    <UnusedVariable occurrences="1">
       <code>$crawler</code>
-      <code>$originalNumObjectsInRepository</code>
     </UnusedVariable>
   </file>
   <file src="src/Controller/SymfonyCliController.php">

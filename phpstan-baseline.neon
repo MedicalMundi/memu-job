@@ -176,12 +176,12 @@ parameters:
 			path: core/publishing/src/Cms/Application/Model/JobArticle/JobArticle.php
 
 		-
-			message: "#^Property Publishing\\\\Cms\\\\Application\\\\Model\\\\JobArticle\\\\JobArticle\\:\\:\\$pubicationStart has no typehint specified\\.$#"
+			message: "#^Property Publishing\\\\Cms\\\\Application\\\\Model\\\\JobArticle\\\\JobArticle\\:\\:\\$publicationEnd has no typehint specified\\.$#"
 			count: 1
 			path: core/publishing/src/Cms/Application/Model/JobArticle/JobArticle.php
 
 		-
-			message: "#^Property Publishing\\\\Cms\\\\Application\\\\Model\\\\JobArticle\\\\JobArticle\\:\\:\\$publicationEnd has no typehint specified\\.$#"
+			message: "#^Property Publishing\\\\Cms\\\\Application\\\\Model\\\\JobArticle\\\\JobArticle\\:\\:\\$publicationStart has no typehint specified\\.$#"
 			count: 1
 			path: core/publishing/src/Cms/Application/Model/JobArticle/JobArticle.php
 
@@ -196,17 +196,12 @@ parameters:
 			path: core/publishing/tests/Cms/Functional/JobArticleControllerTest.php
 
 		-
-			message: "#^Dynamic call to static method PHPUnit\\\\Framework\\\\Assert\\:\\:markTestIncomplete\\(\\)\\.$#"
-			count: 2
-			path: core/publishing/tests/Cms/Functional/JobArticleControllerTest.php
-
-		-
-			message: "#^Unreachable statement \\- code above always terminates\\.$#"
-			count: 2
-			path: core/publishing/tests/Cms/Functional/JobArticleControllerTest.php
-
-		-
 			message: "#^You should use assertCount\\(\\$expectedCount, \\$variable\\) instead of assertSame\\(\\$expectedCount, count\\(\\$variable\\)\\)\\.$#"
+			count: 3
+			path: core/publishing/tests/Cms/Functional/JobArticleControllerTest.php
+
+		-
+			message: "#^You should use assertNull\\(\\) instead of assertSame\\(null, \\$actual\\)\\.$#"
 			count: 2
 			path: core/publishing/tests/Cms/Functional/JobArticleControllerTest.php
 

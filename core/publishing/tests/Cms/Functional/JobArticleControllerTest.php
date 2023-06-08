@@ -17,7 +17,7 @@ class JobArticleControllerTest extends WebTestCase
 
     private JobArticleRepository $repository;
 
-    private string $path = '/job/article/';
+    private string $path = '/backoffice/job/article/';
 
     protected function setUp(): void
     {
@@ -44,7 +44,6 @@ class JobArticleControllerTest extends WebTestCase
     {
         $originalNumObjectsInRepository = \count($this->repository->findAll());
 
-        $this->markTestIncomplete();
         $this->client->request('GET', sprintf('%snew', $this->path));
 
         self::assertResponseStatusCodeSame(200);
@@ -52,22 +51,21 @@ class JobArticleControllerTest extends WebTestCase
         $this->client->submitForm('Save', [
             'job_article[title]' => 'Testing',
             'job_article[content]' => 'Testing',
-            'job_article[pubicationStart]' => '2023-01-01',
+            'job_article[publicationStart]' => '2023-01-01',
             'job_article[publicationEnd]' => '2024-01-01',
         ]);
 
-        self::assertResponseRedirects('/job/article/');
+        self::assertResponseRedirects('/backoffice/job/article/');
 
         self::assertSame($originalNumObjectsInRepository + 1, \count($this->repository->findAll()));
     }
 
     public function testShow(): void
     {
-        //$this->markTestIncomplete();
         $fixture = new JobArticle();
         $fixture->setTitle('My Title');
         $fixture->setContent('My Title');
-        $fixture->setPubicationStart(null);
+        $fixture->setPublicationStart(null);
         $fixture->setPublicationEnd(null);
 
         $this->repository->add($fixture, true);
@@ -82,11 +80,10 @@ class JobArticleControllerTest extends WebTestCase
 
     public function testEdit(): void
     {
-        $this->markTestIncomplete();
         $fixture = new JobArticle();
         $fixture->setTitle('My Title');
         $fixture->setContent('My Title');
-        $fixture->setPubicationStart(null);
+        $fixture->setPublicationStart(null);
         $fixture->setPublicationEnd(null);
 
         $this->repository->add($fixture, true);
@@ -96,30 +93,28 @@ class JobArticleControllerTest extends WebTestCase
         $this->client->submitForm('Update', [
             'job_article[title]' => 'Something New',
             'job_article[content]' => 'Something New',
-            'job_article[pubicationStart]' => 'Something New',
-            'job_article[publicationEnd]' => 'Something New',
+            'job_article[publicationStart]' => '',
+            'job_article[publicationEnd]' => '',
         ]);
 
-        self::assertResponseRedirects('/job/article/');
+        self::assertResponseRedirects('/backoffice/job/article/');
 
         $fixture = $this->repository->findAll();
 
         self::assertSame('Something New', $fixture[0]->getTitle());
         self::assertSame('Something New', $fixture[0]->getContent());
-        self::assertSame('Something New', $fixture[0]->getPubicationStart());
-        self::assertSame('Something New', $fixture[0]->getPublicationEnd());
+        self::assertSame(null, $fixture[0]->getPublicationStart());
+        self::assertSame(null, $fixture[0]->getPublicationEnd());
     }
 
     public function testRemove(): void
     {
-        //$this->markTestIncomplete();
-
         $originalNumObjectsInRepository = \count($this->repository->findAll());
 
         $fixture = new JobArticle();
         $fixture->setTitle('My Title');
         $fixture->setContent('My Title');
-        $fixture->setPubicationStart(null);
+        $fixture->setPublicationStart(null);
         $fixture->setPublicationEnd(null);
 
         $this->repository->add($fixture, true);
@@ -130,6 +125,6 @@ class JobArticleControllerTest extends WebTestCase
         $this->client->submitForm('Delete');
 
         self::assertSame($originalNumObjectsInRepository, \count($this->repository->findAll()));
-        self::assertResponseRedirects('/job/article/');
+        self::assertResponseRedirects('/backoffice/job/article/');
     }
 }

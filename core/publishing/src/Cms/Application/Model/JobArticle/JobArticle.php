@@ -30,7 +30,7 @@ class JobArticle
     /**
      * @ORM\Column(type="datetime_immutable", nullable=true)
      */
-    private $pubicationStart;
+    private $publicationStart;
 
     /**
      * @ORM\Column(type="datetime_immutable", nullable=true)
@@ -66,14 +66,14 @@ class JobArticle
         return $this;
     }
 
-    public function getPubicationStart(): ?\DateTimeImmutable
+    public function getPublicationStart(): ?\DateTimeImmutable
     {
-        return $this->pubicationStart;
+        return $this->publicationStart;
     }
 
-    public function setPubicationStart(?\DateTimeImmutable $pubicationStart): self
+    public function setPublicationStart(?\DateTimeImmutable $publicationStart): self
     {
-        $this->pubicationStart = $pubicationStart;
+        $this->publicationStart = $publicationStart;
 
         return $this;
     }
