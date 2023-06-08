@@ -31,7 +31,7 @@
             <directory>core/ingesting/tests/PublicJob/Unit</directory>
             <directory>core/ingesting/tests/SharedKernel/Unit</directory>
             <directory>core/publishing/tests/Cms/Unit</directory>
-            <directory>core/websiteBBF/tests/Cms/Unit</directory>
+            <directory>core/websiteBFF/tests/Unit</directory>
 
         </testsuite>
         <testsuite name="integration">
@@ -42,7 +42,7 @@
             <directory>core/ingesting/tests/PublicJob/Integration</directory>
             <directory>core/ingesting/tests/SharedKernel/Integration</directory>
             <directory>core/publishing/tests/Cms/Integration</directory>
-            <directory>core/websiteBBF/tests/Cms/Integration</directory>
+            <directory>core/websiteBFF/tests/Integration</directory>
         </testsuite>
         <testsuite name="functional">
             <directory>tests/Functional</directory>
@@ -51,7 +51,7 @@
             <directory>core/ingesting/tests/Errata/Functional</directory>
             <directory>core/ingesting/tests/PublicJob/Functional</directory>
             <directory>core/publishing/tests/Cms/Functional</directory>
-            <directory>core/websiteBBF/tests/Cms/Functional</directory>
+            <directory>core/websiteBFF/tests/Functional</directory>
         </testsuite>
     </testsuites>
 
