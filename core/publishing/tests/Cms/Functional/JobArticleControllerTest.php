@@ -7,6 +7,10 @@ use Publishing\Cms\Application\Model\JobArticle\JobArticle;
 use Symfony\Bundle\FrameworkBundle\KernelBrowser;
 use Symfony\Bundle\FrameworkBundle\Test\WebTestCase;
 
+/**
+ * @covers \Publishing\Cms\Adapter\HttpWeb\JobArticleController
+ * @group io-database
+ */
 class JobArticleControllerTest extends WebTestCase
 {
     private KernelBrowser $client;
