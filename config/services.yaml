@@ -113,3 +113,20 @@ services:
     Backoffice\Adapter\HttpApi\:
         resource: '../core/backoffice/src/Adapter/HttpApi/'
         tags: [ 'controller.service_arguments' ]
+
+
+
+    #
+    #   WEBSITE BFF BOUNDED CONTEXT
+    #
+    WebSiteBFF\:
+        resource: '../core/websiteBFF/src/'
+
+    WebSiteBFF\Adapter\HttpWeb\:
+        resource: '../core/websiteBFF/src/Adapter/HttpWeb/'
+        tags: [ 'controller.service_arguments' ]
+
+    WebSiteBFF\Adapter\HttpApi\:
+        resource: '../core/websiteBFF/src/Adapter/HttpApi/'
+        tags: [ 'controller.service_arguments' ]
+

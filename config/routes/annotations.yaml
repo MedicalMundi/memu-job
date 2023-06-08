@@ -6,14 +6,6 @@ kernel:
     resource: ../../src/Kernel.php
     type: annotation
 
-publishing_controllers:
-    resource: ../../core/publishing/src/Cms/Adapter/HttpWeb/
-    type: annotation
-
-publishing_api_controllers:
-    resource: ../../core/publishing/src/Cms/Adapter/HttpApi/
-    type: annotation
-
 backoffice_controllers:
     resource: ../../core/backoffice/src/Adapter/HttpWeb/
     type: annotation
@@ -24,4 +16,20 @@ backoffice_api_controllers:
 
 ingesting_controllers:
     resource: ../../core/ingesting/src/PublicJob/Adapter/HttpWeb/
+    type: annotation
+
+publishing_controllers:
+    resource: ../../core/publishing/src/Cms/Adapter/HttpWeb/
+    type: annotation
+
+publishing_api_controllers:
+    resource: ../../core/publishing/src/Cms/Adapter/HttpApi/
+    type: annotation
+
+website_controllers:
+    resource: ../../core/websiteBFF/src/Adapter/HttpWeb/
+    type: annotation
+
+website_api_controllers:
+    resource: ../../core/websiteBFF/src/Adapter/HttpApi/
     type: annotation

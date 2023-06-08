@@ -1,6 +1,6 @@
 <?php declare(strict_types=1);
 
-namespace Publishing\Cms\Adapter\HttpWeb;
+namespace WebSiteBFF\Adapter\HttpWeb;
 
 use Publishing\Cms\Application\Usecase\LastConcorsi;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\IsGranted;
@@ -18,14 +18,14 @@ class ConcorsiController extends AbstractController
     }
 
     /**
-     * @Route("/concorsi", name="app_concorsi")
+     * @Route("/concorsi", name="website_concorsi")
      * @IsGranted("ROLE_ADMIN")
      */
     public function index(): Response
     {
         $data = $this->lastConcorsi->lastConcorsi();
 
-        return $this->render('@front/concorsi/index.html.twig', [
+        return $this->render('@website/concorsi/index.html.twig', [
             'data' => $data,
         ]);
     }

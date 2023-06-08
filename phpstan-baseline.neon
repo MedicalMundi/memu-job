@@ -1,6 +1,16 @@
 parameters:
 	ignoreErrors:
 		-
+			message: "#^Call to static method PHPUnit\\\\Framework\\\\Assert\\:\\:assertTrue\\(\\) with true will always evaluate to true\\.$#"
+			count: 1
+			path: core/backoffice/tests/Integration/PlaceholderTest.php
+
+		-
+			message: "#^Call to static method PHPUnit\\\\Framework\\\\Assert\\:\\:assertTrue\\(\\) with true will always evaluate to true\\.$#"
+			count: 1
+			path: core/backoffice/tests/Unit/PlaceholderTest.php
+
+		-
 			message: "#^Return type \\(Ingesting\\\\Errata\\\\Application\\\\Model\\\\ErrataId\\|null\\) of method Ingesting\\\\Errata\\\\Adapter\\\\Persistence\\\\Doctrine\\\\Config\\\\ErrataIdType\\:\\:convertToPHPValue\\(\\) should be covariant with return type \\(Ramsey\\\\Uuid\\\\UuidInterface\\|null\\) of method Ramsey\\\\Uuid\\\\Doctrine\\\\UuidType\\:\\:convertToPHPValue\\(\\)$#"
 			count: 1
 			path: core/ingesting/src/Errata/Adapter/Persistence/Doctrine/Config/ErrataIdType.php
@@ -204,6 +214,26 @@ parameters:
 			message: "#^You should use assertNull\\(\\) instead of assertSame\\(null, \\$actual\\)\\.$#"
 			count: 2
 			path: core/publishing/tests/Cms/Functional/JobArticleControllerTest.php
+
+		-
+			message: "#^Unreachable statement \\- code above always terminates\\.$#"
+			count: 1
+			path: core/websiteBFF/tests/Functional/AbouUsControllerTest.php
+
+		-
+			message: "#^Unreachable statement \\- code above always terminates\\.$#"
+			count: 1
+			path: core/websiteBFF/tests/Functional/ConcorsiControllerTest.php
+
+		-
+			message: "#^Unreachable statement \\- code above always terminates\\.$#"
+			count: 1
+			path: core/websiteBFF/tests/Functional/HomeControllerTest.php
+
+		-
+			message: "#^Unreachable statement \\- code above always terminates\\.$#"
+			count: 1
+			path: core/websiteBFF/tests/Functional/LavoroControllerTest.php
 
 		-
 			message: "#^Anonymous function should have native return typehint \"\\?Behat\\\\Mink\\\\Element\\\\NodeElement\"\\.$#"

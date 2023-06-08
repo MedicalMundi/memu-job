@@ -25,29 +25,33 @@
     <testsuites>
         <testsuite name="unit">
             <directory>tests/Unit</directory>
-            <directory>core/ingesting/tests/SharedKernel/Unit</directory>
-            <directory>core/ingesting/tests/Errata/Unit</directory>
-            <directory>core/ingesting/tests/Analyzer/Unit</directory>
-            <directory>core/ingesting/tests/PublicJob/Unit</directory>
-            <directory>core/publishing/tests/Cms/Unit</directory>
             <directory>core/backoffice/tests/Unit</directory>
+            <directory>core/ingesting/tests/Analyzer/Unit</directory>
+            <directory>core/ingesting/tests/Errata/Unit</directory>
+            <directory>core/ingesting/tests/PublicJob/Unit</directory>
+            <directory>core/ingesting/tests/SharedKernel/Unit</directory>
+            <directory>core/publishing/tests/Cms/Unit</directory>
+            <directory>core/websiteBFF/tests/Unit</directory>
+
         </testsuite>
         <testsuite name="integration">
             <directory>tests/Integration</directory>
-            <directory>core/ingesting/tests/SharedKernel/Integration</directory>
-            <directory>core/ingesting/tests/Errata/Integration</directory>
-            <directory>core/ingesting/tests/Analyzer/Integration</directory>
-            <directory>core/ingesting/tests/PublicJob/Integration</directory>
-            <directory>core/publishing/tests/Cms/Integration</directory>
             <directory>core/backoffice/tests/Integration</directory>
+            <directory>core/ingesting/tests/Analyzer/Integration</directory>
+            <directory>core/ingesting/tests/Errata/Integration</directory>
+            <directory>core/ingesting/tests/PublicJob/Integration</directory>
+            <directory>core/ingesting/tests/SharedKernel/Integration</directory>
+            <directory>core/publishing/tests/Cms/Integration</directory>
+            <directory>core/websiteBFF/tests/Integration</directory>
         </testsuite>
         <testsuite name="functional">
             <directory>tests/Functional</directory>
-            <directory>core/ingesting/tests/Errata/Functional</directory>
+            <directory>core/backoffice/tests/Functional</directory>
             <directory>core/ingesting/tests/Analyzer/Functional</directory>
+            <directory>core/ingesting/tests/Errata/Functional</directory>
             <directory>core/ingesting/tests/PublicJob/Functional</directory>
             <directory>core/publishing/tests/Cms/Functional</directory>
-            <directory>core/backoffice/tests/Functional</directory>
+            <directory>core/websiteBFF/tests/Functional</directory>
         </testsuite>
     </testsuites>
 
@@ -64,9 +68,11 @@
               processUncoveredFiles="true">
         <include>
             <directory suffix=".php">src</directory>
+            <directory suffix=".php">core/backoffice/src</directory>
             <directory suffix=".php">core/ingesting/src</directory>
             <directory suffix=".php">core/publishing/src</directory>
-            <directory suffix=".php">core/backoffice/src</directory>
+            <directory suffix=".php">core/websiteBBF/src</directory>
+
         </include>
     </coverage>
 

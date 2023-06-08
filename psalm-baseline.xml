@@ -218,6 +218,26 @@
       <code>$crawler</code>
     </UnusedVariable>
   </file>
+  <file src="core/websiteBFF/tests/Functional/AbouUsControllerTest.php">
+    <UnusedVariable occurrences="1">
+      <code>$crawler</code>
+    </UnusedVariable>
+  </file>
+  <file src="core/websiteBFF/tests/Functional/ConcorsiControllerTest.php">
+    <UnusedVariable occurrences="1">
+      <code>$crawler</code>
+    </UnusedVariable>
+  </file>
+  <file src="core/websiteBFF/tests/Functional/HomeControllerTest.php">
+    <UnusedVariable occurrences="1">
+      <code>$crawler</code>
+    </UnusedVariable>
+  </file>
+  <file src="core/websiteBFF/tests/Functional/LavoroControllerTest.php">
+    <UnusedVariable occurrences="1">
+      <code>$crawler</code>
+    </UnusedVariable>
+  </file>
   <file src="src/Controller/SymfonyCliController.php">
     <UnusedParam occurrences="1">
       <code>$options</code>

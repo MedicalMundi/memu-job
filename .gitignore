@@ -35,6 +35,7 @@ docker-compose.override.yml
 /public/build/
 /public/build-front/
 /public/build-backoffice/
+/public/build-website/
 npm-debug.log
 yarn-error.log
 ###< symfony/webpack-encore-bundle ###
