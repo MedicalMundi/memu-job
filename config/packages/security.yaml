@@ -43,7 +43,7 @@ security:
                 default_target_path: backoffice_home
             logout:
                 path: app_logout
-                target: app_home
+                target: website_home
 
             # activate different ways to authenticate
             # https://symfony.com/doc/current/security.html#the-firewall
@@ -57,8 +57,11 @@ security:
         - { path: ^/, roles: PUBLIC_ACCESS }
         - { path: ^/login, roles: PUBLIC_ACCESS }
         - { path: ^/logout, roles: PUBLIC_ACCESS }
-        - { path: ^/backoffice, roles: ROLE_ADMIN }
         - { path: ^/home, roles: ROLE_ADMIN }
+        - { path: ^/concorsi, roles: ROLE_ADMIN }
+        - { path: ^/lavoro, roles: ROLE_ADMIN }
+        - { path: ^/chi-siamo, roles: ROLE_ADMIN }
+        - { path: ^/backoffice, roles: ROLE_ADMIN }
 
 
 
