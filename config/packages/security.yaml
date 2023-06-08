@@ -26,8 +26,9 @@ security:
                 providers: [ 'users_in_memory', 'app_user_provider' ]
 
     role_hierarchy:
-        ROLE_ADMIN: ROLE_USER
         ROLE_SUPER_ADMIN: [ ROLE_ADMIN, ROLE_ALLOWED_TO_SWITCH ]
+        ROLE_ADMIN: ROLE_USER
+
 
     firewalls:
         dev:
@@ -57,11 +58,11 @@ security:
         - { path: ^/, roles: PUBLIC_ACCESS }
         - { path: ^/login, roles: PUBLIC_ACCESS }
         - { path: ^/logout, roles: PUBLIC_ACCESS }
-        - { path: ^/home, roles: ROLE_ADMIN }
-        - { path: ^/concorsi, roles: ROLE_ADMIN }
-        - { path: ^/lavoro, roles: ROLE_ADMIN }
-        - { path: ^/chi-siamo, roles: ROLE_ADMIN }
-        - { path: ^/backoffice, roles: ROLE_ADMIN }
+        - { path: ^/home, roles: [IS_AUTHENTICATED_FULLY,ROLE_ADMIN] }
+        - { path: ^/concorsi, roles: [IS_AUTHENTICATED_FULLY,ROLE_ADMIN] }
+        - { path: ^/lavoro, roles: [IS_AUTHENTICATED_FULLY,ROLE_ADMIN] }
+        - { path: ^/chi-siamo, roles: [IS_AUTHENTICATED_FULLY,ROLE_ADMIN] }
+        - { path: ^/backoffice, roles: [IS_AUTHENTICATED_FULLY,ROLE_ADMIN] }
 
 
 
