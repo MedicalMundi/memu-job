@@ -8,12 +8,14 @@ return static function (RectorConfig $rectorConfig): void {
     $rectorConfig->paths([
         __DIR__ . '/src',
         __DIR__ . '/tests',
+        __DIR__ . '/core/backoffice/src',
+        __DIR__ . '/core/backoffice/tests',
         __DIR__ . '/core/ingesting/src',
         __DIR__ . '/core/ingesting/tests',
         __DIR__ . '/core/publishing/src',
         __DIR__ . '/core/publishing/tests',
-        __DIR__ . '/core/backoffice/src',
-        __DIR__ . '/core/backoffice/tests',
+        __DIR__ . '/core/websiteBFF/src',
+        __DIR__ . '/core/websiteBFF/tests',
     ]);
 
     $rectorConfig->skip([
