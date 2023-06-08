@@ -291,6 +291,8 @@ jobs:
       matrix:
         php:
           - '8.0'
+        node:
+          - '16.x'
         generate-coverage-report: [true]
         include:
           - php: '7.4'
@@ -357,6 +359,36 @@ jobs:
         run: ./bin/console doctrine:schema:update -e test --force --ansi
         env:
           DATABASE_URL: mysql://ci-db-user:ci-db-password@127.0.0.1:${{ job.services.mysql.ports['3306'] }}/ci-db?serverVersion=8.0&charset=utf8mb4
+
+      - name: Setup Node
+        uses: actions/setup-node@v3
+        with:
+          node-version: "${{ matrix.node }}"
+
+      - name: Get Yarn cache directory
+        id: yarn-cache
+        run: echo "dir=$(yarn cache dir)" >> $GITHUB_OUTPUT
+
+      - name: Cache Yarn
+        uses: actions/cache@v3
+        with:
+          path: ${{ steps.yarn-cache.outputs.dir }}
+          key: ${{ runner.os }}-node-${{ matrix.node }}-yarn-${{ hashFiles('**/package.json **/yarn.lock') }}
+          restore-keys: |
+            ${{ runner.os }}-node-${{ matrix.node }}-yarn-
+
+      - name: Install JS dependencies
+        run: yarn install
+
+      - name: Build assets
+        run: |
+          bin/console assets:install public -vvv -e test
+          yarn build
+
+      - name: Run webserver
+        run: symfony server:start --port=8080 --dir=public --daemon --no-tls
+
+
 
       - name: Run Functional test suite WITHOUT COVERAGE
         if: ${{ !matrix.generate-coverage-report }}
