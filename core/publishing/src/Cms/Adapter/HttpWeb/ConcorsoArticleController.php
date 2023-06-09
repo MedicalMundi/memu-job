@@ -52,7 +52,6 @@ class ConcorsoArticleController extends AbstractController
      */
     public function show(Request $request, ConcorsoArticleRepository $concorsoArticleRepository): Response
     {
-
         $concorsoArticleId = ConcorsoArticleId::fromString((string) $request->query->get('id'));
         $concorsoArticle = $concorsoArticleRepository->findOneBy([
             'id' => $concorsoArticleId,
