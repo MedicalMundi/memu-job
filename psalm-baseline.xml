@@ -166,12 +166,12 @@
     </UnusedMethodCall>
   </file>
   <file src="core/publishing/src/Cms/Adapter/HttpWeb/ConcorsoArticleController.php">
-    <InvalidOperand occurrences="1">
-      <code>$concorsoArticle-&gt;getId()</code>
-    </InvalidOperand>
-    <PossiblyNullOperand occurrences="1">
-      <code>$concorsoArticle-&gt;getId()</code>
-    </PossiblyNullOperand>
+    <PossiblyNullArgument occurrences="1">
+      <code>$concorsoArticle</code>
+    </PossiblyNullArgument>
+    <PossiblyNullReference occurrences="1">
+      <code>getId</code>
+    </PossiblyNullReference>
   </file>
   <file src="core/publishing/src/Cms/Adapter/HttpWeb/JobArticleController.php">
     <InvalidOperand occurrences="1">
@@ -181,6 +181,15 @@
       <code>$jobArticle-&gt;getId()</code>
     </PossiblyNullOperand>
   </file>
+  <file src="core/publishing/src/Cms/Adapter/Persistence/DoctrineType/ConcorsoArticleIdType.php">
+    <ImplementedReturnTypeMismatch occurrences="1">
+      <code>?ConcorsoArticleId</code>
+    </ImplementedReturnTypeMismatch>
+    <MoreSpecificImplementedParamType occurrences="2">
+      <code>$value</code>
+      <code>$value</code>
+    </MoreSpecificImplementedParamType>
+  </file>
   <file src="core/publishing/src/Cms/Application/Model/Article/Article.php">
     <MissingConstructor occurrences="2">
       <code>$id</code>
@@ -188,26 +197,20 @@
     </MissingConstructor>
   </file>
   <file src="core/publishing/src/Cms/Application/Model/ConcorsoArticle/ConcorsoArticle.php">
-    <MissingPropertyType occurrences="6">
+    <MissingPropertyType occurrences="4">
       <code>$content</code>
-      <code>$id</code>
-      <code>$isDraft</code>
       <code>$publicationEnd</code>
       <code>$publicationStart</code>
       <code>$title</code>
     </MissingPropertyType>
-    <MixedInferredReturnType occurrences="6">
+    <MixedInferredReturnType occurrences="4">
       <code>?\DateTimeImmutable</code>
       <code>?\DateTimeImmutable</code>
-      <code>?bool</code>
-      <code>?int</code>
       <code>?string</code>
       <code>?string</code>
     </MixedInferredReturnType>
-    <MixedReturnStatement occurrences="6">
+    <MixedReturnStatement occurrences="4">
       <code>$this-&gt;content</code>
-      <code>$this-&gt;id</code>
-      <code>$this-&gt;isDraft</code>
       <code>$this-&gt;publicationEnd</code>
       <code>$this-&gt;publicationStart</code>
       <code>$this-&gt;title</code>
@@ -237,11 +240,11 @@
     </MixedReturnStatement>
   </file>
   <file src="core/publishing/tests/Cms/Functional/ConcorsoArticleControllerTest.php">
-    <PossiblyNullArgument occurrences="3">
+    <ImplicitToStringCast occurrences="3">
       <code>$fixture-&gt;getId()</code>
       <code>$fixture-&gt;getId()</code>
       <code>$fixture-&gt;getId()</code>
-    </PossiblyNullArgument>
+    </ImplicitToStringCast>
     <PropertyTypeCoercion occurrences="1">
       <code>(static::getContainer()-&gt;get('doctrine'))-&gt;getRepository(ConcorsoArticle::class)</code>
     </PropertyTypeCoercion>

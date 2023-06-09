@@ -84,7 +84,8 @@ services:
     Publishing\:
         resource: '../core/publishing/src/'
         exclude:
-            - '../core/publishing/src/Cms/Application/Model'
+            #- '../core/publishing/src/Cms/Application/Model'
+            - '../core/publishing/src/Cms/Adapter/Persistence/DoctrineType'
 
     Publishing\Cms\Adapter\HttpWeb\:
         resource: '../core/publishing/src/Cms/Adapter/HttpWeb/'

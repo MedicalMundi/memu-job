@@ -12,10 +12,10 @@ class ConcorsoArticle
 {
     /**
      * @ORM\Id
-     * @ORM\GeneratedValue
-     * @ORM\Column(type="integer")
+     * @ORM\GeneratedValue(strategy="NONE")
+     * @ORM\Column(type="concorso_article_id")
      */
-    private $id;
+    private ConcorsoArticleId $id;
 
     /**
      * @ORM\Column(type="string", length=255, nullable=true)
@@ -40,9 +40,14 @@ class ConcorsoArticle
     /**
      * @ORM\Column(type="boolean")
      */
-    private $isDraft = true;
+    private bool $isDraft = true;
 
-    public function getId(): ?int
+    public function __construct(ConcorsoArticleId $id = null)
+    {
+        $this->id = $id ?? ConcorsoArticleId::generate();
+    }
+
+    public function getId(): ConcorsoArticleId
     {
         return $this->id;
     }

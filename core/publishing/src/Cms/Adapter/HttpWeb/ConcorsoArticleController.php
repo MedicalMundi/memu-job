@@ -5,6 +5,7 @@ namespace Publishing\Cms\Adapter\HttpWeb;
 use Publishing\Cms\Adapter\HttpWeb\Form\ConcorsoArticleType;
 use Publishing\Cms\Adapter\Persistence\ConcorsoArticleRepository;
 use Publishing\Cms\Application\Model\ConcorsoArticle\ConcorsoArticle;
+use Publishing\Cms\Application\Model\ConcorsoArticle\ConcorsoArticleId;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
@@ -49,8 +50,12 @@ class ConcorsoArticleController extends AbstractController
     /**
      * @Route("/{id}", name="app_concorso_article_show", methods={"GET"})
      */
-    public function show(ConcorsoArticle $concorsoArticle): Response
+    public function show(Request $request, ConcorsoArticleRepository $concorsoArticleRepository): Response
     {
+        $concorsoArticleId = ConcorsoArticleId::fromString((string) $request->query->get('id'));
+        $concorsoArticle = $concorsoArticleRepository->findOneBy([
+            'id' => $concorsoArticleId,
+        ]);
         return $this->render('@cms/concorso_article/show.html.twig', [
             'concorso_article' => $concorsoArticle,
         ]);
@@ -59,8 +64,12 @@ class ConcorsoArticleController extends AbstractController
     /**
      * @Route("/{id}/edit", name="app_concorso_article_edit", methods={"GET", "POST"})
      */
-    public function edit(Request $request, ConcorsoArticle $concorsoArticle, ConcorsoArticleRepository $concorsoArticleRepository): Response
+    public function edit(Request $request, ConcorsoArticleRepository $concorsoArticleRepository): Response
     {
+        $concorsoArticleId = ConcorsoArticleId::fromString((string) $request->query->get('id'));
+        $concorsoArticle = $concorsoArticleRepository->findOneBy([
+            'id' => $concorsoArticleId,
+        ]);
         $form = $this->createForm(ConcorsoArticleType::class, $concorsoArticle);
         $form->handleRequest($request);
 
@@ -79,9 +88,14 @@ class ConcorsoArticleController extends AbstractController
     /**
      * @Route("/{id}", name="app_concorso_article_delete", methods={"POST"})
      */
-    public function delete(Request $request, ConcorsoArticle $concorsoArticle, ConcorsoArticleRepository $concorsoArticleRepository): Response
+    public function delete(Request $request, ConcorsoArticleRepository $concorsoArticleRepository): Response
     {
-        if ($this->isCsrfTokenValid('delete' . $concorsoArticle->getId(), (string) $request->request->get('_token'))) {
+        $concorsoArticleId = ConcorsoArticleId::fromString((string) $request->query->get('id'));
+        $concorsoArticle = $concorsoArticleRepository->findOneBy([
+            'id' => $concorsoArticleId,
+        ]);
+
+        if ($this->isCsrfTokenValid('delete' . $concorsoArticle->getId()->toString(), (string) $request->request->get('_token'))) {
             $concorsoArticleRepository->remove($concorsoArticle, true);
         }
 

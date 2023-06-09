@@ -10,6 +10,7 @@ doctrine:
         types:
             job_id: Ingesting\PublicJob\Adapter\Persistence\Doctrine\Config\JobIdType
             errata_id: Ingesting\Errata\Adapter\Persistence\Doctrine\Config\ErrataIdType
+            concorso_article_id: Publishing\Cms\Adapter\Persistence\DoctrineType\ConcorsoArticleIdType
     orm:
         auto_generate_proxy_classes: true
         naming_strategy: doctrine.orm.naming_strategy.underscore_number_aware

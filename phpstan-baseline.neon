@@ -171,6 +171,21 @@ parameters:
 			path: core/ingesting/tests/PublicJob/Unit/Usecase/ShowFeedJobViewCaseTest.php
 
 		-
+			message: "#^Cannot call method getId\\(\\) on Publishing\\\\Cms\\\\Application\\\\Model\\\\ConcorsoArticle\\\\ConcorsoArticle\\|null\\.$#"
+			count: 1
+			path: core/publishing/src/Cms/Adapter/HttpWeb/ConcorsoArticleController.php
+
+		-
+			message: "#^Parameter \\#1 \\$entity of method Publishing\\\\Cms\\\\Adapter\\\\Persistence\\\\ConcorsoArticleRepository\\:\\:add\\(\\) expects Publishing\\\\Cms\\\\Application\\\\Model\\\\ConcorsoArticle\\\\ConcorsoArticle, Publishing\\\\Cms\\\\Application\\\\Model\\\\ConcorsoArticle\\\\ConcorsoArticle\\|null given\\.$#"
+			count: 1
+			path: core/publishing/src/Cms/Adapter/HttpWeb/ConcorsoArticleController.php
+
+		-
+			message: "#^Parameter \\#1 \\$entity of method Publishing\\\\Cms\\\\Adapter\\\\Persistence\\\\ConcorsoArticleRepository\\:\\:remove\\(\\) expects Publishing\\\\Cms\\\\Application\\\\Model\\\\ConcorsoArticle\\\\ConcorsoArticle, Publishing\\\\Cms\\\\Application\\\\Model\\\\ConcorsoArticle\\\\ConcorsoArticle\\|null given\\.$#"
+			count: 1
+			path: core/publishing/src/Cms/Adapter/HttpWeb/ConcorsoArticleController.php
+
+		-
 			message: "#^Method Publishing\\\\Cms\\\\Adapter\\\\Persistence\\\\ConcorsoArticleRepository\\:\\:findById\\(\\) should return Publishing\\\\Cms\\\\Application\\\\Model\\\\ConcorsoArticle\\\\ConcorsoArticle\\|null but returns mixed\\.$#"
 			count: 1
 			path: core/publishing/src/Cms/Adapter/Persistence/ConcorsoArticleRepository.php
@@ -197,21 +212,6 @@ parameters:
 
 		-
 			message: "#^Property Publishing\\\\Cms\\\\Application\\\\Model\\\\ConcorsoArticle\\\\ConcorsoArticle\\:\\:\\$content has no type specified\\.$#"
-			count: 1
-			path: core/publishing/src/Cms/Application/Model/ConcorsoArticle/ConcorsoArticle.php
-
-		-
-			message: "#^Property Publishing\\\\Cms\\\\Application\\\\Model\\\\ConcorsoArticle\\\\ConcorsoArticle\\:\\:\\$id has no type specified\\.$#"
-			count: 1
-			path: core/publishing/src/Cms/Application/Model/ConcorsoArticle/ConcorsoArticle.php
-
-		-
-			message: "#^Property Publishing\\\\Cms\\\\Application\\\\Model\\\\ConcorsoArticle\\\\ConcorsoArticle\\:\\:\\$id is never written, only read\\.$#"
-			count: 1
-			path: core/publishing/src/Cms/Application/Model/ConcorsoArticle/ConcorsoArticle.php
-
-		-
-			message: "#^Property Publishing\\\\Cms\\\\Application\\\\Model\\\\ConcorsoArticle\\\\ConcorsoArticle\\:\\:\\$isDraft has no type specified\\.$#"
 			count: 1
 			path: core/publishing/src/Cms/Application/Model/ConcorsoArticle/ConcorsoArticle.php
 
