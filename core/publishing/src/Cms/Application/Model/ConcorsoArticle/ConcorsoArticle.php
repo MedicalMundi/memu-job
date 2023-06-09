@@ -40,7 +40,7 @@ class ConcorsoArticle
     /**
      * @ORM\Column(type="boolean")
      */
-    private $isDraft;
+    private $isDraft = true;
 
     public function getId(): ?int
     {
