@@ -52,7 +52,7 @@ class ConcorsoArticleController extends AbstractController
      */
     public function show(Request $request, ConcorsoArticleRepository $concorsoArticleRepository): Response
     {
-        $concorsoArticleId = ConcorsoArticleId::fromString((string) $request->query->get('id'));
+        $concorsoArticleId = ConcorsoArticleId::fromString((string) $request->get('id'));
         $concorsoArticle = $concorsoArticleRepository->findOneBy([
             'id' => $concorsoArticleId,
         ]);
@@ -66,7 +66,7 @@ class ConcorsoArticleController extends AbstractController
      */
     public function edit(Request $request, ConcorsoArticleRepository $concorsoArticleRepository): Response
     {
-        $concorsoArticleId = ConcorsoArticleId::fromString((string) $request->query->get('id'));
+        $concorsoArticleId = ConcorsoArticleId::fromString((string) $request->get('id'));
         $concorsoArticle = $concorsoArticleRepository->findOneBy([
             'id' => $concorsoArticleId,
         ]);
@@ -90,7 +90,7 @@ class ConcorsoArticleController extends AbstractController
      */
     public function delete(Request $request, ConcorsoArticleRepository $concorsoArticleRepository): Response
     {
-        $concorsoArticleId = ConcorsoArticleId::fromString((string) $request->query->get('id'));
+        $concorsoArticleId = ConcorsoArticleId::fromString((string) $request->get('id'));
         $concorsoArticle = $concorsoArticleRepository->findOneBy([
             'id' => $concorsoArticleId,
         ]);

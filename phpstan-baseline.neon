@@ -176,6 +176,11 @@ parameters:
 			path: core/publishing/src/Cms/Adapter/HttpWeb/ConcorsoArticleController.php
 
 		-
+			message: "#^Cannot cast mixed to string\\.$#"
+			count: 3
+			path: core/publishing/src/Cms/Adapter/HttpWeb/ConcorsoArticleController.php
+
+		-
 			message: "#^Parameter \\#1 \\$entity of method Publishing\\\\Cms\\\\Adapter\\\\Persistence\\\\ConcorsoArticleRepository\\:\\:add\\(\\) expects Publishing\\\\Cms\\\\Application\\\\Model\\\\ConcorsoArticle\\\\ConcorsoArticle, Publishing\\\\Cms\\\\Application\\\\Model\\\\ConcorsoArticle\\\\ConcorsoArticle\\|null given\\.$#"
 			count: 1
 			path: core/publishing/src/Cms/Adapter/HttpWeb/ConcorsoArticleController.php

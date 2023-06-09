@@ -166,6 +166,11 @@
     </UnusedMethodCall>
   </file>
   <file src="core/publishing/src/Cms/Adapter/HttpWeb/ConcorsoArticleController.php">
+    <InternalMethod occurrences="3">
+      <code>get</code>
+      <code>get</code>
+      <code>get</code>
+    </InternalMethod>
     <PossiblyNullArgument occurrences="1">
       <code>$concorsoArticle</code>
     </PossiblyNullArgument>
@@ -240,11 +245,6 @@
     </MixedReturnStatement>
   </file>
   <file src="core/publishing/tests/Cms/Functional/ConcorsoArticleControllerTest.php">
-    <ImplicitToStringCast occurrences="3">
-      <code>$fixture-&gt;getId()</code>
-      <code>$fixture-&gt;getId()</code>
-      <code>$fixture-&gt;getId()</code>
-    </ImplicitToStringCast>
     <PropertyTypeCoercion occurrences="1">
       <code>(static::getContainer()-&gt;get('doctrine'))-&gt;getRepository(ConcorsoArticle::class)</code>
     </PropertyTypeCoercion>
