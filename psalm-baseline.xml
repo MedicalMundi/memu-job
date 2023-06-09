@@ -165,6 +165,14 @@
       <code>doesNotPerformAssertions</code>
     </UnusedMethodCall>
   </file>
+  <file src="core/publishing/src/Cms/Adapter/HttpWeb/ConcorsoArticleController.php">
+    <InvalidOperand occurrences="1">
+      <code>$concorsoArticle-&gt;getId()</code>
+    </InvalidOperand>
+    <PossiblyNullOperand occurrences="1">
+      <code>$concorsoArticle-&gt;getId()</code>
+    </PossiblyNullOperand>
+  </file>
   <file src="core/publishing/src/Cms/Adapter/HttpWeb/JobArticleController.php">
     <InvalidOperand occurrences="1">
       <code>$jobArticle-&gt;getId()</code>
@@ -178,6 +186,32 @@
       <code>$id</code>
       <code>$title</code>
     </MissingConstructor>
+  </file>
+  <file src="core/publishing/src/Cms/Application/Model/ConcorsoArticle/ConcorsoArticle.php">
+    <MissingPropertyType occurrences="6">
+      <code>$content</code>
+      <code>$id</code>
+      <code>$isDraft</code>
+      <code>$publicationEnd</code>
+      <code>$publicationStart</code>
+      <code>$title</code>
+    </MissingPropertyType>
+    <MixedInferredReturnType occurrences="6">
+      <code>?\DateTimeImmutable</code>
+      <code>?\DateTimeImmutable</code>
+      <code>?bool</code>
+      <code>?int</code>
+      <code>?string</code>
+      <code>?string</code>
+    </MixedInferredReturnType>
+    <MixedReturnStatement occurrences="6">
+      <code>$this-&gt;content</code>
+      <code>$this-&gt;id</code>
+      <code>$this-&gt;isDraft</code>
+      <code>$this-&gt;publicationEnd</code>
+      <code>$this-&gt;publicationStart</code>
+      <code>$this-&gt;title</code>
+    </MixedReturnStatement>
   </file>
   <file src="core/publishing/src/Cms/Application/Model/JobArticle/JobArticle.php">
     <MissingPropertyType occurrences="5">
@@ -202,6 +236,22 @@
       <code>$this-&gt;title</code>
     </MixedReturnStatement>
   </file>
+  <file src="core/publishing/tests/Cms/Functional/ConcorsoArticleControllerTest.php">
+    <PossiblyNullArgument occurrences="3">
+      <code>$fixture-&gt;getId()</code>
+      <code>$fixture-&gt;getId()</code>
+      <code>$fixture-&gt;getId()</code>
+    </PossiblyNullArgument>
+    <PropertyTypeCoercion occurrences="1">
+      <code>(static::getContainer()-&gt;get('doctrine'))-&gt;getRepository(ConcorsoArticle::class)</code>
+    </PropertyTypeCoercion>
+    <UndefinedInterfaceMethod occurrences="1">
+      <code>remove</code>
+    </UndefinedInterfaceMethod>
+    <UnusedVariable occurrences="1">
+      <code>$crawler</code>
+    </UnusedVariable>
+  </file>
   <file src="core/publishing/tests/Cms/Functional/JobArticleControllerTest.php">
     <PossiblyNullArgument occurrences="3">
       <code>$fixture-&gt;getId()</code>
@@ -218,26 +268,6 @@
       <code>$crawler</code>
     </UnusedVariable>
   </file>
-  <file src="core/websiteBFF/tests/Functional/AbouUsControllerTest.php">
-    <UnusedVariable occurrences="1">
-      <code>$crawler</code>
-    </UnusedVariable>
-  </file>
-  <file src="core/websiteBFF/tests/Functional/ConcorsiControllerTest.php">
-    <UnusedVariable occurrences="1">
-      <code>$crawler</code>
-    </UnusedVariable>
-  </file>
-  <file src="core/websiteBFF/tests/Functional/HomeControllerTest.php">
-    <UnusedVariable occurrences="1">
-      <code>$crawler</code>
-    </UnusedVariable>
-  </file>
-  <file src="core/websiteBFF/tests/Functional/LavoroControllerTest.php">
-    <UnusedVariable occurrences="1">
-      <code>$crawler</code>
-    </UnusedVariable>
-  </file>
   <file src="src/Controller/SymfonyCliController.php">
     <UnusedParam occurrences="1">
       <code>$options</code>
@@ -248,24 +278,6 @@
       <code>array</code>
       <code>array_unique($roles)</code>
     </MixedReturnTypeCoercion>
-  </file>
-  <file src="tests/Behat/AcceptanceContext.php">
-    <InvalidNullableReturnType occurrences="1">
-      <code>NodeElement</code>
-    </InvalidNullableReturnType>
-    <InvalidReturnType occurrences="1">
-      <code>?NodeElement</code>
-    </InvalidReturnType>
-    <MixedMethodCall occurrences="1">
-      <code>execute</code>
-    </MixedMethodCall>
-    <MixedReturnStatement occurrences="1">
-      <code>$closure()</code>
-    </MixedReturnStatement>
-    <NullableReturnStatement occurrences="1"/>
-    <UndefinedInterfaceMethod occurrences="1">
-      <code>createQuery</code>
-    </UndefinedInterfaceMethod>
   </file>
   <file src="tests/E2E/Front/HomeTest.php">
     <PossiblyNullReference occurrences="1">

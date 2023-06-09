@@ -186,6 +186,41 @@ parameters:
 			path: core/publishing/src/Cms/Adapter/Persistence/JobArticleRepository.php
 
 		-
+			message: "#^Property Publishing\\\\Cms\\\\Application\\\\Model\\\\ConcorsoArticle\\\\ConcorsoArticle\\:\\:\\$content has no type specified\\.$#"
+			count: 1
+			path: core/publishing/src/Cms/Application/Model/ConcorsoArticle/ConcorsoArticle.php
+
+		-
+			message: "#^Property Publishing\\\\Cms\\\\Application\\\\Model\\\\ConcorsoArticle\\\\ConcorsoArticle\\:\\:\\$id has no type specified\\.$#"
+			count: 1
+			path: core/publishing/src/Cms/Application/Model/ConcorsoArticle/ConcorsoArticle.php
+
+		-
+			message: "#^Property Publishing\\\\Cms\\\\Application\\\\Model\\\\ConcorsoArticle\\\\ConcorsoArticle\\:\\:\\$id is never written, only read\\.$#"
+			count: 1
+			path: core/publishing/src/Cms/Application/Model/ConcorsoArticle/ConcorsoArticle.php
+
+		-
+			message: "#^Property Publishing\\\\Cms\\\\Application\\\\Model\\\\ConcorsoArticle\\\\ConcorsoArticle\\:\\:\\$isDraft has no type specified\\.$#"
+			count: 1
+			path: core/publishing/src/Cms/Application/Model/ConcorsoArticle/ConcorsoArticle.php
+
+		-
+			message: "#^Property Publishing\\\\Cms\\\\Application\\\\Model\\\\ConcorsoArticle\\\\ConcorsoArticle\\:\\:\\$publicationEnd has no type specified\\.$#"
+			count: 1
+			path: core/publishing/src/Cms/Application/Model/ConcorsoArticle/ConcorsoArticle.php
+
+		-
+			message: "#^Property Publishing\\\\Cms\\\\Application\\\\Model\\\\ConcorsoArticle\\\\ConcorsoArticle\\:\\:\\$publicationStart has no type specified\\.$#"
+			count: 1
+			path: core/publishing/src/Cms/Application/Model/ConcorsoArticle/ConcorsoArticle.php
+
+		-
+			message: "#^Property Publishing\\\\Cms\\\\Application\\\\Model\\\\ConcorsoArticle\\\\ConcorsoArticle\\:\\:\\$title has no type specified\\.$#"
+			count: 1
+			path: core/publishing/src/Cms/Application/Model/ConcorsoArticle/ConcorsoArticle.php
+
+		-
 			message: "#^Property Publishing\\\\Cms\\\\Application\\\\Model\\\\JobArticle\\\\JobArticle\\:\\:\\$content has no type specified\\.$#"
 			count: 1
 			path: core/publishing/src/Cms/Application/Model/JobArticle/JobArticle.php
@@ -218,47 +253,17 @@ parameters:
 		-
 			message: "#^Cannot call method getRepository\\(\\) on object\\|null\\.$#"
 			count: 1
+			path: core/publishing/tests/Cms/Functional/ConcorsoArticleControllerTest.php
+
+		-
+			message: "#^Cannot call method getRepository\\(\\) on object\\|null\\.$#"
+			count: 1
 			path: core/publishing/tests/Cms/Functional/JobArticleControllerTest.php
 
 		-
 			message: "#^Cannot cast mixed to string\\.$#"
 			count: 2
 			path: src/Command/AdminCreateCommand.php
-
-		-
-			message: "#^Cannot call method getManager\\(\\) on object\\|null\\.$#"
-			count: 2
-			path: tests/Behat/AcceptanceContext.php
-
-		-
-			message: "#^Method App\\\\Tests\\\\Behat\\\\AcceptanceContext\\:\\:getNodeElement\\(\\) should return Behat\\\\Mink\\\\Element\\\\NodeElement but returns Behat\\\\Mink\\\\Element\\\\NodeElement\\|null\\.$#"
-			count: 1
-			path: tests/Behat/AcceptanceContext.php
-
-		-
-			message: "#^Method App\\\\Tests\\\\Behat\\\\AcceptanceContext\\:\\:getTestElement\\(\\) is unused\\.$#"
-			count: 1
-			path: tests/Behat/AcceptanceContext.php
-
-		-
-			message: "#^Property App\\\\Tests\\\\Behat\\\\AuthenticationContext\\:\\:\\$kernel is never read, only written\\.$#"
-			count: 1
-			path: tests/Behat/AuthenticationContext.php
-
-		-
-			message: "#^Property App\\\\Tests\\\\Behat\\\\AuthenticationContext\\:\\:\\$userPasswordHasher is never read, only written\\.$#"
-			count: 1
-			path: tests/Behat/AuthenticationContext.php
-
-		-
-			message: "#^Property App\\\\Tests\\\\Behat\\\\OtherDemoContext\\:\\:\\$kernel is never read, only written\\.$#"
-			count: 1
-			path: tests/Behat/OtherDemoContext.php
-
-		-
-			message: "#^Property App\\\\Tests\\\\Behat\\\\OtherDemoContext\\:\\:\\$response is unused\\.$#"
-			count: 1
-			path: tests/Behat/OtherDemoContext.php
 
 		-
 			message: "#^Cannot call method request\\(\\) on Symfony\\\\Component\\\\Panther\\\\Client\\|null\\.$#"
