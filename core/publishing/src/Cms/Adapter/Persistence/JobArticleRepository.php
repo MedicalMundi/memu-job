@@ -63,4 +63,15 @@ class JobArticleRepository extends ServiceEntityRepository
 //            ->getOneOrNullResult()
 //        ;
 //    }
+
+//  READ SIDE
+    public function findById(int $id): ?JobArticle
+    {
+        return $this->createQueryBuilder('j')
+            ->andWhere('j.id = :id')
+            ->setParameter('id', $id)
+            ->getQuery()
+            ->getOneOrNullResult()
+        ;
+    }
 }

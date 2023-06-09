@@ -2,18 +2,18 @@
 
 namespace WebSiteBFF\Adapter\HttpWeb;
 
-use Publishing\Cms\Application\Usecase\LastConcorsi;
+use Publishing\Cms\AdapterDistributedData\CmsDistributedData;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 
 class LavoroController extends AbstractController
 {
-    private LastConcorsi $lastConcorsi;
+    private CmsDistributedData $cmsDistributedData;
 
-    public function __construct(LastConcorsi $lastConcorsi)
+    public function __construct(CmsDistributedData $cmsDistributedData)
     {
-        $this->lastConcorsi = $lastConcorsi;
+        $this->cmsDistributedData = $cmsDistributedData;
     }
 
     /**
@@ -21,9 +21,31 @@ class LavoroController extends AbstractController
      */
     public function index(): Response
     {
-        $data = $this->lastConcorsi->lastConcorsi();
+        // get data (published job article) from cms context
+
+        //filter or serialize, paginate
+
+        // serve data by template
+        $data = $this->cmsDistributedData->getAllPublishedJobArticle();
 
         return $this->render('@website/lavoro/index.html.twig', [
+            'data' => $data,
+        ]);
+    }
+
+    /**
+     * @Route("/lavoro/{id}", name="website_lavoro_show")
+     */
+    public function show(int $id): Response
+    {
+        // get data (published job article) from cms context
+
+        //filter or serialize, paginate
+
+        // serve data by template
+        $data = $this->cmsDistributedData->getJobArticleById($id);
+
+        return $this->render('@website/lavoro/show.html.twig', [
             'data' => $data,
         ]);
     }
