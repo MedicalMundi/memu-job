@@ -171,6 +171,11 @@ parameters:
 			path: core/ingesting/tests/PublicJob/Unit/Usecase/ShowFeedJobViewCaseTest.php
 
 		-
+			message: "#^Method Publishing\\\\Cms\\\\Adapter\\\\Persistence\\\\ConcorsoArticleRepository\\:\\:findById\\(\\) should return Publishing\\\\Cms\\\\Application\\\\Model\\\\ConcorsoArticle\\\\ConcorsoArticle\\|null but returns mixed\\.$#"
+			count: 1
+			path: core/publishing/src/Cms/Adapter/Persistence/ConcorsoArticleRepository.php
+
+		-
 			message: "#^Class Publishing\\\\Cms\\\\Adapter\\\\Persistence\\\\DoctrineArticleRepository extends generic class Doctrine\\\\Bundle\\\\DoctrineBundle\\\\Repository\\\\ServiceEntityRepository but does not specify its types\\: T$#"
 			count: 1
 			path: core/publishing/src/Cms/Adapter/Persistence/DoctrineArticleRepository.php
