@@ -73,4 +73,21 @@ class ConcorsoArticleRepository extends ServiceEntityRepository
             ->getOneOrNullResult()
         ;
     }
+
+    public function findPublishedConcorsoArticles(\DateTimeImmutable $currentDate = null): array
+    {
+        $currentDate ??= new \DateTimeImmutable('now');
+
+        $qb = $this->createQueryBuilder('c');
+        $qb->where('c.publicationStart <= :publicationStart')
+            ->andWhere('c.publicationEnd >= :publicationEnd')
+            ->orderBy('c.publicationStart')
+            ->setParameter('publicationStart', $currentDate->format('Y-m-d'))
+            ->setParameter('publicationEnd', $currentDate->format('Y-m-d'));
+
+        $result = $qb->getQuery()
+            ->getResult();
+
+        return $result;
+    }
 }

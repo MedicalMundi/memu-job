@@ -268,6 +268,20 @@
       <code>$crawler</code>
     </UnusedVariable>
   </file>
+  <file src="core/publishing/tests/Cms/Integration/Adapter/Persistence/ConcorsoArticleRepositoryTest.php">
+    <PossiblyNullArgument occurrences="1">
+      <code>$concorsoArticleFromDB</code>
+    </PossiblyNullArgument>
+    <PossiblyNullReference occurrences="1">
+      <code>getTitle</code>
+    </PossiblyNullReference>
+    <PropertyTypeCoercion occurrences="1">
+      <code>(static::getContainer()-&gt;get('doctrine'))-&gt;getRepository(ConcorsoArticle::class)</code>
+    </PropertyTypeCoercion>
+    <UndefinedInterfaceMethod occurrences="1">
+      <code>remove</code>
+    </UndefinedInterfaceMethod>
+  </file>
   <file src="src/Controller/SymfonyCliController.php">
     <UnusedParam occurrences="1">
       <code>$options</code>
