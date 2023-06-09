@@ -45,6 +45,12 @@ doctrine:
                 dir: '%kernel.project_dir%/core/publishing/src/Cms/Application/Model/JobArticle'
                 prefix: 'Publishing\Cms\Application\Model\JobArticle'
                 alias: JobArticle
+            ConcorsoArticle:
+                is_bundle: false
+                type: annotation
+                dir: '%kernel.project_dir%/core/publishing/src/Cms/Application/Model/ConcorsoArticle'
+                prefix: 'Publishing\Cms\Application\Model\ConcorsoArticle'
+                alias: ConcorsoArticle
 
 when@test:
     doctrine:

@@ -1,0 +1,11 @@
+{% extends '@backoffice/base.html.twig' %}
+
+{% block title %}New ConcorsoArticle{% endblock %}
+
+{% block body %}
+    <h1>Create new ConcorsoArticle</h1>
+
+    {{ include('@cms/concorso_article/_form.html.twig') }}
+
+    <a href="{{ path('app_concorso_article_index') }}">back to list</a>
+{% endblock %}
