@@ -1,0 +1,42 @@
+{% extends '@backoffice/base.html.twig' %}
+
+{% block title %}ConcorsoArticle{% endblock %}
+
+{% block body %}
+    <h1>ConcorsoArticle</h1>
+
+    <table class="table">
+        <tbody>
+            <tr>
+                <th>Id</th>
+                <td>{{ concorso_article.id }}</td>
+            </tr>
+            <tr>
+                <th>Title</th>
+                <td>{{ concorso_article.title }}</td>
+            </tr>
+            <tr>
+                <th>Content</th>
+                <td>{{ concorso_article.content }}</td>
+            </tr>
+            <tr>
+                <th>PublicationStart</th>
+                <td>{{ concorso_article.publicationStart ? concorso_article.publicationStart|date('Y-m-d H:i:s') : '' }}</td>
+            </tr>
+            <tr>
+                <th>PublicationEnd</th>
+                <td>{{ concorso_article.publicationEnd ? concorso_article.publicationEnd|date('Y-m-d H:i:s') : '' }}</td>
+            </tr>
+            <tr>
+                <th>IsDraft</th>
+                <td>{{ concorso_article.isDraft ? 'Yes' : 'No' }}</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <a href="{{ path('app_concorso_article_index') }}">back to list</a>
+
+    <a href="{{ path('app_concorso_article_edit', {'id': concorso_article.id}) }}">edit</a>
+
+    {{ include('@cms/concorso_article/_delete_form.html.twig') }}
+{% endblock %}

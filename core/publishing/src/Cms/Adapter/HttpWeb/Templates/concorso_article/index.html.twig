@@ -1,0 +1,43 @@
+{% extends '@backoffice/base.html.twig' %}
+
+{% block title %}ConcorsoArticle index{% endblock %}
+
+{% block body %}
+    <h1>ConcorsoArticle index</h1>
+
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Title</th>
+                <th>Content</th>
+                <th>PublicationStart</th>
+                <th>PublicationEnd</th>
+                <th>IsDraft</th>
+                <th>actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for concorso_article in concorso_articles %}
+            <tr>
+                <td>{{ concorso_article.id }}</td>
+                <td>{{ concorso_article.title }}</td>
+                <td>{{ concorso_article.content }}</td>
+                <td>{{ concorso_article.publicationStart ? concorso_article.publicationStart|date('Y-m-d H:i:s') : '' }}</td>
+                <td>{{ concorso_article.publicationEnd ? concorso_article.publicationEnd|date('Y-m-d H:i:s') : '' }}</td>
+                <td>{{ concorso_article.isDraft ? 'Yes' : 'No' }}</td>
+                <td>
+                    <a href="{{ path('app_concorso_article_show', {'id': concorso_article.id}) }}">show</a>
+                    <a href="{{ path('app_concorso_article_edit', {'id': concorso_article.id}) }}">edit</a>
+                </td>
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="7">no records found</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    <a href="{{ path('app_concorso_article_new') }}">Create new</a>
+{% endblock %}
