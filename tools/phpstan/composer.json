@@ -1,18 +1,12 @@
 {
-    "require-dev": {
-        "phpstan/extension-installer": "^1.1",
-        "phpstan/phpstan": "^0.12.88",
-        "phpstan/phpstan-deprecation-rules": "^0.12.6",
-        "phpstan/phpstan-phpunit": "^0.12.19",
-        "phpstan/phpstan-strict-rules": "^0.12.9"
-    },
     "config": {
-        "preferred-install": {
-            "*": "dist"
-        },
-        "sort-packages": true,
         "allow-plugins": {
             "phpstan/extension-installer": true
         }
+    },
+    "require-dev": {
+        "phpstan/phpstan-strict-rules": "^1.5",
+        "phpstan/phpstan": "^1.8",
+        "phpstan/phpstan-phpunit": "^1.3"
     }
 }

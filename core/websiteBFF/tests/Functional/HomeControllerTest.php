@@ -22,11 +22,10 @@ class HomeControllerTest extends WebTestCase
 
     public function testIndex(): void
     {
-        self::markTestIncomplete('need login');
-        $crawler = $this->client->request('GET', $this->path);
+        $this->client->request('GET', $this->path);
 
         self::assertResponseStatusCodeSame(200);
-        self::assertPageTitleContains('MedicalJob xxx');
+        self::assertPageTitleContains('MedicalJob');
 
         // Use the $crawler to perform additional assertions e.g.
         // self::assertSame('Some text on the page', $crawler->filter('.p')->first());

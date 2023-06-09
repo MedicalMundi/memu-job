@@ -28,5 +28,6 @@ parameters:
 
     excludes_analyse:
         - tests/bootstrap.php
+        - tests/Behat
 
     tmpDir: var/tools/phpstan/
