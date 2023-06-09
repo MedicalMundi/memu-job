@@ -2,18 +2,18 @@
 
 namespace WebSiteBFF\Adapter\HttpWeb;
 
-use Publishing\Cms\Application\Usecase\LastConcorsi;
+use Publishing\Cms\AdapterDistributedData\CmsDistributedData;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 
 class ConcorsiController extends AbstractController
 {
-    private LastConcorsi $lastConcorsi;
+    private CmsDistributedData $cmsDistributedData;
 
-    public function __construct(LastConcorsi $lastConcorsi)
+    public function __construct(CmsDistributedData $cmsDistributedData)
     {
-        $this->lastConcorsi = $lastConcorsi;
+        $this->cmsDistributedData = $cmsDistributedData;
     }
 
     /**
@@ -21,7 +21,7 @@ class ConcorsiController extends AbstractController
      */
     public function index(): Response
     {
-        $data = $this->lastConcorsi->lastConcorsi();
+        $data = $this->cmsDistributedData->getAllPublishedConcorsoArticle();
 
         return $this->render('@website/concorsi/index.html.twig', [
             'data' => $data,
