@@ -126,7 +126,7 @@ Encore
 
 if (Encore.isProduction()) {
     Encore.setPublicPath('https://medicaljob.altervista.org/public/build-website');
-    Encore.setManifestKeyPrefix('build/');
+    Encore.setManifestKeyPrefix('build-website/');
 }else {
     Encore.setPublicPath('/build-website')
 }
