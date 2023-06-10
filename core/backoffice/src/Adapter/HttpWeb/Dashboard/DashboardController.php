@@ -13,13 +13,15 @@ use Symfony\Component\Routing\Annotation\Route;
  */
 class DashboardController extends AbstractController
 {
+    private const USE_VUE = false;
+
     /**
      * @Route("/", name="backoffice_dashboard", methods={"GET"})
      */
     public function index(): Response
     {
         return $this->render('@backoffice/dashboard/index.html.twig', [
-
+            'useVue' => self::USE_VUE,
         ]);
     }
 }

@@ -13,13 +13,15 @@ use Symfony\Component\Routing\Annotation\Route;
  */
 class CatalogController extends AbstractController
 {
+    private const USE_VUE = false;
+
     /**
      * @Route("/", name="backoffice_catalog", methods={"GET"})
      */
     public function index(): Response
     {
         return $this->render('@backoffice/catalog/index.html.twig', [
-
+            'useVue' => self::USE_VUE,
         ]);
     }
 }

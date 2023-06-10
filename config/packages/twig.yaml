@@ -4,7 +4,7 @@ twig:
         '%kernel.project_dir%/templates': 'main'
         '%kernel.project_dir%/core/publishing/templates': 'front'
         '%kernel.project_dir%/core/publishing/src/Cms/Adapter/HttpWeb/Templates': 'cms'
-        '%kernel.project_dir%/core/backoffice/templates': 'backoffice'
+        '%kernel.project_dir%/core/backoffice/src/Adapter/HttpWeb/Templates': 'backoffice'
         '%kernel.project_dir%/core/websiteBFF/src/Adapter/HttpWeb/Templates': 'website'
 
     form_themes: ['bootstrap_5_horizontal_layout.html.twig']

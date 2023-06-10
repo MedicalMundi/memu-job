@@ -13,13 +13,15 @@ use Symfony\Component\Routing\Annotation\Route;
  */
 class IngestingController extends AbstractController
 {
+    private const USE_VUE = false;
+
     /**
      * @Route("/", name="backoffice_ingesting", methods={"GET"})
      */
     public function index(): Response
     {
         return $this->render('@backoffice/ingesting/index.html.twig', [
-
+            'useVue' => self::USE_VUE,
         ]);
     }
 }
