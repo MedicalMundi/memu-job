@@ -1,0 +1,69 @@
+{% extends '@backoffice/base.html.twig' %}
+
+{% block title %}
+    {{ parent() }}
+{% endblock %}
+
+{% block stylesheets %}
+    {{ parent() }}
+    {{ encore_entry_link_tags('ingesting', null, 'backofficeAppConfig') }}
+{% endblock %}
+
+{% block javascripts %}
+    {{ parent() }}
+    {{ encore_entry_script_tags('ingesting', null, 'backofficeAppConfig') }}
+{% endblock %}
+
+
+{% block main %}
+    {% if useVue %}
+        <div id="app"></div>
+    {% else %}
+        <main class="col-md-9 ms-sm-auto col-lg-10 px-md-4">
+
+            <a href="{{ path('backoffice_cli_command_ingesting_job') }}" class="btn btn-info"> download rss job</a>
+
+            <h1>Rss concorsi</h1>
+
+            <table class="table">
+                <thead>
+                <tr>
+                    <th>Id</th>
+                    <th>Title</th>
+{#                    <th>Content</th>#}
+{#                    <th>PublicationStart</th>#}
+{#                    <th>PublicationEnd</th>#}
+{#                    <th>IsDraft</th>#}
+{#                    <th>actions</th>#}
+                </tr>
+                </thead>
+                <tbody>
+                {% for feed in data %}
+                    <tr>
+                        <td>{{ feed.id }}</td>
+                        <td>
+                            <a href="{{ path('backoffice_ingesting_show_job_feed', {'id': feed.id}) }}" >{{ feed.title }}</a>
+                        </td>
+{#                        <td>{{ feed.content }}</td>#}
+{#                        <td>{{ feed.publicationStart ? feed.publicationStart|date('Y-m-d H:i:s') : '' }}</td>#}
+{#                        <td>{{ feed.publicationEnd ? feed.publicationEnd|date('Y-m-d H:i:s') : '' }}</td>#}
+{#                        <td>{{ feed.isDraft ? 'Yes' : 'No' }}</td>#}
+{#                        <td>#}
+{#                            <a href="{{ path('app_feed_show', {'id': feed.id}) }}">show</a>#}
+{#                            <a href="{{ path('app_feed_edit', {'id': feed.id}) }}">edit</a>#}
+{#                        </td>#}
+                    </tr>
+                {% else %}
+                    <tr>
+                        <td colspan="7">no records found</td>
+                    </tr>
+                {% endfor %}
+                </tbody>
+            </table>
+
+        </main>
+    {% endif %}
+{% endblock %}
+
+
+

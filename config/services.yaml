@@ -23,6 +23,25 @@ services:
     # add more service definitions when explicit configuration is needed
     # please note that last definitions always *replace* previous ones
 
+
+    #
+    #   Ingesting BOUNDED CONTEXT
+    #
+    Ingesting\:
+        resource: '../core/ingesting/src/'
+        exclude:
+            #- '../core/ingesting/src/Application/Model'
+            #- '../core/publishing/src/Cms/Adapter/Persistence/DoctrineType'
+
+    Ingesting\PublicJob\Adapter\HttpWeb\:
+        resource: '../core/ingesting/src/PublicJob/Adapter/HttpWeb/'
+        tags: [ 'controller.service_arguments' ]
+
+    Ingesting\PublicJob\Adapter\Cli\IngestingJobCommand:
+        arguments:
+            - '@Ingesting\PublicJob\Application\PublicJobModule'
+        tags: ['console.command']
+
     Ingesting\PublicJob\Adapter\Persistence\Doctrine\DoctrineJobFeedRepository:
         public: true
 
@@ -33,15 +52,6 @@ services:
     Ingesting\PublicJob\Application\PublicJobModule:
         factory: [ '@Ingesting\PublicJob\Infrastructure\ProductionServiceContainer', 'module' ]
         public: true
-
-    Ingesting\PublicJob\Adapter\Cli\IngestingJobCommand:
-        arguments:
-            - '@Ingesting\PublicJob\Application\PublicJobModule'
-        tags: ['console.command']
-
-    Ingesting\PublicJob\Adapter\HttpWeb\:
-        resource: '../core/ingesting/src/PublicJob/Adapter/HttpWeb/'
-        tags: [ 'controller.service_arguments' ]
 
     Ingesting\PublicJob\Application\Usecase\ShowFeed\ShowAllFeedJob: '@Ingesting\PublicJob\Application\Usecase\ShowFeed\ShowFeedJobViewCase'
     Ingesting\PublicJob\Application\Usecase\ShowFeed\ShowFeedJobViewCase:
@@ -56,9 +66,6 @@ services:
     Ingesting\PublicJob\AclAdapter\InProcess\IngestingAclService:
         arguments:
             - '@Ingesting\PublicJob\AclAdapter\Repository\DistributableJobFeedRepository'
-
-
-
 
     Ingesting\Errata\Adapter\Persistence\Doctrine\DoctrineErrataFeedRepository:
         public: true

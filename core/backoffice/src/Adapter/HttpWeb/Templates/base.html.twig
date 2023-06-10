@@ -2,7 +2,12 @@
 <html lang="it">
 <head>
     <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
+    {% block metadata %}
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+
+
+    {% endblock %}
+
     <title>
         {% block title %}
             Administration MedicalJob!
@@ -34,8 +39,31 @@
     {% endblock %}
 </head>
 <body>
-<main>
+{% block body %}
     {% block header %}
+        {% include '@backoffice/_static/_admin-header-navbar.html.twig' %}
+    {% endblock %}
+
+    <div class="container-fluid">
+        <div class="row">
+            {% block sidebar %}
+                {% include '@backoffice/_static/_admin-sidebar.html.twig' %}
+            {% endblock %}
+
+            {% block main %}
+                {% include '@backoffice/_static/_admin-main.html.twig' %}
+            {% endblock %}
+        </div>
+    </div>
+
+{% endblock %}
+
+
+
+
+
+{#<main>#}
+{#    {% block header %}#}
 
 {#        <header>#}
 {#            <div class="px-3 py-2 bg-dark text-white">#}
@@ -93,24 +121,24 @@
 {#                </div>#}
 {#            </div>#}
 {#        </header>#}
-        <header class="navbar navbar-dark sticky-top bg-dark flex-md-nowrap p-0 shadow">
-            <a class="navbar-brand col-md-3 col-lg-2 me-0 px-3" href="#">MedicalJob</a>
-            <button class="navbar-toggler position-absolute d-md-none collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#sidebarMenu" aria-controls="sidebarMenu" aria-expanded="false" aria-label="Toggle navigation">
-                <span class="navbar-toggler-icon"></span>
-            </button>
-            <input class="form-control form-control-dark w-100" type="text" placeholder="Search" aria-label="Search">
-            <div class="navbar-nav">
-                <div class="nav-item text-nowrap">
-                    <a class="nav-link px-3" href="#">Logout</a>
-                </div>
-            </div>
-        </header>
-    {% endblock %}
+{#        <header class="navbar navbar-dark sticky-top bg-dark flex-md-nowrap p-0 shadow">#}
+{#            <a class="navbar-brand col-md-3 col-lg-2 me-0 px-3" href="#">MedicalJob</a>#}
+{#            <button class="navbar-toggler position-absolute d-md-none collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#sidebarMenu" aria-controls="sidebarMenu" aria-expanded="false" aria-label="Toggle navigation">#}
+{#                <span class="navbar-toggler-icon"></span>#}
+{#            </button>#}
+{#            <input class="form-control form-control-dark w-100" type="text" placeholder="Search" aria-label="Search">#}
+{#            <div class="navbar-nav">#}
+{#                <div class="nav-item text-nowrap">#}
+{#                    <a class="nav-link px-3" href="#">Logout</a>#}
+{#                </div>#}
+{#            </div>#}
+{#        </header>#}
+{#    {% endblock %}#}
 
-    {% block body %}
+{#    {% block body %}#}
 
-        <div class="container-fluid">
-            <div class="row">
+{#        <div class="container-fluid">#}
+{#            <div class="row">#}
 {#                <nav id="sidebarMenu" class="col-md-3 col-lg-2 d-md-block bg-light sidebar collapse">#}
 {#                    <div class="position-sticky pt-3">#}
 {#                        <ul class="nav flex-column">#}
@@ -333,11 +361,11 @@
 {#                        </table>#}
 {#                    </div>#}
 {#                </main>#}
-            </div>
-        </div>
-    {% endblock %}
+{#            </div>#}
+{#        </div>#}
+{#    {% endblock %}#}
 
-    {% block footer %}
+{#    {% block footer %}#}
 {#        <div class="container">#}
 {#            <footer class="d-flex flex-wrap justify-content-between align-items-center py-3 my-4 border-top">#}
 {#                <p class="col-md-4 mb-0 text-muted">© 2021 Company, Inc</p>#}
@@ -354,8 +382,8 @@
 {#                </ul>#}
 {#            </footer>#}
 {#        </div>#}
-    {% endblock %}
-</main>
+{#    {% endblock %}#}
+{#</main>#}
 </body>
 </html>
 

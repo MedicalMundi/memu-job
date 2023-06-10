@@ -1,6 +1,11 @@
 parameters:
 	ignoreErrors:
 		-
+			message: "#^Cannot cast mixed to string\\.$#"
+			count: 1
+			path: core/backoffice/src/Adapter/HttpWeb/Ingesting/IngestingController.php
+
+		-
 			message: "#^Class Ingesting\\\\Errata\\\\Adapter\\\\Persistence\\\\Doctrine\\\\DoctrineErrataFeedRepository extends generic class Doctrine\\\\Bundle\\\\DoctrineBundle\\\\Repository\\\\ServiceEntityRepository but does not specify its types\\: T$#"
 			count: 1
 			path: core/ingesting/src/Errata/Adapter/Persistence/Doctrine/DoctrineErrataFeedRepository.php

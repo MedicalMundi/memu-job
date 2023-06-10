@@ -13,13 +13,15 @@ use Symfony\Component\Routing\Annotation\Route;
  */
 class PublishingController extends AbstractController
 {
+    private const USE_VUE = false;
+
     /**
      * @Route("/", name="backoffice_publishing", methods={"GET"})
      */
     public function index(): Response
     {
         return $this->render('@backoffice/publishing/index.html.twig', [
-
+            'useVue' => self::USE_VUE,
         ]);
     }
 }
