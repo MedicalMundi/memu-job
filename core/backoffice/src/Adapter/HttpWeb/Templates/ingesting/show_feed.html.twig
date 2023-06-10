@@ -1,0 +1,42 @@
+{% extends '@backoffice/base.html.twig' %}
+
+{% block title %}
+    {{ parent() }}
+{% endblock %}
+
+{% block stylesheets %}
+    {{ parent() }}
+    {{ encore_entry_link_tags('ingesting', null, 'backofficeAppConfig') }}
+{% endblock %}
+
+{% block javascripts %}
+    {{ parent() }}
+    {{ encore_entry_script_tags('ingesting', null, 'backofficeAppConfig') }}
+{% endblock %}
+
+
+{% block main %}
+    {% if useVue %}
+        <div id="app"></div>
+    {% else %}
+        <main class="col-md-9 ms-sm-auto col-lg-10 px-md-4">
+            <h1>Rss feed</h1>
+                {% for feed in data %}
+                    <div class="row">
+                        <p>{{ feed.id }}</p>
+                        <p>{{ feed.title }}</p>
+                        <p>{{ feed.description }}</p>
+                        <p>
+                            <a href="{{ feed.link }}" target="_blank"> {{ feed.link }} </a>
+                        </p>
+                        <p>{{ feed.publicationDate ? feed.publicationDate|date('Y-m-d H:i:s') : '' }}</p>
+                    </div>
+                {% else %}
+                        <p >no records found</p>
+                {% endfor %}
+        </main>
+    {% endif %}
+{% endblock %}
+
+
+
