@@ -3,6 +3,7 @@
 {% block title %}Edit JobArticle{% endblock %}
 
 {% block body %}
+    {{ include('@cms/_static/flash_message.html.twig') }}
     <h1>Edit JobArticle</h1>
 
     {{ include('@cms/job_article/_form.html.twig', {'button_label': 'Update'}) }}

@@ -38,6 +38,7 @@ class ConcorsoArticleController extends AbstractController
         if ($form->isSubmitted() && $form->isValid()) {
             $concorsoArticleRepository->add($concorsoArticle, true);
 
+            $this->addFlash('success', 'Articolo creato');
             return $this->redirectToRoute('app_concorso_article_index', [], Response::HTTP_SEE_OTHER);
         }
 
@@ -76,6 +77,7 @@ class ConcorsoArticleController extends AbstractController
         if ($form->isSubmitted() && $form->isValid()) {
             $concorsoArticleRepository->add($concorsoArticle, true);
 
+            $this->addFlash('success', 'Articolo modificato');
             return $this->redirectToRoute('app_concorso_article_index', [], Response::HTTP_SEE_OTHER);
         }
 

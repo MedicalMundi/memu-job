@@ -3,6 +3,7 @@
 {% block title %}Edit ConcorsoArticle{% endblock %}
 
 {% block body %}
+    {{ include('@cms/_static/flash_message.html.twig') }}
     <h1>Edit ConcorsoArticle</h1>
 
     {{ include('@cms/concorso_article/_form.html.twig', {'button_label': 'Update'}) }}

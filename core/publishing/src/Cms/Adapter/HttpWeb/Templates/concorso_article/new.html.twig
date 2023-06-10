@@ -3,6 +3,7 @@
 {% block title %}New ConcorsoArticle{% endblock %}
 
 {% block body %}
+    {{ include('@cms/_static/flash_message.html.twig') }}
     <h1>Create new ConcorsoArticle</h1>
 
     {{ include('@cms/concorso_article/_form.html.twig') }}
