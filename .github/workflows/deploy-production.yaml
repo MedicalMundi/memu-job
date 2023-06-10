@@ -111,7 +111,7 @@ jobs:
       - name: Run database migration on remote server
         uses: wei/curl@master
         with:
-          args: --insecure -I https://medicaljob.altervista.org/command/cache/clear
+          args: --insecure -I https://medicaljob.altervista.org/command/db/migrate
 
 #  cache_clear-on-remote-server:
 #    name: Cache clear
