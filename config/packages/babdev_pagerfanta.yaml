@@ -1,0 +1,7 @@
+babdev_pagerfanta:
+  default_view: twig
+  default_twig_template: '@BabDevPagerfanta/twitter_bootstrap5.html.twig'
+
+  exceptions_strategy:
+    out_of_range_page: to_http_not_found #custom # Disables converting `Pagerfanta\Exception\NotValidMaxPerPageException` to a 404 response
+    not_valid_current_page: to_http_not_found

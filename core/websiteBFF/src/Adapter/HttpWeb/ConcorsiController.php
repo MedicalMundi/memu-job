@@ -2,6 +2,8 @@
 
 namespace WebSiteBFF\Adapter\HttpWeb;
 
+use Pagerfanta\Adapter\ArrayAdapter;
+use Pagerfanta\Pagerfanta;
 use Publishing\Cms\AdapterDistributedData\CmsDistributedData;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
@@ -20,12 +22,19 @@ class ConcorsiController extends AbstractController
     /**
      * @Route("/concorsi", name="website_concorsi")
      */
-    public function index(): Response
+    public function index(Request $request): Response
     {
         $data = $this->cmsDistributedData->getAllPublishedConcorsoArticle();
 
+        $pager = new Pagerfanta(
+            new ArrayAdapter($data)
+        );
+
+        $pager->setMaxPerPage(2);
+        $pager->setCurrentPage((int) $request->query->get('page', '1'));
+
         return $this->render('@website/concorsi/index.html.twig', [
-            'data' => $data,
+            'pager' => $pager,
         ]);
     }
 
