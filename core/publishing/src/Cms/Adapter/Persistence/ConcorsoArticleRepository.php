@@ -64,7 +64,7 @@ class ConcorsoArticleRepository extends ServiceEntityRepository
 //        ;
 //    }
 
-    public function findById(int $id): ?ConcorsoArticle
+    public function findById(string $id): ?ConcorsoArticle
     {
         return $this->createQueryBuilder('c')
             ->andWhere('c.id = :id')

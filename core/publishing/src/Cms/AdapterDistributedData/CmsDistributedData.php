@@ -32,7 +32,7 @@ class CmsDistributedData
         return $this->concorsoArticleRepository->findAll();
     }
 
-    public function getConcorsoArticleById(int $id): array
+    public function getConcorsoArticleById(string $id): array
     {
         return [$this->concorsoArticleRepository->findById($id)];
     }

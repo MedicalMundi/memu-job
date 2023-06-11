@@ -1,0 +1,21 @@
+{% extends '@website/base.html.twig' %}
+
+{% block title %}
+    {{ parent() }} | concorsi
+{% endblock %}
+
+{% block body %}
+    <div class="container">
+        <h1 class="head-line">
+            <i class="bi-heart text-danger"></i>
+            Concorso
+        </h1>
+        <p>{{ data.0.id }}</p>
+        <br>
+        <p>{{ data.0.title }}</p>
+        <br>
+        <p class="col-5">
+            {{ data.0.content }}
+        </p>
+    </div>
+{% endblock %}
