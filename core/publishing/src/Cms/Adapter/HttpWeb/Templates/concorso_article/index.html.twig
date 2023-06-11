@@ -2,7 +2,8 @@
 
 {% block title %}ConcorsoArticle index{% endblock %}
 
-{% block body %}
+{% block main %}
+<main class="col-md-9 ms-sm-auto col-lg-10 px-md-4">
     {{ include('@cms/_static/flash_message.html.twig') }}
     <h1>ConcorsoArticle index</h1>
 
@@ -28,8 +29,8 @@
                 <td>{{ concorso_article.publicationEnd ? concorso_article.publicationEnd|date('Y-m-d H:i:s') : '' }}</td>
                 <td>{{ concorso_article.isDraft ? 'Yes' : 'No' }}</td>
                 <td>
-                    <a href="{{ path('app_concorso_article_show', {'id': concorso_article.id}) }}">show</a>
-                    <a href="{{ path('app_concorso_article_edit', {'id': concorso_article.id}) }}">edit</a>
+                    <a href="{{ path('cms_concorso_article_show', {'id': concorso_article.id}) }}">show</a>
+                    <a href="{{ path('cms_concorso_article_edit', {'id': concorso_article.id}) }}">edit</a>
                 </td>
             </tr>
         {% else %}
@@ -40,5 +41,6 @@
         </tbody>
     </table>
 
-    <a href="{{ path('app_concorso_article_new') }}">Create new</a>
+    <a href="{{ path('cms_concorso_article_new') }}">Create new</a>
+</main>
 {% endblock %}

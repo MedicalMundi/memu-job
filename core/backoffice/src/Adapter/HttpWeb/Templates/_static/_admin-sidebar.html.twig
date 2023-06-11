@@ -19,11 +19,14 @@
                     Catalogo [WIP]
                 </a>
             </li>
-            <li class="nav-item">
-                <a class="nav-link" href="{{ path('backoffice_publishing') }}">
-                    <i class="bi bi-gear"></i>
-                    Publishing [WIP]
+            <li class="nav-item dropdown">
+                <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                    <i class="bi bi-gear"></i> Publishing [WIP]
                 </a>
+                <ul class="dropdown-menu">
+                    <li><a class="dropdown-item" href="{{ path('cms_concorso_article_index') }}">Concorsi</a></li>
+                    <li><a class="dropdown-item" href="{{ path('cms_job_article_index') }}">Job</a></li>
+                </ul>
             </li>
             <li class="nav-item">
                 <a class="nav-link active" href="#">

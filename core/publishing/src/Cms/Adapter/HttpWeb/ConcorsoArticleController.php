@@ -12,12 +12,12 @@ use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 
 /**
- * @Route("/backoffice/concorso/article")
+ * @Route("/backoffice/publishing/concorso/article")
  */
 class ConcorsoArticleController extends AbstractController
 {
     /**
-     * @Route("/", name="app_concorso_article_index", methods={"GET"})
+     * @Route("/", name="cms_concorso_article_index", methods={"GET"})
      */
     public function index(ConcorsoArticleRepository $concorsoArticleRepository): Response
     {
@@ -27,7 +27,7 @@ class ConcorsoArticleController extends AbstractController
     }
 
     /**
-     * @Route("/new", name="app_concorso_article_new", methods={"GET", "POST"})
+     * @Route("/new", name="cms_concorso_article_new", methods={"GET", "POST"})
      */
     public function new(Request $request, ConcorsoArticleRepository $concorsoArticleRepository): Response
     {
@@ -39,7 +39,7 @@ class ConcorsoArticleController extends AbstractController
             $concorsoArticleRepository->add($concorsoArticle, true);
 
             $this->addFlash('success', 'Articolo creato');
-            return $this->redirectToRoute('app_concorso_article_index', [], Response::HTTP_SEE_OTHER);
+            return $this->redirectToRoute('cms_concorso_article_index', [], Response::HTTP_SEE_OTHER);
         }
 
         return $this->renderForm('@cms/concorso_article/new.html.twig', [
@@ -49,7 +49,7 @@ class ConcorsoArticleController extends AbstractController
     }
 
     /**
-     * @Route("/{id}", name="app_concorso_article_show", methods={"GET"})
+     * @Route("/{id}", name="cms_concorso_article_show", methods={"GET"})
      */
     public function show(Request $request, ConcorsoArticleRepository $concorsoArticleRepository): Response
     {
@@ -63,7 +63,7 @@ class ConcorsoArticleController extends AbstractController
     }
 
     /**
-     * @Route("/{id}/edit", name="app_concorso_article_edit", methods={"GET", "POST"})
+     * @Route("/{id}/edit", name="cms_concorso_article_edit", methods={"GET", "POST"})
      */
     public function edit(Request $request, ConcorsoArticleRepository $concorsoArticleRepository): Response
     {
@@ -78,7 +78,7 @@ class ConcorsoArticleController extends AbstractController
             $concorsoArticleRepository->add($concorsoArticle, true);
 
             $this->addFlash('success', 'Articolo modificato');
-            return $this->redirectToRoute('app_concorso_article_index', [], Response::HTTP_SEE_OTHER);
+            return $this->redirectToRoute('cms_concorso_article_index', [], Response::HTTP_SEE_OTHER);
         }
 
         return $this->renderForm('@cms/concorso_article/edit.html.twig', [
@@ -88,7 +88,7 @@ class ConcorsoArticleController extends AbstractController
     }
 
     /**
-     * @Route("/{id}", name="app_concorso_article_delete", methods={"POST"})
+     * @Route("/{id}", name="cms_concorso_article_delete", methods={"POST"})
      */
     public function delete(Request $request, ConcorsoArticleRepository $concorsoArticleRepository): Response
     {
@@ -101,6 +101,6 @@ class ConcorsoArticleController extends AbstractController
             $concorsoArticleRepository->remove($concorsoArticle, true);
         }
 
-        return $this->redirectToRoute('app_concorso_article_index', [], Response::HTTP_SEE_OTHER);
+        return $this->redirectToRoute('cms_concorso_article_index', [], Response::HTTP_SEE_OTHER);
     }
 }

@@ -2,41 +2,43 @@
 
 {% block title %}JobArticle index{% endblock %}
 
-{% block body %}
-    {{ include('@cms/_static/flash_message.html.twig') }}
-    <h1>JobArticle index</h1>
+{% block main %}
+    <main class="col-md-9 ms-sm-auto col-lg-10 px-md-4">
+        {{ include('@cms/_static/flash_message.html.twig') }}
+        <h1>JobArticle index</h1>
 
-    <table class="table">
-        <thead>
-            <tr>
-                <th>Id</th>
-                <th>Title</th>
-                <th>Content</th>
-                <th>PubicationStart</th>
-                <th>PublicationEnd</th>
-                <th>actions</th>
-            </tr>
-        </thead>
-        <tbody>
-        {% for job_article in job_articles %}
-            <tr>
-                <td>{{ job_article.id }}</td>
-                <td>{{ job_article.title }}</td>
-                <td>{{ job_article.content }}</td>
-                <td>{{ job_article.publicationStart ? job_article.publicationStart|date('Y-m-d H:i:s') : '' }}</td>
-                <td>{{ job_article.publicationEnd ? job_article.publicationEnd|date('Y-m-d H:i:s') : '' }}</td>
-                <td>
-                    <a href="{{ path('cms_job_article_show', {'id': job_article.id}) }}">show</a>
-                    <a href="{{ path('cms_job_article_edit', {'id': job_article.id}) }}">edit</a>
-                </td>
-            </tr>
-        {% else %}
-            <tr>
-                <td colspan="6">no records found</td>
-            </tr>
-        {% endfor %}
-        </tbody>
-    </table>
+        <table class="table">
+            <thead>
+                <tr>
+                    <th>Id</th>
+                    <th>Title</th>
+                    <th>Content</th>
+                    <th>PubicationStart</th>
+                    <th>PublicationEnd</th>
+                    <th>actions</th>
+                </tr>
+            </thead>
+            <tbody>
+            {% for job_article in job_articles %}
+                <tr>
+                    <td>{{ job_article.id }}</td>
+                    <td>{{ job_article.title }}</td>
+                    <td>{{ job_article.content }}</td>
+                    <td>{{ job_article.publicationStart ? job_article.publicationStart|date('Y-m-d H:i:s') : '' }}</td>
+                    <td>{{ job_article.publicationEnd ? job_article.publicationEnd|date('Y-m-d H:i:s') : '' }}</td>
+                    <td>
+                        <a href="{{ path('cms_job_article_show', {'id': job_article.id}) }}">show</a>
+                        <a href="{{ path('cms_job_article_edit', {'id': job_article.id}) }}">edit</a>
+                    </td>
+                </tr>
+            {% else %}
+                <tr>
+                    <td colspan="6">no records found</td>
+                </tr>
+            {% endfor %}
+            </tbody>
+        </table>
 
-    <a href="{{ path('cms_job_article_new') }}">Create new</a>
+        <a href="{{ path('cms_job_article_new') }}">Create new</a>
+    </main>
 {% endblock %}

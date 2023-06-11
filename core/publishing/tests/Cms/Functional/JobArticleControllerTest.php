@@ -17,7 +17,7 @@ class JobArticleControllerTest extends WebTestCase
 
     private JobArticleRepository $repository;
 
-    private string $path = '/backoffice/job/article/';
+    private string $path = '/backoffice/publishing/job/article/';
 
     protected function setUp(): void
     {
@@ -55,7 +55,7 @@ class JobArticleControllerTest extends WebTestCase
             'job_article[publicationEnd]' => '2024-01-01',
         ]);
 
-        self::assertResponseRedirects('/backoffice/job/article/');
+        self::assertResponseRedirects('/backoffice/publishing/job/article/');
 
         self::assertSame($originalNumObjectsInRepository + 1, \count($this->repository->findAll()));
     }
@@ -97,7 +97,7 @@ class JobArticleControllerTest extends WebTestCase
             'job_article[publicationEnd]' => '',
         ]);
 
-        self::assertResponseRedirects('/backoffice/job/article/');
+        self::assertResponseRedirects('/backoffice/publishing/job/article/');
 
         $fixture = $this->repository->findAll();
 
@@ -125,6 +125,6 @@ class JobArticleControllerTest extends WebTestCase
         $this->client->submitForm('Delete');
 
         self::assertSame($originalNumObjectsInRepository, \count($this->repository->findAll()));
-        self::assertResponseRedirects('/backoffice/job/article/');
+        self::assertResponseRedirects('/backoffice/publishing/job/article/');
     }
 }

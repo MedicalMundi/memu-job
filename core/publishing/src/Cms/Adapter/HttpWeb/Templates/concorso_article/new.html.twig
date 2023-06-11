@@ -2,11 +2,13 @@
 
 {% block title %}New ConcorsoArticle{% endblock %}
 
-{% block body %}
-    {{ include('@cms/_static/flash_message.html.twig') }}
-    <h1>Create new ConcorsoArticle</h1>
+{% block main %}
+    <main class="col-md-9 ms-sm-auto col-lg-10 px-md-4">
+        {{ include('@cms/_static/flash_message.html.twig') }}
+        <h1>Create new ConcorsoArticle</h1>
 
-    {{ include('@cms/concorso_article/_form.html.twig') }}
+        {{ include('@cms/concorso_article/_form.html.twig') }}
 
-    <a href="{{ path('app_concorso_article_index') }}">back to list</a>
+        <a href="{{ path('cms_concorso_article_index') }}">back to list</a>
+    </main>
 {% endblock %}

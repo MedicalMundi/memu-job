@@ -17,7 +17,7 @@ class ConcorsoArticleControllerTest extends WebTestCase
 
     private ConcorsoArticleRepository $repository;
 
-    private string $path = '/backoffice/concorso/article/';
+    private string $path = '/backoffice/publishing/concorso/article/';
 
     protected function setUp(): void
     {
@@ -57,7 +57,7 @@ class ConcorsoArticleControllerTest extends WebTestCase
             'concorso_article[isDraft]' => true,
         ]);
 
-        self::assertResponseRedirects('/backoffice/concorso/article/');
+        self::assertResponseRedirects('/backoffice/publishing/concorso/article/');
 
         self::assertSame($originalNumObjectsInRepository + 1, \count($this->repository->findAll()));
     }
@@ -102,7 +102,7 @@ class ConcorsoArticleControllerTest extends WebTestCase
             'concorso_article[isDraft]' => true,
         ]);
 
-        self::assertResponseRedirects('/backoffice/concorso/article/');
+        self::assertResponseRedirects('/backoffice/publishing/concorso/article/');
 
         $fixture = $this->repository->findAll();
 
@@ -132,6 +132,6 @@ class ConcorsoArticleControllerTest extends WebTestCase
         $this->client->submitForm('Delete');
 
         self::assertSame($originalNumObjectsInRepository, \count($this->repository->findAll()));
-        self::assertResponseRedirects('/backoffice/concorso/article/');
+        self::assertResponseRedirects('/backoffice/publishing/concorso/article/');
     }
 }
