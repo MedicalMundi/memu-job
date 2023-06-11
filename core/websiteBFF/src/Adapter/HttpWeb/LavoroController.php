@@ -2,8 +2,11 @@
 
 namespace WebSiteBFF\Adapter\HttpWeb;
 
+use Pagerfanta\Adapter\ArrayAdapter;
+use Pagerfanta\Pagerfanta;
 use Publishing\Cms\AdapterDistributedData\CmsDistributedData;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 
@@ -19,17 +22,19 @@ class LavoroController extends AbstractController
     /**
      * @Route("/lavoro", name="website_lavoro")
      */
-    public function index(): Response
+    public function index(Request $request): Response
     {
-        // get data (published job article) from cms context
-
-        //filter or serialize, paginate
-
-        // serve data by template
         $data = $this->cmsDistributedData->getAllPublishedJobArticle();
 
+        $pager = new Pagerfanta(
+            new ArrayAdapter($data)
+        );
+
+        $pager->setMaxPerPage(2);
+        $pager->setCurrentPage((int) $request->query->get('page', '1'));
+
         return $this->render('@website/lavoro/index.html.twig', [
-            'data' => $data,
+            'pager' => $pager,
         ]);
     }
 

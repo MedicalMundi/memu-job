@@ -3,6 +3,8 @@
 namespace Backoffice\Adapter\HttpWeb\Ingesting;
 
 use Ingesting\PublicJob\AdapterDistributedData\IngestingDistributedData;
+use Pagerfanta\Adapter\ArrayAdapter;
+use Pagerfanta\Pagerfanta;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\IsGranted;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
@@ -27,13 +29,20 @@ class IngestingController extends AbstractController
     /**
      * @Route("/", name="backoffice_ingesting", methods={"GET"})
      */
-    public function index(): Response
+    public function index(Request $request): Response
     {
         $data = $this->ingestingDistributedData->findAllJobFeed();
 
+        $pager = new Pagerfanta(
+            new ArrayAdapter($data)
+        );
+
+        $pager->setMaxPerPage(20);
+        $pager->setCurrentPage((int) $request->query->get('page', '1'));
+
         return $this->render('@backoffice/ingesting/index.html.twig', [
             'useVue' => self::USE_VUE,
-            'data' => $data,
+            'pager' => $pager,
         ]);
     }
 

@@ -12,7 +12,7 @@
             <tr>
                 <th>Id</th>
                 <th>Title</th>
-                <th>Content</th>
+{#                <th>Content</th>#}
                 <th>PublicationStart</th>
                 <th>PublicationEnd</th>
                 <th>IsDraft</th>
@@ -20,11 +20,11 @@
             </tr>
         </thead>
         <tbody>
-        {% for concorso_article in concorso_articles %}
+        {% for concorso_article in pager %}
             <tr>
-                <td>{{ concorso_article.id }}</td>
+                <td>{{ concorso_article.id | u.truncate(8) }}</td>
                 <td>{{ concorso_article.title }}</td>
-                <td>{{ concorso_article.content }}</td>
+{#                <td>{{ concorso_article.content }}</td>#}
                 <td>{{ concorso_article.publicationStart ? concorso_article.publicationStart|date('Y-m-d H:i:s') : '' }}</td>
                 <td>{{ concorso_article.publicationEnd ? concorso_article.publicationEnd|date('Y-m-d H:i:s') : '' }}</td>
                 <td>{{ concorso_article.isDraft ? 'Yes' : 'No' }}</td>
@@ -42,5 +42,7 @@
     </table>
 
     <a href="{{ path('cms_concorso_article_new') }}">Create new</a>
+
+    {{ pagerfanta(pager) }}
 </main>
 {% endblock %}

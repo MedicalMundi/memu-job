@@ -1,4 +1,7 @@
 {
+    "babdev/pagerfanta-bundle": {
+        "version": "v3.8.0"
+    },
     "bamarni/composer-bin-plugin": {
         "version": "1.4.1"
     },
