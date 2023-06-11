@@ -39,6 +39,7 @@ jobs:
   triggering-workflow-info:
     runs-on: ubuntu-20.04
     name: Triggering workflow info
+    if: ${{ vars.SHOW_WORKFLOW_INFO }}
     steps:
       - name: Dump context
         uses: crazy-max/ghaction-dump-context@v2
@@ -115,12 +116,6 @@ jobs:
       - name: Install Composer dependencies
         run: composer install --prefer-dist --no-progress --no-scripts --
 
-#      - name: Run composer validate
-#        run: composer validate --strict --ansi
-#
-#      - name: Run composer normalize
-#        run: composer-normalize --dry-run --ansi
-
       - name: Validate configurations files
         run: |
           ./bin/console lint:yaml config/ --ansi
@@ -134,15 +129,25 @@ jobs:
         run: |
           ./bin/console lint:twig templates/ --ansi
 
-      #      - name: Run database migrations
-      #        if: ${{ github.ref_name == 'main' }}
-      #        run: ./bin/console doctrine:migrations:migrate -e test -n -vv --allow-no-migration --ansi
-      #        env:
-      #          DATABASE_URL: postgresql://ci-db-user:ci-db-password@127.0.0.1:${{ job.services.pgsql.ports['5432'] }}/ci-db?serverVersion=13&charset=utf8
+      - name: Run database migrations
+        if: ${{ github.ref_name == 'main' }}
+        run: ./bin/console doctrine:migrations:migrate -e test -n -vv --allow-no-migration --ansi
+        env:
+          DATABASE_URL: mysql://ci-db-user:ci-db-password@127.0.0.1:${{ job.services.mysql.ports['3306'] }}/ci-db?serverVersion=8.0&charset=utf8mb4
+        # TODO
+        # DOPO LE MIGRATION ESEGUIRE CONTROLLO SCHEMA VALIDATE
+        # EVENTUALMENTE FAIL FAST, NO INTEGRATION, NO FUNCTIONAL
+
+      - name: Run database validate After migration
+        if: ${{ github.ref_name == 'main' }}
+        run: ./bin/console doctrine:schema:validate -e test --ansi
+        env:
+          DATABASE_URL: mysql://ci-db-user:ci-db-password@127.0.0.1:${{ job.services.mysql.ports['3306'] }}/ci-db?serverVersion=8.0&charset=utf8mb4
 
       - name: Run database schema update
-        #        if: ${{ github.ref_name != 'main' }}
+        if: ${{ github.ref_name != 'main' }}
         run: ./bin/console doctrine:schema:update -e test --force --ansi
+        continue-on-error: false
         env:
           DATABASE_URL: mysql://ci-db-user:ci-db-password@127.0.0.1:${{ job.services.mysql.ports['3306'] }}/ci-db?serverVersion=8.0&charset=utf8mb4
 
