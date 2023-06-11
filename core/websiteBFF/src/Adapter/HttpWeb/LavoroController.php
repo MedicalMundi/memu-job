@@ -24,11 +24,6 @@ class LavoroController extends AbstractController
      */
     public function index(Request $request): Response
     {
-        // get data (published job article) from cms context
-
-        //filter or serialize, paginate
-
-        // serve data by template
         $data = $this->cmsDistributedData->getAllPublishedJobArticle();
 
         $pager = new Pagerfanta(

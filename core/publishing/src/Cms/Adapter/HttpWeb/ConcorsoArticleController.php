@@ -2,6 +2,8 @@
 
 namespace Publishing\Cms\Adapter\HttpWeb;
 
+use Pagerfanta\Adapter\ArrayAdapter;
+use Pagerfanta\Pagerfanta;
 use Publishing\Cms\Adapter\HttpWeb\Form\ConcorsoArticleType;
 use Publishing\Cms\Adapter\Persistence\ConcorsoArticleRepository;
 use Publishing\Cms\Application\Model\ConcorsoArticle\ConcorsoArticle;
@@ -19,10 +21,19 @@ class ConcorsoArticleController extends AbstractController
     /**
      * @Route("/", name="cms_concorso_article_index", methods={"GET"})
      */
-    public function index(ConcorsoArticleRepository $concorsoArticleRepository): Response
+    public function index(Request $request, ConcorsoArticleRepository $concorsoArticleRepository): Response
     {
+        $concorsoArticles = $concorsoArticleRepository->findAll();
+
+        $pager = new Pagerfanta(
+            new ArrayAdapter($concorsoArticles)
+        );
+
+        $pager->setMaxPerPage(2);
+        $pager->setCurrentPage((int) $request->query->get('page', '1'));
+
         return $this->render('@cms/concorso_article/index.html.twig', [
-            'concorso_articles' => $concorsoArticleRepository->findAll(),
+            'pager' => $pager,
         ]);
     }
 

@@ -38,9 +38,9 @@
                 </tr>
                 </thead>
                 <tbody>
-                {% for feed in data %}
+                {% for feed in pager %}
                     <tr>
-                        <td>{{ feed.id }}</td>
+                        <td>{{ feed.id |u.truncate(8)}}</td>
                         <td>
                             <a href="{{ path('backoffice_ingesting_show_job_feed', {'id': feed.id}) }}" >{{ feed.title }}</a>
                         </td>
@@ -60,6 +60,7 @@
                 {% endfor %}
                 </tbody>
             </table>
+            {{ pagerfanta(pager) }}
 
         </main>
     {% endif %}
