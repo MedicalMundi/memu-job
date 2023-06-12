@@ -59,3 +59,21 @@ jobs:
           name: phpunit-core-test
           flags: unit-test
           fail_ci_if_error: false
+
+      ###
+      #   INTEGRATION TESTS
+      ###
+      - name: Download integration test coverage artifact
+        id: download-integration-test-coverage-artifact
+        uses: actions/download-artifact@v3
+        with:
+          name: ${{ vars.ARTIFATC_NAME_FOR_INTEGRATION_TEST_COVERAGE }}-${{ inputs.triggering-sha}}
+
+      - name: Upload integration test coverage results to Codecov
+        if: ${{ (steps.download-integration-test-coverage-artifact.outcome == 'success')}}
+        uses: codecov/codecov-action@v3
+        with:
+          files: ${{ vars.REPORT_NAME_FOR_INTEGRATION_TEST_COVERAGE_CLOVER }},${{ env.REPORT_NAME_FOR_INTEGRATION_TEST_COVERAGE_JUNIT }}
+          name: phpunit-integration-test
+          flags: integration-test
+          fail_ci_if_error: false
