@@ -129,7 +129,7 @@ class ConcorsoArticleControllerTest extends WebTestCase
         self::assertSame($originalNumObjectsInRepository + 1, \count($this->repository->findAll()));
 
         $this->client->request('GET', sprintf('%s%s', $this->path, $fixture->getId()->toString()));
-        $this->client->submitForm('Delete');
+        $this->client->submitForm('Elimina');
 
         self::assertSame($originalNumObjectsInRepository, \count($this->repository->findAll()));
         self::assertResponseRedirects('/backoffice/publishing/concorso/article/');
