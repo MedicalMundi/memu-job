@@ -27,9 +27,9 @@ class CmsDistributedData
         return [$this->jobArticleRepository->findById($id)];
     }
 
-    public function getAllPublishedConcorsoArticle(): array
+    public function getAllPublishedConcorsoArticles(): array
     {
-        return $this->concorsoArticleRepository->findAll();
+        return $this->concorsoArticleRepository->findPublishedConcorsoArticles();
     }
 
     public function getConcorsoArticleById(string $id): array

@@ -81,6 +81,7 @@ class ConcorsoArticleRepository extends ServiceEntityRepository
         $qb = $this->createQueryBuilder('c');
         $qb->where('c.publicationStart <= :publicationStart')
             ->andWhere('c.publicationEnd >= :publicationEnd')
+            ->andWhere('c.isDraft = 0')
             ->orderBy('c.publicationStart')
             ->setParameter('publicationStart', $currentDate->format('Y-m-d'))
             ->setParameter('publicationEnd', $currentDate->format('Y-m-d'));

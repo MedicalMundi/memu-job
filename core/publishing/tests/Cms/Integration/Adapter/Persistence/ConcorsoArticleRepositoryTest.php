@@ -56,20 +56,22 @@ class ConcorsoArticleRepositoryTest extends KernelTestCase
     */
     public function testFindPublishedConcorsoArticles(): void
     {
-        self::markTestIncomplete('funziona ma il test fallishe cmq. investigare');
         $anActiveConcorsoArticle = $this->createRandomConcorsoArticle();
-        $anActiveConcorsoArticle->setPublicationStart(new \DateTimeImmutable('now'));
-        $anActiveConcorsoArticle->setPublicationEnd(new \DateTimeImmutable('now'));
+        $anActiveConcorsoArticle->setPublicationStart(new \DateTimeImmutable('yesterday'));
+        $anActiveConcorsoArticle->setPublicationEnd(new \DateTimeImmutable('tomorrow'));
+        $anActiveConcorsoArticle->setIsDraft(false);
         $this->persistAConcorsoArticle($anActiveConcorsoArticle);
 
         $anExpiredConcorsoArticle = $this->createRandomConcorsoArticle();
         $anExpiredConcorsoArticle->setPublicationStart(new \DateTimeImmutable('- 2 days'));
         $anExpiredConcorsoArticle->setPublicationEnd(new \DateTimeImmutable('- 2 days'));
+        $anActiveConcorsoArticle->setIsDraft(false);
         $this->persistAConcorsoArticle($anExpiredConcorsoArticle);
 
         $aScheduledConcorsoArticle = $this->createRandomConcorsoArticle();
         $aScheduledConcorsoArticle->setPublicationStart(new \DateTimeImmutable('+ 2 days'));
         $aScheduledConcorsoArticle->setPublicationEnd(new \DateTimeImmutable('+ 4 days'));
+        $anActiveConcorsoArticle->setIsDraft(false);
         $this->persistAConcorsoArticle($aScheduledConcorsoArticle);
 
         $concorsoArticlesFromDB = $this->repository->findPublishedConcorsoArticles();

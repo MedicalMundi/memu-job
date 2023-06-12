@@ -24,7 +24,7 @@ class ConcorsiController extends AbstractController
      */
     public function index(Request $request): Response
     {
-        $data = $this->cmsDistributedData->getAllPublishedConcorsoArticle();
+        $data = $this->cmsDistributedData->getAllPublishedConcorsoArticles();
 
         $pager = new Pagerfanta(
             new ArrayAdapter($data)
