@@ -35,6 +35,10 @@ jobs:
         with:
           ref: ${{ inputs.triggering-sha }}
 
+      - name: Show CI job info (dump context)
+        if: ${{ vars.SHOW_WORKFLOW_INFO == '1'}}
+        uses: crazy-max/ghaction-dump-context@v2
+
       - name: Setup cache environment
         id: cache-php-extensions
         if: ${{ vars.USE_PHP_EXTENSION_CACHE  == '1' }}
@@ -130,6 +134,10 @@ jobs:
         with:
           ref: ${{ inputs.triggering-sha }}
 
+      - name: Show CI job info (dump context)
+        if: ${{ vars.SHOW_WORKFLOW_INFO == '1'}}
+        uses: crazy-max/ghaction-dump-context@v2
+
       - name: Setup cache environment
         id: cache-php-extensions
         if: ${{ vars.USE_PHP_EXTENSION_CACHE  == '1' }}
@@ -199,6 +207,10 @@ jobs:
         with:
           ref: ${{ inputs.triggering-sha }}
 
+      - name: Show CI job info (dump context)
+        if: ${{ vars.SHOW_WORKFLOW_INFO == '1'}}
+        uses: crazy-max/ghaction-dump-context@v2
+
       - name: Setup cache environment
         id: cache-php-extensions
         if: ${{ vars.USE_PHP_EXTENSION_CACHE  == '1' }}
@@ -262,6 +274,10 @@ jobs:
         uses: actions/checkout@v3
         with:
           ref: ${{ inputs.triggering-sha }}
+
+      - name: Show CI job info (dump context)
+        if: ${{ vars.SHOW_WORKFLOW_INFO == '1'}}
+        uses: crazy-max/ghaction-dump-context@v2
 
       - name: Setup cache environment
         id: cache-php-extensions
@@ -336,6 +352,10 @@ jobs:
         with:
           ref: ${{ inputs.triggering-sha }}
 
+      - name: Show CI job info (dump context)
+        if: ${{ vars.SHOW_WORKFLOW_INFO == '1'}}
+        uses: crazy-max/ghaction-dump-context@v2
+
       - name: Setup cache environment
         id: cache-php-extensions
         if: ${{ vars.USE_PHP_EXTENSION_CACHE  == '1' }}
@@ -400,6 +420,10 @@ jobs:
         with:
           ref: ${{ inputs.triggering-sha }}
 
+      - name: Show CI job info (dump context)
+        if: ${{ vars.SHOW_WORKFLOW_INFO == '1'}}
+        uses: crazy-max/ghaction-dump-context@v2
+
       - name: Setup cache environment
         id: cache-php-extensions
         if: ${{ vars.USE_PHP_EXTENSION_CACHE  == '1' }}
@@ -463,6 +487,10 @@ jobs:
         uses: actions/checkout@v3
         with:
           ref: ${{ inputs.triggering-sha }}
+
+      - name: Show CI job info (dump context)
+        if: ${{ vars.SHOW_WORKFLOW_INFO == '1'}}
+        uses: crazy-max/ghaction-dump-context@v2
 
       - name: Setup cache environment
         id: cache-php-extensions
