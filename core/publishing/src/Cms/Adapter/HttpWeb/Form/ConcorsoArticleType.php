@@ -4,7 +4,10 @@ namespace Publishing\Cms\Adapter\HttpWeb\Form;
 
 use Publishing\Cms\Application\Model\ConcorsoArticle\ConcorsoArticle;
 use Symfony\Component\Form\AbstractType;
+use Symfony\Component\Form\Extension\Core\Type\CheckboxType;
 use Symfony\Component\Form\Extension\Core\Type\DateType;
+use Symfony\Component\Form\Extension\Core\Type\TextareaType;
+use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 
@@ -13,10 +16,14 @@ class ConcorsoArticleType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options): void
     {
         $builder
-            ->add('title')
-            ->add('content')
-//            ->add('publicationStart')
-//            ->add('publicationEnd')
+            ->add('title', TextType::class, [
+                'required' => false,
+                'label' => 'Titolo',
+            ])
+            ->add('content', TextareaType::class, [
+                'required' => false,
+                'label' => 'Contenuto',
+            ])
             ->add('publicationStart', DateType::class, [
                 'required' => false,
                 'label' => 'Inizio pubblicazione',
@@ -31,7 +38,10 @@ class ConcorsoArticleType extends AbstractType
                 'input' => 'datetime_immutable',
                 'empty_data' => '',
             ])
-            ->add('isDraft')
+            ->add('isDraft', CheckboxType::class, [
+                'required' => false,
+                'label' => 'Bozza',
+            ])
         ;
     }
 
