@@ -58,6 +58,7 @@ jobs:
         if: ${{ (steps.download-unit-test-coverage-artifact.outcome == 'success')}}
         uses: codecov/codecov-action@v3
         with:
+          token: ${{ secrets.CODECOV_TOKEN }}
           files: ${{ vars.REPORT_NAME_FOR_UNIT_TEST_COVERAGE_CLOVER }},${{ env.REPORT_NAME_FOR_UNIT_TEST_COVERAGE_JUNIT }}
           name: phpunit-core-test
           flags: unit-test
@@ -76,6 +77,7 @@ jobs:
         if: ${{ (steps.download-integration-test-coverage-artifact.outcome == 'success')}}
         uses: codecov/codecov-action@v3
         with:
+          token: ${{ secrets.CODECOV_TOKEN }}
           files: ${{ vars.REPORT_NAME_FOR_INTEGRATION_TEST_COVERAGE_CLOVER }},${{ env.REPORT_NAME_FOR_INTEGRATION_TEST_COVERAGE_JUNIT }}
           name: phpunit-integration-test
           flags: integration-test
@@ -94,6 +96,7 @@ jobs:
         if: ${{ (steps.download-functional-test-coverage-artifact.outcome == 'success')}}
         uses: codecov/codecov-action@v3
         with:
+          token: ${{ secrets.CODECOV_TOKEN }}
           files: ${{ vars.REPORT_NAME_FOR_FUNCTIONAL_TEST_COVERAGE_CLOVER }},${{ env.REPORT_NAME_FOR_FUNCTIONAL_TEST_COVERAGE_JUNIT }}
           name: phpunit-functional-test
           flags: functional-test
