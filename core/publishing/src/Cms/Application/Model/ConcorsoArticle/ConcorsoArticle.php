@@ -20,7 +20,7 @@ class ConcorsoArticle
     /**
      * @ORM\Column(type="string", length=255, nullable=true)
      */
-    private $title;
+    private ?string $title;
 
     /**
      * @ORM\Column(type="text", nullable=true)

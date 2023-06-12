@@ -207,24 +207,24 @@
     </MissingConstructor>
   </file>
   <file src="core/publishing/src/Cms/Application/Model/ConcorsoArticle/ConcorsoArticle.php">
-    <MissingPropertyType occurrences="4">
+    <MissingPropertyType occurrences="3">
       <code>$content</code>
       <code>$publicationEnd</code>
       <code>$publicationStart</code>
-      <code>$title</code>
     </MissingPropertyType>
-    <MixedInferredReturnType occurrences="4">
+    <MixedInferredReturnType occurrences="3">
       <code>?\DateTimeImmutable</code>
       <code>?\DateTimeImmutable</code>
-      <code>?string</code>
       <code>?string</code>
     </MixedInferredReturnType>
-    <MixedReturnStatement occurrences="4">
+    <MixedReturnStatement occurrences="3">
       <code>$this-&gt;content</code>
       <code>$this-&gt;publicationEnd</code>
       <code>$this-&gt;publicationStart</code>
-      <code>$this-&gt;title</code>
     </MixedReturnStatement>
+    <PropertyNotSetInConstructor occurrences="1">
+      <code>$title</code>
+    </PropertyNotSetInConstructor>
   </file>
   <file src="core/publishing/src/Cms/Application/Model/JobArticle/JobArticle.php">
     <MissingPropertyType occurrences="5">

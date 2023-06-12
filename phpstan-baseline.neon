@@ -236,11 +236,6 @@ parameters:
 			path: core/publishing/src/Cms/Application/Model/ConcorsoArticle/ConcorsoArticle.php
 
 		-
-			message: "#^Property Publishing\\\\Cms\\\\Application\\\\Model\\\\ConcorsoArticle\\\\ConcorsoArticle\\:\\:\\$title has no type specified\\.$#"
-			count: 1
-			path: core/publishing/src/Cms/Application/Model/ConcorsoArticle/ConcorsoArticle.php
-
-		-
 			message: "#^Property Publishing\\\\Cms\\\\Application\\\\Model\\\\JobArticle\\\\JobArticle\\:\\:\\$content has no type specified\\.$#"
 			count: 1
 			path: core/publishing/src/Cms/Application/Model/JobArticle/JobArticle.php
@@ -292,11 +287,6 @@ parameters:
 
 		-
 			message: "#^Parameter \\#1 \\$entity of method Publishing\\\\Cms\\\\Adapter\\\\Persistence\\\\ConcorsoArticleRepository\\:\\:remove\\(\\) expects Publishing\\\\Cms\\\\Application\\\\Model\\\\ConcorsoArticle\\\\ConcorsoArticle, Publishing\\\\Cms\\\\Application\\\\Model\\\\ConcorsoArticle\\\\ConcorsoArticle\\|null given\\.$#"
-			count: 1
-			path: core/publishing/tests/Cms/Integration/Adapter/Persistence/ConcorsoArticleRepositoryTest.php
-
-		-
-			message: "#^Unreachable statement \\- code above always terminates\\.$#"
 			count: 1
 			path: core/publishing/tests/Cms/Integration/Adapter/Persistence/ConcorsoArticleRepositoryTest.php
 
