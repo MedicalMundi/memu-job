@@ -59,6 +59,7 @@ jobs:
       - name: Build assets
         run: |
           yarn run encore production
+          bin/console ckeditor:install
           bin/console assets:install public -vvv -e prod
 
       - name: Overwrite Production env file
