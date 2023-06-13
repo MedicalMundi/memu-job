@@ -103,10 +103,22 @@ jobs:
 
             .env.altervista*
 
+      # ACTION RIMOSSA [wei/curl] NON ESISTE
+      # An action could not be found at the URI 'https://api.github.com/repos/wei/curl/tarball
+#      - name: Cache clear on remote server
+#        uses: wei/curl@master
+#        with:
+#          args: --insecure -I https://medicaljob.altervista.org/command/cache/clear
+
       - name: Cache clear on remote server
-        uses: wei/curl@master
+        uses: indiesdev/curl@v1.1
         with:
-          args: --insecure -I https://medicaljob.altervista.org/command/cache/clear
+          url: https://medicaljob.altervista.org/command/cache/clear
+          method: "GET"
+          accept: 200
+          timeout: 1500
+          retries: 3
+          log-response: true
 
       - name: Run database migration on remote server
         uses: wei/curl@master
