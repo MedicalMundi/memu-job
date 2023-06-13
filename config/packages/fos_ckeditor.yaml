@@ -1,0 +1,25 @@
+# Read the documentation: https://symfony.com/doc/current/bundles/FOSCKEditorBundle/index.html
+
+fos_ck_editor:
+    # ...
+    #base_path: "build/ckeditor"
+    #js_path:   "build/ckeditor/ckeditor.js"
+    #autoload: true
+
+    default_config: backoffice_config
+    configs:
+        backoffice_config:
+            width: auto
+            base_path: "build-backoffice/ckeditor"
+            js_path:   "build-backoffice/ckeditor/ckeditor.js"
+            #toolbar: [ [ "Source", "-", "Save" ], "/", [ "Anchor" ], "/", [ "Maximize" ] ]
+            toolbar: standard
+            #uiColor: "#000000"
+            #filebrowserUploadRoute: "my_route"
+            #extraPlugins: "wordcount"
+
+
+
+twig:
+    form_themes:
+        - '@FOSCKEditor/Form/ckeditor_widget.html.twig'

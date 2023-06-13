@@ -2,6 +2,7 @@
 
 namespace Publishing\Cms\Adapter\HttpWeb\Form;
 
+use FOS\CKEditorBundle\Form\Type\CKEditorType;
 use Publishing\Cms\Application\Model\ConcorsoArticle\ConcorsoArticle;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\CheckboxType;
@@ -20,7 +21,8 @@ class ConcorsoArticleType extends AbstractType
                 'required' => false,
                 'label' => 'Titolo',
             ])
-            ->add('content', TextareaType::class, [
+            //->add('content', TextareaType::class, [
+            ->add('content', CKEditorType::class, [
                 'required' => false,
                 'label' => 'Contenuto',
             ])
