@@ -136,27 +136,3 @@ jobs:
           timeout: 30000
           retries: 3
           log-response: true
-
-#  cache_clear-on-remote-server:
-#    name: Cache clear
-#    needs: production-deployment
-#    runs-on: ubuntu-latest
-#    environment: av-production
-#    steps:
-#      - name: Cache clear on remote server
-#        uses: wei/curl@master
-#        with:
-#          args: --insecure -I https://stagemedicaljob.altervista.org/command/cache/clear
-#
-#  database-migration-on-remote-server:
-#    name: Database migration
-#    needs:
-#      - production-deployment
-#      - cache_clear-on-remote-server
-#    runs-on: ubuntu-latest
-#    environment: av-production
-#    steps:
-#      - name: database migration on remote server
-#        uses: wei/curl@master
-#        with:
-#          args: --insecure -I https://stagemedicaljob.altervista.org/command/cache/clear
