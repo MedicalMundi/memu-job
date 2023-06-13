@@ -31,10 +31,10 @@ class ConcorsoArticleControllerTest extends WebTestCase
 
     public function testIndex(): void
     {
-        $crawler = $this->client->request('GET', $this->path);
+        $this->client->request('GET', $this->path);
 
         self::assertResponseStatusCodeSame(200);
-        self::assertPageTitleContains('ConcorsoArticle index');
+        self::assertPageTitleContains('Gestione concorsi | Administration MedicalJob');
 
         // Use the $crawler to perform additional assertions e.g.
         // self::assertSame('Some text on the page', $crawler->filter('.p')->first());
@@ -44,7 +44,6 @@ class ConcorsoArticleControllerTest extends WebTestCase
     {
         $originalNumObjectsInRepository = \count($this->repository->findAll());
 
-        //$this->markTestIncomplete();
         $this->client->request('GET', sprintf('%snew', $this->path));
 
         self::assertResponseStatusCodeSame(200);
@@ -76,7 +75,7 @@ class ConcorsoArticleControllerTest extends WebTestCase
         $this->client->request('GET', sprintf('%s%s', $this->path, $fixture->getId()->toString()));
 
         self::assertResponseStatusCodeSame(200);
-        self::assertPageTitleContains('ConcorsoArticle');
+        self::assertPageTitleContains('Dettaglio concorso | Administration MedicalJob');
 
         // Use assertions to check that the properties are properly displayed.
     }
