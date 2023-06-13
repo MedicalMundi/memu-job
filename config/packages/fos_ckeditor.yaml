@@ -6,10 +6,10 @@ fos_ck_editor:
     #js_path:   "build/ckeditor/ckeditor.js"
     #autoload: true
 
-    default_config: my_default_config
+    default_config: backoffice_config
     configs:
-        my_default_config:
-            width: 600
+        backoffice_config:
+            width: auto
             base_path: "build-backoffice/ckeditor"
             js_path:   "build-backoffice/ckeditor/ckeditor.js"
             #toolbar: [ [ "Source", "-", "Save" ], "/", [ "Anchor" ], "/", [ "Maximize" ] ]
