@@ -15,7 +15,7 @@
         <p>{{ data.0.title }}</p>
         <br>
         <p class="col-5">
-            {{ data.0.content }}
+            {{ data.0.content | raw }}
         </p>
     </div>
 {% endblock %}

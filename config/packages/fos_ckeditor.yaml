@@ -2,8 +2,21 @@
 
 fos_ck_editor:
     # ...
-    base_path: "build/ckeditor"
-    js_path:   "build/ckeditor/ckeditor.js"
+    #base_path: "build/ckeditor"
+    #js_path:   "build/ckeditor/ckeditor.js"
+    #autoload: true
+
+    default_config: my_default_config
+    configs:
+        my_default_config:
+            width: 600
+            base_path: "build-backoffice/ckeditor"
+            js_path:   "build-backoffice/ckeditor/ckeditor.js"
+            #toolbar: [ [ "Source", "-", "Save" ], "/", [ "Anchor" ], "/", [ "Maximize" ] ]
+            toolbar: standard
+            #uiColor: "#000000"
+            #filebrowserUploadRoute: "my_route"
+            #extraPlugins: "wordcount"
 
 
 
