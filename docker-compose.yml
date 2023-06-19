@@ -49,20 +49,6 @@ services:
       MYSQL_PASSWORD: ${MYSQL_PASSWORD:-db-password}
     ports:
       - "3306:3306"
-#  database:
-#    image: postgres:${POSTGRES_VERSION:-13}-alpine
-#    ports:
-#      - "5432:5432"
-#    environment:
-#      POSTGRES_DB: ${POSTGRES_DB:-db-name_test}
-#      # You should definitely change the password in production
-#      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD:-db-password}
-#      POSTGRES_USER: ${POSTGRES_USER:-db-user}
-#      # volumes:
-#      # - db-data:/var/lib/postgresql/data:rw
-#      # You may use a bind-mounted host directory instead, so that it is harder to accidentally remove the volume and lose all your data!
-#      # - ./docker/db/data:/var/lib/postgresql/data:rw
-
 
   database-test:
     image: mysql:${MYSQL_VERSION:-8.0}
@@ -79,17 +65,19 @@ services:
       # You may use a bind-mounted host directory instead, so that it is harder to accidentally remove the volume and lose all your data!
       # - ./docker/db/data:/var/lib/postgresql/data:rw
 
-
-  pgadmin:
-    image: dpage/pgadmin4:6.2
+  phpmyadmin:
+    image: 'phpmyadmin/phpmyadmin'
     ports:
-      - "8181:80"
+      - '81:80'
+#    networks:
+#      - default
     depends_on:
       - database
       - database-test
     environment:
-      PGADMIN_DEFAULT_EMAIL: "admin@example.com"
-      PGADMIN_DEFAULT_PASSWORD: "admin"
+      MYSQL_USERNAME: root
+      MYSQL_ROOT_PASSWORD: docker
+      PMA_HOST: database
 
   encore:
     image: node:16
