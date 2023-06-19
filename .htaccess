@@ -1,6 +1,16 @@
 # # av:php5-engine
 AddHandler av-php8 .php
 
+#
+#   FIX CORS Missing Allow Origin for assets file
+#
+<IfModule mod_headers.c>
+  <FilesMatch "\.(ttf|ttc|otf|eot|woff|font.css|css|woff2)$">
+    Header set Access-Control-Allow-Origin "*"
+  </FilesMatch>
+</IfModule>
+
+
 
 # Use the front controller as index file. It serves as a fallback solution when
 # every other rewrite/redirect fails (e.g. in an aliased environment without
