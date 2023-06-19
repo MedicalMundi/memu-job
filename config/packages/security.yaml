@@ -32,7 +32,7 @@ security:
 
     firewalls:
         dev:
-            pattern: ^/(_(profiler|wdt)|build-backoffice|build-website|css|images|js|woff|woff2)/
+            pattern: ^/(_(profiler|wdt)|public/build-backoffice|build-website|css|images|js|woff|woff2)/
             security: false
         main:
             lazy: true
