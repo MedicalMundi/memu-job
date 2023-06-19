@@ -56,11 +56,17 @@ jobs:
       - name: Install JS dependencies
         run: yarn install
 
-      - name: Build assets
+      - name: Build assets (ckeditor)
+        run: |
+          bin/console ckeditor:install -e prod --clear=keep --exclude=samples --no-interaction
+
+      - name: Build assets (symfony assets)
+        run: |
+          bin/console assets:install public -vvv -e prod
+
+      - name: Build assets (js files - webpack)
         run: |
           yarn run encore production
-          bin/console ckeditor:install -e prod --no-interaction
-          bin/console assets:install public -vvv -e prod
 
       - name: Overwrite Production env file
         uses: DamianReeves/write-file-action@master

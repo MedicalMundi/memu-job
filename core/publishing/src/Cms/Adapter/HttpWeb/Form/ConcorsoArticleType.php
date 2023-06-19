@@ -25,6 +25,7 @@ class ConcorsoArticleType extends AbstractType
             ->add('content', CKEditorType::class, [
                 'required' => false,
                 'label' => 'Contenuto',
+                'config_name' => 'backoffice_config',
             ])
             ->add('publicationStart', DateType::class, [
                 'required' => false,
