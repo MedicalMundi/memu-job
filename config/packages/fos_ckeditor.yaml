@@ -10,8 +10,9 @@ fos_ck_editor:
     configs:
         backoffice_config:
             width: auto
-            base_path: "build-backoffice/ckeditor"
-            js_path:   "build-backoffice/ckeditor/ckeditor.js"
+            #base_path: "build-backoffice/ckeditor"
+            #js_path:   "build-backoffice/ckeditor/ckeditor.js"
+            language: it
             #toolbar: [ [ "Source", "-", "Save" ], "/", [ "Anchor" ], "/", [ "Maximize" ] ]
             toolbar: standard
             #uiColor: "#000000"
