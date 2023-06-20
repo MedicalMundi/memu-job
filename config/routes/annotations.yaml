@@ -1,35 +1,44 @@
 controllers:
     resource: ../../src/Controller/
     type: annotation
+    schemes: [ '%app.http_protocol%']
 
 kernel:
     resource: ../../src/Kernel.php
     type: annotation
+    schemes: [ '%app.http_protocol%']
 
 backoffice_controllers:
     resource: ../../core/backoffice/src/Adapter/HttpWeb/
     type: annotation
+    schemes: [ '%app.http_protocol%']
 
 backoffice_api_controllers:
     resource: ../../core/backoffice/src/Adapter/HttpApi/
     type: annotation
+    schemes: [ '%app.http_protocol%']
 
 ingesting_controllers:
     resource: ../../core/ingesting/src/PublicJob/Adapter/HttpWeb/
     type: annotation
+    schemes: [ '%app.http_protocol%']
 
 publishing_controllers:
     resource: ../../core/publishing/src/Cms/Adapter/HttpWeb/
     type: annotation
+    schemes: [ '%app.http_protocol%']
 
 publishing_api_controllers:
     resource: ../../core/publishing/src/Cms/Adapter/HttpApi/
     type: annotation
+    schemes: [ '%app.http_protocol%']
 
 website_controllers:
     resource: ../../core/websiteBFF/src/Adapter/HttpWeb/
     type: annotation
+    schemes: [ '%app.http_protocol%']
 
 website_api_controllers:
     resource: ../../core/websiteBFF/src/Adapter/HttpApi/
     type: annotation
+    schemes: [ '%app.http_protocol%']
