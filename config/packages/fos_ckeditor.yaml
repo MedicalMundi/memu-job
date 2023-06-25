@@ -2,9 +2,12 @@
 
 fos_ck_editor:
     # ...
+#    base_path: "build/ckeditor"
+#    js_path:   "build/ckeditor/ckeditor.js"
     #base_path: "build/ckeditor"
     #js_path:   "build/ckeditor/ckeditor.js"
-    #autoload: true
+
+    autoload: true
 
     default_config: backoffice_config
     configs:

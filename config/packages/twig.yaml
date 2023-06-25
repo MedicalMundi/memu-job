@@ -7,7 +7,7 @@ twig:
         '%kernel.project_dir%/core/backoffice/src/Adapter/HttpWeb/Templates': 'backoffice'
         '%kernel.project_dir%/core/websiteBFF/src/Adapter/HttpWeb/Templates': 'website'
 
-    form_themes: ['bootstrap_5_horizontal_layout.html.twig']
+    form_themes: ['bootstrap_5_horizontal_layout.html.twig','@FOSCKEditor/Form/ckeditor_widget.html.twig']
 
 
 when@test:
