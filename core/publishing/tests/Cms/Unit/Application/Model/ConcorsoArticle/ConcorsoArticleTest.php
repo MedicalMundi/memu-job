@@ -6,6 +6,9 @@ use PHPUnit\Framework\TestCase;
 use Publishing\Cms\Application\Model\ConcorsoArticle\ConcorsoArticle;
 use Publishing\Cms\Application\Model\ConcorsoArticle\ConcorsoArticleId;
 
+/**
+ * @covers \Publishing\Cms\Application\Model\ConcorsoArticle\ConcorsoArticle
+ */
 class ConcorsoArticleTest extends TestCase
 {
     private const UUID = '494e04c6-4c81-405e-8ece-dc758dfece7b';

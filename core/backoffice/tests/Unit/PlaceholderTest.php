@@ -4,6 +4,9 @@ namespace Backoffice\Tests\Unit;
 
 use PHPUnit\Framework\TestCase;
 
+/**
+ * @coversNothing
+ */
 class PlaceholderTest extends TestCase
 {
     public function testName(): void

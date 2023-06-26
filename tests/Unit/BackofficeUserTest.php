@@ -6,6 +6,9 @@ use App\Entity\BackofficeUser;
 use PHPUnit\Framework\TestCase;
 use Ramsey\Uuid\Uuid;
 
+/**
+ * @covers \App\Entity\BackofficeUser
+ */
 class BackofficeUserTest extends TestCase
 {
     public function testCanBeCreatedWithAnIdentity(): void
