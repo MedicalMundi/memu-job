@@ -64,7 +64,6 @@ jobs:
     strategy:
       matrix:
         php:
-          #- '7.4'
           - '8.0'
       fail-fast: true
     steps:
@@ -184,7 +183,7 @@ jobs:
           - '8.0'
         generate-coverage-report: [true]
 #        include:
-#          - php: '7.4'
+#          - php: '8.1'
 #            generate-coverage-report: false
       fail-fast: true
     steps:
@@ -309,7 +308,7 @@ jobs:
           - '16.x'
         generate-coverage-report: [true]
 #        include:
-#          - php: '7.4'
+#          - php: '8.1'
 #            generate-coverage-report: false
       fail-fast: true
     steps:
@@ -477,7 +476,7 @@ jobs:
 #    strategy:
 #      matrix:
 #        php:
-#          #- '7.4'
+#          #- '8.1'
 #          - '8.0'
 #        include:
 #          - php: '8.0'
@@ -601,7 +600,7 @@ jobs:
 #    strategy:
 #      matrix:
 #        php:
-#          #- '7.4'
+#          #- '8.1'
 #          - '8.0'
 #        node:
 #          - '16.x'

@@ -24,10 +24,10 @@ jobs:
           - '8.0'
         generate-coverage-report: [true]
         include:
-          - php: '7.4'
-            generate-coverage-report: false
           - php: '8.1'
             generate-coverage-report: false
+          #- php: '8.2'
+            #generate-coverage-report: false
       fail-fast: true
     steps:
       - name: Checkout on SHA-${{ inputs.triggering-sha }}

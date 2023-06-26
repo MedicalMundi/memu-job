@@ -10,7 +10,7 @@
         }
     ],
     "require": {
-        "php": ">=7.4 || ^8.0",
+        "php": "^8.0",
         "ext-ctype": "*",
         "ext-iconv": "*",
         "babdev/pagerfanta-bundle": "^3.8",
