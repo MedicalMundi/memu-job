@@ -45,6 +45,7 @@
                     <thead>
                     <tr>
                         <th>Id</th>
+                        <th>Data</th>
                         <th>Title</th>
                         {#                    <th>Content</th>#}
                         {#                    <th>PublicationStart</th>#}
@@ -57,6 +58,7 @@
                     {% for feed in pager %}
                         <tr>
                             <td>{{ feed.id |u.truncate(8)}}</td>
+                            <td>{{ feed.publicationDate ? feed.publicationDate|date('d-m-Y') : '' }}</td>
                             <td>
                                 <a href="{{ path('backoffice_ingesting_show_job_feed', {'id': feed.id}) }}" >{{ feed.title }}</a>
                             </td>
