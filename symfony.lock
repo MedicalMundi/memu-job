@@ -107,6 +107,15 @@
     "ecotone/symfony-bundle": {
         "version": "1.32.2"
     },
+    "enqueue/dbal": {
+        "version": "0.10",
+        "recipe": {
+            "repo": "github.com/symfony/recipes-contrib",
+            "branch": "main",
+            "version": "0.4",
+            "ref": "4dd47013ecec8a158d186f63ec4b51f1defff897"
+        }
+    },
     "friends-of-behat/symfony-extension": {
         "version": "2.3",
         "recipe": {
