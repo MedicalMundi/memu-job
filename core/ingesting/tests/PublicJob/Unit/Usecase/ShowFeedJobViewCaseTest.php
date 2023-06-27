@@ -22,10 +22,7 @@ class ShowFeedJobViewCaseTest extends TestCase
 
     private const PUB_DATE = 'Thu, 25 Apr 2019 20:00:00 GMT';
 
-    /**
-     * @var MockObject
-     */
-    private $repository;
+    private MockObject $repository;
 
     private ShowFeedJobViewCase $viewcase;
 

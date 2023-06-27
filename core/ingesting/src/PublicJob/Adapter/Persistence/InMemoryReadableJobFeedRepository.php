@@ -11,7 +11,7 @@ class InMemoryReadableJobFeedRepository implements ReadableJobFeedRepository
 
     private function __construct(InMemoryJobFeedRepository $writeModel = null)
     {
-        $this->writeModel = (null === $writeModel) ? new InMemoryJobFeedRepository() : $writeModel;
+        $this->writeModel = $writeModel ?? new InMemoryJobFeedRepository();
     }
 
     public static function withData(array $items = []): self

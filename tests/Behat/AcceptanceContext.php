@@ -6,6 +6,8 @@ use App\Entity\BackofficeUser;
 use Behat\Behat\Context\Context;
 use Behat\Mink\Element\NodeElement;
 use Behat\MinkExtension\Context\MinkContext;
+//use Doctrine\Bundle\DoctrineBundle\Registry;
+use Doctrine\Persistence\ManagerRegistry;
 use Symfony\Component\HttpKernel\KernelInterface;
 use Symfony\Component\PasswordHasher\Hasher\UserPasswordHasherInterface;
 use Webmozart\Assert\Assert;
@@ -19,10 +21,13 @@ final class AcceptanceContext extends MinkContext implements Context
 
     private UserPasswordHasherInterface $userPasswordHasher;
 
-    public function __construct(KernelInterface $kernel, UserPasswordHasherInterface $userPasswordHasher)
+    private ManagerRegistry $registry;
+
+    public function __construct(KernelInterface $kernel, UserPasswordHasherInterface $userPasswordHasher, ManagerRegistry $registry)
     {
         $this->kernel = $kernel;
         $this->userPasswordHasher = $userPasswordHasher;
+        $this->registry = $registry;
     }
 
     /**
@@ -30,7 +35,7 @@ final class AcceptanceContext extends MinkContext implements Context
      */
     public function clearData(): void
     {
-        $em = $this->kernel->getContainer()->get('doctrine')->getManager();
+        $em = $this->registry->getManager();
 
         $em->createQuery('DELETE FROM App:BackofficeUser')->execute();
     }
@@ -62,7 +67,7 @@ final class AcceptanceContext extends MinkContext implements Context
 
         $adminUser->setRoles(['ROLE_ADMIN']);
 
-        $em = $this->kernel->getContainer()->get('doctrine')->getManager();
+        $em = $this->registry->getManager();
         $em->persist($adminUser);
         $em->flush();
     }
