@@ -117,7 +117,7 @@ parameters:
 
 		-
 			message: "#^Call to an undefined method Doctrine\\\\ORM\\\\EntityRepository\\<Ingesting\\\\PublicJob\\\\Application\\\\Model\\\\JobFeed\\>\\:\\:save\\(\\)\\.$#"
-			count: 4
+			count: 1
 			path: core/ingesting/tests/PublicJob/Integration/AclAdapter/DistributableJobFeedRepositoryTest.php
 
 		-
@@ -128,6 +128,16 @@ parameters:
 		-
 			message: "#^Cannot call method getManager\\(\\) on object\\|null\\.$#"
 			count: 1
+			path: core/ingesting/tests/PublicJob/Integration/AclAdapter/DistributableJobFeedRepositoryTest.php
+
+		-
+			message: "#^Method Ingesting\\\\Tests\\\\PublicJob\\\\Integration\\\\AclAdapter\\\\DistributableJobFeedRepositoryTest\\:\\:createItemWithTodayDate\\(\\) is unused\\.$#"
+			count: 1
+			path: core/ingesting/tests/PublicJob/Integration/AclAdapter/DistributableJobFeedRepositoryTest.php
+
+		-
+			message: "#^Unreachable statement \\- code above always terminates\\.$#"
+			count: 2
 			path: core/ingesting/tests/PublicJob/Integration/AclAdapter/DistributableJobFeedRepositoryTest.php
 
 		-

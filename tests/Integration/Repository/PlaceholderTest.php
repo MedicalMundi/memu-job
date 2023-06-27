@@ -6,6 +6,7 @@ use PHPUnit\Framework\TestCase;
 
 /**
  * @group io-database
+ * @coversNothing
  */
 class PlaceholderTest extends TestCase
 {

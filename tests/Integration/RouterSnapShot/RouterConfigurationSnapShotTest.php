@@ -15,6 +15,7 @@ use Symfony\Component\Routing\RouterInterface;
  * UT=1 bin/phpunit --filter=RouterConfigurationSnapShotTest --group regression
  *
  * @group regression
+ * @coversNothing
  */
 class RouterConfigurationSnapShotTest extends KernelTestCase
 {
