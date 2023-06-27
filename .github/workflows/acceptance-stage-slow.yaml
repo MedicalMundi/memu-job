@@ -255,7 +255,7 @@ jobs:
       - name: Run Core Integration test suite WITHOUT COVERAGE
         if: ${{ !matrix.generate-coverage-report }}
         run: |
-          ./vendor/bin/phpunit --configuration phpunit.core.xml --testsuite integration --group=io-network,io-database
+          ./vendor/bin/phpunit --configuration phpunit.core.xml --testsuite integration
         env:
           DATABASE_URL: mysql://ci-db-user:ci-db-password@127.0.0.1:${{ job.services.mysql.ports['3306'] }}/ci-db?serverVersion=8.0&charset=utf8mb4
 
@@ -263,7 +263,7 @@ jobs:
         if: ${{ matrix.generate-coverage-report }}
         run: |
           mkdir -p var/tools/phpunit/core
-          ./vendor/bin/phpunit --configuration phpunit.core.xml --testsuite integration --group=io-network,io-database \
+          ./vendor/bin/phpunit --configuration phpunit.core.xml --testsuite integration \
           --coverage-clover ${{ vars.REPORT_NAME_FOR_INTEGRATION_TEST_COVERAGE_CLOVER }} \
           --log-junit ${{ vars.REPORT_NAME_FOR_INTEGRATION_TEST_COVERAGE_JUNIT }}
         env:
