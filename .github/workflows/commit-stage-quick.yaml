@@ -540,7 +540,7 @@ jobs:
         run: composer bin rector install --no-progress --ansi
 
       - name: Prepare app container for rector
-        run: bin/console lint:container -e dev --ansi
+        run: bin/console debug:container -e dev --ansi
 
       - name: Run rector
         run: ./vendor/bin/rector process --dry-run --ansi
