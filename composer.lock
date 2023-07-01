@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "a2a2fece09cf44d770beef8f9a16df23",
+    "content-hash": "d60e6298a731670d407cce4e13bcd0be",
     "packages": [
         {
             "name": "babdev/pagerfanta-bundle",
@@ -219,16 +219,16 @@
         },
         {
             "name": "debril/feed-io",
-            "version": "v4.9.15",
+            "version": "v5.3.1",
             "source": {
                 "type": "git",
                 "url": "https://github.com/alexdebril/feed-io.git",
-                "reference": "1c45bd07837123ec6eacf8cdd612cbb0dc27229c"
+                "reference": "b1237713ae174fc4dd57aff1e472303a1162ccfc"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/alexdebril/feed-io/zipball/1c45bd07837123ec6eacf8cdd612cbb0dc27229c",
-                "reference": "1c45bd07837123ec6eacf8cdd612cbb0dc27229c",
+                "url": "https://api.github.com/repos/alexdebril/feed-io/zipball/b1237713ae174fc4dd57aff1e472303a1162ccfc",
+                "reference": "b1237713ae174fc4dd57aff1e472303a1162ccfc",
                 "shasum": ""
             },
             "require": {
@@ -236,13 +236,13 @@
                 "ext-json": "*",
                 "ext-libxml": "*",
                 "guzzlehttp/guzzle": "~6.2|~7.0",
-                "php": ">=7.1",
-                "psr/log": "~1.0",
-                "symfony/console": "~3.4|~4.0|~5.0|~6.0"
+                "php": ">=8.0",
+                "psr/log": "~1.0|~2.0|~3.0"
             },
             "require-dev": {
-                "friendsofphp/php-cs-fixer": "^2.4",
-                "monolog/monolog": "1.*",
+                "friendsofphp/php-cs-fixer": "^3.5",
+                "monolog/monolog": "1.*|2.*",
+                "phpstan/phpstan": "^0.12.81",
                 "phpunit/phpunit": "~9.3.0"
             },
             "suggest": {
@@ -280,9 +280,9 @@
             ],
             "support": {
                 "issues": "https://github.com/alexdebril/feed-io/issues",
-                "source": "https://github.com/alexdebril/feed-io/tree/v4.9.15"
+                "source": "https://github.com/alexdebril/feed-io/tree/v5.3.1"
             },
-            "time": "2022-10-26T20:16:20+00:00"
+            "time": "2022-10-26T20:20:14+00:00"
         },
         {
             "name": "doctrine/annotations",
@@ -3299,30 +3299,30 @@
         },
         {
             "name": "psr/log",
-            "version": "1.1.4",
+            "version": "2.0.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/php-fig/log.git",
-                "reference": "d49695b909c3b7628b6289db5479a1c204601f11"
+                "reference": "ef29f6d262798707a9edd554e2b82517ef3a9376"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/php-fig/log/zipball/d49695b909c3b7628b6289db5479a1c204601f11",
-                "reference": "d49695b909c3b7628b6289db5479a1c204601f11",
+                "url": "https://api.github.com/repos/php-fig/log/zipball/ef29f6d262798707a9edd554e2b82517ef3a9376",
+                "reference": "ef29f6d262798707a9edd554e2b82517ef3a9376",
                 "shasum": ""
             },
             "require": {
-                "php": ">=5.3.0"
+                "php": ">=8.0.0"
             },
             "type": "library",
             "extra": {
                 "branch-alias": {
-                    "dev-master": "1.1.x-dev"
+                    "dev-master": "2.0.x-dev"
                 }
             },
             "autoload": {
                 "psr-4": {
-                    "Psr\\Log\\": "Psr/Log/"
+                    "Psr\\Log\\": "src"
                 }
             },
             "notification-url": "https://packagist.org/downloads/",
@@ -3343,9 +3343,9 @@
                 "psr-3"
             ],
             "support": {
-                "source": "https://github.com/php-fig/log/tree/1.1.4"
+                "source": "https://github.com/php-fig/log/tree/2.0.0"
             },
-            "time": "2021-05-03T11:20:27+00:00"
+            "time": "2021-07-14T16:41:46+00:00"
         },
         {
             "name": "queue-interop/queue-interop",
