@@ -94,7 +94,7 @@ jobs:
           restore-keys: ${{ steps.cache-php-extensions.outputs.key }}
 
       - name: Setup PHP
-        uses: shivammathur/setup-php@2.25.4
+        uses: shivammathur/setup-php@2.25.5
         with:
           php-version: ${{ matrix.php }}
           extensions: ${{ env.PHP_EXTENSIONS }}
@@ -214,7 +214,7 @@ jobs:
           restore-keys: ${{ steps.cache-php-extensions.outputs.key }}
 
       - name: Setup PHP
-        uses: shivammathur/setup-php@2.25.4
+        uses: shivammathur/setup-php@2.25.5
         with:
           php-version: ${{ matrix.php }}
           extensions: ${{ env.PHP_EXTENSIONS }}
@@ -339,7 +339,7 @@ jobs:
           restore-keys: ${{ steps.cache-php-extensions.outputs.key }}
 
       - name: Setup PHP
-        uses: shivammathur/setup-php@2.25.4
+        uses: shivammathur/setup-php@2.25.5
         with:
           php-version: ${{ matrix.php }}
           extensions: ${{ env.PHP_EXTENSIONS }}
@@ -509,7 +509,7 @@ jobs:
 #          restore-keys: ${{ steps.cache-php-extensions.outputs.key }}
 #
 #      - name: Setup PHP
-#        uses: shivammathur/setup-php@2.25.4
+#        uses: shivammathur/setup-php@2.25.5
 #        with:
 #          php-version: ${{ matrix.php }}
 #          extensions: ${{ env.PHP_EXTENSIONS }}
@@ -632,7 +632,7 @@ jobs:
 #          restore-keys: ${{ steps.cache-php-extensions.outputs.key }}
 #
 #      - name: Setup PHP
-#        uses: shivammathur/setup-php@2.25.4
+#        uses: shivammathur/setup-php@2.25.5
 #        with:
 #          php-version: ${{ matrix.php }}
 #          extensions: ${{ env.PHP_EXTENSIONS }}
