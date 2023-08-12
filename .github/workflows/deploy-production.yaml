@@ -68,6 +68,10 @@ jobs:
         run: |
           yarn run encore production
 
+      - name: Delete local symfony cache and log
+        run: |
+          rm -fr var/
+
       - name: Overwrite Production env file
         uses: DamianReeves/write-file-action@master
         with:
@@ -93,6 +97,20 @@ jobs:
           exclude: |
             **/.git*
             **/.git*/**
+            **/.env.test
+            **/.eslintrc.js
+            **/Makefile
+            **/babel.config.js
+            **/behat.yml.dist
+            **/docker-compose.**
+            **/dockerhub.makefile
+            **/ecs.php
+            **/package.json
+            **/phpstan-baseline.neon
+            **/phpstan.neon
+            **/phpunit.core.xml
+            **/phpunit.xml.dist
+            
             **/docker/**
             **/docs/**
             **/drivers/**
