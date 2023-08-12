@@ -1,0 +1,18 @@
+ecotone:
+  loadSrcNamespaces: false
+  namespaces:
+    - 'Ingesting'
+    - 'Publishing'
+    - 'Backoffice'
+    - 'WebSiteBFF'
+  failFast: true
+  defaultErrorChannel: 'DbalErrorChannel'
+  defaultConnectionExceptionRetry:
+    initialDelay: 100 #int (default: 100, production: 1000)
+    maxAttempts: 3 #int (default: 3, production: 5)
+    multiplier: 3 #int (default: 3)
+
+
+when@prod:
+  ecotone:
+    failFast: false

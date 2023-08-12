@@ -39,7 +39,7 @@ class GazzettaClient implements ClientInterface
         return $this;
     }
 
-    public function getResponse(string $url, DateTime $modifiedSince): ResponseInterface
+    public function getResponse(string $url, DateTime $modifiedSince = null): ResponseInterface
     {
         //        if ($modifiedSince) {
         //            //$headResponse = $this->request('HEAD', $url, $modifiedSince);

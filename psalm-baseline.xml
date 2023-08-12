@@ -23,6 +23,9 @@
     </MixedReturnStatement>
   </file>
   <file src="core/ingesting/src/Errata/Adapter/Rss/FeedIoRssReader.php">
+    <DeprecatedClass occurrences="1">
+      <code>Factory::create()</code>
+    </DeprecatedClass>
     <InvalidArrayAccess occurrences="1">
       <code>$item-&gt;getAllElements()[0]</code>
     </InvalidArrayAccess>
@@ -56,6 +59,11 @@
       <code>$title</code>
     </PropertyNotSetInConstructor>
   </file>
+  <file src="core/ingesting/src/Errata/Infrastructure/ServiceContainer.php">
+    <DeprecatedClass occurrences="1">
+      <code>Factory::create()</code>
+    </DeprecatedClass>
+  </file>
   <file src="core/ingesting/src/PublicJob/Adapter/Persistence/Doctrine/Config/JobIdType.php">
     <ImplementedReturnTypeMismatch occurrences="1">
       <code>?JobId</code>
@@ -80,6 +88,9 @@
     </MixedReturnStatement>
   </file>
   <file src="core/ingesting/src/PublicJob/Adapter/Rss/FeedIoRssReader.php">
+    <DeprecatedClass occurrences="1">
+      <code>Factory::create()</code>
+    </DeprecatedClass>
     <InvalidArrayAccess occurrences="1">
       <code>$item-&gt;getAllElements()[0]</code>
     </InvalidArrayAccess>
@@ -97,6 +108,11 @@
       <code>$publicationDate</code>
       <code>$title</code>
     </PropertyNotSetInConstructor>
+  </file>
+  <file src="core/ingesting/src/PublicJob/Infrastructure/ServiceContainer.php">
+    <DeprecatedClass occurrences="1">
+      <code>Factory::create()</code>
+    </DeprecatedClass>
   </file>
   <file src="core/ingesting/src/SharedKernel/Infrastructure/FeedIoAdapter/GazzettaClient.php">
     <MixedArgument occurrences="2">
@@ -222,9 +238,6 @@
       <code>$this-&gt;publicationEnd</code>
       <code>$this-&gt;publicationStart</code>
     </MixedReturnStatement>
-    <PropertyNotSetInConstructor occurrences="1">
-      <code>$title</code>
-    </PropertyNotSetInConstructor>
   </file>
   <file src="core/publishing/src/Cms/Application/Model/JobArticle/JobArticle.php">
     <MissingPropertyType occurrences="5">
@@ -256,9 +269,6 @@
     <UndefinedInterfaceMethod occurrences="1">
       <code>remove</code>
     </UndefinedInterfaceMethod>
-    <UnusedVariable occurrences="1">
-      <code>$crawler</code>
-    </UnusedVariable>
   </file>
   <file src="core/publishing/tests/Cms/Functional/JobArticleControllerTest.php">
     <PossiblyNullArgument occurrences="3">
