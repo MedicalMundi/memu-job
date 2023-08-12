@@ -104,9 +104,6 @@
     "doctrine/sql-formatter": {
         "version": "1.1.2"
     },
-    "ecotone/symfony-bundle": {
-        "version": "1.32.2"
-    },
     "friends-of-behat/symfony-extension": {
         "version": "2.3",
         "recipe": {

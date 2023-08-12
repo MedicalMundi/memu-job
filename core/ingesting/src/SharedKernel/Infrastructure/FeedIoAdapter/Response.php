@@ -22,9 +22,9 @@ class Response implements ResponseInterface
         $this->duration = $duration;
     }
 
-    public function getDuration(): int
+    public function getDuration(): float
     {
-        return (int) $this->duration;
+        return $this->duration;
     }
 
     public function getStatusCode(): int

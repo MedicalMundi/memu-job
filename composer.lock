@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "7484a68ff5174fd032062354d458f986",
+    "content-hash": "97f6e666568370dc567a12d1ce9b8639",
     "packages": [
         {
             "name": "babdev/pagerfanta-bundle",
@@ -219,16 +219,16 @@
         },
         {
             "name": "debril/feed-io",
-            "version": "v4.9.15",
+            "version": "v5.3.1",
             "source": {
                 "type": "git",
                 "url": "https://github.com/alexdebril/feed-io.git",
-                "reference": "1c45bd07837123ec6eacf8cdd612cbb0dc27229c"
+                "reference": "b1237713ae174fc4dd57aff1e472303a1162ccfc"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/alexdebril/feed-io/zipball/1c45bd07837123ec6eacf8cdd612cbb0dc27229c",
-                "reference": "1c45bd07837123ec6eacf8cdd612cbb0dc27229c",
+                "url": "https://api.github.com/repos/alexdebril/feed-io/zipball/b1237713ae174fc4dd57aff1e472303a1162ccfc",
+                "reference": "b1237713ae174fc4dd57aff1e472303a1162ccfc",
                 "shasum": ""
             },
             "require": {
@@ -236,13 +236,13 @@
                 "ext-json": "*",
                 "ext-libxml": "*",
                 "guzzlehttp/guzzle": "~6.2|~7.0",
-                "php": ">=7.1",
-                "psr/log": "~1.0",
-                "symfony/console": "~3.4|~4.0|~5.0|~6.0"
+                "php": ">=8.0",
+                "psr/log": "~1.0|~2.0|~3.0"
             },
             "require-dev": {
-                "friendsofphp/php-cs-fixer": "^2.4",
-                "monolog/monolog": "1.*",
+                "friendsofphp/php-cs-fixer": "^3.5",
+                "monolog/monolog": "1.*|2.*",
+                "phpstan/phpstan": "^0.12.81",
                 "phpunit/phpunit": "~9.3.0"
             },
             "suggest": {
@@ -280,9 +280,9 @@
             ],
             "support": {
                 "issues": "https://github.com/alexdebril/feed-io/issues",
-                "source": "https://github.com/alexdebril/feed-io/tree/v4.9.15"
+                "source": "https://github.com/alexdebril/feed-io/tree/v5.3.1"
             },
-            "time": "2022-10-26T20:16:20+00:00"
+            "time": "2022-10-26T20:20:14+00:00"
         },
         {
             "name": "doctrine/annotations",
@@ -1663,155 +1663,6 @@
             "time": "2022-05-23T21:33:49+00:00"
         },
         {
-            "name": "ecotone/ecotone",
-            "version": "1.32.2",
-            "source": {
-                "type": "git",
-                "url": "https://github.com/ecotoneframework/ecotone.git",
-                "reference": "820d341bc36eb21499c6262bef318794859a2053"
-            },
-            "dist": {
-                "type": "zip",
-                "url": "https://api.github.com/repos/ecotoneframework/ecotone/zipball/820d341bc36eb21499c6262bef318794859a2053",
-                "reference": "820d341bc36eb21499c6262bef318794859a2053",
-                "shasum": ""
-            },
-            "require": {
-                "friendsofphp/proxy-manager-lts": "^1.0.12",
-                "php": "^8.0",
-                "psr/log": "^1.0|^2.0|^3.0",
-                "ramsey/uuid": "^4.0"
-            },
-            "require-dev": {
-                "behat/behat": "^3.10",
-                "php-coveralls/php-coveralls": "^2.5",
-                "phpstan/phpstan": "^1.7",
-                "phpunit/phpunit": "^9.5.10",
-                "symfony/expression-language": "^6.0"
-            },
-            "type": "library",
-            "extra": {
-                "branch-alias": {
-                    "dev-master": "1.32.2-dev"
-                }
-            },
-            "autoload": {
-                "psr-4": {
-                    "Ecotone\\": "src"
-                }
-            },
-            "notification-url": "https://packagist.org/downloads/",
-            "license": [
-                "MIT"
-            ],
-            "authors": [
-                {
-                    "name": "Dariusz Gafka",
-                    "email": "dgafka.mail@gmail.com"
-                }
-            ],
-            "description": "Ecotone is Service Bus Implementation, which enables message driven architecture with DDD, CQRS, Event Sourcing in PHP",
-            "homepage": "https://docs.ecotone.tech",
-            "keywords": [
-                "EventSourcing",
-                "cqrs",
-                "ddd",
-                "ecotone",
-                "service-bus"
-            ],
-            "support": {
-                "issues": "https://github.com/ecotoneframework/ecotone/issues",
-                "source": "https://github.com/ecotoneframework/ecotone/tree/1.32.2"
-            },
-            "funding": [
-                {
-                    "url": "https://github.com/dgafka",
-                    "type": "github"
-                },
-                {
-                    "url": "https://www.patreon.com/dgafka",
-                    "type": "patreon"
-                }
-            ],
-            "time": "2022-07-07T18:00:34+00:00"
-        },
-        {
-            "name": "ecotone/symfony-bundle",
-            "version": "1.32.2",
-            "source": {
-                "type": "git",
-                "url": "https://github.com/ecotoneframework/symfony-bundle.git",
-                "reference": "924889157c685d29c3af3d9f74d5e71a35a732b8"
-            },
-            "dist": {
-                "type": "zip",
-                "url": "https://api.github.com/repos/ecotoneframework/symfony-bundle/zipball/924889157c685d29c3af3d9f74d5e71a35a732b8",
-                "reference": "924889157c685d29c3af3d9f74d5e71a35a732b8",
-                "shasum": ""
-            },
-            "require": {
-                "ecotone/ecotone": "~1.32.2",
-                "laminas/laminas-zendframework-bridge": "^1.0.0",
-                "php": ">=8.0",
-                "symfony/console": ">=4.0",
-                "symfony/framework-bundle": ">=4.0"
-            },
-            "require-dev": {
-                "behat/behat": "^3.3.1",
-                "friends-of-behat/symfony-extension": "^2.1",
-                "phpstan/phpstan": "^1.7",
-                "phpunit/phpunit": "^9.2"
-            },
-            "type": "symfony-bundle",
-            "extra": {
-                "branch-alias": {
-                    "dev-master": "1.32.2-dev"
-                }
-            },
-            "autoload": {
-                "psr-4": {
-                    "Ecotone\\SymfonyBundle\\": "SymfonyBundle",
-                    "Ecotone\\SymfonyBundle\\DepedencyInjection\\": "DepedencyInjection"
-                }
-            },
-            "notification-url": "https://packagist.org/downloads/",
-            "license": [
-                "MIT"
-            ],
-            "authors": [
-                {
-                    "name": "Dariusz Gafka",
-                    "email": "dgafka.mail@gmail.com"
-                }
-            ],
-            "description": "Extends Ecotone with Symfony integration",
-            "homepage": "https://docs.ecotone.tech/",
-            "keywords": [
-                "ddd",
-                "distributed architecture",
-                "ecotone",
-                "eip",
-                "enterprise integration patterns",
-                "message",
-                "messaging",
-                "symfony"
-            ],
-            "support": {
-                "source": "https://github.com/ecotoneframework/symfony-bundle/tree/1.32.2"
-            },
-            "funding": [
-                {
-                    "url": "https://github.com/dgafka",
-                    "type": "github"
-                },
-                {
-                    "url": "https://www.patreon.com/dgafka",
-                    "type": "patreon"
-                }
-            ],
-            "time": "2022-07-07T18:00:34+00:00"
-        },
-        {
             "name": "friendsofphp/proxy-manager-lts",
             "version": "v1.0.16",
             "source": {
@@ -2364,68 +2215,6 @@
                 }
             ],
             "time": "2022-11-21T01:32:31+00:00"
-        },
-        {
-            "name": "laminas/laminas-zendframework-bridge",
-            "version": "1.7.0",
-            "source": {
-                "type": "git",
-                "url": "https://github.com/laminas/laminas-zendframework-bridge.git",
-                "reference": "5ef52e26392777a26dbb8f20fe24f91b406459f6"
-            },
-            "dist": {
-                "type": "zip",
-                "url": "https://api.github.com/repos/laminas/laminas-zendframework-bridge/zipball/5ef52e26392777a26dbb8f20fe24f91b406459f6",
-                "reference": "5ef52e26392777a26dbb8f20fe24f91b406459f6",
-                "shasum": ""
-            },
-            "require": {
-                "php": "~8.0.0 || ~8.1.0 || ~8.2.0"
-            },
-            "require-dev": {
-                "phpunit/phpunit": "^9.5.26",
-                "psalm/plugin-phpunit": "^0.18.0",
-                "squizlabs/php_codesniffer": "^3.7.1",
-                "vimeo/psalm": "^4.29.0"
-            },
-            "type": "library",
-            "extra": {
-                "laminas": {
-                    "module": "Laminas\\ZendFrameworkBridge"
-                }
-            },
-            "autoload": {
-                "files": [
-                    "src/autoload.php"
-                ],
-                "psr-4": {
-                    "Laminas\\ZendFrameworkBridge\\": "src//"
-                }
-            },
-            "notification-url": "https://packagist.org/downloads/",
-            "license": [
-                "BSD-3-Clause"
-            ],
-            "description": "Alias legacy ZF class names to Laminas Project equivalents.",
-            "keywords": [
-                "ZendFramework",
-                "autoloading",
-                "laminas",
-                "zf"
-            ],
-            "support": {
-                "forum": "https://discourse.laminas.dev/",
-                "issues": "https://github.com/laminas/laminas-zendframework-bridge/issues",
-                "rss": "https://github.com/laminas/laminas-zendframework-bridge/releases.atom",
-                "source": "https://github.com/laminas/laminas-zendframework-bridge"
-            },
-            "funding": [
-                {
-                    "url": "https://funding.communitybridge.org/projects/laminas-project",
-                    "type": "community_bridge"
-                }
-            ],
-            "time": "2022-12-12T11:44:10+00:00"
         },
         {
             "name": "league/fractal",
