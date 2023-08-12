@@ -11282,16 +11282,16 @@
         },
         {
             "name": "soyuka/contexts",
-            "version": "v3.3.8",
+            "version": "v3.3.9",
             "source": {
                 "type": "git",
                 "url": "https://github.com/soyuka/contexts.git",
-                "reference": "8215019f4f75d3e184f70b075e5a352b6551f0bc"
+                "reference": "64d43308afd29cdd44f5b6ba6cdaa9251520a69a"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/soyuka/contexts/zipball/8215019f4f75d3e184f70b075e5a352b6551f0bc",
-                "reference": "8215019f4f75d3e184f70b075e5a352b6551f0bc",
+                "url": "https://api.github.com/repos/soyuka/contexts/zipball/64d43308afd29cdd44f5b6ba6cdaa9251520a69a",
+                "reference": "64d43308afd29cdd44f5b6ba6cdaa9251520a69a",
                 "shasum": ""
             },
             "require": {
@@ -11339,9 +11339,9 @@
                 "Symfony2"
             ],
             "support": {
-                "source": "https://github.com/soyuka/contexts/tree/v3.3.8"
+                "source": "https://github.com/soyuka/contexts/tree/v3.3.9"
             },
-            "time": "2023-03-29T08:38:38+00:00"
+            "time": "2023-07-05T21:32:29+00:00"
         },
         {
             "name": "symfony/browser-kit",
