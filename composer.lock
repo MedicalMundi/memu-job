@@ -8249,16 +8249,16 @@
         },
         {
             "name": "symfony/var-exporter",
-            "version": "v5.4.21",
+            "version": "v5.4.26",
             "source": {
                 "type": "git",
                 "url": "https://github.com/symfony/var-exporter.git",
-                "reference": "be74908a6942fdd331554b3cec27ff41b45ccad4"
+                "reference": "11401fe94f960249b3c63a488c63ba73091c1e4a"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/symfony/var-exporter/zipball/be74908a6942fdd331554b3cec27ff41b45ccad4",
-                "reference": "be74908a6942fdd331554b3cec27ff41b45ccad4",
+                "url": "https://api.github.com/repos/symfony/var-exporter/zipball/11401fe94f960249b3c63a488c63ba73091c1e4a",
+                "reference": "11401fe94f960249b3c63a488c63ba73091c1e4a",
                 "shasum": ""
             },
             "require": {
@@ -8302,7 +8302,7 @@
                 "serialize"
             ],
             "support": {
-                "source": "https://github.com/symfony/var-exporter/tree/v5.4.21"
+                "source": "https://github.com/symfony/var-exporter/tree/v5.4.26"
             },
             "funding": [
                 {
@@ -8318,7 +8318,7 @@
                     "type": "tidelift"
                 }
             ],
-            "time": "2023-02-21T19:46:44+00:00"
+            "time": "2023-07-20T07:21:16+00:00"
         },
         {
             "name": "symfony/webpack-encore-bundle",
@@ -11282,16 +11282,16 @@
         },
         {
             "name": "soyuka/contexts",
-            "version": "v3.3.8",
+            "version": "v3.3.9",
             "source": {
                 "type": "git",
                 "url": "https://github.com/soyuka/contexts.git",
-                "reference": "8215019f4f75d3e184f70b075e5a352b6551f0bc"
+                "reference": "64d43308afd29cdd44f5b6ba6cdaa9251520a69a"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/soyuka/contexts/zipball/8215019f4f75d3e184f70b075e5a352b6551f0bc",
-                "reference": "8215019f4f75d3e184f70b075e5a352b6551f0bc",
+                "url": "https://api.github.com/repos/soyuka/contexts/zipball/64d43308afd29cdd44f5b6ba6cdaa9251520a69a",
+                "reference": "64d43308afd29cdd44f5b6ba6cdaa9251520a69a",
                 "shasum": ""
             },
             "require": {
@@ -11339,9 +11339,9 @@
                 "Symfony2"
             ],
             "support": {
-                "source": "https://github.com/soyuka/contexts/tree/v3.3.8"
+                "source": "https://github.com/soyuka/contexts/tree/v3.3.9"
             },
-            "time": "2023-03-29T08:38:38+00:00"
+            "time": "2023-07-05T21:32:29+00:00"
         },
         {
             "name": "symfony/browser-kit",
