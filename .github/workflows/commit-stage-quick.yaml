@@ -19,6 +19,7 @@ jobs:
     runs-on: ubuntu-20.04
     timeout-minutes: 7
     strategy:
+      max-parallel: 3
       matrix:
         php:
           - '8.0'
@@ -190,6 +191,10 @@ jobs:
       - name: Run composer normalize
         run: |
           composer-normalize --dry-run --ansi
+
+      - name: Run composer audit
+        run: |
+          composer audit --locked --no-dev --ansi
 
 
   coding-standard:
