@@ -32,6 +32,8 @@ updates:
         versions: ["6.x"]
       - dependency-name: "symfony/translation"
         versions: [ "6.x" ]
+      - dependency-name: "symfony/twig-bundle"
+        versions: [ "6.x" ]
       - dependency-name: "symfony/yaml"
         versions: ["6.x"]
       - dependency-name: "symfony/phpunit-bridge"
@@ -40,6 +42,8 @@ updates:
         versions: ["6.x"]
       - dependency-name: "symfony/css-selector"
         versions: ["6.x"]
+      - dependency-name: "symfony/web-profiler-bundle"
+        versions: [ "6.x" ]
 
 
   #
