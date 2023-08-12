@@ -30,6 +30,8 @@ updates:
         versions: ["6.x"]
       - dependency-name: "symfony/runtime"
         versions: ["6.x"]
+      - dependency-name: "symfony/translation"
+        versions: [ "6.x" ]
       - dependency-name: "symfony/yaml"
         versions: ["6.x"]
       - dependency-name: "symfony/phpunit-bridge"
