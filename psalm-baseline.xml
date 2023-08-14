@@ -1,50 +1,51 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<files psalm-version="4.30.0@d0bc6e25d89f649e4f36a534f330f8bb4643dd69">
+<files psalm-version="5.14.1@b9d355e0829c397b9b3b47d0c0ed042a8a70284d">
   <file src="core/backoffice/src/Adapter/HttpWeb/Ingesting/IngestingController.php">
-    <InternalMethod occurrences="1">
+    <InternalMethod>
       <code>get</code>
     </InternalMethod>
   </file>
   <file src="core/ingesting/src/Errata/Adapter/Persistence/Doctrine/Config/ErrataIdType.php">
-    <ImplementedReturnTypeMismatch occurrences="1">
+    <ImplementedReturnTypeMismatch>
       <code>?ErrataId</code>
     </ImplementedReturnTypeMismatch>
-    <MoreSpecificImplementedParamType occurrences="2">
+    <MoreSpecificImplementedParamType>
       <code>$value</code>
       <code>$value</code>
     </MoreSpecificImplementedParamType>
   </file>
   <file src="core/ingesting/src/Errata/Adapter/Persistence/InMemoryErrataFeedRepository.php">
-    <MixedInferredReturnType occurrences="1">
+    <MixedInferredReturnType>
       <code>ErrataFeed</code>
     </MixedInferredReturnType>
-    <MixedReturnStatement occurrences="1">
-      <code>$this-&gt;items[$errataId-&gt;toString()]</code>
+    <MixedReturnStatement>
+      <code><![CDATA[$this->items[$errataId->toString()]]]></code>
     </MixedReturnStatement>
   </file>
   <file src="core/ingesting/src/Errata/Adapter/Rss/FeedIoRssReader.php">
-    <DeprecatedClass occurrences="1">
+    <DeprecatedClass>
+      <code>Factory::create()</code>
       <code>Factory::create()</code>
     </DeprecatedClass>
-    <InvalidArrayAccess occurrences="1">
-      <code>$item-&gt;getAllElements()[0]</code>
+    <InvalidArrayAccess>
+      <code><![CDATA[$item->getAllElements()[0]]]></code>
     </InvalidArrayAccess>
-    <MixedArgument occurrences="1">
-      <code>($item-&gt;getAllElements()[0])-&gt;getValue()</code>
+    <MixedArgument>
+      <code><![CDATA[($item->getAllElements()[0])->getValue()]]></code>
     </MixedArgument>
-    <MixedMethodCall occurrences="1">
+    <MixedMethodCall>
       <code>getValue</code>
     </MixedMethodCall>
-    <PossiblyNullArgument occurrences="2">
-      <code>$item-&gt;getLink()</code>
-      <code>$item-&gt;getTitle()</code>
+    <PossiblyNullArgument>
+      <code><![CDATA[$item->getLink()]]></code>
+      <code><![CDATA[$item->getTitle()]]></code>
     </PossiblyNullArgument>
-    <PossiblyNullReference occurrences="1">
+    <PossiblyNullReference>
       <code>format</code>
     </PossiblyNullReference>
   </file>
   <file src="core/ingesting/src/Errata/Adapter/Rss/RssDataItem.php">
-    <MissingConstructor occurrences="4">
+    <MissingConstructor>
       <code>$description</code>
       <code>$link</code>
       <code>$publicationDate</code>
@@ -52,7 +53,7 @@
     </MissingConstructor>
   </file>
   <file src="core/ingesting/src/Errata/Application/Model/ErrataFeed.php">
-    <PropertyNotSetInConstructor occurrences="4">
+    <PropertyNotSetInConstructor>
       <code>$description</code>
       <code>$link</code>
       <code>$publicationDate</code>
@@ -60,49 +61,60 @@
     </PropertyNotSetInConstructor>
   </file>
   <file src="core/ingesting/src/Errata/Infrastructure/ServiceContainer.php">
-    <DeprecatedClass occurrences="1">
+    <DeprecatedClass>
+      <code>Factory::create()</code>
       <code>Factory::create()</code>
     </DeprecatedClass>
   </file>
+  <file src="core/ingesting/src/PublicJob/AclAdapter/Repository/DistributableJobFeedRepository.php">
+    <UnnecessaryVarAnnotation>
+      <code>Statement</code>
+    </UnnecessaryVarAnnotation>
+  </file>
   <file src="core/ingesting/src/PublicJob/Adapter/Persistence/Doctrine/Config/JobIdType.php">
-    <ImplementedReturnTypeMismatch occurrences="1">
+    <ImplementedReturnTypeMismatch>
       <code>?JobId</code>
     </ImplementedReturnTypeMismatch>
-    <MoreSpecificImplementedParamType occurrences="2">
+    <MoreSpecificImplementedParamType>
       <code>$value</code>
       <code>$value</code>
     </MoreSpecificImplementedParamType>
   </file>
+  <file src="core/ingesting/src/PublicJob/Adapter/Persistence/Doctrine/DoctrineReadableJobFeedRepository.php">
+    <UnnecessaryVarAnnotation>
+      <code>Statement</code>
+    </UnnecessaryVarAnnotation>
+  </file>
   <file src="core/ingesting/src/PublicJob/Adapter/Persistence/InMemoryJobFeedRepository.php">
-    <MixedAssignment occurrences="1">
+    <MixedAssignment>
       <code>$jobFeed</code>
     </MixedAssignment>
-    <MixedInferredReturnType occurrences="1">
+    <MixedInferredReturnType>
       <code>JobFeed</code>
     </MixedInferredReturnType>
-    <MixedMethodCall occurrences="1">
+    <MixedMethodCall>
       <code>link</code>
     </MixedMethodCall>
-    <MixedReturnStatement occurrences="1">
-      <code>$this-&gt;items[$jobId-&gt;toString()]</code>
+    <MixedReturnStatement>
+      <code><![CDATA[$this->items[$jobId->toString()]]]></code>
     </MixedReturnStatement>
   </file>
   <file src="core/ingesting/src/PublicJob/Adapter/Rss/FeedIoRssReader.php">
-    <DeprecatedClass occurrences="1">
+    <DeprecatedClass>
       <code>Factory::create()</code>
     </DeprecatedClass>
-    <InvalidArrayAccess occurrences="1">
-      <code>$item-&gt;getAllElements()[0]</code>
+    <InvalidArrayAccess>
+      <code><![CDATA[$item->getAllElements()[0]]]></code>
     </InvalidArrayAccess>
-    <MixedArgument occurrences="1">
-      <code>($item-&gt;getAllElements()[0])-&gt;getValue()</code>
+    <MixedArgument>
+      <code><![CDATA[($item->getAllElements()[0])->getValue()]]></code>
     </MixedArgument>
-    <MixedMethodCall occurrences="1">
+    <MixedMethodCall>
       <code>getValue</code>
     </MixedMethodCall>
   </file>
   <file src="core/ingesting/src/PublicJob/Application/Model/JobFeed.php">
-    <PropertyNotSetInConstructor occurrences="4">
+    <PropertyNotSetInConstructor>
       <code>$description</code>
       <code>$link</code>
       <code>$publicationDate</code>
@@ -110,212 +122,223 @@
     </PropertyNotSetInConstructor>
   </file>
   <file src="core/ingesting/src/PublicJob/Infrastructure/ServiceContainer.php">
-    <DeprecatedClass occurrences="1">
+    <DeprecatedClass>
+      <code>Factory::create()</code>
       <code>Factory::create()</code>
     </DeprecatedClass>
   </file>
   <file src="core/ingesting/src/SharedKernel/Infrastructure/FeedIoAdapter/GazzettaClient.php">
-    <MixedArgument occurrences="2">
+    <MixedArgument>
       <code>$psrResponse</code>
       <code>$psrResponse</code>
     </MixedArgument>
-    <MixedAssignment occurrences="1">
+    <MixedAssignment>
       <code>$psrResponse</code>
     </MixedAssignment>
-    <MixedMethodCall occurrences="2">
+    <MixedMethodCall>
       <code>getStatusCode</code>
       <code>request</code>
     </MixedMethodCall>
-    <UnusedVariable occurrences="1">
+    <UnusedVariable>
       <code>$options</code>
     </UnusedVariable>
   </file>
   <file src="core/ingesting/src/SharedKernel/Infrastructure/FeedIoAdapter/Response.php">
-    <InvalidArrayAccess occurrences="1">
-      <code>$this-&gt;getHeader(static::HTTP_LAST_MODIFIED)[0]</code>
+    <InvalidArrayAccess>
+      <code><![CDATA[$this->getHeader(static::HTTP_LAST_MODIFIED)[0]]]></code>
     </InvalidArrayAccess>
-    <MixedArgument occurrences="2">
-      <code>$this-&gt;getHeader(static::HTTP_LAST_MODIFIED)[0]</code>
+    <MixedArgument>
+      <code><![CDATA[$this->getHeader(static::HTTP_LAST_MODIFIED)[0]]]></code>
       <code>static::HTTP_LAST_MODIFIED</code>
     </MixedArgument>
-    <MixedInferredReturnType occurrences="1">
+    <MixedInferredReturnType>
       <code>iterable</code>
     </MixedInferredReturnType>
-    <MixedReturnStatement occurrences="1">
-      <code>$this-&gt;psrResponse-&gt;getHeader($name)</code>
+    <MixedReturnStatement>
+      <code><![CDATA[$this->psrResponse->getHeader($name)]]></code>
     </MixedReturnStatement>
-    <PossiblyNullArgument occurrences="1">
-      <code>$this-&gt;getBody()</code>
+    <PossiblyNullArgument>
+      <code><![CDATA[$this->getBody()]]></code>
     </PossiblyNullArgument>
-    <UndefinedInterfaceMethod occurrences="2">
+    <UndefinedInterfaceMethod>
       <code>getHeader</code>
       <code>hasHeader</code>
     </UndefinedInterfaceMethod>
   </file>
   <file src="core/ingesting/tests/Errata/Integration/Infrastructure/ProductionServiceContainerTest.php">
-    <ArgumentTypeCoercion occurrences="1">
-      <code>$this-&gt;errataFeedRepository</code>
+    <ArgumentTypeCoercion>
+      <code><![CDATA[$this->errataFeedRepository]]></code>
     </ArgumentTypeCoercion>
-    <PossiblyNullArgument occurrences="1">
-      <code>$this-&gt;errataFeedRepository</code>
+    <PossiblyNullArgument>
+      <code><![CDATA[$this->errataFeedRepository]]></code>
     </PossiblyNullArgument>
   </file>
   <file src="core/ingesting/tests/Errata/Integration/Persistence/DoctrineErrataFeedRepositoryTest.php">
-    <LessSpecificReturnStatement occurrences="1">
-      <code>$this-&gt;doctrineErrataFeedRepository</code>
+    <LessSpecificReturnStatement>
+      <code><![CDATA[$this->doctrineErrataFeedRepository]]></code>
     </LessSpecificReturnStatement>
-    <MoreSpecificReturnType occurrences="1">
+    <MoreSpecificReturnType>
       <code>ErrataFeedRepository</code>
     </MoreSpecificReturnType>
-    <NullableReturnStatement occurrences="1">
-      <code>$this-&gt;doctrineErrataFeedRepository</code>
+    <NullableReturnStatement>
+      <code><![CDATA[$this->doctrineErrataFeedRepository]]></code>
     </NullableReturnStatement>
   </file>
   <file src="core/ingesting/tests/PublicJob/Integration/AclAdapter/DistributableJobFeedRepositoryTest.php">
-    <PossiblyNullReference occurrences="1">
+    <PossiblyNullReference>
       <code>close</code>
     </PossiblyNullReference>
   </file>
   <file src="core/ingesting/tests/PublicJob/Integration/Infrastructure/PublicJobProductionServiceContainerTest.php">
-    <ArgumentTypeCoercion occurrences="1">
-      <code>$this-&gt;jobRepository</code>
+    <ArgumentTypeCoercion>
+      <code><![CDATA[$this->jobRepository]]></code>
     </ArgumentTypeCoercion>
   </file>
   <file src="core/ingesting/tests/SharedKernel/Integration/FeedIoGazzettaAdapterTest.php">
-    <InternalMethod occurrences="1">
+    <InternalMethod>
       <code>doesNotPerformAssertions</code>
     </InternalMethod>
-    <UnusedMethodCall occurrences="1">
+    <UnusedMethodCall>
       <code>doesNotPerformAssertions</code>
     </UnusedMethodCall>
   </file>
   <file src="core/publishing/src/Cms/Adapter/HttpWeb/ConcorsoArticleController.php">
-    <InternalMethod occurrences="3">
+    <InternalMethod>
       <code>get</code>
       <code>get</code>
       <code>get</code>
     </InternalMethod>
-    <PossiblyNullArgument occurrences="1">
+    <PossiblyNullArgument>
       <code>$concorsoArticle</code>
     </PossiblyNullArgument>
-    <PossiblyNullReference occurrences="1">
+    <PossiblyNullReference>
       <code>getId</code>
     </PossiblyNullReference>
   </file>
+  <file src="core/publishing/src/Cms/Adapter/HttpWeb/Form/ConcorsoArticleType.php">
+    <MissingTemplateParam>
+      <code>ConcorsoArticleType</code>
+    </MissingTemplateParam>
+  </file>
+  <file src="core/publishing/src/Cms/Adapter/HttpWeb/Form/JobArticleType.php">
+    <MissingTemplateParam>
+      <code>JobArticleType</code>
+    </MissingTemplateParam>
+  </file>
   <file src="core/publishing/src/Cms/Adapter/HttpWeb/JobArticleController.php">
-    <InvalidOperand occurrences="1">
-      <code>$jobArticle-&gt;getId()</code>
+    <InvalidOperand>
+      <code><![CDATA[$jobArticle->getId()]]></code>
     </InvalidOperand>
-    <PossiblyNullOperand occurrences="1">
-      <code>$jobArticle-&gt;getId()</code>
+    <PossiblyNullOperand>
+      <code><![CDATA[$jobArticle->getId()]]></code>
     </PossiblyNullOperand>
   </file>
   <file src="core/publishing/src/Cms/Adapter/Persistence/DoctrineType/ConcorsoArticleIdType.php">
-    <ImplementedReturnTypeMismatch occurrences="1">
+    <ImplementedReturnTypeMismatch>
       <code>?ConcorsoArticleId</code>
     </ImplementedReturnTypeMismatch>
-    <MoreSpecificImplementedParamType occurrences="2">
+    <MoreSpecificImplementedParamType>
       <code>$value</code>
       <code>$value</code>
     </MoreSpecificImplementedParamType>
   </file>
   <file src="core/publishing/src/Cms/Application/Model/Article/Article.php">
-    <MissingConstructor occurrences="2">
+    <MissingConstructor>
       <code>$id</code>
       <code>$title</code>
     </MissingConstructor>
   </file>
   <file src="core/publishing/src/Cms/Application/Model/ConcorsoArticle/ConcorsoArticle.php">
-    <MissingPropertyType occurrences="3">
+    <MissingPropertyType>
       <code>$content</code>
       <code>$publicationEnd</code>
       <code>$publicationStart</code>
     </MissingPropertyType>
-    <MixedInferredReturnType occurrences="3">
+    <MixedInferredReturnType>
       <code>?\DateTimeImmutable</code>
       <code>?\DateTimeImmutable</code>
       <code>?string</code>
     </MixedInferredReturnType>
-    <MixedReturnStatement occurrences="3">
-      <code>$this-&gt;content</code>
-      <code>$this-&gt;publicationEnd</code>
-      <code>$this-&gt;publicationStart</code>
+    <MixedReturnStatement>
+      <code><![CDATA[$this->content]]></code>
+      <code><![CDATA[$this->publicationEnd]]></code>
+      <code><![CDATA[$this->publicationStart]]></code>
     </MixedReturnStatement>
   </file>
   <file src="core/publishing/src/Cms/Application/Model/JobArticle/JobArticle.php">
-    <MissingPropertyType occurrences="5">
+    <MissingPropertyType>
       <code>$content</code>
       <code>$id</code>
       <code>$publicationEnd</code>
       <code>$publicationStart</code>
       <code>$title</code>
     </MissingPropertyType>
-    <MixedInferredReturnType occurrences="5">
+    <MixedInferredReturnType>
       <code>?\DateTimeImmutable</code>
       <code>?\DateTimeImmutable</code>
       <code>?int</code>
       <code>?string</code>
       <code>?string</code>
     </MixedInferredReturnType>
-    <MixedReturnStatement occurrences="5">
-      <code>$this-&gt;content</code>
-      <code>$this-&gt;id</code>
-      <code>$this-&gt;publicationEnd</code>
-      <code>$this-&gt;publicationStart</code>
-      <code>$this-&gt;title</code>
+    <MixedReturnStatement>
+      <code><![CDATA[$this->content]]></code>
+      <code><![CDATA[$this->id]]></code>
+      <code><![CDATA[$this->publicationEnd]]></code>
+      <code><![CDATA[$this->publicationStart]]></code>
+      <code><![CDATA[$this->title]]></code>
     </MixedReturnStatement>
   </file>
   <file src="core/publishing/tests/Cms/Functional/ConcorsoArticleControllerTest.php">
-    <PropertyTypeCoercion occurrences="1">
-      <code>(static::getContainer()-&gt;get('doctrine'))-&gt;getRepository(ConcorsoArticle::class)</code>
+    <PropertyTypeCoercion>
+      <code><![CDATA[(static::getContainer()->get('doctrine'))->getRepository(ConcorsoArticle::class)]]></code>
     </PropertyTypeCoercion>
-    <UndefinedInterfaceMethod occurrences="1">
+    <UndefinedInterfaceMethod>
       <code>remove</code>
     </UndefinedInterfaceMethod>
   </file>
   <file src="core/publishing/tests/Cms/Functional/JobArticleControllerTest.php">
-    <PossiblyNullArgument occurrences="3">
-      <code>$fixture-&gt;getId()</code>
-      <code>$fixture-&gt;getId()</code>
-      <code>$fixture-&gt;getId()</code>
+    <PossiblyNullArgument>
+      <code><![CDATA[$fixture->getId()]]></code>
+      <code><![CDATA[$fixture->getId()]]></code>
+      <code><![CDATA[$fixture->getId()]]></code>
     </PossiblyNullArgument>
-    <PropertyTypeCoercion occurrences="1">
-      <code>(static::getContainer()-&gt;get('doctrine'))-&gt;getRepository(JobArticle::class)</code>
+    <PropertyTypeCoercion>
+      <code><![CDATA[(static::getContainer()->get('doctrine'))->getRepository(JobArticle::class)]]></code>
     </PropertyTypeCoercion>
-    <UndefinedInterfaceMethod occurrences="1">
+    <UndefinedInterfaceMethod>
       <code>remove</code>
     </UndefinedInterfaceMethod>
-    <UnusedVariable occurrences="1">
+    <UnusedVariable>
       <code>$crawler</code>
     </UnusedVariable>
   </file>
   <file src="core/publishing/tests/Cms/Integration/Adapter/Persistence/ConcorsoArticleRepositoryTest.php">
-    <PossiblyNullArgument occurrences="1">
+    <PossiblyNullArgument>
       <code>$concorsoArticleFromDB</code>
     </PossiblyNullArgument>
-    <PossiblyNullReference occurrences="1">
+    <PossiblyNullReference>
       <code>getTitle</code>
     </PossiblyNullReference>
-    <PropertyTypeCoercion occurrences="1">
-      <code>(static::getContainer()-&gt;get('doctrine'))-&gt;getRepository(ConcorsoArticle::class)</code>
+    <PropertyTypeCoercion>
+      <code><![CDATA[(static::getContainer()->get('doctrine'))->getRepository(ConcorsoArticle::class)]]></code>
     </PropertyTypeCoercion>
-    <UndefinedInterfaceMethod occurrences="1">
+    <UndefinedInterfaceMethod>
       <code>remove</code>
     </UndefinedInterfaceMethod>
   </file>
   <file src="src/Controller/SymfonyCliController.php">
-    <UnusedParam occurrences="1">
+    <UnusedParam>
       <code>$options</code>
     </UnusedParam>
   </file>
   <file src="src/Entity/BackofficeUser.php">
-    <MixedReturnTypeCoercion occurrences="2">
+    <MixedReturnTypeCoercion>
       <code>array</code>
       <code>array_unique($roles)</code>
     </MixedReturnTypeCoercion>
   </file>
   <file src="tests/E2E/Front/HomeTest.php">
-    <PossiblyNullReference occurrences="1">
+    <PossiblyNullReference>
       <code>request</code>
     </PossiblyNullReference>
   </file>
