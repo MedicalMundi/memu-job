@@ -4,7 +4,6 @@ namespace Ingesting\PublicJob\Adapter\HttpWeb;
 
 use Ingesting\PublicJob\Application\Usecase\ShowFeed\ShowAllFeedJob;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
-use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 
@@ -20,10 +19,9 @@ class WebApiController extends AbstractController
     /**
      * @Route("/wapi/ingestion/jobfeed", name="ingestion_jobfeed", methods={"GET"})
      */
-    public function showFeedJob(Request $request): Response
+    public function showFeedJob(): Response
     {
         $data = $this->viewcase->showFeedJob();
-
         return $this->json($data);
     }
 }

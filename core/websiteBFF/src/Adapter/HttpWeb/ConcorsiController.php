@@ -41,7 +41,7 @@ class ConcorsiController extends AbstractController
     /**
      * @Route("/concorsi/{id}/show", name="website_concorso_show")
      */
-    public function show(Request $request, string $id): Response
+    public function show(string $id): Response
     {
         // get data (published job article) from cms context
 

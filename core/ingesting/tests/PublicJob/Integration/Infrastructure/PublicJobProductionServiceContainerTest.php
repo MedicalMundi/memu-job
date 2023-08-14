@@ -3,7 +3,6 @@
 namespace Ingesting\Tests\PublicJob\Integration\Infrastructure;
 
 use Ingesting\PublicJob\Adapter\Persistence\Doctrine\DoctrineJobFeedRepository;
-use Ingesting\PublicJob\Application\Model\JobRepository;
 use Ingesting\PublicJob\Infrastructure\ProductionServiceContainer;
 use Symfony\Bundle\FrameworkBundle\Test\KernelTestCase;
 
@@ -13,10 +12,7 @@ use Symfony\Bundle\FrameworkBundle\Test\KernelTestCase;
  */
 class PublicJobProductionServiceContainerTest extends KernelTestCase
 {
-    /**
-     * @var JobRepository
-     */
-    private $jobRepository;
+    private ?object $jobRepository = null;
 
     protected function setUp(): void
     {

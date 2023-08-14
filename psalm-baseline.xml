@@ -153,9 +153,12 @@
     </UndefinedInterfaceMethod>
   </file>
   <file src="core/ingesting/tests/Errata/Integration/Infrastructure/ProductionServiceContainerTest.php">
-    <PossiblyNullPropertyAssignmentValue occurrences="1">
-      <code>null</code>
-    </PossiblyNullPropertyAssignmentValue>
+    <ArgumentTypeCoercion occurrences="1">
+      <code>$this-&gt;errataFeedRepository</code>
+    </ArgumentTypeCoercion>
+    <PossiblyNullArgument occurrences="1">
+      <code>$this-&gt;errataFeedRepository</code>
+    </PossiblyNullArgument>
   </file>
   <file src="core/ingesting/tests/Errata/Integration/Persistence/DoctrineErrataFeedRepositoryTest.php">
     <LessSpecificReturnStatement occurrences="1">
@@ -174,9 +177,9 @@
     </PossiblyNullReference>
   </file>
   <file src="core/ingesting/tests/PublicJob/Integration/Infrastructure/PublicJobProductionServiceContainerTest.php">
-    <PossiblyNullPropertyAssignmentValue occurrences="1">
-      <code>null</code>
-    </PossiblyNullPropertyAssignmentValue>
+    <ArgumentTypeCoercion occurrences="1">
+      <code>$this-&gt;jobRepository</code>
+    </ArgumentTypeCoercion>
   </file>
   <file src="core/ingesting/tests/SharedKernel/Integration/FeedIoGazzettaAdapterTest.php">
     <InternalMethod occurrences="1">

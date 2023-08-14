@@ -91,12 +91,7 @@ parameters:
 			path: core/ingesting/src/SharedKernel/Infrastructure/FeedIoAdapter/Response.php
 
 		-
-			message: "#^Property Ingesting\\\\Tests\\\\Errata\\\\Integration\\\\Infrastructure\\\\ProductionServiceContainerTest\\:\\:\\$errataFeedRepository \\(Ingesting\\\\Errata\\\\Application\\\\Model\\\\ErrataFeedRepository\\) does not accept null\\.$#"
-			count: 1
-			path: core/ingesting/tests/Errata/Integration/Infrastructure/ProductionServiceContainerTest.php
-
-		-
-			message: "#^Property Ingesting\\\\Tests\\\\Errata\\\\Integration\\\\Infrastructure\\\\ProductionServiceContainerTest\\:\\:\\$errataFeedRepository \\(Ingesting\\\\Errata\\\\Application\\\\Model\\\\ErrataFeedRepository\\) does not accept object\\|null\\.$#"
+			message: "#^Parameter \\#1 \\$errataFeedRepository of class Ingesting\\\\Errata\\\\Infrastructure\\\\ProductionServiceContainer constructor expects Ingesting\\\\Errata\\\\Application\\\\Model\\\\ErrataFeedRepository, object\\|null given\\.$#"
 			count: 1
 			path: core/ingesting/tests/Errata/Integration/Infrastructure/ProductionServiceContainerTest.php
 
@@ -146,12 +141,7 @@ parameters:
 			path: core/ingesting/tests/PublicJob/Integration/AclAdapter/JobFeedAclServiceTest.php
 
 		-
-			message: "#^Property Ingesting\\\\Tests\\\\PublicJob\\\\Integration\\\\Infrastructure\\\\PublicJobProductionServiceContainerTest\\:\\:\\$jobRepository \\(Ingesting\\\\PublicJob\\\\Application\\\\Model\\\\JobRepository\\) does not accept null\\.$#"
-			count: 1
-			path: core/ingesting/tests/PublicJob/Integration/Infrastructure/PublicJobProductionServiceContainerTest.php
-
-		-
-			message: "#^Property Ingesting\\\\Tests\\\\PublicJob\\\\Integration\\\\Infrastructure\\\\PublicJobProductionServiceContainerTest\\:\\:\\$jobRepository \\(Ingesting\\\\PublicJob\\\\Application\\\\Model\\\\JobRepository\\) does not accept object\\|null\\.$#"
+			message: "#^Parameter \\#1 \\$jobRepository of class Ingesting\\\\PublicJob\\\\Infrastructure\\\\ProductionServiceContainer constructor expects Ingesting\\\\PublicJob\\\\Application\\\\Model\\\\JobRepository\\|null, object\\|null given\\.$#"
 			count: 1
 			path: core/ingesting/tests/PublicJob/Integration/Infrastructure/PublicJobProductionServiceContainerTest.php
 
