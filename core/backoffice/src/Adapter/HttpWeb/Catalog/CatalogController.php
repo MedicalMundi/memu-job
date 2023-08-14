@@ -8,16 +8,14 @@ use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 
 /**
- * @Route("/backoffice/catalog")
  * @IsGranted("ROLE_ADMIN")
  */
+#[Route(path: '/backoffice/catalog')]
 class CatalogController extends AbstractController
 {
     private const USE_VUE = false;
 
-    /**
-     * @Route("/", name="backoffice_catalog", methods={"GET"})
-     */
+    #[Route(path: '/', name: 'backoffice_catalog', methods: ['GET'])]
     public function index(): Response
     {
         return $this->render('@backoffice/catalog/index.html.twig', [

@@ -10,9 +10,9 @@ use Symfony\Component\Routing\Annotation\Route;
 class BackofficeHomeController extends AbstractController
 {
     /**
-     * @Route("/backoffice", name="backoffice_home", methods={"GET"})
      * @IsGranted("ROLE_ADMIN")
      */
+    #[Route(path: '/backoffice', name: 'backoffice_home', methods: ['GET'])]
     public function index(): Response
     {
         return $this->render('@backoffice/home/index.html.twig', [

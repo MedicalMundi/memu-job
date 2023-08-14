@@ -8,9 +8,7 @@ use Symfony\Component\Routing\Annotation\Route;
 
 class ApiAdminController extends AbstractController
 {
-    /**
-     * @route("/api-backoffice", name="backoffice_api_home")
-     */
+    #[route(path: '/api-backoffice', name: 'backoffice_api_home')]
     public function __invoke(): Response
     {
         return $this->json([

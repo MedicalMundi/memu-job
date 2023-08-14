@@ -12,23 +12,19 @@ use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 
 /**
- * @Route("/backoffice/ingesting")
  * @IsGranted("ROLE_ADMIN")
  */
+#[Route(path: '/backoffice/ingesting')]
 class IngestingController extends AbstractController
 {
     private const USE_VUE = false;
 
-    private IngestingDistributedData $ingestingDistributedData;
-
-    public function __construct(IngestingDistributedData $ingestingDistributedData)
-    {
-        $this->ingestingDistributedData = $ingestingDistributedData;
+    public function __construct(
+        private IngestingDistributedData $ingestingDistributedData
+    ) {
     }
 
-    /**
-     * @Route("/", name="backoffice_ingesting", methods={"GET"})
-     */
+    #[Route(path: '/', name: 'backoffice_ingesting', methods: ['GET'])]
     public function index(Request $request): Response
     {
         $data = $this->ingestingDistributedData->findAllJobFeed();
@@ -46,9 +42,7 @@ class IngestingController extends AbstractController
         ]);
     }
 
-    /**
-     * @Route("/jobfeed/{id}/show", name="backoffice_ingesting_show_job_feed", methods={"GET"})
-     */
+    #[Route(path: '/jobfeed/{id}/show', name: 'backoffice_ingesting_show_job_feed', methods: ['GET'])]
     public function showFeed(Request $request): Response
     {
         $id = (string) $request->get('id');

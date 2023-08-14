@@ -11,9 +11,9 @@ use Symfony\Component\Routing\Annotation\Route;
 class VueController extends AbstractController
 {
     /**
-     * @Route("/vue", name="backoffice_vue", methods={"GET"})
      * @IsGranted("ROLE_ADMIN")
      */
+    #[Route(path: '/vue', name: 'backoffice_vue', methods: ['GET'])]
     public function index(): Response
     {
         return $this->render('@backoffice/vue/index.html.twig', [
@@ -22,9 +22,9 @@ class VueController extends AbstractController
     }
 
     /**
-     * @Route("/vue-data", name="backoffice_vue_fake_data", methods={"GET"})
      * @IsGranted("ROLE_ADMIN")
      */
+    #[Route(path: '/vue-data', name: 'backoffice_vue_fake_data', methods: ['GET'])]
     public function fakeData(): Response
     {
         return $this->json([
