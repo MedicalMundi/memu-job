@@ -549,7 +549,7 @@ jobs:
 
       - name: Run rector
         run: ./vendor/bin/rector process --dry-run --ansi
-        continue-on-error: true
+        continue-on-error: false
 
 
 #  notifiy-commit-stage-was-completed-successfully:
