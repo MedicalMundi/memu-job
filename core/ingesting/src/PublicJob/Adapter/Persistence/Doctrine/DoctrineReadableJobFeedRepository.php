@@ -8,11 +8,9 @@ use Ingesting\PublicJob\Application\Usecase\ReadableJobFeedRepository;
 
 class DoctrineReadableJobFeedRepository implements ReadableJobFeedRepository
 {
-    private EntityManagerInterface $entityManager;
-
-    public function __construct(EntityManagerInterface $entityManager)
-    {
-        $this->entityManager = $entityManager;
+    public function __construct(
+        private EntityManagerInterface $entityManager
+    ) {
     }
 
     public function listAvailableJobFeed(): array

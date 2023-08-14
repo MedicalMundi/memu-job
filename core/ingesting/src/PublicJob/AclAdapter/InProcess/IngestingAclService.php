@@ -7,11 +7,9 @@ use Ingesting\PublicJob\AclAdapter\Repository\DistributableJobFeedRepository;
 
 class IngestingAclService implements IngestinOutgoinAcl
 {
-    private DistributableJobFeedRepository $repository;
-
-    public function __construct(DistributableJobFeedRepository $repository)
-    {
-        $this->repository = $repository;
+    public function __construct(
+        private DistributableJobFeedRepository $repository
+    ) {
     }
 
     public function getPublishedToday(): array

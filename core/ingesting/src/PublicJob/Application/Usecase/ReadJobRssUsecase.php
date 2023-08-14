@@ -13,23 +13,12 @@ use Ingesting\PublicJob\Application\Model\Service\UniqueLink;
 
 class ReadJobRssUsecase implements JobRssDataSourceChecker
 {
-    private RssReader $rssReader;
-
-    private JobUniqueService $identityChecker;
-
-    private UniqueLink $linkChecker;
-
-    private JobRepository $repository;
-
-    public function __construct(rssReader $rssReader, JobUniqueService $jobUniqueService, UniqueLink $uniqueLink, JobRepository $repository)
-    {
-        $this->rssReader = $rssReader;
-
-        $this->identityChecker = $jobUniqueService;
-
-        $this->linkChecker = $uniqueLink;
-
-        $this->repository = $repository;
+    public function __construct(
+        private RssReader $rssReader,
+        private JobUniqueService $identityChecker,
+        private UniqueLink $linkChecker,
+        private JobRepository $repository
+    ) {
     }
 
     public function readJobRssDataSource(): void

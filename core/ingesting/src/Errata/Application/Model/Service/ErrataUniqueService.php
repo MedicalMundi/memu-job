@@ -7,11 +7,9 @@ use Ingesting\Errata\Application\Model\ErrataId;
 
 class ErrataUniqueService implements UniqueErrataIdentity
 {
-    private ErrataFeedRepository $repository;
-
-    public function __construct(ErrataFeedRepository $repository)
-    {
-        $this->repository = $repository;
+    public function __construct(
+        private ErrataFeedRepository $repository
+    ) {
     }
 
     public function isUnique(ErrataId $id): bool

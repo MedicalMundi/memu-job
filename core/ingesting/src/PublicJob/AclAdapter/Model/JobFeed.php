@@ -4,20 +4,12 @@ namespace Ingesting\PublicJob\AclAdapter\Model;
 
 class JobFeed implements DistributableJobFeed
 {
-    private string $identity;
-
-    private string $title;
-
-    private string $description;
-
-    private string $link;
-
-    public function __construct(string $identity, string $title, string $description, string $link)
-    {
-        $this->identity = $identity;
-        $this->title = $title;
-        $this->description = $description;
-        $this->link = $link;
+    public function __construct(
+        private string $identity,
+        private string $title,
+        private string $description,
+        private string $link
+    ) {
     }
 
     /**

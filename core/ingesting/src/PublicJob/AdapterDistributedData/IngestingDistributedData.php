@@ -7,11 +7,9 @@ use Ingesting\PublicJob\Application\Model\JobId;
 
 class IngestingDistributedData
 {
-    private DoctrineJobFeedRepository $jobFeedRepository;
-
-    public function __construct(DoctrineJobFeedRepository $jobFeedRepository)
-    {
-        $this->jobFeedRepository = $jobFeedRepository;
+    public function __construct(
+        private DoctrineJobFeedRepository $jobFeedRepository
+    ) {
     }
 
     public function findAllJobFeed(): array

@@ -7,11 +7,9 @@ use Ingesting\PublicJob\Application\Model\JobRepository;
 
 class JobUniqueService implements UniqueIdentity
 {
-    private JobRepository $repository;
-
-    public function __construct(JobRepository $repository)
-    {
-        $this->repository = $repository;
+    public function __construct(
+        private JobRepository $repository
+    ) {
     }
 
     public function isUnique(JobId $id): bool

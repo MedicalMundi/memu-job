@@ -27,7 +27,7 @@ class JobIdType extends UuidType
         }
         try {
             return JobId::fromString((string) $value);
-        } catch (\Exception $ex) {
+        } catch (\Exception) {
             throw ConversionException::conversionFailed((string) $value, self::NAME);
         }
     }

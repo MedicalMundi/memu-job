@@ -25,7 +25,7 @@ class InMemoryErrataFeedRepository implements ErrataFeedRepository
 
         try {
             $this->items[$errata->id()->toString()] = $errata;
-        } catch (\Exception $e) {
+        } catch (\Exception) {
             throw CouldNotPersistErrataFeed::withId($errata->id());
         }
     }

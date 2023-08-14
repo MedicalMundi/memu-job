@@ -13,20 +13,12 @@ use Ingesting\Errata\Application\Model\Service\UniqueLink;
 
 class ReadErrataRssUsecase implements ErrataRssDataSoureChecker
 {
-    private ErrataFeedRepository $repository;
-
-    private ErrataUniqueService $errataUniqueService;
-
-    private UniqueLink $uniqueLinkDetector;
-
-    private RssReader $rssReader;
-
-    public function __construct(ErrataFeedRepository $repository, ErrataUniqueService $errataUniqueService, UniqueLink $uniqueLinkDetector, rssReader $rssReader)
-    {
-        $this->repository = $repository;
-        $this->errataUniqueService = $errataUniqueService;
-        $this->uniqueLinkDetector = $uniqueLinkDetector;
-        $this->rssReader = $rssReader;
+    public function __construct(
+        private ErrataFeedRepository $repository,
+        private ErrataUniqueService $errataUniqueService,
+        private UniqueLink $uniqueLinkDetector,
+        private RssReader $rssReader
+    ) {
     }
 
     public function readErrataRssDataSource(): void

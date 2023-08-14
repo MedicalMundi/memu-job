@@ -6,8 +6,6 @@ use DateTimeImmutable;
 
 class ErrataFeed
 {
-    private ErrataId $id;
-
     private string $title;
 
     private string $description;
@@ -16,9 +14,9 @@ class ErrataFeed
 
     private DateTimeImmutable $publicationDate;
 
-    private function __construct(ErrataId $id)
-    {
-        $this->id = $id;
+    private function __construct(
+        private ErrataId $id
+    ) {
     }
 
     public static function create(string $title, string $description, string $link, DateTimeImmutable $pubDate, ?ErrataId $id = null): self

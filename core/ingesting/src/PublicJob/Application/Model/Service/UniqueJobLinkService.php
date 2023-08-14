@@ -6,11 +6,9 @@ use Ingesting\PublicJob\Application\Model\JobRepository;
 
 class UniqueJobLinkService implements UniqueLink
 {
-    private JobRepository $repository;
-
-    public function __construct(JobRepository $repository)
-    {
-        $this->repository = $repository;
+    public function __construct(
+        private JobRepository $repository
+    ) {
     }
 
     public function isUniqueLink(string $jobLink): bool

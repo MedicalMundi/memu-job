@@ -14,11 +14,9 @@ class IngestingJobCommand extends Command
 
     protected static $defaultDescription = 'Download rss from Gazzetta Ufficiale';
 
-    private JobRssDataSourceChecker $usecase;
-
-    public function __construct(JobRssDataSourceChecker $usecase)
-    {
-        $this->usecase = $usecase;
+    public function __construct(
+        private JobRssDataSourceChecker $usecase
+    ) {
         parent::__construct();
     }
 

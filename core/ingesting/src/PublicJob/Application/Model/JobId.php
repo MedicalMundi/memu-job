@@ -5,10 +5,8 @@ namespace Ingesting\PublicJob\Application\Model;
 use Ramsey\Uuid\Uuid;
 use Ramsey\Uuid\UuidInterface;
 
-class JobId
+class JobId implements \Stringable
 {
-    private UuidInterface $uuid;
-
     public static function generate(): JobId
     {
         return new self(Uuid::uuid4());
@@ -19,9 +17,9 @@ class JobId
         return new self(Uuid::fromString($id));
     }
 
-    private function __construct(UuidInterface $id)
-    {
-        $this->uuid = $id;
+    private function __construct(
+        private UuidInterface $uuid
+    ) {
     }
 
     public function toString(): string

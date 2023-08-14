@@ -6,8 +6,6 @@ use DateTimeImmutable;
 
 class JobFeed
 {
-    private JobId $id;
-
     private string $title;
 
     private string $description;
@@ -16,9 +14,9 @@ class JobFeed
 
     private DateTimeImmutable $publicationDate;
 
-    private function __construct(JobId $id)
-    {
-        $this->id = $id;
+    private function __construct(
+        private JobId $id
+    ) {
     }
 
     public static function create(string $title, string $description, string $link, DateTimeImmutable $pubDate, ?JobId $id = null): self

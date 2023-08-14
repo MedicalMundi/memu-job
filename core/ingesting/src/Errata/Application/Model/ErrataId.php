@@ -5,10 +5,8 @@ namespace Ingesting\Errata\Application\Model;
 use Ramsey\Uuid\Uuid;
 use Ramsey\Uuid\UuidInterface;
 
-class ErrataId
+class ErrataId implements \Stringable
 {
-    private UuidInterface $uuid;
-
     public static function generate(): self
     {
         return new ErrataId(Uuid::uuid4());
@@ -19,9 +17,9 @@ class ErrataId
         return new ErrataId(Uuid::fromString($id));
     }
 
-    private function __construct(UuidInterface $id)
-    {
-        $this->uuid = $id;
+    private function __construct(
+        private UuidInterface $uuid
+    ) {
     }
 
     public function toString(): string

@@ -12,14 +12,10 @@ class Response implements ResponseInterface
 
     protected ?string $body = null;
 
-    protected PsrResponseInterface $psrResponse;
-
-    protected float $duration;
-
-    public function __construct(PsrResponseInterface $psrResponse, float $duration)
-    {
-        $this->psrResponse = $psrResponse;
-        $this->duration = $duration;
+    public function __construct(
+        protected PsrResponseInterface $psrResponse,
+        protected float $duration
+    ) {
     }
 
     public function getDuration(): float

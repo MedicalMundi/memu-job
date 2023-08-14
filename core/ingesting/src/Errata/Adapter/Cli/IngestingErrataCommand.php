@@ -14,11 +14,9 @@ class IngestingErrataCommand extends Command
 
     protected static $defaultDescription = 'Download rss from Gazzetta Ufficiale only errata';
 
-    private ErrataRssDataSoureChecker  $usecase;
-
-    public function __construct(ErrataRssDataSoureChecker $usecase)
-    {
-        $this->usecase = $usecase;
+    public function __construct(
+        private ErrataRssDataSoureChecker $usecase
+    ) {
         parent::__construct();
     }
 

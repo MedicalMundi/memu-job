@@ -6,11 +6,9 @@ use Ingesting\PublicJob\Application\Model\JobRepository;
 
 class ProductionServiceContainer extends ServiceContainer
 {
-    protected ?JobRepository $jobRepository = null;
-
-    public function __construct(?JobRepository $jobRepository = null)
-    {
-        $this->jobRepository = $jobRepository;
+    public function __construct(
+        protected ?JobRepository $jobRepository = null
+    ) {
     }
 
     protected function jobRepository(): JobRepository

@@ -19,14 +19,10 @@ class GazzettaClient implements ClientInterface
      */
     public const DEFAULT_USER_AGENT = 'Mozilla/5.0 (X11; U; Linux i686; fr; rv:1.9.1.1) Gecko/20090715 Firefox/3.5.1';
 
-    protected object $symfonyClient;
-
-    protected string $userAgent = self::DEFAULT_USER_AGENT;
-
-    public function __construct(object $symfonyClient, string $userAgent)
-    {
-        $this->symfonyClient = $symfonyClient;
-        $this->userAgent = $userAgent;
+    public function __construct(
+        protected object $symfonyClient,
+        protected string $userAgent
+    ) {
     }
 
     /**
