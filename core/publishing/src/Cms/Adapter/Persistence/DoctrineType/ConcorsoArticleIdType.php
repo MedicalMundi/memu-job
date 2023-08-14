@@ -27,7 +27,7 @@ class ConcorsoArticleIdType extends UuidType
         }
         try {
             return ConcorsoArticleId::fromString((string) $value);
-        } catch (\Exception $ex) {
+        } catch (\Exception) {
             throw ConversionException::conversionFailed((string) $value, self::NAME);
         }
     }

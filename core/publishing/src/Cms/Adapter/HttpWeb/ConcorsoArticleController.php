@@ -13,14 +13,10 @@ use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 
-/**
- * @Route("/backoffice/publishing/concorso/article")
- */
+#[Route(path: '/backoffice/publishing/concorso/article')]
 class ConcorsoArticleController extends AbstractController
 {
-    /**
-     * @Route("/", name="cms_concorso_article_index", methods={"GET"})
-     */
+    #[Route(path: '/', name: 'cms_concorso_article_index', methods: ['GET'])]
     public function index(Request $request, ConcorsoArticleRepository $concorsoArticleRepository): Response
     {
         $concorsoArticles = $concorsoArticleRepository->findAll();
@@ -37,9 +33,7 @@ class ConcorsoArticleController extends AbstractController
         ]);
     }
 
-    /**
-     * @Route("/new", name="cms_concorso_article_new", methods={"GET", "POST"})
-     */
+    #[Route(path: '/new', name: 'cms_concorso_article_new', methods: ['GET', 'POST'])]
     public function new(Request $request, ConcorsoArticleRepository $concorsoArticleRepository): Response
     {
         $concorsoArticle = new ConcorsoArticle();
@@ -59,9 +53,7 @@ class ConcorsoArticleController extends AbstractController
         ]);
     }
 
-    /**
-     * @Route("/{id}", name="cms_concorso_article_show", methods={"GET"})
-     */
+    #[Route(path: '/{id}', name: 'cms_concorso_article_show', methods: ['GET'])]
     public function show(Request $request, ConcorsoArticleRepository $concorsoArticleRepository): Response
     {
         $concorsoArticleId = ConcorsoArticleId::fromString((string) $request->get('id'));
@@ -73,9 +65,7 @@ class ConcorsoArticleController extends AbstractController
         ]);
     }
 
-    /**
-     * @Route("/{id}/edit", name="cms_concorso_article_edit", methods={"GET", "POST"})
-     */
+    #[Route(path: '/{id}/edit', name: 'cms_concorso_article_edit', methods: ['GET', 'POST'])]
     public function edit(Request $request, ConcorsoArticleRepository $concorsoArticleRepository): Response
     {
         $concorsoArticleId = ConcorsoArticleId::fromString((string) $request->get('id'));
@@ -98,9 +88,7 @@ class ConcorsoArticleController extends AbstractController
         ]);
     }
 
-    /**
-     * @Route("/{id}", name="cms_concorso_article_delete", methods={"POST"})
-     */
+    #[Route(path: '/{id}', name: 'cms_concorso_article_delete', methods: ['POST'])]
     public function delete(Request $request, ConcorsoArticleRepository $concorsoArticleRepository): Response
     {
         $concorsoArticleId = ConcorsoArticleId::fromString((string) $request->get('id'));

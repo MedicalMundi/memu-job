@@ -7,14 +7,10 @@ use Publishing\Cms\Adapter\Persistence\JobArticleRepository;
 
 class CmsDistributedData
 {
-    private JobArticleRepository $jobArticleRepository;
-
-    private ConcorsoArticleRepository  $concorsoArticleRepository;
-
-    public function __construct(JobArticleRepository $jobArticleRepository, ConcorsoArticleRepository $concorsoArticleRepository)
-    {
-        $this->jobArticleRepository = $jobArticleRepository;
-        $this->concorsoArticleRepository = $concorsoArticleRepository;
+    public function __construct(
+        private JobArticleRepository $jobArticleRepository,
+        private ConcorsoArticleRepository $concorsoArticleRepository
+    ) {
     }
 
     public function getAllPublishedJobArticle(): array
