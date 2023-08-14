@@ -15,33 +15,27 @@ use Symfony\Component\Security\Core\User\UserInterface;
 class BackofficeUser implements UserInterface, PasswordAuthenticatedUserInterface
 {
     /**
-     * @ORM\Id
-     * @ORM\GeneratedValue(strategy="NONE")
-     * @ORM\Column(type="uuid", unique=true)
-     */
-    private UuidInterface $id;
-
-    /**
-     * @ORM\Column(type="string", length=180, unique=true)
-     */
-    private string $email;
-
-    /**
      * @ORM\Column(type="json")
      */
     private array $roles = [];
 
-    /**
-     * @var string The hashed password
-     * @ORM\Column(type="string")
-     */
-    private string $password;
-
-    private function __construct(UuidInterface $identity, string $email, string $password)
-    {
-        $this->id = $identity;
-        $this->email = $email;
-        $this->password = $password;
+    private function __construct(
+        /**
+         * @ORM\Id
+         * @ORM\GeneratedValue(strategy="NONE")
+         * @ORM\Column(type="uuid", unique=true)
+         */
+        private UuidInterface $id,
+        /**
+         * @ORM\Column(type="string", length=180, unique=true)
+         */
+        private string $email,
+        /**
+         * @var string The hashed password
+         * @ORM\Column(type="string")
+         */
+        private string $password
+    ) {
     }
 
     public static function createWithIdentity(UuidInterface $identity, string $email, string $password): self

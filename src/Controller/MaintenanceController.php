@@ -8,9 +8,7 @@ use Symfony\Component\Routing\Annotation\Route;
 
 class MaintenanceController extends AbstractController
 {
-    /**
-     * @Route("/", name="app_maintenance")
-     */
+    #[Route(path: '/', name: 'app_maintenance')]
     public function __invoke(): Response
     {
         return $this->render('maintenance/index.html.twig');
