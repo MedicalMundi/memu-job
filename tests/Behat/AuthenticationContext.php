@@ -23,29 +23,29 @@ final class AuthenticationContext implements Context
         $this->userPasswordHasher = $userPasswordHasher;
     }
 
-//    /**
-//     * @BeforeScenario
-//     */
-//    public function clearData(): void
-//    {
-//        $em = $this->kernel->getContainer()->get('doctrine')->getManager();
-//
-//        $em->createQuery('DELETE FROM App:BackofficeUser')->execute();
-//    }
+    //    /**
+    //     * @BeforeScenario
+    //     */
+    //    public function clearData(): void
+    //    {
+    //        $em = $this->kernel->getContainer()->get('doctrine')->getManager();
+    //
+    //        $em->createQuery('DELETE FROM App:BackofficeUser')->execute();
+    //    }
 
-//    /**
-//     * @Given there is an admin user with email :email and password :password
-//     */
-//    public function thereIsAnAdminUserWithEmailAndPassword(string $email, string $password): void
-//    {
-//        $adminUser = BackofficeUser::create($email, '');
-//
-//        $adminUser = $adminUser->setPassword($this->userPasswordHasher->hashPassword($adminUser, $password));
-//
-//        $adminUser->setRoles(['ROLE_ADMIN']);
-//
-//        $em = $this->kernel->getContainer()->get('doctrine')->getManager();
-//        $em->persist($adminUser);
-//        $em->flush();
-//    }
+    //    /**
+    //     * @Given there is an admin user with email :email and password :password
+    //     */
+    //    public function thereIsAnAdminUserWithEmailAndPassword(string $email, string $password): void
+    //    {
+    //        $adminUser = BackofficeUser::create($email, '');
+    //
+    //        $adminUser = $adminUser->setPassword($this->userPasswordHasher->hashPassword($adminUser, $password));
+    //
+    //        $adminUser->setRoles(['ROLE_ADMIN']);
+    //
+    //        $em = $this->kernel->getContainer()->get('doctrine')->getManager();
+    //        $em->persist($adminUser);
+    //        $em->flush();
+    //    }
 }
