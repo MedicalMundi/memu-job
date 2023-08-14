@@ -13,14 +13,10 @@ use Symfony\Component\PasswordHasher\Hasher\UserPasswordHasherInterface;
  */
 final class AuthenticationContext implements Context
 {
-    private KernelInterface $kernel;
-
-    private UserPasswordHasherInterface $userPasswordHasher;
-
-    public function __construct(KernelInterface $kernel, UserPasswordHasherInterface $userPasswordHasher)
-    {
-        $this->kernel = $kernel;
-        $this->userPasswordHasher = $userPasswordHasher;
+    public function __construct(
+        private KernelInterface $kernel,
+        private UserPasswordHasherInterface $userPasswordHasher
+    ) {
     }
 
     //    /**

@@ -20,22 +20,22 @@ class JobArticle
     /**
      * @ORM\Column(type="string", length=255, nullable=true)
      */
-    private $title;
+    private ?string $title = null;
 
     /**
      * @ORM\Column(type="text", nullable=true)
      */
-    private $content;
+    private ?string $content = null;
 
     /**
      * @ORM\Column(type="datetime_immutable", nullable=true)
      */
-    private $publicationStart;
+    private ?\DateTimeImmutable $publicationStart = null;
 
     /**
      * @ORM\Column(type="datetime_immutable", nullable=true)
      */
-    private $publicationEnd;
+    private ?\DateTimeImmutable $publicationEnd = null;
 
     public function getId(): ?int
     {

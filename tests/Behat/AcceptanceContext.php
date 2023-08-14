@@ -17,17 +17,11 @@ use Webmozart\Assert\Assert;
  */
 final class AcceptanceContext extends MinkContext implements Context
 {
-    private KernelInterface $kernel;
-
-    private UserPasswordHasherInterface $userPasswordHasher;
-
-    private ManagerRegistry $registry;
-
-    public function __construct(KernelInterface $kernel, UserPasswordHasherInterface $userPasswordHasher, ManagerRegistry $registry)
-    {
-        $this->kernel = $kernel;
-        $this->userPasswordHasher = $userPasswordHasher;
-        $this->registry = $registry;
+    public function __construct(
+        private KernelInterface $kernel,
+        private UserPasswordHasherInterface $userPasswordHasher,
+        private ManagerRegistry $registry
+    ) {
     }
 
     /**

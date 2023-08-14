@@ -27,7 +27,7 @@ class ErrataIdType extends UuidType
         }
         try {
             return ErrataId::fromString((string) $value);
-        } catch (\Exception $ex) {
+        } catch (\Exception) {
             throw ConversionException::conversionFailed((string) $value, self::NAME);
         }
     }

@@ -25,7 +25,7 @@ class InMemoryJobFeedRepository implements JobRepository
 
         try {
             $this->items[$job->id()->toString()] = $job;
-        } catch (\Exception $e) {
+        } catch (\Exception) {
             throw CouldNotPersistJobFeed::withId($job->id());
         }
     }

@@ -25,17 +25,17 @@ class ConcorsoArticle
     /**
      * @ORM\Column(type="text", nullable=true)
      */
-    private $content;
+    private ?string $content = null;
 
     /**
      * @ORM\Column(type="datetime_immutable", nullable=true)
      */
-    private $publicationStart;
+    private ?\DateTimeImmutable $publicationStart = null;
 
     /**
      * @ORM\Column(type="datetime_immutable", nullable=true)
      */
-    private $publicationEnd;
+    private ?\DateTimeImmutable $publicationEnd = null;
 
     /**
      * @ORM\Column(type="boolean")

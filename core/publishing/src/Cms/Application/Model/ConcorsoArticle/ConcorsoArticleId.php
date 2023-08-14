@@ -5,10 +5,8 @@ namespace Publishing\Cms\Application\Model\ConcorsoArticle;
 use Ramsey\Uuid\Uuid;
 use Ramsey\Uuid\UuidInterface;
 
-class ConcorsoArticleId
+class ConcorsoArticleId implements \Stringable
 {
-    private UuidInterface $uuid;
-
     public static function generate(): ConcorsoArticleId
     {
         return new self(Uuid::uuid4());
@@ -19,9 +17,9 @@ class ConcorsoArticleId
         return new self(Uuid::fromString($id));
     }
 
-    private function __construct(UuidInterface $id)
-    {
-        $this->uuid = $id;
+    private function __construct(
+        private UuidInterface $uuid
+    ) {
     }
 
     public function toString(): string

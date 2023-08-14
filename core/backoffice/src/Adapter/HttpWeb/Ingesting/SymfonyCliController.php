@@ -14,22 +14,18 @@ use Symfony\Component\HttpKernel\KernelInterface;
 use Symfony\Component\Routing\Annotation\Route;
 
 /**
- * @Route("/backoffice/ingesting")
  * @IsGranted("ROLE_ADMIN")
  */
+#[Route(path: '/backoffice/ingesting')]
 class SymfonyCliController extends AbstractController
 {
-    /**
-     * @Route("command/ingesting/job", name="backoffice_cli_command_ingesting_job")
-     */
+    #[Route(path: 'command/ingesting/job', name: 'backoffice_cli_command_ingesting_job')]
     public function command_ingesting_job(KernelInterface $kernel): Response
     {
         return $this->do_command($kernel, 'app:ingesting:job');
     }
 
-    /**
-     * @Route("command/ingesting/job", name="backoffice_cli_command_ingesting_errata")
-     */
+    #[Route(path: 'command/ingesting/job', name: 'backoffice_cli_command_ingesting_errata')]
     public function command_ingesting_errata(KernelInterface $kernel): Response
     {
         return $this->do_command($kernel, 'app:ingesting:errata');

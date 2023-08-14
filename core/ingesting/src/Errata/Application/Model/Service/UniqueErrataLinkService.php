@@ -6,11 +6,9 @@ use Ingesting\Errata\Application\Model\ErrataFeedRepository;
 
 class UniqueErrataLinkService implements UniqueLink
 {
-    private ErrataFeedRepository $repository;
-
-    public function __construct(ErrataFeedRepository $repository)
-    {
-        $this->repository = $repository;
+    public function __construct(
+        private ErrataFeedRepository $repository
+    ) {
     }
 
     public function isUniqueLink(string $errataLink): bool

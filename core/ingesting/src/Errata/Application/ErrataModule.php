@@ -6,11 +6,9 @@ use Ingesting\Errata\Application\Usecase\ErrataRssDataSoureChecker;
 
 final class ErrataModule implements ErrataContextInterface
 {
-    private ErrataRssDataSoureChecker $readErrataRssUsecase;
-
-    public function __construct(ErrataRssDataSoureChecker $readErrataRssUsecase)
-    {
-        $this->readErrataRssUsecase = $readErrataRssUsecase;
+    public function __construct(
+        private ErrataRssDataSoureChecker $readErrataRssUsecase
+    ) {
     }
 
     public function readErrataRssDataSource(): void

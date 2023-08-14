@@ -12,16 +12,12 @@ use Symfony\Component\Routing\Annotation\Route;
 
 class ConcorsiController extends AbstractController
 {
-    private CmsDistributedData $cmsDistributedData;
-
-    public function __construct(CmsDistributedData $cmsDistributedData)
-    {
-        $this->cmsDistributedData = $cmsDistributedData;
+    public function __construct(
+        private CmsDistributedData $cmsDistributedData
+    ) {
     }
 
-    /**
-     * @Route("/concorsi", name="website_concorsi")
-     */
+    #[Route(path: '/concorsi', name: 'website_concorsi')]
     public function index(Request $request): Response
     {
         $data = $this->cmsDistributedData->getAllPublishedConcorsoArticles();
@@ -38,9 +34,7 @@ class ConcorsiController extends AbstractController
         ]);
     }
 
-    /**
-     * @Route("/concorsi/{id}/show", name="website_concorso_show")
-     */
+    #[Route(path: '/concorsi/{id}/show', name: 'website_concorso_show')]
     public function show(string $id): Response
     {
         // get data (published job article) from cms context

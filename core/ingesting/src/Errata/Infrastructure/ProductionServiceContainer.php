@@ -8,14 +8,10 @@ use Psr\Log\NullLogger;
 
 class ProductionServiceContainer extends ServiceContainer
 {
-    protected ?LoggerInterface $logger = null;
-
-    protected ?ErrataFeedRepository $errataFeedRepository = null;
-
-    public function __construct(ErrataFeedRepository $errataFeedRepository, ?LoggerInterface $logger = null)
-    {
-        $this->errataFeedRepository = $errataFeedRepository;
-        $this->logger = $logger;
+    public function __construct(
+        protected ?ErrataFeedRepository $errataFeedRepository,
+        protected ?LoggerInterface $logger = null
+    ) {
     }
 
     protected function errataFeedRepository(): ErrataFeedRepository

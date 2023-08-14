@@ -18,15 +18,11 @@ class AdminCreateCommand extends Command
 
     protected static $defaultDescription = 'Crea un nuovo utente amministratore';
 
-    private BackofficeUserRepository $userRepository;
-
-    private UserPasswordHasherInterface $passwordHasher;
-
-    public function __construct(BackofficeUserRepository $userRepository, UserPasswordHasherInterface $passwordHasher)
-    {
+    public function __construct(
+        private BackofficeUserRepository $userRepository,
+        private UserPasswordHasherInterface $passwordHasher
+    ) {
         parent::__construct();
-        $this->userRepository = $userRepository;
-        $this->passwordHasher = $passwordHasher;
     }
 
     protected function configure(): void

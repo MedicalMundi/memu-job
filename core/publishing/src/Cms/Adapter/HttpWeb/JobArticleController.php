@@ -10,14 +10,10 @@ use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 
-/**
- * @Route("/backoffice/publishing/job/article")
- */
+#[Route(path: '/backoffice/publishing/job/article')]
 class JobArticleController extends AbstractController
 {
-    /**
-     * @Route("/", name="cms_job_article_index", methods={"GET"})
-     */
+    #[Route(path: '/', name: 'cms_job_article_index', methods: ['GET'])]
     public function index(JobArticleRepository $jobArticleRepository): Response
     {
         return $this->render('@cms/job_article/index.html.twig', [
@@ -25,9 +21,7 @@ class JobArticleController extends AbstractController
         ]);
     }
 
-    /**
-     * @Route("/new", name="cms_job_article_new", methods={"GET", "POST"})
-     */
+    #[Route(path: '/new', name: 'cms_job_article_new', methods: ['GET', 'POST'])]
     public function new(Request $request, JobArticleRepository $jobArticleRepository): Response
     {
         $jobArticle = new JobArticle();
@@ -48,9 +42,7 @@ class JobArticleController extends AbstractController
         ]);
     }
 
-    /**
-     * @Route("/{id}", name="cms_job_article_show", methods={"GET"})
-     */
+    #[Route(path: '/{id}', name: 'cms_job_article_show', methods: ['GET'])]
     public function show(JobArticle $jobArticle): Response
     {
         return $this->render('@cms/job_article/show.html.twig', [
@@ -58,9 +50,7 @@ class JobArticleController extends AbstractController
         ]);
     }
 
-    /**
-     * @Route("/{id}/edit", name="cms_job_article_edit", methods={"GET", "POST"})
-     */
+    #[Route(path: '/{id}/edit', name: 'cms_job_article_edit', methods: ['GET', 'POST'])]
     public function edit(Request $request, JobArticle $jobArticle, JobArticleRepository $jobArticleRepository): Response
     {
         $form = $this->createForm(JobArticleType::class, $jobArticle);
@@ -78,9 +68,7 @@ class JobArticleController extends AbstractController
         ]);
     }
 
-    /**
-     * @Route("/{id}", name="cms_job_article_delete", methods={"POST"})
-     */
+    #[Route(path: '/{id}', name: 'cms_job_article_delete', methods: ['POST'])]
     public function delete(Request $request, JobArticle $jobArticle, JobArticleRepository $jobArticleRepository): Response
     {
         if ($this->isCsrfTokenValid('delete' . $jobArticle->getId(), (string) $request->request->get('_token'))) {

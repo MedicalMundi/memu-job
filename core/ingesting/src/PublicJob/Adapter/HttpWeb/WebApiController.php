@@ -9,16 +9,12 @@ use Symfony\Component\Routing\Annotation\Route;
 
 class WebApiController extends AbstractController
 {
-    private ShowAllFeedJob $viewcase;
-
-    public function __construct(ShowAllFeedJob $viewcase)
-    {
-        $this->viewcase = $viewcase;
+    public function __construct(
+        private ShowAllFeedJob $viewcase
+    ) {
     }
 
-    /**
-     * @Route("/wapi/ingestion/jobfeed", name="ingestion_jobfeed", methods={"GET"})
-     */
+    #[Route(path: '/wapi/ingestion/jobfeed', name: 'ingestion_jobfeed', methods: ['GET'])]
     public function showFeedJob(): Response
     {
         $data = $this->viewcase->showFeedJob();
