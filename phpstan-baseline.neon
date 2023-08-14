@@ -91,7 +91,7 @@ parameters:
 			path: core/ingesting/src/SharedKernel/Infrastructure/FeedIoAdapter/Response.php
 
 		-
-			message: "#^Parameter \\#1 \\$errataFeedRepository of class Ingesting\\\\Errata\\\\Infrastructure\\\\ProductionServiceContainer constructor expects Ingesting\\\\Errata\\\\Application\\\\Model\\\\ErrataFeedRepository, object\\|null given\\.$#"
+			message: "#^Parameter \\#1 \\$errataFeedRepository of class Ingesting\\\\Errata\\\\Infrastructure\\\\ProductionServiceContainer constructor expects Ingesting\\\\Errata\\\\Application\\\\Model\\\\ErrataFeedRepository\\|null, object\\|null given\\.$#"
 			count: 1
 			path: core/ingesting/tests/Errata/Integration/Infrastructure/ProductionServiceContainerTest.php
 
@@ -221,47 +221,12 @@ parameters:
 			path: core/publishing/src/Cms/Adapter/Persistence/JobArticleRepository.php
 
 		-
-			message: "#^Property Publishing\\\\Cms\\\\Application\\\\Model\\\\ConcorsoArticle\\\\ConcorsoArticle\\:\\:\\$content has no type specified\\.$#"
-			count: 1
-			path: core/publishing/src/Cms/Application/Model/ConcorsoArticle/ConcorsoArticle.php
-
-		-
-			message: "#^Property Publishing\\\\Cms\\\\Application\\\\Model\\\\ConcorsoArticle\\\\ConcorsoArticle\\:\\:\\$publicationEnd has no type specified\\.$#"
-			count: 1
-			path: core/publishing/src/Cms/Application/Model/ConcorsoArticle/ConcorsoArticle.php
-
-		-
-			message: "#^Property Publishing\\\\Cms\\\\Application\\\\Model\\\\ConcorsoArticle\\\\ConcorsoArticle\\:\\:\\$publicationStart has no type specified\\.$#"
-			count: 1
-			path: core/publishing/src/Cms/Application/Model/ConcorsoArticle/ConcorsoArticle.php
-
-		-
-			message: "#^Property Publishing\\\\Cms\\\\Application\\\\Model\\\\JobArticle\\\\JobArticle\\:\\:\\$content has no type specified\\.$#"
-			count: 1
-			path: core/publishing/src/Cms/Application/Model/JobArticle/JobArticle.php
-
-		-
 			message: "#^Property Publishing\\\\Cms\\\\Application\\\\Model\\\\JobArticle\\\\JobArticle\\:\\:\\$id has no type specified\\.$#"
 			count: 1
 			path: core/publishing/src/Cms/Application/Model/JobArticle/JobArticle.php
 
 		-
 			message: "#^Property Publishing\\\\Cms\\\\Application\\\\Model\\\\JobArticle\\\\JobArticle\\:\\:\\$id is never written, only read\\.$#"
-			count: 1
-			path: core/publishing/src/Cms/Application/Model/JobArticle/JobArticle.php
-
-		-
-			message: "#^Property Publishing\\\\Cms\\\\Application\\\\Model\\\\JobArticle\\\\JobArticle\\:\\:\\$publicationEnd has no type specified\\.$#"
-			count: 1
-			path: core/publishing/src/Cms/Application/Model/JobArticle/JobArticle.php
-
-		-
-			message: "#^Property Publishing\\\\Cms\\\\Application\\\\Model\\\\JobArticle\\\\JobArticle\\:\\:\\$publicationStart has no type specified\\.$#"
-			count: 1
-			path: core/publishing/src/Cms/Application/Model/JobArticle/JobArticle.php
-
-		-
-			message: "#^Property Publishing\\\\Cms\\\\Application\\\\Model\\\\JobArticle\\\\JobArticle\\:\\:\\$title has no type specified\\.$#"
 			count: 1
 			path: core/publishing/src/Cms/Application/Model/JobArticle/JobArticle.php
 
