@@ -2,7 +2,6 @@
 
 namespace Ingesting\PublicJob\Adapter\Persistence\Doctrine;
 
-use Doctrine\DBAL\Statement;
 use Doctrine\ORM\EntityManagerInterface;
 use Ingesting\PublicJob\Application\Usecase\ReadableJobFeedRepository;
 
@@ -21,7 +20,6 @@ class DoctrineReadableJobFeedRepository implements ReadableJobFeedRepository
             ORDER BY p.publication_date ASC
             ';
         try {
-            /** @var Statement $stmt */
             $stmt = $conn->prepare($sql);
             $resultSet = $stmt->executeQuery();
             return $resultSet->fetchAllAssociative();

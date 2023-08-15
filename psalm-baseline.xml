@@ -63,13 +63,7 @@
   <file src="core/ingesting/src/Errata/Infrastructure/ServiceContainer.php">
     <DeprecatedClass>
       <code>Factory::create()</code>
-      <code>Factory::create()</code>
     </DeprecatedClass>
-  </file>
-  <file src="core/ingesting/src/PublicJob/AclAdapter/Repository/DistributableJobFeedRepository.php">
-    <UnnecessaryVarAnnotation>
-      <code>Statement</code>
-    </UnnecessaryVarAnnotation>
   </file>
   <file src="core/ingesting/src/PublicJob/Adapter/Persistence/Doctrine/Config/JobIdType.php">
     <ImplementedReturnTypeMismatch>
@@ -79,11 +73,6 @@
       <code>$value</code>
       <code>$value</code>
     </MoreSpecificImplementedParamType>
-  </file>
-  <file src="core/ingesting/src/PublicJob/Adapter/Persistence/Doctrine/DoctrineReadableJobFeedRepository.php">
-    <UnnecessaryVarAnnotation>
-      <code>Statement</code>
-    </UnnecessaryVarAnnotation>
   </file>
   <file src="core/ingesting/src/PublicJob/Adapter/Persistence/InMemoryJobFeedRepository.php">
     <MixedAssignment>
@@ -101,6 +90,7 @@
   </file>
   <file src="core/ingesting/src/PublicJob/Adapter/Rss/FeedIoRssReader.php">
     <DeprecatedClass>
+      <code>Factory::create()</code>
       <code>Factory::create()</code>
     </DeprecatedClass>
     <InvalidArrayAccess>
@@ -139,9 +129,6 @@
       <code>getStatusCode</code>
       <code>request</code>
     </MixedMethodCall>
-    <UnusedVariable>
-      <code>$options</code>
-    </UnusedVariable>
   </file>
   <file src="core/ingesting/src/SharedKernel/Infrastructure/FeedIoAdapter/Response.php">
     <InvalidArrayAccess>
@@ -169,9 +156,6 @@
     <ArgumentTypeCoercion>
       <code><![CDATA[$this->errataFeedRepository]]></code>
     </ArgumentTypeCoercion>
-    <PossiblyNullArgument>
-      <code><![CDATA[$this->errataFeedRepository]]></code>
-    </PossiblyNullArgument>
   </file>
   <file src="core/ingesting/tests/Errata/Integration/Persistence/DoctrineErrataFeedRepositoryTest.php">
     <LessSpecificReturnStatement>
@@ -248,44 +232,15 @@
       <code>$title</code>
     </MissingConstructor>
   </file>
-  <file src="core/publishing/src/Cms/Application/Model/ConcorsoArticle/ConcorsoArticle.php">
-    <MissingPropertyType>
-      <code>$content</code>
-      <code>$publicationEnd</code>
-      <code>$publicationStart</code>
-    </MissingPropertyType>
-    <MixedInferredReturnType>
-      <code>?\DateTimeImmutable</code>
-      <code>?\DateTimeImmutable</code>
-      <code>?string</code>
-    </MixedInferredReturnType>
-    <MixedReturnStatement>
-      <code><![CDATA[$this->content]]></code>
-      <code><![CDATA[$this->publicationEnd]]></code>
-      <code><![CDATA[$this->publicationStart]]></code>
-    </MixedReturnStatement>
-  </file>
   <file src="core/publishing/src/Cms/Application/Model/JobArticle/JobArticle.php">
     <MissingPropertyType>
-      <code>$content</code>
       <code>$id</code>
-      <code>$publicationEnd</code>
-      <code>$publicationStart</code>
-      <code>$title</code>
     </MissingPropertyType>
     <MixedInferredReturnType>
-      <code>?\DateTimeImmutable</code>
-      <code>?\DateTimeImmutable</code>
       <code>?int</code>
-      <code>?string</code>
-      <code>?string</code>
     </MixedInferredReturnType>
     <MixedReturnStatement>
-      <code><![CDATA[$this->content]]></code>
       <code><![CDATA[$this->id]]></code>
-      <code><![CDATA[$this->publicationEnd]]></code>
-      <code><![CDATA[$this->publicationStart]]></code>
-      <code><![CDATA[$this->title]]></code>
     </MixedReturnStatement>
   </file>
   <file src="core/publishing/tests/Cms/Functional/ConcorsoArticleControllerTest.php">
@@ -308,9 +263,6 @@
     <UndefinedInterfaceMethod>
       <code>remove</code>
     </UndefinedInterfaceMethod>
-    <UnusedVariable>
-      <code>$crawler</code>
-    </UnusedVariable>
   </file>
   <file src="core/publishing/tests/Cms/Integration/Adapter/Persistence/ConcorsoArticleRepositoryTest.php">
     <PossiblyNullArgument>

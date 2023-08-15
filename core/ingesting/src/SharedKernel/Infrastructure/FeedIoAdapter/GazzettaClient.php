@@ -54,7 +54,7 @@ class GazzettaClient implements ClientInterface
      */
     protected function request(string $method, string $url, DateTime $modifiedSince = null): ResponseInterface
     {
-        $options = $this->getOptions($modifiedSince);
+        $this->getOptions($modifiedSince);
         $duration = 0;
         // TODO FIX
         //        $options['on_stats'] = function (TransferStats $stats) use (&$duration) {

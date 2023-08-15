@@ -2,7 +2,6 @@
 
 namespace Ingesting\PublicJob\AclAdapter\Repository;
 
-use Doctrine\DBAL\Statement;
 use Doctrine\ORM\EntityManagerInterface;
 use Ingesting\PublicJob\AclAdapter\Model\DistributableJobFeed;
 use Ingesting\PublicJob\AclAdapter\Model\JobFeed;
@@ -28,7 +27,6 @@ class DistributableJobFeedRepository
             ';
 
         // TODO CATCH EXCEPTION
-        /** @var Statement $stmt */
         $stmt = $conn->prepare($sql);
         $resultSet = $stmt->executeQuery([
             'today_date' => $todayDate-> format(\DateTimeInterface::ATOM),
