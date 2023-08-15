@@ -7,6 +7,5 @@ CREATE TABLE `ecotone_document_store` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb3 COLLATE=utf8mb3_unicode_ci;
 
 
-ALTER TABLE `ecotone_document_store`
-  ADD PRIMARY KEY (`collection`,`document_id`);
-COMMIT;
+ALTER TABLE `ecotone_document_store` ADD PRIMARY KEY (`collection`,`document_id`);
+

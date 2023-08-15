@@ -6,6 +6,4 @@ CREATE TABLE `ecotone_error_messages` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb3 COLLATE=utf8mb3_unicode_ci;
 
 
-ALTER TABLE `ecotone_error_messages`
-  ADD PRIMARY KEY (`message_id`),
-  ADD KEY `IDX_F9FBCA7B1DD19495` (`failed_at`);
+ALTER TABLE `ecotone_error_messages` ADD PRIMARY KEY (`message_id`), ADD KEY `IDX_F9FBCA7B1DD19495` (`failed_at`);
