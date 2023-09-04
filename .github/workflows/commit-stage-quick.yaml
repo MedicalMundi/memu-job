@@ -32,7 +32,7 @@ jobs:
       fail-fast: true
     steps:
       - name: Checkout on SHA-${{ inputs.triggering-sha }}
-        uses: actions/checkout@v3
+        uses: actions/checkout@v4
         with:
           ref: ${{ inputs.triggering-sha }}
 
@@ -131,7 +131,7 @@ jobs:
       fail-fast: true
     steps:
       - name: Checkout on SHA-${{ inputs.triggering-sha }}
-        uses: actions/checkout@v3
+        uses: actions/checkout@v4
         with:
           ref: ${{ inputs.triggering-sha }}
 
@@ -208,7 +208,7 @@ jobs:
       fail-fast: true
     steps:
       - name: Checkout on SHA-${{ inputs.triggering-sha }}
-        uses: actions/checkout@v3
+        uses: actions/checkout@v4
         with:
           ref: ${{ inputs.triggering-sha }}
 
@@ -276,7 +276,7 @@ jobs:
       fail-fast: true
     steps:
       - name: Checkout on SHA-${{ inputs.triggering-sha }}
-        uses: actions/checkout@v3
+        uses: actions/checkout@v4
         with:
           ref: ${{ inputs.triggering-sha }}
 
@@ -353,7 +353,7 @@ jobs:
       fail-fast: true
     steps:
       - name: Checkout on SHA-${{ inputs.triggering-sha }}
-        uses: actions/checkout@v3
+        uses: actions/checkout@v4
         with:
           ref: ${{ inputs.triggering-sha }}
 
@@ -421,7 +421,7 @@ jobs:
       fail-fast: true
     steps:
       - name: Checkout on SHA-${{ inputs.triggering-sha }}
-        uses: actions/checkout@v3
+        uses: actions/checkout@v4
         with:
           ref: ${{ inputs.triggering-sha }}
 
@@ -489,7 +489,7 @@ jobs:
       fail-fast: true
     steps:
       - name: Checkout on SHA-${{ inputs.triggering-sha }}
-        uses: actions/checkout@v3
+        uses: actions/checkout@v4
         with:
           ref: ${{ inputs.triggering-sha }}
 
@@ -587,7 +587,7 @@ jobs:
 #          - '8.0'
 #      fail-fast: true
 #    steps:
-#      - uses: actions/checkout@v3
+#      - uses: actions/checkout@v4
 #
 #      - name: Setup cache environment
 #        id: cache-php-extensions
