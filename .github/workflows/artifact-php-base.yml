@@ -32,7 +32,7 @@ jobs:
           echo "Image Tag: ${{ github.event.inputs.imageTag }}"
           echo "Image Label: ${{ github.event.inputs.iamgeLabel }}"
 
-      - uses: actions/checkout@v3
+      - uses: actions/checkout@v4
 
       - run: sudo chown runner:docker /var/run/docker.sock
         if: ${{ env.ACT }}
