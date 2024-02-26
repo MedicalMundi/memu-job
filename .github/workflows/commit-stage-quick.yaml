@@ -112,7 +112,7 @@ jobs:
 
       - name: Save coverage reports
         if: ${{ matrix.generate-coverage-report }}
-        uses: actions/upload-artifact@v3
+        uses: actions/upload-artifact@v4
         with:
           name: ${{ steps.coverage-artifact-name.outputs.name }}
           path: |
