@@ -36,7 +36,7 @@ jobs:
           APP_ENV=prod composer install --no-dev --prefer-dist --no-progress --ansi
 
       - name: Setup Node
-        uses: actions/setup-node@v3
+        uses: actions/setup-node@v4
         with:
           #node-version: "${{ matrix.node }}"
           node-version: 16
