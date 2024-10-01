@@ -44,7 +44,7 @@ class JobArticleControllerTest extends WebTestCase
     {
         $originalNumObjectsInRepository = \count($this->repository->findAll());
 
-        $this->client->request('GET', sprintf('%snew', $this->path));
+        $this->client->request('GET', \sprintf('%snew', $this->path));
 
         self::assertResponseStatusCodeSame(200);
 
@@ -70,7 +70,7 @@ class JobArticleControllerTest extends WebTestCase
 
         $this->repository->add($fixture, true);
 
-        $this->client->request('GET', sprintf('%s%s', $this->path, $fixture->getId()));
+        $this->client->request('GET', \sprintf('%s%s', $this->path, $fixture->getId()));
 
         self::assertResponseStatusCodeSame(200);
         self::assertPageTitleContains('JobArticle');
@@ -88,7 +88,7 @@ class JobArticleControllerTest extends WebTestCase
 
         $this->repository->add($fixture, true);
 
-        $this->client->request('GET', sprintf('%s%s/edit', $this->path, $fixture->getId()));
+        $this->client->request('GET', \sprintf('%s%s/edit', $this->path, $fixture->getId()));
 
         $this->client->submitForm('Update', [
             'job_article[title]' => 'Something New',
@@ -121,7 +121,7 @@ class JobArticleControllerTest extends WebTestCase
 
         self::assertSame($originalNumObjectsInRepository + 1, \count($this->repository->findAll()));
 
-        $this->client->request('GET', sprintf('%s%s', $this->path, $fixture->getId()));
+        $this->client->request('GET', \sprintf('%s%s', $this->path, $fixture->getId()));
         $this->client->submitForm('Delete');
 
         self::assertSame($originalNumObjectsInRepository, \count($this->repository->findAll()));

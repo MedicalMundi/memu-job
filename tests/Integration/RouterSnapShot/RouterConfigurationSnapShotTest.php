@@ -36,7 +36,7 @@ class RouterConfigurationSnapShotTest extends KernelTestCase
         $expectedRouteMapFile = __DIR__ . '/Fixture/expected_route_map.json';
 
         if ((bool) getenv('UT')) {
-            (new FileSystem())->dumpFile($expectedRouteMapFile, $currentRouteMapJson);
+            (new Filesystem())->dumpFile($expectedRouteMapFile, $currentRouteMapJson);
         }
 
         self::assertJsonStringEqualsJsonFile(

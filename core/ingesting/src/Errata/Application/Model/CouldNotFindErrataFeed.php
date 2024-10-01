@@ -9,7 +9,7 @@ final class CouldNotFindErrataFeed extends RuntimeException
     public static function withId(ErrataId $errataId): self
     {
         return new CouldNotFindErrataFeed(
-            sprintf(
+            \sprintf(
                 'Could not find a errata feed item with id %s',
                 $errataId->toString()
             )

@@ -9,7 +9,7 @@ final class CouldNotPersistJobFeed extends RuntimeException
     public static function withId(JobId $jobId): self
     {
         return new self(
-            sprintf(
+            \sprintf(
                 'Could not persist job feed item with id %s',
                 $jobId->toString()
             )

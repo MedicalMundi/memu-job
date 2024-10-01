@@ -44,7 +44,7 @@ class ConcorsoArticleControllerTest extends WebTestCase
     {
         $originalNumObjectsInRepository = \count($this->repository->findAll());
 
-        $this->client->request('GET', sprintf('%snew', $this->path));
+        $this->client->request('GET', \sprintf('%snew', $this->path));
 
         self::assertResponseStatusCodeSame(200);
 
@@ -72,7 +72,7 @@ class ConcorsoArticleControllerTest extends WebTestCase
 
         $this->repository->add($fixture, true);
 
-        $this->client->request('GET', sprintf('%s%s', $this->path, $fixture->getId()->toString()));
+        $this->client->request('GET', \sprintf('%s%s', $this->path, $fixture->getId()->toString()));
 
         self::assertResponseStatusCodeSame(200);
         self::assertPageTitleContains('Dettaglio concorso | Administration MedicalJob');
@@ -91,7 +91,7 @@ class ConcorsoArticleControllerTest extends WebTestCase
 
         $this->repository->add($fixture, true);
 
-        $this->client->request('GET', sprintf('%s%s/edit', $this->path, $fixture->getId()->toString()));
+        $this->client->request('GET', \sprintf('%s%s/edit', $this->path, $fixture->getId()->toString()));
 
         $this->client->submitForm('Update', [
             'concorso_article[title]' => 'Something New',
@@ -127,7 +127,7 @@ class ConcorsoArticleControllerTest extends WebTestCase
 
         self::assertSame($originalNumObjectsInRepository + 1, \count($this->repository->findAll()));
 
-        $this->client->request('GET', sprintf('%s%s', $this->path, $fixture->getId()->toString()));
+        $this->client->request('GET', \sprintf('%s%s', $this->path, $fixture->getId()->toString()));
         $this->client->submitForm('Elimina');
 
         self::assertSame($originalNumObjectsInRepository, \count($this->repository->findAll()));

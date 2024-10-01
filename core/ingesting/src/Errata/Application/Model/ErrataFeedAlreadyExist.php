@@ -9,7 +9,7 @@ final class ErrataFeedAlreadyExist extends RuntimeException
     public static function withId(ErrataId $errataId): self
     {
         return new self(
-            sprintf(
+            \sprintf(
                 'Errata feed item with id %s already exist',
                 $errataId->toString()
             )
