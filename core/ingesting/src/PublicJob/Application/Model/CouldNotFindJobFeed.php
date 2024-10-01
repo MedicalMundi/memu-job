@@ -9,7 +9,7 @@ final class CouldNotFindJobFeed extends RuntimeException
     public static function withId(JobId $jobId): self
     {
         return new self(
-            sprintf(
+            \sprintf(
                 'Could not find a job feed item with id %s',
                 $jobId->toString()
             )

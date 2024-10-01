@@ -15,7 +15,7 @@ class PublicationDate
 
     private function __construct(string $publicationDate)
     {
-        $this->publicationDate = new \DateTimeImmutable($publicationDate, new \DateTimeZone('UTC'));
+        $this->publicationDate = new DateTimeImmutable($publicationDate, new \DateTimeZone('UTC'));
     }
 
     public function toString(): string

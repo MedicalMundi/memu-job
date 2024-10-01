@@ -99,7 +99,7 @@ final class AcceptanceContext extends MinkContext implements Context
                 $element = $this->getSession()->getPage()->find('css', $locator);
                 Assert::notNull(
                     $element,
-                    sprintf(
+                    \sprintf(
                         'locator "%s" not found on page %s',
                         $locator,
                         $this->getSession()->getCurrentUrl()

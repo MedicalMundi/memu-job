@@ -9,7 +9,7 @@ final class JobFeedAlreadyExist extends RuntimeException
     public static function withId(JobId $jobId): self
     {
         return new self(
-            sprintf(
+            \sprintf(
                 'Job feed item with id %s already exist',
                 $jobId->toString()
             )
