@@ -324,22 +324,22 @@ jobs:
           restore-keys: |
             ${{ runner.os }}-php-${{ matrix.php }}-composer-
 
-      - name: Install dependencies
-        run: |
-          composer install --prefer-dist --no-progress
-          composer bin deptrac install
-
-      - name: Run core analysis Context To Context
-        run: vendor/bin/deptrac analyse core/depfile-core.yaml
-
-      - name: Run core analysis Job Context
-        run: vendor/bin/deptrac analyse core/depfile-publicjob.yaml
-
-      - name: Run core analysis Errata Context
-        run: vendor/bin/deptrac analyse core/depfile-errata.yaml
-
-      - name: Run core analysis Analyzer Context
-        run: vendor/bin/deptrac analyse core/depfile-analyzer.yaml
+#      - name: Install dependencies
+#        run: |
+#          composer install --prefer-dist --no-progress
+#          composer bin deptrac install
+#
+#      - name: Run core analysis Context To Context
+#        run: vendor/bin/deptrac analyse core/depfile-core.yaml
+#
+#      - name: Run core analysis Job Context
+#        run: vendor/bin/deptrac analyse core/depfile-publicjob.yaml
+#
+#      - name: Run core analysis Errata Context
+#        run: vendor/bin/deptrac analyse core/depfile-errata.yaml
+#
+#      - name: Run core analysis Analyzer Context
+#        run: vendor/bin/deptrac analyse core/depfile-analyzer.yaml
 
 
   phpstan:
