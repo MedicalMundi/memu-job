@@ -72,6 +72,10 @@ jobs:
         run: |
           rm -fr var/
 
+      - name: Prepare prod container
+        run: |
+          ./bin/console lint:container -e prod --ansi
+
       - name: Overwrite Production env file
         uses: DamianReeves/write-file-action@master
         with:
@@ -119,7 +123,7 @@ jobs:
             **/sys/**
             **/tests/**
             **/tools/**
-            **/var/**
+            **/var/log/**
             
             **/core/backoffice/tests/**
             **/core/ingesting/tests/**
