@@ -82,6 +82,13 @@
             "symfony/flex": true,
             "symfony/runtime": true
         },
+        "audit": {
+            "abandoned": "report",
+            "ignore": {
+                "CVE-2023-46733": "Due to ci refactoring in place the update can be delayed.",
+                "CVE-2023-46734": "Due to ci refactoring in place the update can be delayed."
+            }
+        },
         "optimize-autoloader": true,
         "preferred-install": {
             "*": "dist"
