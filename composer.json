@@ -26,7 +26,7 @@
         "ecotone/symfony-bundle": "^1.90",
         "friendsofsymfony/ckeditor-bundle": "^2.4",
         "league/fractal": "^0.20.1",
-        "pagerfanta/doctrine-orm-adapter": "^3.8",
+        "pagerfanta/doctrine-orm-adapter": "^4.7",
         "pagerfanta/twig": "^3.8",
         "ramsey/uuid": "^4.1",
         "ramsey/uuid-doctrine": "^1.8",
