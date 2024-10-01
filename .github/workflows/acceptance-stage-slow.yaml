@@ -64,7 +64,7 @@ jobs:
     strategy:
       matrix:
         php:
-          - '8.0'
+          - '8.1'
       fail-fast: true
     steps:
       - name: Checkout on SHA-${{ inputs.triggering-sha }}
@@ -180,7 +180,7 @@ jobs:
     strategy:
       matrix:
         php:
-          - '8.0'
+          - '8.1'
         generate-coverage-report: [true]
 #        include:
 #          - php: '8.1'
@@ -303,7 +303,7 @@ jobs:
     strategy:
       matrix:
         php:
-          - '8.0'
+          - '8.1'
         node:
           - '16.x'
         generate-coverage-report: [true]
@@ -477,7 +477,7 @@ jobs:
 #      matrix:
 #        php:
 #          #- '8.1'
-#          - '8.0'
+#          - '8.1'
 #        include:
 #          - php: '8.0'
 #            coverage: true
