@@ -83,7 +83,7 @@ class GazzettaClient implements ClientInterface
             'User-Agent' => $this->userAgent,
         ];
         if ($modifiedSince) {
-            $headers['If-Modified-Since'] = $modifiedSince->format(\DateTime::RFC2822);
+            $headers['If-Modified-Since'] = $modifiedSince->format(DateTime::RFC2822);
         }
         return [
             'http_errors' => false,

@@ -15,7 +15,7 @@ class DoctrineReadableJobRepositoryTest extends ReadableJobRepositoryContractTes
 {
     private ?ReadableJobFeedRepository $doctrineReadableJobFeedRepository;
 
-    private DoctrineJobFeedRepository$writeModel;
+    private DoctrineJobFeedRepository $writeModel;
 
     protected function setUp(): void
     {
