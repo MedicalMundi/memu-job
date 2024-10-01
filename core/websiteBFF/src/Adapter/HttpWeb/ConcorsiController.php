@@ -2,6 +2,8 @@
 
 namespace WebSiteBFF\Adapter\HttpWeb;
 
+use Ecotone\Messaging\Conversion\MediaType;
+use Ecotone\Modelling\EventBus;
 use Pagerfanta\Adapter\ArrayAdapter;
 use Pagerfanta\Pagerfanta;
 use Publishing\Cms\AdapterDistributedData\CmsDistributedData;
@@ -35,7 +37,7 @@ class ConcorsiController extends AbstractController
     }
 
     #[Route(path: '/concorsi/{id}/show', name: 'website_concorso_show')]
-    public function show(string $id): Response
+    public function show(string $id, EventBus $eventBus): Response
     {
         // get data (published job article) from cms context
 
@@ -43,6 +45,14 @@ class ConcorsiController extends AbstractController
 
         // serve data by template
         $data = $this->cmsDistributedData->getConcorsoArticleById($id);
+
+        $eventBus->publishWithRouting(
+            'website_bff_service.article.viewed',
+            [
+                'article_id' => $id,
+            ],
+            MediaType::APPLICATION_JSON
+        );
 
         return $this->render('@website/concorsi/show.html.twig', [
             'data' => $data,
