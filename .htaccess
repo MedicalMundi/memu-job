@@ -1,5 +1,5 @@
 # # av:php5-engine
-AddHandler av-php8 .php
+AddHandler av-php81 .php
 
 #
 #   FIX CORS Missing Allow Origin for assets file
