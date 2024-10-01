@@ -45,7 +45,13 @@ class SymfonyCliController extends AbstractController
         ]);
 
         $output = new BufferedOutput();
-        $application->run($input, $output);
+        try {
+            $application->run($input, $output);
+        } catch (\Throwable $throwable) {
+            $content = $throwable->getMessage();
+            return new Response($content);
+        }
+
 
         $content = $output->fetch();
 
