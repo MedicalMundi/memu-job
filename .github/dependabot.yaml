@@ -18,32 +18,36 @@ updates:
     labels:
       - "php dependency"
     ignore:
-      - dependency-name: "symfony/console"
-        versions: ["6.x"]
-      - dependency-name: "symfony/dotenv"
-        versions: ["6.x"]
-      - dependency-name: "symfony/framework-bundle"
-        versions: ["6.x"]
-      - dependency-name: "symfony/http-client"
-        versions: ["6.x"]
-      - dependency-name: "symfony/proxy-manager-bridge"
-        versions: ["6.x"]
-      - dependency-name: "symfony/runtime"
-        versions: ["6.x"]
-      - dependency-name: "symfony/translation"
-        versions: [ "6.x" ]
-      - dependency-name: "symfony/twig-bundle"
-        versions: [ "6.x" ]
-      - dependency-name: "symfony/yaml"
-        versions: ["6.x"]
-      - dependency-name: "symfony/phpunit-bridge"
-        versions: ["6.x"]
-      - dependency-name: "symfony/browser-kit"
-        versions: ["6.x"]
-      - dependency-name: "symfony/css-selector"
-        versions: ["6.x"]
-      - dependency-name: "symfony/web-profiler-bundle"
-        versions: [ "6.x" ]
+      # ignore all GitHub linguist patch updates
+      - dependency-name: "symfony/*"
+        update-types: [ "version-update:semver-major" ]
+
+#      - dependency-name: "symfony/console"
+#        versions: ["6.x"]
+#      - dependency-name: "symfony/dotenv"
+#        versions: ["6.x"]
+#      - dependency-name: "symfony/framework-bundle"
+#        versions: ["6.x"]
+#      - dependency-name: "symfony/http-client"
+#        versions: ["6.x"]
+#      - dependency-name: "symfony/proxy-manager-bridge"
+#        versions: ["6.x"]
+#      - dependency-name: "symfony/runtime"
+#        versions: ["6.x"]
+#      - dependency-name: "symfony/translation"
+#        versions: [ "6.x" ]
+#      - dependency-name: "symfony/twig-bundle"
+#        versions: [ "6.x" ]
+#      - dependency-name: "symfony/yaml"
+#        versions: ["6.x"]
+#      - dependency-name: "symfony/phpunit-bridge"
+#        versions: ["6.x"]
+#      - dependency-name: "symfony/browser-kit"
+#        versions: ["6.x"]
+#      - dependency-name: "symfony/css-selector"
+#        versions: ["6.x"]
+#      - dependency-name: "symfony/web-profiler-bundle"
+#        versions: [ "6.x" ]
 
 
   #
