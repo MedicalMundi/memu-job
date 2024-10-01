@@ -50,7 +50,7 @@ jobs:
       ###
       - name: Download unit test coverage artifact
         id: download-unit-test-coverage-artifact
-        uses: actions/download-artifact@v3
+        uses: actions/download-artifact@v4
         with:
           name: ${{ vars.ARTIFATC_NAME_FOR_UNIT_TEST_COVERAGE }}-${{ inputs.triggering-sha}}
 
@@ -69,7 +69,7 @@ jobs:
       ###
       - name: Download integration test coverage artifact
         id: download-integration-test-coverage-artifact
-        uses: actions/download-artifact@v3
+        uses: actions/download-artifact@v4
         with:
           name: ${{ vars.ARTIFATC_NAME_FOR_INTEGRATION_TEST_COVERAGE }}-${{ inputs.triggering-sha}}
 
@@ -88,7 +88,7 @@ jobs:
       ###
       - name: Download functional test coverage artifact
         id: download-functional-test-coverage-artifact
-        uses: actions/download-artifact@v3
+        uses: actions/download-artifact@v4
         with:
           name: ${{ vars.ARTIFATC_NAME_FOR_FUNCTIONAL_TEST_COVERAGE }}-${{ inputs.triggering-sha}}
 
