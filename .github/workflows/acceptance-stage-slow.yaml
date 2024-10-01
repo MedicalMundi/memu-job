@@ -378,7 +378,7 @@ jobs:
           DATABASE_URL: mysql://ci-db-user:ci-db-password@127.0.0.1:${{ job.services.mysql.ports['3306'] }}/ci-db?serverVersion=8.0&charset=utf8mb4
 
       - name: Setup Node
-        uses: actions/setup-node@v3
+        uses: actions/setup-node@v4
         with:
           node-version: "${{ matrix.node }}"
 
@@ -667,7 +667,7 @@ jobs:
 #          DATABASE_URL: postgresql://ci-db-user:ci-db-password@127.0.0.1:${{ job.services.pgsql.ports['5432'] }}/ci-db?serverVersion=13&charset=utf8
 #
 #      - name: Setup Node
-#        uses: actions/setup-node@v3
+#        uses: actions/setup-node@v4
 #        with:
 #          node-version: "${{ matrix.node }}"
 #
