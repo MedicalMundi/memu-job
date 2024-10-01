@@ -20,6 +20,12 @@ class SymfonyCliController extends AbstractController
         return $this->do_command($kernel, 'cache:clear');
     }
 
+    #[Route(path: '/c/c/c', name: 'sys_cli_command_cache_clear_2')]
+    public function command_cache_clear2(KernelInterface $kernel): Response
+    {
+        return $this->do_command($kernel, 'cache:clear');
+    }
+
     #[Route(path: 'command/db/migrate', name: 'sys_cli_command_migrations_run')]
     public function command_migrations_run(KernelInterface $kernel): Response
     {

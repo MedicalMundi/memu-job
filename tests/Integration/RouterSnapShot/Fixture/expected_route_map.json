@@ -257,6 +257,14 @@
         },
         "methods": []
     },
+    "sys_cli_command_cache_clear_2": {
+        "path": "\/c\/c\/c",
+        "requirements": [],
+        "defaults": {
+            "_controller": "App\\Controller\\SymfonyCliController::command_cache_clear2"
+        },
+        "methods": []
+    },
     "sys_cli_command_ingesting_job": {
         "path": "\/command\/ingesting\/job",
         "requirements": [],
