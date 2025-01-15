@@ -9775,23 +9775,23 @@
         },
         {
             "name": "dbrekelmans/bdi",
-            "version": "1.1.0",
+            "version": "1.4.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/dbrekelmans/bdi.git",
-                "reference": "e235f7d59ba7113ebb784628614bd768e4660764"
+                "reference": "fa2ff9b5ed0508ddf5cd574f9dfa6fea954a9acd"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/dbrekelmans/bdi/zipball/e235f7d59ba7113ebb784628614bd768e4660764",
-                "reference": "e235f7d59ba7113ebb784628614bd768e4660764",
+                "url": "https://api.github.com/repos/dbrekelmans/bdi/zipball/fa2ff9b5ed0508ddf5cd574f9dfa6fea954a9acd",
+                "reference": "fa2ff9b5ed0508ddf5cd574f9dfa6fea954a9acd",
                 "shasum": ""
             },
             "require": {
                 "ext-json": "*",
                 "ext-zip": "*",
                 "ext-zlib": "*",
-                "php": "^7.4|^8.0"
+                "php": "^8.1"
             },
             "bin": [
                 "bdi",
@@ -9818,9 +9818,9 @@
                 "browser-driver-installer"
             ],
             "support": {
-                "source": "https://github.com/dbrekelmans/bdi/tree/1.1.0"
+                "source": "https://github.com/dbrekelmans/bdi/tree/1.4.0"
             },
-            "time": "2023-10-04T13:36:08+00:00"
+            "time": "2024-12-12T18:36:47+00:00"
         },
         {
             "name": "friends-of-behat/mink-browserkit-driver",
